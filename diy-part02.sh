@@ -109,9 +109,8 @@ svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/
 # Zerotier
 svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
 ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
-svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/zerotier feeds/packages/net/zerotier
-ln -sf ../../../feeds/packages/net/zerotier ./package/feeds/packages/zerotier
+svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/zerotier package/new/zerotier
 
 # unblockneteasemusic
-svn export https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
+svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
 ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/feeds/luci/luci-app-unblockneteasemusic
