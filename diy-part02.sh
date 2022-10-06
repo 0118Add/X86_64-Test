@@ -57,4 +57,53 @@
 
 
 # OpenClash
-svn export -q https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
+svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
+
+# Shared for PassWall and ShadowsocksR Plus+
+svn export -q https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/luci-app-ssr-plus
+svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/dns2socks package/new/dns2socks
+svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/dns2tcp package/new/dns2tcp
+svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/ipt2socks package/new/ipt2socks
+svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/kcptun package/new/kcptun
+svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/hysteria package/new/hysteria
+svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/microsocks package/new/microsocks
+svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/pdnsd-alt package/new/pdnsd-alt
+svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/redsocks2 package/new/redsocks2
+svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/sagernet-core package/new/sagernet-core
+svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/xray-plugin package/new/xray-plugin
+svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/shadowsocks-libev package/new/shadowsocks-libev
+svn export -q https://github.com/fw876/helloworld/trunk/lua-neturl package/new/lua-neturl
+svn export -q https://github.com/fw876/helloworld/trunk/naiveproxy package/new/naiveproxy
+svn export -q https://github.com/fw876/helloworld/trunk/shadowsocks-rust package/new/shadowsocks-rust
+svn export -q https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/new/shadowsocksr-libev
+svn export -q https://github.com/fw876/helloworld/trunk/simple-obfs package/new/simple-obfs
+svn export -q https://github.com/fw876/helloworld/trunk/tcping package/new/tcping
+svn export -q https://github.com/fw876/helloworld/trunk/trojan package/new/trojan
+svn export -q https://github.com/fw876/helloworld/trunk/v2ray-plugin package/new/v2ray-plugin
+svn export -q https://github.com/fw876/helloworld/trunk/xray-core package/new/xray-core
+
+# upx & ucl
+svn export -q https://github.com/coolsnowwolf/lede/trunk/tools/ucl tools/ucl
+svn export -q https://github.com/coolsnowwolf/lede/trunk/tools/upx tools/upx
+sed -i '/builddir dependencies/i\tools-y += ucl upx' tools/Makefile
+sed -i '/builddir dependencies/a\$(curdir)/upx/compile := $(curdir)/ucl/compile' tools/Makefile
+
+# vlmcsd
+svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-vlmcsd feeds/luci/applications/luci-app-vlmcsd
+ln -sf ../../../feeds/luci/applications/luci-app-vlmcsd ./package/feeds/luci/luci-app-vlmcsd
+svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/vlmcsd package/new/vlmcsd
+
+# Filetransfer
+svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-filetransfer feeds/luci/applications/luci-app-filetransfer
+ln -sf ../../../feeds/luci/applications/luci-app-filetransfer ./package/feeds/luci/luci-app-filetransfer
+svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/libs/luci-lib-fs feeds/luci/libs/luci-lib-fs
+ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
+
+# turboacc
+#svn export https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-turboacc feeds/luci/applications/luci-app-turboacc
+svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/dnsforwarder package/new/dnsforwarder
+svn export -q https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-turboacc feeds/luci/applications/luci-app-turboacc
+ln -sf ../../../feeds/luci/applications/luci-app-turboacc ./package/feeds/luci/luci-app-turboacc
+
+# AutoCore
+svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/emortal/autocore package/new/autocore
