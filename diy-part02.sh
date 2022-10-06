@@ -54,19 +54,7 @@
 
 
 
-# AutoCore
-cp -rf ../immortalwrt/package/emortal/autocore package/new/
-cp -rf ../immortalwrt-luci/modules/luci-base/root/usr/libexec/rpcd/luci feeds/luci/modules/luci-base/root/usr/libexec/rpcd/
+
 
 # OpenClash
 svn export -q https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
-
-# vlmcsd
-cp -rf ../immortalwrt-luci/applications/luci-app-vlmcsd package/new/
-cp -rf ../immortalwrt-packages/net/vlmcsd package/new/
-
-# Zerotier
-cp -rf ../immortalwrt-luci/applications/luci-app-zerotier package/new/
-
-# default settings and translation
-cp -rf ../default-settings package/new/
