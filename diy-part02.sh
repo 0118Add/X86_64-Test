@@ -100,12 +100,5 @@ ln -sf ../../../feeds/luci/applications/luci-app-filetransfer ./package/feeds/lu
 svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/libs/luci-lib-fs feeds/luci/libs/luci-lib-fs
 ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
 
-# turboacc
-#svn export https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-turboacc feeds/luci/applications/luci-app-turboacc
-svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/dnsforwarder package/new/dnsforwarder
-svn export -q https://github.com/0118Add/openwrt-packages/trunk/shortcut-fe package/new/shortcut-fe
-svn export -q https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-turboacc feeds/luci/applications/luci-app-turboacc
-ln -sf ../../../feeds/luci/applications/luci-app-turboacc ./package/feeds/luci/luci-app-turboacc
-
 # AutoCore
 svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/emortal/autocore package/new/autocore
