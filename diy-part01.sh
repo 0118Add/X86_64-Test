@@ -17,3 +17,7 @@
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 
+git clone -b master --depth 1 --single-branch https://github.com/coolsnowwolf/lede lede
+git clone -b master --single-branch https://github.com/immortalwrt/immortalwrt immortalwrt
+git clone -b master --depth 1 --single-branch https://github.com/immortalwrt/packages immortalwrt-packages
+git clone -b master --depth 1 --single-branch https://github.com/immortalwrt/luci immortalwrt-luci
