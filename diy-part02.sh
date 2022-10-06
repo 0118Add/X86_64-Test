@@ -79,6 +79,7 @@ svn export -q https://github.com/fw876/helloworld/trunk/shadowsocksr-libev packa
 svn export -q https://github.com/fw876/helloworld/trunk/simple-obfs package/new/simple-obfs
 svn export -q https://github.com/fw876/helloworld/trunk/tcping package/new/tcping
 svn export -q https://github.com/fw876/helloworld/trunk/trojan package/new/trojan
+svn export -q https://github.com/fw876/helloworld/trunk/v2ray-core package/new/v2ray-core
 svn export -q https://github.com/fw876/helloworld/trunk/v2ray-plugin package/new/v2ray-plugin
 svn export -q https://github.com/fw876/helloworld/trunk/xray-core package/new/xray-core
 
@@ -102,6 +103,7 @@ ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
 # turboacc
 #svn export https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-turboacc feeds/luci/applications/luci-app-turboacc
 svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/dnsforwarder package/new/dnsforwarder
+svn export -q https://github.com/0118Add/openwrt-packages/trunk/shortcut-fe package/new/shortcut-fe
 svn export -q https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-turboacc feeds/luci/applications/luci-app-turboacc
 ln -sf ../../../feeds/luci/applications/luci-app-turboacc ./package/feeds/luci/luci-app-turboacc
 
