@@ -102,3 +102,12 @@ ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
 
 # AutoCore
 svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/emortal/autocore package/new/autocore
+
+# default settings and translation
+svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/emortal/default-settings package/new/default-settings
+
+# Zerotier
+svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
+ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
+svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/zerotier feeds/packages/net/zerotier
+ln -sf ../../../feeds/packages/net/zerotier ./package/feeds/packages/zerotier
