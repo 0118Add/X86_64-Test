@@ -128,6 +128,6 @@ ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/f
 sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65535#g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 
 # turboacc
-svn export https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-turboacc feeds/luci/applications/luci-app-turboacc
-svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/shortcut-fe package/new/shortcut-fe
-svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/fast-classifier package/new/fast-classifier
+svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-turboacc feeds/luci/applications/luci-app-turboacc
+svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/shortcut-fe package/new/shortcut-fe
+svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/fast-classifier package/new/fast-classifier
