@@ -51,13 +51,6 @@ svn export -q https://github.com/coolsnowwolf/lede/trunk/tools/upx tools/upx
 sed -i '/builddir dependencies/i\tools-y += ucl upx' tools/Makefile
 sed -i '/builddir dependencies/a\$(curdir)/upx/compile := $(curdir)/ucl/compile' tools/Makefile
 
-# UPNP
-rm -rf ./feeds/luci/applications/luci-app-upnp
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-upnp feeds/luci/applications/luci-app-upnp
-ln -sf ../../../feeds/luci/applications/luci-app-upnp ./package/feeds/luci/luci-app-upnp
-rm -rf ./feeds/packages/net/miniupnpd
-svn export -q https://github.com/openwrt/packages/branches/openwrt-21.02/net/miniupnpd feeds/packages/net/miniupnpd
-
 # frpc
 rm -rf ./feeds/luci/applications/luci-app-frpc
 svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-frpc feeds/luci/applications/luci-app-frpc
