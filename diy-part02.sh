@@ -54,7 +54,8 @@
 
 
 
-
+#Default IP
+sed -i 's#192.168.1.1#192.168.2.1#g' package/base-files/files/bin/config_generate
 
 # OpenClash
 svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
@@ -66,6 +67,8 @@ svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net
 svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/ipt2socks package/new/ipt2socks
 svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/kcptun package/new/kcptun
 svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/hysteria package/new/hysteria
+svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/chinadns-ng package/new/chinadns-ng
+svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/trojan-plus package/new/trojan-plus
 svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/microsocks package/new/microsocks
 svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/pdnsd-alt package/new/pdnsd-alt
 svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/redsocks2 package/new/redsocks2
@@ -105,12 +108,12 @@ svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/libs/lu
 ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
 
 # AutoCore
-#svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/emortal/autocore package/new/autocore
-svn export -q https://github.com/jinlife/OpenWrt-Autobuild/trunk/autocore package/new/autocore
+svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/emortal/autocore package/new/autocore
+#svn export -q https://github.com/jinlife/OpenWrt-Autobuild/trunk/autocore package/new/autocore
 
 # default settings and translation
-#svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/emortal/default-settings package/new/default-settings
-svn export -q https://github.com/jinlife/OpenWrt-Autobuild/trunk/default-settings package/new/default-settings
+svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/emortal/default-settings package/new/default-settings
+#svn export -q https://github.com/jinlife/OpenWrt-Autobuild/trunk/default-settings package/new/default-settings
 
 # Zerotier
 svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
@@ -120,3 +123,12 @@ svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net
 # unblockneteasemusic
 svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
 ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/feeds/luci/luci-app-unblockneteasemusic
+
+# net.netfilter.nf_conntrack_max from 16384 to 65535
+sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65535#g' package/kernel/linux/files/sysctl-nf-conntrack.conf
+
+# turboacc
+#svn export https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-turboacc feeds/luci/applications/luci-app-turboacc
+svn export https://github.com/coolsnowwolf/lede/trunk/package/lean/shortcut-fe package/new/shortcut-fe
+svn export https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-turboacc feeds/luci/applications/luci-app-turboacc
+ln -sf ../../../feeds/luci/applications/luci-app-turboacc ./package/feeds/luci/luci-app-turboacc
