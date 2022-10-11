@@ -83,6 +83,10 @@ svn export -q https://github.com/fw876/helloworld/trunk/v2ray-core package/new/v
 svn export -q https://github.com/fw876/helloworld/trunk/v2ray-plugin package/new/v2ray-plugin
 svn export -q https://github.com/fw876/helloworld/trunk/xray-core package/new/xray-core
 
+# bypass
+svn export -q https://github.com/kiddin9/openwrt-packages/trunk/lua-maxminddb package/new/lua-maxminddb
+svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-bypass package/new/luci-app-bypass
+
 # upx & ucl
 svn export -q https://github.com/coolsnowwolf/lede/trunk/tools/ucl tools/ucl
 svn export -q https://github.com/coolsnowwolf/lede/trunk/tools/upx tools/upx
@@ -101,10 +105,12 @@ svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/libs/lu
 ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
 
 # AutoCore
-svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/emortal/autocore package/new/autocore
+#svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/emortal/autocore package/new/autocore
+svn export -q https://github.com/jinlife/OpenWrt-Autobuild/trunk/autocore package/new/autocore
 
 # default settings and translation
-svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/emortal/default-settings package/new/default-settings
+#svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/emortal/default-settings package/new/default-settings
+svn export -q https://github.com/jinlife/OpenWrt-Autobuild/trunk/default-settings package/new/default-settings
 
 # Zerotier
 svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
