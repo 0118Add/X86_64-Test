@@ -15,7 +15,8 @@ sed -i 's#192.168.1.1#192.168.2.1#g' package/base-files/files/bin/config_generat
 # alist
 rm -rf feeds/packages/lang/golang
 svn export -q https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
-git clone https://github.com/sbwml/luci-app-alist.git package/alist
+svn export -q https://github.com/sbwml/luci-app-alist/trunk/alist package/new/alist
+svn export -q https://github.com/sbwml/luci-app-alist/trunk/luci-app-alist package/new/luci-app-alist
 
 # OpenClash
 svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
