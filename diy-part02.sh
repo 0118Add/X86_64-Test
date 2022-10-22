@@ -74,7 +74,7 @@ svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/libs/lu
 ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
 
 # AutoCore
-svn export -q https://github.com/0118Add/immortalwrt/branches/openwrt-21.02/package/emortal/autocore package/new/autocore
+svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/emortal/autocore package/new/autocore
 #svn export -q https://github.com/jinlife/OpenWrt-Autobuild/trunk/autocore package/new/autocore
 
 # default settings and translation
