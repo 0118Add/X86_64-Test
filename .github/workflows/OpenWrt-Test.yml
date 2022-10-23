@@ -117,7 +117,7 @@ jobs:
         allowUpdates: true
         removeArtifacts: true
         tag: x64
-        commit: master
+        commit: main
         token: ${{ secrets.RELEASES_TOKEN }}
         body: |
           ${{ env.useVersionInfo }}
