@@ -1,4 +1,4 @@
-name: OpenWrt-Test
+name: OpenWrt-x64
 
 on:
   repository_dispatch:
@@ -18,11 +18,9 @@ env:
   CONFIG_FILE: OpenWrt-Test.config
   DIY_P1_SH: diy-part01.sh
   DIY_P2_SH: diy-part02.sh
-  SSH_ACTIONS: false
-  UPLOAD_BIN_DIR: false
-  UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: false
   TZ: Asia/Shanghai
+  FILE_NAME: x64
 
 jobs:
   build:
@@ -32,7 +30,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
 
-    - name: Check server configuration
+    - name: 检查服务器分配
       run: |
         echo "若分配的服务器性能不足，务必及时取消，重新运行！"
         echo "已知编译成功CPU型号：8370C,8171M"
@@ -49,7 +47,7 @@ jobs:
         echo "硬盘详情："
         df -Th    
     
-    - name: Initialization environment
+    - name: 搭建编译环境
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
@@ -62,125 +60,65 @@ jobs:
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
     
-    - name: Clone source code
+    - name: 克隆源代码
       working-directory: /workdir
       run: |
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
     
-#    - name: Cache
-#      uses: klever1988/cachewrtbuild@main
-#      with:
-#        ccache: 'true'
-#        clean:  'false'
-#        prefix: ${{ github.workspace }}/openwrt    
-    
-    - name: Load custom feeds
+    - name: 更新feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
-        chmod +x $DIY_P1_SH
+        chmod +x $DIY1_SH
         cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P1_SH
+        $GITHUB_WORKSPACE/$DIY1_SH
     
-    - name: Update feeds
-      run: cd openwrt && ./scripts/feeds update -a
-
-    - name: Install feeds
-      run: cd openwrt && ./scripts/feeds install -a
-
-    - name: Load custom configuration
+    - name: 自定义配置
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        chmod +x $DIY_P2_SH
+        chmod +x $DIY2_SH
         cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P2_SH
-    
-    - name: SSH connection to Actions
-      uses: P3TERX/ssh2actions@v1.0.0
-      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
-      env:
-        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-
-    - name: Download package
-      id: package
+        $GITHUB_WORKSPACE/$DIY2_SH
+         
+    - name: 下载软件包
       run: |
         cd openwrt
         make defconfig
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
-        
-    - name: Compile the firmware
-      id: compile
+    
+    - name: 编译
       run: |
         cd openwrt
-        echo -e "$(nproc) thread compile"
-        make -j$(nproc) || make -j1 || make -j1 V=s
-        echo "status=success" >>$GITHUB_OUTPUT
-        grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
-        [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
-        echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
-        
-    - name: Upload bin directory
-      uses: actions/upload-artifact@main
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
-      with:
-        name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
-        path: openwrt/bin
-
-    - name: Organize files
-      id: organize
-      if: steps.compile.outputs.status == 'success' && !cancelled()
-      run: |
-        tar -zcvf AllPackages.tar.gz openwrt/bin/packages
-        mv AllPackages.tar.gz openwrt/bin/targets/*/*
-        cd openwrt/bin/targets/*/*
-        tar -zcvf Packages.tar.gz packages
-        rm -rf packages config.buildinfo feeds.buildinfo sha256sums version.buildinfo *.manifest Packages.tar.gz
-        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-        echo "status=success" >>$GITHUB_OUTPUT
-        
-    - name: Upload firmware directory
-      uses: actions/upload-artifact@main
-      if: steps.organize.outputs.status == 'success' && !cancelled()
-      with:
-        name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
-        path: ${{ env.FIRMWARE }}
-
-    - name: Create release
-      uses: softprops/action-gh-release@v1
-      if: steps.tag.outputs.status == 'success' && !cancelled()
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ steps.tag.outputs.release_tag }}
-        body_path: release.txt
-        files: ${{ env.FIRMWARE }}/*
+        echo -e "$(($(nproc) + 1)) thread compile"
+        make -j$(($(nproc) + 1)) || make -j1 V=s
+        echo "compile=success" >> $GITHUB_ENV
     
-    - name: Upload firmware to release
-      uses: softprops/action-gh-release@v1
-      if: steps.tag.outputs.status == 'success' && !cancelled()
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Check space usage
+      if: (!cancelled())
+      run: df -hT
+    
+    - name: 整理编译文件
+      if: env.compile == 'success'
+      run: |
+        rm -rf openwrt/bin/targets/x86/64/packages
+        cd openwrt/bin/targets/*/*
+        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+        echo "organize=success" >> $GITHUB_ENV
+    
+    - name: 发布release
+      if: env.UPLOAD_RELEASE == 'true' && env.organize == 'success'
+      uses: ncipollo/release-action@main
       with:
-        tag_name: ${{ steps.tag.outputs.release_tag }}
-        body_path: release.txt
-        files: ${{ env.FIRMWARE }}/*
-
-    - name: Delete workflow runs
-      uses: GitRML/delete-workflow-runs@main
-      with:
-        retain_days: 1
-        keep_minimum_runs: 3
-
-    - name: Remove old Releases
-      uses: dev-drprasad/delete-older-releases@v0.1.0
-      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
-      with:
-        keep_latest: 3
-        delete_tags: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        name: ${{ env.DATE }} 🚀 x64 | 自动编译
+        allowUpdates: true
+        removeArtifacts: true
+        tag: x64
+        commit: master
+        token: ${{ secrets.RELEASES_TOKEN }}
+        body: |
+          ${{ env.useVersionInfo }}
+        artifacts: ${{ env.FIRMWARE }}/*
