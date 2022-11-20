@@ -159,7 +159,7 @@ jobs:
       run: |
         curl -fsSL git.io/file-transfer | sh
         ./transfer cow --block 2621440 -s -p 64 --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
-        echo "warning file=cowtransfer.com=$(cat cowtransfer.log | grep https)" >>$GITHUB_OUTPUT
+        echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
         echo "url=$(cat cowtransfer.log | grep https | cut -f3 -d" ")" >>$GITHUB_OUTPUT
     
     - name: Upload firmware to WeTransfer
@@ -168,7 +168,7 @@ jobs:
       run: |
         curl -fsSL git.io/file-transfer | sh
         ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
-        echo "warning file=wetransfer.com=$(cat wetransfer.log | grep https)" >>$GITHUB_OUTPUT
+        echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
         echo "url=$(cat wetransfer.log | grep https | cut -f3 -d" ")" >>$GITHUB_OUTPUT
     
     - name: Generate release tag
@@ -182,7 +182,7 @@ jobs:
         echo "status=success" >>$GITHUB_OUTPUT
     
     - name: Upload firmware to release
-      uses: softprops/action-gh-release@v1
+      uses: 0118Add/action-gh-release@1.0
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
