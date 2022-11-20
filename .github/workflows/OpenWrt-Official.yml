@@ -39,7 +39,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@main
+      uses: actions/checkout@v3
 
     - name: Check server configuration
       run: |
@@ -182,7 +182,7 @@ jobs:
         echo "status=success" >>$GITHUB_OUTPUT
     
     - name: Upload firmware to release
-      uses: softprops/action-gh-release@v1
+      uses: 0118Add/action-gh-release@1.0
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -192,13 +192,13 @@ jobs:
         files: ${{ env.FIRMWARE }}/*
 
     - name: Delete workflow runs
-      uses: GitRML/delete-workflow-runs@main
+      uses: 0118Add/delete-workflow-runs@main
       with:
         retain_days: 1
         keep_minimum_runs: 1
 
     - name: Remove old Releases
-      uses: dev-drprasad/delete-older-releases@v0.1.0
+      uses: 0118Add/delete-older-releases@master
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
         keep_latest: 5
