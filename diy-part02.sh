@@ -95,3 +95,8 @@ svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-theme-edge 
 
 # net.netfilter.nf_conntrack_max from 16384 to 65535
 sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65535#g' package/kernel/linux/files/sysctl-nf-conntrack.conf
+
+# kernel
+svn export -q https://github.com/kiddin9/openwrt-packages/trunk/r8125 package/new/r8125
+svn export -q https://github.com/kiddin9/openwrt-packages/trunk/r8152 package/new/r8152
+svn export -q https://github.com/kiddin9/openwrt-packages/trunk/r8168 package/new/r8168
