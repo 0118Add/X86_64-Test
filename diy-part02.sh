@@ -82,9 +82,9 @@ svn export -q https://github.com/immortalwrt/immortalwrt/branches/master/package
 #svn export -q https://github.com/jinlife/OpenWrt-Autobuild/trunk/default-settings package/new/default-settings
 
 # Zerotier
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
+svn export -q svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
 ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
-svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/zerotier package/new/zerotier
+svn export -q svn co https://github.com/coolsnowwolf/packages/trunk/net/zerotier package/new/zerotier
 
 # unblockneteasemusic
 svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
