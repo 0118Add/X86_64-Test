@@ -12,6 +12,10 @@
 # Modify default IP
 sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 
+# 更改固件版本信息
+sed -i "s|DISTRIB_REVISION='.*'|DISTRIB_REVISION=''|g" package/base-files/files/etc/openwrt_release
+sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT'|g" package/base-files/files/etc/openwrt_release
+
 # alist
 rm -rf feeds/packages/lang/golang
 svn export -q https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
@@ -74,7 +78,7 @@ svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/libs/lu
 ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
 
 # AutoCore
-svn export -q https://github.com/immortalwrt/immortalwrt/branches/master/package/emortal/autocore package/new/autocore
+svn export -q https://github.com/1980Add/immortalwrt/branches/openwrt-21.02/package/emortal/autocore package/new/autocore
 svn export -q https://github.com/immortalwrt/immortalwrt/branches/master/package/utils/mhz package/new/mhz
 
 # default settings and translation
