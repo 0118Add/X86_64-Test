@@ -27,6 +27,7 @@ svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash p
 
 # Shared for PassWall and ShadowsocksR Plus+
 svn export -q https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/luci-app-ssr-plus
+svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-passwall package/new/luci-app-passwall
 svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/dns2socks package/new/dns2socks
 svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/dns2tcp package/new/dns2tcp
 svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/ipt2socks package/new/ipt2socks
@@ -54,7 +55,6 @@ svn export -q https://github.com/fw876/helloworld/trunk/xray-core package/new/xr
 # bypass
 svn export -q https://github.com/kiddin9/openwrt-packages/trunk/lua-maxminddb package/new/lua-maxminddb
 svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-bypass package/new/luci-app-bypass
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-vssr package/new/luci-app-vssr
 
 # upx & ucl
 svn export -q https://github.com/coolsnowwolf/lede/trunk/tools/ucl tools/ucl
