@@ -54,6 +54,7 @@ svn export -q https://github.com/fw876/helloworld/trunk/xray-core package/new/xr
 # bypass
 svn export -q https://github.com/kiddin9/openwrt-packages/trunk/lua-maxminddb package/new/lua-maxminddb
 svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-bypass package/new/luci-app-bypass
+svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-vssr package/new/luci-app-vssr
 
 # upx & ucl
 svn export -q https://github.com/coolsnowwolf/lede/trunk/tools/ucl tools/ucl
@@ -86,7 +87,8 @@ svn export -q https://github.com/immortalwrt/immortalwrt/branches/master/package
 #svn export -q https://github.com/jinlife/OpenWrt-Autobuild/trunk/default-settings package/new/default-settings
 
 # Zerotier
-svn export -q https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
+#svn export -q https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
+svn export -q https://github.com/immortalwrt/luci/branches/openwrt-18.06/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
 ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
 svn export -q https://github.com/coolsnowwolf/packages/trunk/net/zerotier package/new/zerotier
 
