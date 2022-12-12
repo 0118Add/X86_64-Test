@@ -93,7 +93,7 @@ ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/l
 svn export -q https://github.com/coolsnowwolf/packages/trunk/net/zerotier package/new/zerotier
 
 # unblockneteasemusic
-git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic package/new/luci-app-unblockneteasemusic
+svn export -q https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic/trunk/luci-app-unblockneteasemusic package/new/luci-app-unblockneteasemusic
 
 # luci-theme-edge
 svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-theme-edge package/new/luci-theme-edge
