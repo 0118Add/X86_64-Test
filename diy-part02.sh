@@ -35,11 +35,13 @@ svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/ipt2socks pack
 svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/kcptun package/new/kcptun
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/hysteria package/new/hysteria
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
+svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-plus package/new/trojan-plus
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/microsocks package/new/microsocks
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/pdnsd-alt package/new/pdnsd-alt
 svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/redsocks2 package/new/redsocks2
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/sagernet-core package/new/sagernet-core
+svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray-geodata package/new/v2ray-geodata
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/xray-plugin package/new/xray-plugin
 svn export -q https://github.com/fw876/helloworld/trunk/lua-neturl package/new/lua-neturl
 svn export -q https://github.com/fw876/helloworld/trunk/naiveproxy package/new/naiveproxy
