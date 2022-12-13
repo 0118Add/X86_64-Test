@@ -41,7 +41,6 @@ svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/microsocks pac
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/pdnsd-alt package/new/pdnsd-alt
 svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/redsocks2 package/new/redsocks2
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/sagernet-core package/new/sagernet-core
-svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray-geodata package/new/v2ray-geodata
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/xray-plugin package/new/xray-plugin
 svn export -q https://github.com/fw876/helloworld/trunk/lua-neturl package/new/lua-neturl
 svn export -q https://github.com/fw876/helloworld/trunk/naiveproxy package/new/naiveproxy
@@ -51,6 +50,7 @@ svn export -q https://github.com/fw876/helloworld/trunk/simple-obfs package/new/
 svn export -q https://github.com/fw876/helloworld/trunk/tcping package/new/tcping
 svn export -q https://github.com/fw876/helloworld/trunk/trojan package/new/trojan
 svn export -q https://github.com/fw876/helloworld/trunk/v2ray-core package/new/v2ray-core
+svn export -q https://github.com/fw876/helloworld/trunk/v2ray-geodata package/new/v2ray-geodata
 svn export -q https://github.com/fw876/helloworld/trunk/v2ray-plugin package/new/v2ray-plugin
 svn export -q https://github.com/fw876/helloworld/trunk/xray-core package/new/xray-core
 
