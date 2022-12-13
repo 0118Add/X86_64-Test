@@ -30,7 +30,6 @@ svn export -q https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus packag
 svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-passwall package/new/luci-app-passwall
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/brook package/new/brook
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/dns2socks package/new/dns2socks
-svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/dns2tcp package/new/dns2tcp
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/ipt2socks package/new/ipt2socks
 svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/kcptun package/new/kcptun
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/hysteria package/new/hysteria
@@ -43,6 +42,7 @@ svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/sagernet-core package/new/sagernet-core
 svn export -q https://github.com/fw876/helloworld/trunk/xray-plugin package/new/xray-plugin
 svn export -q https://github.com/fw876/helloworld/trunk/lua-neturl package/new/lua-neturl
+svn export -q https://github.com/fw876/helloworld/trunk/dns2tcp package/new/dns2tcp
 svn export -q https://github.com/fw876/helloworld/trunk/naiveproxy package/new/naiveproxy
 svn export -q https://github.com/fw876/helloworld/trunk/shadowsocks-rust package/new/shadowsocks-rust
 svn export -q https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/new/shadowsocksr-libev
