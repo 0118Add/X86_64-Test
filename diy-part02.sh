@@ -59,10 +59,10 @@ svn export -q https://github.com/kiddin9/openwrt-packages/trunk/lua-maxminddb pa
 svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-bypass package/new/luci-app-bypass
 
 # upx & ucl
-svn export -q https://github.com/coolsnowwolf/lede/trunk/tools/ucl tools/ucl
-svn export -q https://github.com/coolsnowwolf/lede/trunk/tools/upx tools/upx
-sed -i '/builddir dependencies/i\tools-y += ucl upx' tools/Makefile
-sed -i '/builddir dependencies/a\$(curdir)/upx/compile := $(curdir)/ucl/compile' tools/Makefile
+#svn export -q https://github.com/coolsnowwolf/lede/trunk/tools/ucl tools/ucl
+#svn export -q https://github.com/coolsnowwolf/lede/trunk/tools/upx tools/upx
+#sed -i '/builddir dependencies/i\tools-y += ucl upx' tools/Makefile
+#sed -i '/builddir dependencies/a\$(curdir)/upx/compile := $(curdir)/ucl/compile' tools/Makefile
 
 # frpc
 rm -rf ./feeds/luci/applications/luci-app-frpc
