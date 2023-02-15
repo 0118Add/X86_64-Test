@@ -68,6 +68,9 @@ svn export -q https://github.com/coolsnowwolf/lede/trunk/package/lean/upx tools/
 sed -i '/builddir dependencies/i\tools-y += ucl upx' tools/Makefile
 sed -i '/builddir dependencies/a\$(curdir)/upx/compile := $(curdir)/ucl/compile' tools/Makefile
 
+# Release Ram
+svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-ramfree feeds/luci/applications/luci-app-ramfree
+
 # frpc
 #rm -rf ./feeds/luci/applications/luci-app-frpc
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-frpc feeds/luci/applications/luci-app-frpc
