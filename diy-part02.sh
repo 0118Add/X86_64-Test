@@ -65,8 +65,24 @@ svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-vssr pa
 # upx & ucl
 svn export -q https://github.com/coolsnowwolf/lede/trunk/package/lean/ucl tools/ucl
 svn export -q https://github.com/coolsnowwolf/lede/trunk/package/lean/upx tools/upx
-sed -i '/builddir dependencies/i\tools-y += ucl upx' tools/Makefile
-sed -i '/builddir dependencies/a\$(curdir)/upx/compile := $(curdir)/ucl/compile' tools/Makefile
+svn export -q https://github.com/coolsnowwolf/lede/trunk/tools/ninja tools/ninja
+#sed -i '/builddir dependencies/i\tools-y += ucl upx' tools/Makefile
+#sed -i '/builddir dependencies/a\$(curdir)/upx/compile := $(curdir)/ucl/compile' tools/Makefile
+
+# tools makefile 修改内容：
+
+if ! grep -Eq '^tools-y \+= ucl upx ninja' tools/Makefile;then
+  SED_NUM=$(grep -En '^tools-.+?genext2fs$' tools/Makefile | cut -d: -f1)
+  sed -i "${SED_NUM}r "<(
+cat<<'EOF'
+tools-y += ucl upx ninja
+$(curdir)/upx/compile := $(curdir)/ucl/compile
+$(curdir)/cmake/compile += $(curdir)/libressl/compile $(curdir)/ninja/compile
+EOF
+  ) tools/Makefile
+fi
+
+sed -ri '/foreach tool.+?\/ccache\/compile/s#xz patch,#xz patch ninja,#' tools/Makefile
 
 # Release Ram
 svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-ramfree feeds/luci/applications/luci-app-ramfree
