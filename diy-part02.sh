@@ -70,6 +70,7 @@ sed -i '/builddir dependencies/a\$(curdir)/upx/compile := $(curdir)/ucl/compile'
 
 # Release Ram
 svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-ramfree feeds/luci/applications/luci-app-ramfree
+ln -sf ../../../feeds/luci/applications/luci-app-ramfree ./package/feeds/luci/luci-app-ramfree
 
 # frpc
 #rm -rf ./feeds/luci/applications/luci-app-frpc
