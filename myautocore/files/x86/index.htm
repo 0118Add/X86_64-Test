@@ -807,7 +807,7 @@ end
 		<tr><td width="33%"><%:Model%></td><td><%=pcdata(boardinfo.model or "?")%></td></tr>
 		<% if has_boot then %> 
 		<tr><td width="33%"><%:目标平台%></td><td><%=pcdata(boardinfo.release.target or "?")%> - UEFI </td></tr>
-        <% else %> 
+                <% else %> 
 		<tr><td width="33%"><%:目标平台%></td><td><%=pcdata(boardinfo.release.target or "?")%> - BIOS </td></tr>
 		<% end %>
 		<tr><td width="33%"><%:CPU Info%></td><td><%=luci.sys.exec("/sbin/cpuinfo") or "?"%>  <%=luci.sys.exec("cat /etc/bench.log |awk -F '.' '{print $1}'") or " "%></td></tr>
