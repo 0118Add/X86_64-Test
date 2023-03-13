@@ -33,7 +33,7 @@ svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash p
 # Shared for PassWall and ShadowsocksR Plus+
 svn export -q https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/luci-app-ssr-plus
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-passwall package/new/luci-app-passwall
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-passwall2 package/new/luci-app-passwall2
+#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-passwall2 package/new/luci-app-passwall2
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/brook package/new/brook
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/dns2socks package/new/dns2socks
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/ipt2socks package/new/ipt2socks
@@ -84,7 +84,7 @@ svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applica
 ln -sf ../../../feeds/luci/applications/luci-app-autoreboot ./package/feeds/luci/luci-app-autoreboot
 
 # frpc
-#rm -rf ./feeds/luci/applications/luci-app-frpc
+rm -rf ./feeds/luci/applications/luci-app-frpc
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-frpc feeds/luci/applications/luci-app-frpc
 #ln -sf ../../../feeds/luci/applications/luci-app-frpc ./package/feeds/luci/luci-app-frpc
 svn export -q https://github.com/0118Add/openwrt-packages/trunk/luci-app-frpc package/new/luci-app-frpc 
@@ -116,7 +116,8 @@ ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/l
 svn export -q https://github.com/coolsnowwolf/packages/trunk/net/zerotier package/new/zerotier
 
 # unblockneteasemusic
-svn export -q https://github.com/0118Add/openwrt-packages/trunk/luci-app-unblockneteasemusic package/new/luci-app-unblockneteasemusic
+svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
+ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/feeds/luci/luci-app-unblockneteasemusic
 
 # luci-theme-edge
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-theme-edge package/new/luci-theme-edge
@@ -131,3 +132,4 @@ svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/
 
 sed -i 's/广告屏蔽大师 Plus+/广告屏蔽/g' package/new/luci-app-adbyby-plus/po/zh-cn/adbyby.po
 sed -i 's/ShadowSocksR Plus+/SSR Plus+/g' package/new/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
+sed -i 's/解除网易云音乐播放限制/音乐解锁/g' feeds/luci/applications/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
