@@ -24,7 +24,8 @@ svn export -q https://github.com/sbwml/luci-app-alist/trunk/luci-app-alist packa
 
 # ADBYBY Plus +
 svn export -q https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-adbyby-plus package/new/luci-app-adbyby-plus
-cp -rf ../immortalwrt-packages/net/adbyby package/new/
+ln -sf ../../../feeds/luci/applications/luci-app-adbyby-plus ./package/feeds/luci/luci-app-adbyby-plus
+svn export -q https://github.com/coolsnowwolf/lede/trunk/package/lean/adbyby package/new/adbyby
 
 # OpenClash
 svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
