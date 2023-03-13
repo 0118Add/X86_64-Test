@@ -22,6 +22,10 @@ svn export -q https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/
 svn export -q https://github.com/sbwml/luci-app-alist/trunk/alist package/new/alist
 svn export -q https://github.com/sbwml/luci-app-alist/trunk/luci-app-alist package/new/luci-app-alist
 
+# ADBYBY Plus +
+svn export -q https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-adbyby-plus package/new/luci-app-adbyby-plus
+cp -rf ../immortalwrt-packages/net/adbyby package/new/
+
 # OpenClash
 svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
 
@@ -78,9 +82,9 @@ svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applica
 ln -sf ../../../feeds/luci/applications/luci-app-autoreboot ./package/feeds/luci/luci-app-autoreboot
 
 # frpc
-#rm -rf ./feeds/luci/applications/luci-app-frpc
-#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-frpc feeds/luci/applications/luci-app-frpc
-#ln -sf ../../../feeds/luci/applications/luci-app-frpc ./package/feeds/luci/luci-app-frpc
+rm -rf ./feeds/luci/applications/luci-app-frpc
+svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-frpc feeds/luci/applications/luci-app-frpc
+ln -sf ../../../feeds/luci/applications/luci-app-frpc ./package/feeds/luci/luci-app-frpc
 
 # vlmcsd
 #svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-vlmcsd feeds/luci/applications/luci-app-vlmcsd
