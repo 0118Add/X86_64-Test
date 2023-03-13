@@ -127,3 +127,8 @@ sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65
 svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/r8125 package/new/r8125
 svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/r8152 package/new/r8152
 svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/r8168 package/new/r8168
+
+sed -i 's/广告屏蔽大师 Plus+/广告屏蔽/g' package/new/luci-app-adbyby-plus/po/zh-cn/adbyby.po
+sed -i 's/解除网易云音乐播放限制/音乐解锁/g' feeds/luci/applications/luci-app-unblockneteasemusic/luasrc/controller/unblockneteasemusic.lua
+sed -i 's/Frp 内网穿透/内网穿透/g' package/new/luci-app-frpc/po/zh-cn/frp.po
+sed -i 's/ShadowSocksR Plus+/SSR Plus+/g' package/new/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
