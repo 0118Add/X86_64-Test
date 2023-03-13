@@ -23,9 +23,8 @@ svn export -q https://github.com/sbwml/luci-app-alist/trunk/alist package/new/al
 svn export -q https://github.com/sbwml/luci-app-alist/trunk/luci-app-alist package/new/luci-app-alist
 
 # ADBYBY Plus +
-svn export -q https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-adbyby-plus package/new/luci-app-adbyby-plus
-ln -sf ../../../feeds/luci/applications/luci-app-adbyby-plus ./package/feeds/luci/luci-app-adbyby-plus
-svn export -q https://github.com/coolsnowwolf/lede/trunk/package/lean/adbyby package/new/adbyby
+svn export -q https://github.com/0118Add/openwrt-packages/trunk/adbyby package/new/adbyby
+svn export -q https://github.com/0118Add/openwrt-packages/trunk/luci-app-adbyby-plus package/new/luci-app-adbyby-plus
 
 # OpenClash
 svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
@@ -130,6 +129,5 @@ svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/
 svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/r8152 package/new/r8152
 svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/r8168 package/new/r8168
 
-sed -i 's/广告屏蔽大师 Plus+/广告屏蔽/g' package/new/luci-app-adbyby-plus/po/zh-cn/adbyby.po
 sed -i 's/ShadowSocksR Plus+/SSR Plus+/g' package/new/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 sed -i 's/解除网易云音乐播放限制/音乐解锁/g' feeds/luci/applications/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
