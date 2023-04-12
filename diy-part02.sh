@@ -44,7 +44,7 @@ svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-plus pa
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/microsocks package/new/microsocks
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/pdnsd-alt package/new/pdnsd-alt
 svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/redsocks2 package/new/redsocks2
-svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/sagernet-core package/new/sagernet-core
+svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/gn package/new/gn
 svn export -q https://github.com/fw876/helloworld/trunk/xray-plugin package/new/xray-plugin
 svn export -q https://github.com/fw876/helloworld/trunk/lua-neturl package/new/lua-neturl
 svn export -q https://github.com/fw876/helloworld/trunk/dns2tcp package/new/dns2tcp
