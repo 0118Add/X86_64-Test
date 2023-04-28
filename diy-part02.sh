@@ -41,6 +41,7 @@ svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/dns2socks pack
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/ipt2socks package/new/ipt2socks
 svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/kcptun package/new/kcptun
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/hysteria package/new/hysteria
+svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/sing-box package/new/sing-box
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-plus package/new/trojan-plus
@@ -76,6 +77,10 @@ svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-vssr pa
 #svn export --force https://github.com/coolsnowwolf/lede/trunk/tools/ninja tools/ninja
 #sed -i '/builddir dependencies/i\tools-y += ucl upx' tools/Makefile
 #sed -i '/builddir dependencies/a\$(curdir)/upx/compile := $(curdir)/ucl/compile' tools/Makefile
+
+# homeproxy
+svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-homeproxy feeds/luci/applications/luci-app-homeproxy
+ln -sf ../../../feeds/luci/applications/luci-app-homeproxy ./package/feeds/luci/luci-app-homeproxy
 
 # Release Ram
 svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-ramfree feeds/luci/applications/luci-app-ramfree
