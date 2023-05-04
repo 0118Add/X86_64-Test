@@ -41,7 +41,6 @@ svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/dns2socks pack
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/ipt2socks package/new/ipt2socks
 svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/kcptun package/new/kcptun
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/hysteria package/new/hysteria
-svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/sing-box package/new/sing-box
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-plus package/new/trojan-plus
