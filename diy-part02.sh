@@ -20,10 +20,10 @@ sed -i "s|DISTRIB_REVISION='.*'|DISTRIB_REVISION=''|g" package/base-files/files/
 sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt 22.03'|g" package/base-files/files/etc/openwrt_release
 
 # alist
-rm -rf feeds/packages/lang/golang
-svn export -q https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
-svn export -q https://github.com/sbwml/luci-app-alist/trunk/alist package/new/alist
-svn export -q https://github.com/sbwml/luci-app-alist/trunk/luci-app-alist package/new/luci-app-alist
+#rm -rf feeds/packages/lang/golang
+#svn export -q https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
+#svn export -q https://github.com/sbwml/luci-app-alist/trunk/alist package/new/alist
+#svn export -q https://github.com/sbwml/luci-app-alist/trunk/luci-app-alist package/new/luci-app-alist
 
 # ADBYBY Plus +
 svn export -q https://github.com/0118Add/openwrt-packages/trunk/adbyby package/new/adbyby
@@ -109,8 +109,8 @@ ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
 
 # AutoCore
 #svn export -q https://github.com/padavanonly/immortalwrtARM/branches/master/package/emortal/autocore package/new/autocore
-svn export -q https://github.com/8688Add/OpenWrt-CI/trunk/autocore package/new/autocore
-svn export -q https://github.com/immortalwrt/immortalwrt/branches/master/package/utils/mhz package/new/mhz
+#svn export -q https://github.com/8688Add/OpenWrt-CI/trunk/autocore package/new/autocore
+#svn export -q https://github.com/immortalwrt/immortalwrt/branches/master/package/utils/mhz package/new/mhz
 
 # default settings and translation
 svn export -q https://github.com/immortalwrt/immortalwrt/branches/master/package/emortal/default-settings package/new/default-settings
