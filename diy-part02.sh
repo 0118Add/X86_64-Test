@@ -114,7 +114,7 @@ ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
 #svn export -q https://github.com/immortalwrt/immortalwrt/branches/master/package/utils/mhz package/new/mhz
 
 # default settings and translation
-svn export -q https://github.com/immortalwrt/immortalwrt/branches/master/package/emortal/default-settings package/new/default-settings
+#svn export -q https://github.com/immortalwrt/immortalwrt/branches/master/package/emortal/default-settings package/new/default-settings
 #svn export -q https://github.com/jinlife/OpenWrt-Autobuild/trunk/default-settings package/new/default-settings
 
 # Zerotier
@@ -124,8 +124,8 @@ ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/l
 svn export -q https://github.com/coolsnowwolf/packages/trunk/net/zerotier package/new/zerotier
 
 # unblockneteasemusic
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
-ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/feeds/luci/luci-app-unblockneteasemusic
+#svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
+#ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/feeds/luci/luci-app-unblockneteasemusic
 
 # luci-theme-edge
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-theme-edge package/new/luci-theme-edge
@@ -139,4 +139,4 @@ svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/
 svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/r8168 package/new/r8168
 
 sed -i 's/ShadowSocksR Plus+/SSR Plus+/g' package/new/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
-sed -i 's/解除网易云音乐播放限制/解锁网易音乐/g' feeds/luci/applications/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
+#sed -i 's/解除网易云音乐播放限制/解锁网易音乐/g' feeds/luci/applications/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
