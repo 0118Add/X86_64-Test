@@ -13,7 +13,7 @@
 rm -rf package/feeds/luci/luci-app-apinger
 
 # Modify default IP
-sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.2.2/g' package/base-files/files/bin/config_generate
 
 # 更改固件版本信息
 sed -i "s|DISTRIB_REVISION='.*'|DISTRIB_REVISION=''|g" package/base-files/files/etc/openwrt_release
@@ -104,18 +104,18 @@ ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
 
 # AutoCore
 #svn export -q https://github.com/padavanonly/immortalwrtARM/branches/master/package/emortal/autocore package/new/autocore
-svn export -q https://github.com/8688Add/OpenWrt-CI/trunk/autocore package/new/autocore
-svn export -q https://github.com/immortalwrt/immortalwrt/branches/master/package/utils/mhz package/new/mhz
+#svn export -q https://github.com/8688Add/OpenWrt-CI/trunk/autocore package/new/autocore
+#svn export -q https://github.com/immortalwrt/immortalwrt/branches/master/package/utils/mhz package/new/mhz
 
 # default settings and translation
-svn export -q https://github.com/immortalwrt/immortalwrt/branches/master/package/emortal/default-settings package/new/default-settings
+#svn export -q https://github.com/immortalwrt/immortalwrt/branches/master/package/emortal/default-settings package/new/default-settings
 #svn export -q https://github.com/jinlife/OpenWrt-Autobuild/trunk/default-settings package/new/default-settings
 
 # Zerotier
-#svn export -q https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-18.06/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
-ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
-svn export -q https://github.com/coolsnowwolf/packages/trunk/net/zerotier package/new/zerotier
+rm -rf feeds/luci/applications/luci-app-zerotier
+rm -rf feeds/packages/net/zerotier
+svn export -q https://github.com/0118Add/openwrt-packages/trunk/zerotier package/new/zerotier
+svn export -q https://github.com/0118Add/openwrt-packages/trunk/luci-app-zerotier package/new/luci-app-zerotier
 
 # unblockneteasemusic
 svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
