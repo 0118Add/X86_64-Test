@@ -36,7 +36,7 @@ svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash p
 svn export -q https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/luci-app-ssr-plus
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-passwall package/new/luci-app-passwall
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-passwall2 package/new/luci-app-passwall2
-svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/brook package/new/brook
+svn export -q https://github.com/0118Add/openwrt-packages/trunk/brook package/new/brook
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/dns2socks package/new/dns2socks
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/ipt2socks package/new/ipt2socks
 svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/kcptun package/new/kcptun
