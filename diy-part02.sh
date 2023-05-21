@@ -27,8 +27,8 @@ sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT'|g" pac
 #svn export -q https://github.com/sbwml/luci-app-alist/trunk/luci-app-alist package/new/luci-app-alist
 
 # ADBYBY Plus +
-svn export -q https://github.com/0118Add/openwrt-packages/trunk/adbyby package/new/adbyby
-svn export -q https://github.com/0118Add/openwrt-packages/trunk/luci-app-adbyby-plus package/new/luci-app-adbyby-plus
+#svn export -q https://github.com/0118Add/openwrt-packages/trunk/adbyby package/new/adbyby
+#svn export -q https://github.com/0118Add/openwrt-packages/trunk/luci-app-adbyby-plus package/new/luci-app-adbyby-plus
 
 # OpenClash
 svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
@@ -69,8 +69,8 @@ svn export -q https://github.com/fw876/helloworld/trunk/xray-core package/new/xr
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-bypass package/new/luci-app-bypass
 
 # vssr
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/lua-maxminddb package/new/lua-maxminddb
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-vssr package/new/luci-app-vssr
+#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/lua-maxminddb package/new/lua-maxminddb
+#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-vssr package/new/luci-app-vssr
 
 # upx & ucl
 #svn export --force https://github.com/coolsnowwolf/lede/trunk/package/lean/upx   tools/upx
@@ -118,10 +118,10 @@ ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
 #svn export -q https://github.com/jinlife/OpenWrt-Autobuild/trunk/default-settings package/new/default-settings
 
 # Zerotier
-#svn export -q https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-18.06/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
-ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
-svn export -q https://github.com/coolsnowwolf/packages/trunk/net/zerotier package/new/zerotier
+rm -rf feeds/luci/applications/luci-app-zerotier
+rm -rf feeds/packages/net/zerotier
+svn export -q https://github.com/0118Add/openwrt-packages/trunk/zerotier package/new/zerotier
+svn export -q https://github.com/0118Add/openwrt-packages/trunk/luci-app-zerotier package/new/luci-app-zerotier
 
 # unblockneteasemusic
 #svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
