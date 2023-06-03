@@ -124,8 +124,8 @@ ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
 
 # Zerotier
 rm -rf feeds/luci/applications/luci-app-zerotier
-rm -rf feeds/packages/net/zerotier
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/zerotier package/new/zerotier
+#rm -rf feeds/packages/net/zerotier
+#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/zerotier package/new/zerotier
 svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-zerotier package/new/luci-app-zerotier
 
 # unblockneteasemusic
