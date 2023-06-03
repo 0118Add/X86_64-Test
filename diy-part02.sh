@@ -92,13 +92,13 @@ svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applica
 ln -sf ../../../feeds/luci/applications/luci-app-autoreboot ./package/feeds/luci/luci-app-autoreboot
 
 # frpc
-rm -rf ./feeds/luci/applications/luci-app-frpc
+rm -rf feeds/luci/applications/luci-app-frpc
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-frpc feeds/luci/applications/luci-app-frpc
 #ln -sf ../../../feeds/luci/applications/luci-app-frpc ./package/feeds/luci/luci-app-frpc
 svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-frpc package/new/luci-app-frpc 
 
 # ttyd
-rm -rf .feeds/luci/applications/luci-app-ttyd
+rm -rf feeds/luci/applications/luci-app-ttyd
 svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-ttyd feeds/luci/applications/luci-app-ttyd
 ln -sf ../../../feeds/luci/applications/luci-app-ttyd ./package/feeds/luci/luci-app-ttyd
 
@@ -124,9 +124,9 @@ ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
 
 # Zerotier
 rm -rf feeds/luci/applications/luci-app-zerotier
-rm -rf feeds/packages/net/zerotier
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/zerotier package/new/zerotier
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-zerotier package/new/luci-app-zerotier
+#rm -rf feeds/packages/net/zerotier
+#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/zerotier package/new/zerotier
+svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
 
 # unblockneteasemusic
 #svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
@@ -144,4 +144,5 @@ sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65
 #svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/r8168 package/new/r8168
 
 sed -i 's/ShadowSocksR Plus+/SSR Plus+/g' package/new/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
+sed -i 's/Frp 内网穿透/内网穿透/g' package/new/luci-app-frpc/po/zh-cn/frp.po
 #sed -i 's/解除网易云音乐播放限制/解锁网易音乐/g' feeds/luci/applications/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
