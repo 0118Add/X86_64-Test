@@ -95,11 +95,11 @@ ln -sf ../../../feeds/luci/applications/luci-app-autoreboot ./package/feeds/luci
 rm -rf ./feeds/luci/applications/luci-app-frpc
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-frpc feeds/luci/applications/luci-app-frpc
 #ln -sf ../../../feeds/luci/applications/luci-app-frpc ./package/feeds/luci/luci-app-frpc
-svn export -q https://github.com/0118Add/openwrt-packages/trunk/luci-app-frpc package/new/luci-app-frpc 
+svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-frpc package/new/luci-app-frpc 
 
 # ttyd
 rm -rf .feeds/luci/applications/luci-app-ttyd
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-ttyd feeds/luci/applications/luci-app-ttyd
+svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-ttyd feeds/luci/applications/luci-app-ttyd
 ln -sf ../../../feeds/luci/applications/luci-app-ttyd ./package/feeds/luci/luci-app-ttyd
 
 # vlmcsd
@@ -125,8 +125,8 @@ ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
 # Zerotier
 rm -rf feeds/luci/applications/luci-app-zerotier
 rm -rf feeds/packages/net/zerotier
-svn export -q https://github.com/0118Add/openwrt-packages/trunk/zerotier package/new/zerotier
-svn export -q https://github.com/0118Add/openwrt-packages/trunk/luci-app-zerotier package/new/luci-app-zerotier
+svn export -q https://github.com/kiddin9/openwrt-packages/trunk/zerotier package/new/zerotier
+svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-zerotier package/new/luci-app-zerotier
 
 # unblockneteasemusic
 #svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
