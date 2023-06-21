@@ -95,6 +95,11 @@ rm -rf ./feeds/luci/applications/luci-app-frpc
 #ln -sf ../../../feeds/luci/applications/luci-app-frpc ./package/feeds/luci/luci-app-frpc
 svn export -q https://github.com/0118Add/openwrt-packages/trunk/luci-app-frpc package/new/luci-app-frpc 
 
+# ttyd
+rm -rf feeds/luci/applications/luci-app-ttyd
+svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-ttyd feeds/luci/applications/luci-app-ttyd
+ln -sf ../../../feeds/luci/applications/luci-app-ttyd ./package/feeds/luci/luci-app-ttyd
+
 # vlmcsd
 #svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-vlmcsd feeds/luci/applications/luci-app-vlmcsd
 #ln -sf ../../../feeds/luci/applications/luci-app-vlmcsd ./package/feeds/luci/luci-app-vlmcsd
