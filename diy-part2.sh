@@ -38,7 +38,7 @@ svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash p
 
 # Shared for PassWall and ShadowsocksR Plus+
 svn export -q https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/luci-app-ssr-plus
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-passwall package/new/luci-app-passwall
+#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-passwall package/new/luci-app-passwall
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-passwall2 package/new/luci-app-passwall2
 svn export -q https://github.com/0118Add/openwrt-packages/trunk/brook package/new/brook
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/dns2socks package/new/dns2socks
@@ -119,7 +119,9 @@ ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
 rm -rf feeds/luci/applications/luci-app-zerotier
 #rm -rf feeds/packages/net/zerotier
 #svn export -q https://github.com/0118Add/openwrt-packages/trunk/zerotier package/new/zerotier
-svn export -q https://github.com/0118Add/openwrt-packages/trunk/luci-app-zerotier package/new/luci-app-zerotier
+#svn export -q https://github.com/0118Add/openwrt-packages/trunk/luci-app-zerotier package/new/luci-app-zerotier
+svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
+ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
 
 # unblockneteasemusic
 git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/new/luci-app-unblockneteasemusic
@@ -149,11 +151,6 @@ sed -i 's/"admin/"admin\/services/g' package/new/luci-app-dockerman/luasrc/model
 sed -i 's/"admin/"admin\/services/g' package/new/luci-app-dockerman/luasrc/model/cbi/dockerman/*.lua
 sed -i 's/"admin/"admin\/services/g' package/new/luci-app-dockerman/luasrc/view/dockerman/*.htm
 sed -i 's/"admin/"admin\/services/g' package/new/luci-app-dockerman/luasrc/view/dockerman/cbi/*.htm
-
-# 调整 Zerotier 到 服务 菜单
-sed -i 's/vpn/services/g' .package/new/luci-app-zerotier/luasrc/controller/*.lua
-sed -i 's/vpn/services/g' package/new/luci-app-zerotier/luasrc/model/cbi/zerotier/*.lua
-sed -i 's/vpn/services/g' package/new/luci-app-zerotier/luasrc/view/zerotier/*.htm
 
 # 调整 bypass 到 GFW 菜单
 sed -i 's/services/vpn/g' package/new/luci-app-bypass/luasrc/controller/*.lua
