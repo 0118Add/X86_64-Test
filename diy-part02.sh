@@ -131,8 +131,8 @@ svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-21.02
 ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
 
 # unblockneteasemusic
-#svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
-#ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/feeds/luci/luci-app-unblockneteasemusic
+svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
+ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/feeds/luci/luci-app-unblockneteasemusic
 
 # luci-theme-edge
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-theme-edge package/new/luci-theme-edge
