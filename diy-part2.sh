@@ -163,18 +163,18 @@ sed -i 's/services/vpn/g' package/new/luci-app-ssr-plus/luasrc/model/cbi/shadows
 sed -i 's/services/vpn/g' package/new/luci-app-ssr-plus/luasrc/view/shadowsocksr/*.htm
 
 # 调整 Pass Wall 到 GFW 菜单
-sed -i 's/services/vpn/g' package/new/luci-app-passwall/luasrc/controller/*.lua
-sed -i 's/services/vpn/g' package/new/luci-app-passwall/luasrc/model/cbi/passwall/client/*.lua
-sed -i 's/services/vpn/g' package/new/luci-app-passwall/luasrc/model/cbi/passwall/server/*.lua
-sed -i 's/services/vpn/g' package/new/luci-app-passwall/luasrc/passwall/*.lua
-sed -i 's/services/vpn/g' package/new/luci-app-passwall/luasrc/view/passwall/app_update/*.htm
-sed -i 's/services/vpn/g' package/new/luci-app-passwall/luasrc/view/passwall/auto_switch/*.htm
-sed -i 's/services/vpn/g' package/new/luci-app-passwall/luasrc/view/passwall/global/*.htm
-sed -i 's/services/vpn/g' package/new/luci-app-passwall/luasrc/view/passwall/haproxy/*.htm
-sed -i 's/services/vpn/g' package/new/luci-app-passwall/luasrc/view/passwall/log/*.htm
-sed -i 's/services/vpn/g' package/new/luci-app-passwall/luasrc/view/passwall/node_list/*.htm
-sed -i 's/services/vpn/g' package/new/luci-app-passwall/luasrc/view/passwall/rule/*.htm
-sed -i 's/services/vpn/g' package/new/luci-app-passwall/luasrc/view/passwall/server/*.htm
+#sed -i 's/services/vpn/g' package/new/luci-app-passwall/luasrc/controller/*.lua
+#sed -i 's/services/vpn/g' package/new/luci-app-passwall/luasrc/model/cbi/passwall/client/*.lua
+#sed -i 's/services/vpn/g' package/new/luci-app-passwall/luasrc/model/cbi/passwall/server/*.lua
+#sed -i 's/services/vpn/g' package/new/luci-app-passwall/luasrc/passwall/*.lua
+#sed -i 's/services/vpn/g' package/new/luci-app-passwall/luasrc/view/passwall/app_update/*.htm
+#sed -i 's/services/vpn/g' package/new/luci-app-passwall/luasrc/view/passwall/auto_switch/*.htm
+#sed -i 's/services/vpn/g' package/new/luci-app-passwall/luasrc/view/passwall/global/*.htm
+#sed -i 's/services/vpn/g' package/new/luci-app-passwall/luasrc/view/passwall/haproxy/*.htm
+#sed -i 's/services/vpn/g' package/new/luci-app-passwall/luasrc/view/passwall/log/*.htm
+#sed -i 's/services/vpn/g' package/new/luci-app-passwall/luasrc/view/passwall/node_list/*.htm
+#sed -i 's/services/vpn/g' package/new/luci-app-passwall/luasrc/view/passwall/rule/*.htm
+#sed -i 's/services/vpn/g' package/new/luci-app-passwall/luasrc/view/passwall/server/*.htm
 
 # 调整 Pass Wall 2 到 GFW 菜单
 #sed -i 's/services/vpn/g' package/passwall2/luci-app-passwall2/luasrc/controller/*.lua
