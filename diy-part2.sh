@@ -13,17 +13,21 @@
 rm -rf package/feeds/luci/luci-app-apinger
 
 # Modify default IP
-sed -i 's/192.168.1.1/192.168.2.2/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 
 # 更改固件版本信息
 sed -i "s|DISTRIB_REVISION='.*'|DISTRIB_REVISION=''|g" package/base-files/files/etc/openwrt_release
 sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt 21.02'|g" package/base-files/files/etc/openwrt_release
 
 # alist
-rm -rf feeds/packages/lang/golang
-svn export -q https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
-svn export -q https://github.com/sbwml/luci-app-alist/trunk/alist package/new/alist
-svn export -q https://github.com/sbwml/luci-app-alist/trunk/luci-app-alist package/new/luci-app-alist
+#rm -rf feeds/packages/lang/golang
+#svn export -q https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
+#svn export -q https://github.com/sbwml/luci-app-alist/trunk/alist package/new/alist
+#svn export -q https://github.com/sbwml/luci-app-alist/trunk/luci-app-alist package/new/luci-app-alist
+
+# dockerman
+rm -rf feeds/luci/applications/luci-app-dockerman
+svn co https://github.com/kiddin9/openwrt-packages/trunk/luci-app-dockerman package/new/luci-app-dockerman
 
 # ADBYBY Plus +
 svn export -q https://github.com/0118Add/openwrt-packages/trunk/adbyby package/new/adbyby
@@ -34,7 +38,7 @@ svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash p
 
 # Shared for PassWall and ShadowsocksR Plus+
 svn export -q https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/luci-app-ssr-plus
-#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-passwall package/new/luci-app-passwall
+svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-passwall package/new/luci-app-passwall
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-passwall2 package/new/luci-app-passwall2
 svn export -q https://github.com/0118Add/openwrt-packages/trunk/brook package/new/brook
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/dns2socks package/new/dns2socks
@@ -63,12 +67,12 @@ svn export -q https://github.com/fw876/helloworld/trunk/v2ray-plugin package/new
 svn export -q https://github.com/fw876/helloworld/trunk/xray-core package/new/xray-core
 
 # bypass
-#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/lua-maxminddb package/new/lua-maxminddb
-#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-bypass package/new/luci-app-bypass
+svn export -q https://github.com/kiddin9/openwrt-packages/trunk/lua-maxminddb package/new/lua-maxminddb
+svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-bypass package/new/luci-app-bypass
 
 # vssr
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/lua-maxminddb package/new/lua-maxminddb
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-vssr package/new/luci-app-vssr
+#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/lua-maxminddb package/new/lua-maxminddb
+#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-vssr package/new/luci-app-vssr
 
 # upx & ucl
 #svn export --force https://github.com/coolsnowwolf/lede/trunk/package/lean/upx   tools/upx
@@ -118,8 +122,9 @@ svn export -q https://github.com/0118Add/openwrt-packages/trunk/zerotier package
 svn export -q https://github.com/0118Add/openwrt-packages/trunk/luci-app-zerotier package/new/luci-app-zerotier
 
 # unblockneteasemusic
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
-ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/feeds/luci/luci-app-unblockneteasemusic
+git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/new/luci-app-unblockneteasemusic
+#svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
+#ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/feeds/luci/luci-app-unblockneteasemusic
 
 # luci-theme-edge
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-theme-edge package/new/luci-theme-edge
@@ -133,4 +138,70 @@ svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/
 svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/r8168 package/new/r8168
 
 sed -i 's/ShadowSocksR Plus+/SSR Plus+/g' package/new/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
-sed -i 's/解除网易云音乐播放限制/解锁网易音乐/g' feeds/luci/applications/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
+sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/new/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
+sed -i 's/Frp 内网穿透/内网穿透/g' package/new/luci-app-frpc/po/zh-cn/frp.po
+sed -i 's/广告屏蔽大师 Plus+/广告屏蔽/g' package/new/luci-app-adbyby-plus/po/zh-cn/adbyby.po
+
+
+# 调整 Dockerman 到 服务 菜单
+sed -i 's/"admin",/"admin","services",/g' package/new/luci-app-dockerman/luasrc/controller/*.lua
+sed -i 's/"admin/"admin\/services/g' package/new/luci-app-dockerman/luasrc/model/*.lua
+sed -i 's/"admin/"admin\/services/g' package/new/luci-app-dockerman/luasrc/model/cbi/dockerman/*.lua
+sed -i 's/"admin/"admin\/services/g' package/new/luci-app-dockerman/luasrc/view/dockerman/*.htm
+sed -i 's/"admin/"admin\/services/g' package/new/luci-app-dockerman/luasrc/view/dockerman/cbi/*.htm
+
+# 调整 Zerotier 到 服务 菜单
+sed -i 's/vpn/services/g' .package/new/luci-app-zerotier/luasrc/controller/*.lua
+sed -i 's/vpn/services/g' package/new/luci-app-zerotier/luasrc/model/cbi/zerotier/*.lua
+sed -i 's/vpn/services/g' package/new/luci-app-zerotier/luasrc/view/zerotier/*.htm
+
+# 调整 bypass 到 GFW 菜单
+sed -i 's/services/vpn/g' package/new/luci-app-bypass/luasrc/controller/*.lua
+sed -i 's/services/vpn/g' package/new/luci-app-bypass/luasrc/model/cbi/bypass/*.lua
+sed -i 's/services/vpn/g' package/new/luci-app-bypass/luasrc/view/bypass/*.htm
+
+# 调整 SSRP 到 GFW 菜单
+sed -i 's/services/vpn/g' package/new/luci-app-ssr-plus/luasrc/controller/*.lua
+sed -i 's/services/vpn/g' package/new/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/*.lua
+sed -i 's/services/vpn/g' package/new/luci-app-ssr-plus/luasrc/view/shadowsocksr/*.htm
+
+# 调整 Pass Wall 到 GFW 菜单
+sed -i 's/services/vpn/g' package/new/passwall/luci-app-passwall/luasrc/controller/*.lua
+sed -i 's/services/vpn/g' package/new/passwall/luci-app-passwall/luasrc/model/cbi/passwall/client/*.lua
+sed -i 's/services/vpn/g' package/new/passwall/luci-app-passwall/luasrc/model/cbi/passwall/server/*.lua
+sed -i 's/services/vpn/g' package/new/passwall/luci-app-passwall/luasrc/passwall/*.lua
+sed -i 's/services/vpn/g' package/new/passwall/luci-app-passwall/luasrc/view/passwall/app_update/*.htm
+sed -i 's/services/vpn/g' package/new/passwall/luci-app-passwall/luasrc/view/passwall/auto_switch/*.htm
+sed -i 's/services/vpn/g' package/new/passwall/luci-app-passwall/luasrc/view/passwall/global/*.htm
+sed -i 's/services/vpn/g' package/new/passwall/luci-app-passwall/luasrc/view/passwall/haproxy/*.htm
+sed -i 's/services/vpn/g' package/new/passwall/luci-app-passwall/luasrc/view/passwall/log/*.htm
+sed -i 's/services/vpn/g' package/new/passwall/luci-app-passwall/luasrc/view/passwall/node_list/*.htm
+sed -i 's/services/vpn/g' package/new/passwall/luci-app-passwall/luasrc/view/passwall/rule/*.htm
+sed -i 's/services/vpn/g' package/new/passwall/luci-app-passwall/luasrc/view/passwall/server/*.htm
+
+# 调整 Pass Wall 2 到 GFW 菜单
+#sed -i 's/services/vpn/g' package/passwall2/luci-app-passwall2/luasrc/controller/*.lua
+#sed -i 's/services/vpn/g' package/passwall2/luci-app-passwall2/luasrc/model/cbi/passwall2/client/*.lua
+#sed -i 's/services/vpn/g' package/passwall2/luci-app-passwall2/luasrc/model/cbi/passwall2/server/*.lua
+#sed -i 's/services/vpn/g' package/passwall2/luci-app-passwall2/luasrc/passwall2/*.lua
+#sed -i 's/services/vpn/g' package/passwall2/luci-app-passwall2/luasrc/view/passwall2/app_update/*.htm
+#sed -i 's/services/vpn/g' package/passwall2/luci-app-passwall2/luasrc/view/passwall2/auto_switch/*.htm
+#sed -i 's/services/vpn/g' package/passwall2/luci-app-passwall2/luasrc/view/passwall2/global/*.htm
+#sed -i 's/services/vpn/g' package/passwall2/luci-app-passwall2/luasrc/view/passwall2/log/*.htm
+#sed -i 's/services/vpn/g' package/passwall2/luci-app-passwall2/luasrc/view/passwall2/node_list/*.htm
+#sed -i 's/services/vpn/g' package/passwall2/luci-app-passwall2/luasrc/view/passwall2/rule/*.htm
+#sed -i 's/services/vpn/g' package/passwall2/luci-app-passwall2/luasrc/view/passwall2/server/*.htm
+
+# 调整 Hello World 到 GFW 菜单
+#sed -i 's/services/vpn/g' package/luci-app-vssr/luasrc/controller/*.lua
+#sed -i 's/services/vpn/g' package/luci-app-vssr/luasrc/model/cbi/vssr/*.lua
+#sed -i 's/services/vpn/g' package/luci-app-vssr/luasrc/view/vssr/*.htm
+
+# 调整 Open Clash 到 GFW 菜单
+sed -i 's/services/vpn/g' package/new/luci-app-openclash/luasrc/controller/*.lua
+sed -i 's/services/vpn/g' package/new/luci-app-openclash/luasrc/*.lua
+sed -i 's/services/vpn/g' package/new/luci-app-openclash/luasrc/model/cbi/openclash/*.lua
+sed -i 's/services/vpn/g' package/new/luci-app-openclash/luasrc/view/openclash/*.htm
+
+# 修改权限
+chmod 0755 package/new/luci-app-bypass/root/etc/init.d/bypass
