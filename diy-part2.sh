@@ -72,7 +72,7 @@ svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-bypass 
 
 # vssr
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/lua-maxminddb package/new/lua-maxminddb
-#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-vssr package/new/luci-app-vssr
+svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-vssr package/new/luci-app-vssr
 
 # upx & ucl
 #svn export --force https://github.com/coolsnowwolf/lede/trunk/package/lean/upx   tools/upx
@@ -195,9 +195,9 @@ sed -i 's/services/vpn/g' package/new/luci-app-ssr-plus/luasrc/view/shadowsocksr
 #sed -i 's/services/vpn/g' package/passwall2/luci-app-passwall2/luasrc/view/passwall2/server/*.htm
 
 # 调整 Hello World 到 GFW 菜单
-#sed -i 's/services/vpn/g' package/luci-app-vssr/luasrc/controller/*.lua
-#sed -i 's/services/vpn/g' package/luci-app-vssr/luasrc/model/cbi/vssr/*.lua
-#sed -i 's/services/vpn/g' package/luci-app-vssr/luasrc/view/vssr/*.htm
+sed -i 's/services/vpn/g' package/luci-app-vssr/luasrc/controller/*.lua
+sed -i 's/services/vpn/g' package/luci-app-vssr/luasrc/model/cbi/vssr/*.lua
+sed -i 's/services/vpn/g' package/luci-app-vssr/luasrc/view/vssr/*.htm
 
 # 调整 Open Clash 到 GFW 菜单
 sed -i 's/services/vpn/g' package/new/luci-app-openclash/luasrc/controller/*.lua
