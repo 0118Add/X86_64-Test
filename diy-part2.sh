@@ -61,6 +61,7 @@ svn export -q https://github.com/fw876/helloworld/trunk/shadowsocksr-libev packa
 svn export -q https://github.com/fw876/helloworld/trunk/simple-obfs package/new/simple-obfs
 svn export -q https://github.com/fw876/helloworld/trunk/tcping package/new/tcping
 svn export -q https://github.com/fw876/helloworld/trunk/trojan package/new/trojan
+svn export -q https://github.com/fw876/helloworld/trunk/tuic-client package/new/tuic-client
 svn export -q https://github.com/fw876/helloworld/trunk/v2ray-core package/new/v2ray-core
 svn export -q https://github.com/fw876/helloworld/trunk/v2ray-geodata package/new/v2ray-geodata
 svn export -q https://github.com/fw876/helloworld/trunk/v2ray-plugin package/new/v2ray-plugin
@@ -195,9 +196,9 @@ sed -i 's/services/vpn/g' package/new/luci-app-ssr-plus/luasrc/view/shadowsocksr
 #sed -i 's/services/vpn/g' package/passwall2/luci-app-passwall2/luasrc/view/passwall2/server/*.htm
 
 # 调整 Hello World 到 GFW 菜单
-sed -i 's/services/vpn/g' package/luci-app-vssr/luasrc/controller/*.lua
-sed -i 's/services/vpn/g' package/luci-app-vssr/luasrc/model/cbi/vssr/*.lua
-sed -i 's/services/vpn/g' package/luci-app-vssr/luasrc/view/vssr/*.htm
+sed -i 's/services/vpn/g' package/new/luci-app-vssr/luasrc/controller/*.lua
+sed -i 's/services/vpn/g' package/new/luci-app-vssr/luasrc/model/cbi/vssr/*.lua
+sed -i 's/services/vpn/g' package/new/luci-app-vssr/luasrc/view/vssr/*.htm
 
 # 调整 Open Clash 到 GFW 菜单
 sed -i 's/services/vpn/g' package/new/luci-app-openclash/luasrc/controller/*.lua
