@@ -30,8 +30,8 @@ rm -rf feeds/luci/applications/luci-app-dockerman
 svn export https://github.com/kiddin9/openwrt-packages/trunk/luci-app-dockerman package/new/luci-app-dockerman
 
 # ADBYBY Plus +
-svn export -q https://github.com/0118Add/openwrt-packages/trunk/adbyby package/new/adbyby
-svn export -q https://github.com/0118Add/openwrt-packages/trunk/luci-app-adbyby-plus package/new/luci-app-adbyby-plus
+#svn export -q https://github.com/0118Add/openwrt-packages/trunk/adbyby package/new/adbyby
+#svn export -q https://github.com/0118Add/openwrt-packages/trunk/luci-app-adbyby-plus package/new/luci-app-adbyby-plus
 
 # OpenClash
 svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
