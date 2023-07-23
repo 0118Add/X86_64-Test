@@ -57,6 +57,7 @@ svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/gn package/new
 svn export -q https://github.com/fw876/helloworld/trunk/xray-plugin package/new/xray-plugin
 svn export -q https://github.com/fw876/helloworld/trunk/lua-neturl package/new/lua-neturl
 svn export -q https://github.com/fw876/helloworld/trunk/dns2tcp package/new/dns2tcp
+svn export -q https://github.com/fw876/helloworld/trunk/tuic-client package/new/tuic-client
 svn export -q https://github.com/fw876/helloworld/trunk/naiveproxy package/new/naiveproxy
 svn export -q https://github.com/fw876/helloworld/trunk/shadowsocks-rust package/new/shadowsocks-rust
 svn export -q https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/new/shadowsocksr-libev
