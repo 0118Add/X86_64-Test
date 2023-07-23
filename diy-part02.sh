@@ -17,8 +17,8 @@ sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
 # 更改固件版本信息
 sed -i "s|DISTRIB_REVISION='.*'|DISTRIB_REVISION=''|g" package/base-files/files/etc/openwrt_release
-#sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt 23.05'|g" package/base-files/files/etc/openwrt_release
-sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT'|g" package/base-files/files/etc/openwrt_release
+sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt 23.05'|g" package/base-files/files/etc/openwrt_release
+#sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT'|g" package/base-files/files/etc/openwrt_release
 
 # alist
 #rm -rf feeds/packages/lang/golang
@@ -103,7 +103,7 @@ svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-frpc pa
 
 # ttyd
 rm -rf feeds/luci/applications/luci-app-ttyd
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-ttyd feeds/luci/applications/luci-app-ttyd
+svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-ttyd feeds/luci/applications/luci-app-ttyd
 ln -sf ../../../feeds/luci/applications/luci-app-ttyd ./package/feeds/luci/luci-app-ttyd
 
 # vlmcsd
