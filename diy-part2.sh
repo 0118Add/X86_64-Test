@@ -148,7 +148,7 @@ svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/
 sed -i 's/ShadowSocksR Plus+/SSR Plus+/g' package/new/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/new/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 sed -i 's/Frp 内网穿透/内网穿透/g' package/new/luci-app-frpc/po/zh-cn/frp.po
-sed -i 's/广告屏蔽大师 Plus+/广告屏蔽/g' package/new/luci-app-adbyby-plus/po/zh-cn/adbyby.po
+#sed -i 's/广告屏蔽大师 Plus+/广告屏蔽/g' package/new/luci-app-adbyby-plus/po/zh-cn/adbyby.po
 
 
 # 调整 Dockerman 到 服务 菜单
