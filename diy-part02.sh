@@ -21,10 +21,9 @@ sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt 23.05 Mod'|g" pa
 #sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT'|g" package/base-files/files/etc/openwrt_release
 
 # alist
+#git clone https://github.com/sbwml/luci-app-alist package/alist
 #rm -rf feeds/packages/lang/golang
-#svn export -q https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
-#svn export -q https://github.com/sbwml/luci-app-alist/trunk/alist package/new/alist
-#svn export -q https://github.com/sbwml/luci-app-alist/trunk/luci-app-alist package/new/luci-app-alist
+#git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
 
 # ADBYBY Plus +
 #svn export -q https://github.com/0118Add/openwrt-packages/trunk/adbyby package/new/adbyby
@@ -32,7 +31,7 @@ sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt 23.05 Mod'|g" pa
 
 # DDNS GO
 svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
-ln -sf ../../../feeds/luci/applications/luci-app-vlmcsd ./package/feeds/luci/luci-app-ddns-go
+ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
 svn export -q https://github.com/immortalwrt/packages/branches/openwrt-23.05/net/vlmcsd package/new/ddns-go
 
 # OpenClash
