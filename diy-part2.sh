@@ -20,10 +20,9 @@ sed -i "s|DISTRIB_REVISION='.*'|DISTRIB_REVISION=''|g" package/base-files/files/
 sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt 21.02 Mod'|g" package/base-files/files/etc/openwrt_release
 
 # alist
+#git clone https://github.com/sbwml/luci-app-alist package/alist
 #rm -rf feeds/packages/lang/golang
-#svn export -q https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
-#svn export -q https://github.com/sbwml/luci-app-alist/trunk/alist package/new/alist
-#svn export -q https://github.com/sbwml/luci-app-alist/trunk/luci-app-alist package/new/luci-app-alist
+#git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
 
 # dockerman
 rm -rf feeds/luci/applications/luci-app-dockerman
