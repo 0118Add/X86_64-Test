@@ -30,9 +30,9 @@ sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt 23.05 Mod'|g" pa
 #svn export -q https://github.com/0118Add/openwrt-packages/trunk/luci-app-adbyby-plus package/new/luci-app-adbyby-plus
 
 # DDNS GO
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
-ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/ddns-go package/new/ddns-go
+#svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
+#ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
+#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/ddns-go package/new/ddns-go
 
 # OpenClash
 svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
@@ -112,9 +112,9 @@ ln -sf ../../../feeds/luci/applications/luci-app-ttyd ./package/feeds/luci/luci-
 #svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/vlmcsd package/new/vlmcsd
 
 # luci-app-firewall
-rm -rf feeds/luci/applications/luci-app-firewall
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-firewall feeds/luci/applications/luci-app-firewall
-ln -sf ../../../feeds/luci/applications/luci-app-firewall ./package/feeds/luci/luci-app-firewall
+#rm -rf feeds/luci/applications/luci-app-firewall
+#svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-firewall feeds/luci/applications/luci-app-firewall
+#ln -sf ../../../feeds/luci/applications/luci-app-firewall ./package/feeds/luci/luci-app-firewall
 
 # Filetransfer
 svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-filetransfer feeds/luci/applications/luci-app-filetransfer
@@ -132,8 +132,8 @@ ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
 #svn export -q https://github.com/jinlife/OpenWrt-Autobuild/trunk/default-settings package/new/default-settings
 
 # fullconenat
-svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/network/utils/fullconenat-nft package/new/fullconenat-nft
-svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/network/utils/fullconenat package/new/fullconenat-nft
+#svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/network/utils/fullconenat-nft package/new/fullconenat-nft
+#svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/network/utils/fullconenat package/new/fullconenat-nft
 
 # Zerotier
 rm -rf feeds/luci/applications/luci-app-zerotier
