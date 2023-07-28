@@ -32,7 +32,7 @@ sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt 23.05 Mod'|g" pa
 # DDNS GO
 svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
 ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
-svn export -q https://github.com/immortalwrt/packages/branches/openwrt-23.05/net/vlmcsd package/new/ddns-go
+svn export -q https://github.com/immortalwrt/packages/branches/openwrt-23.05/net/ddns-go package/new/ddns-go
 
 # OpenClash
 svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
