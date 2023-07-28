@@ -139,7 +139,7 @@ svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applica
 ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/feeds/luci/luci-app-unblockneteasemusic
 
 # wechatpush
-svn export -q https://github.com/tty228/luci-app-wechatpush/trunk/luci-app-wechatpush package/new/luci-app-wechatpush
+svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-wechatpush package/new/luci-app-wechatpush
 
 # net.netfilter.nf_conntrack_max from 16384 to 65535
 sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65535#g' package/kernel/linux/files/sysctl-nf-conntrack.conf
