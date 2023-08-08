@@ -61,7 +61,7 @@
 	    
 	    local swap_used = math.floor((luci.sys.exec("free -m | awk 'NR==3{print $3/1024}'") or 0)) .. " MB"
 	    
-	    local current_time = os.date("%Y-%m-%d %H:%M:%S")
+	    local current_time = os.date("%Y年%m月%d日") .. " " .. translate(os.date("%A")) .. " " .. os.date("%X")
 	    
 	    local cpu_mhz = luci.sys.exec("grep 'MHz' /proc/cpuinfo | cut -c12-15 |sed -n '1p'")
 	    local cpu_temp = luci.sys.exec("sensors 2>/dev/null | grep 'Core 0' | cut -c16-18")
@@ -944,16 +944,16 @@ function userinfol(v, m) {
 	<legend><%:System%></legend>
 	<table width="100%" cellspacing="10">
 		<tr><td width="33%"><%:主机名称%></td><td><%=luci.sys.hostname() or "?"%></td></tr>
-		<tr><td width="33%"><%:CPU型号%></td><td><%=pcdata(boardinfo.model or "?")%> <%=luci.sys.exec("cat /etc/bench.log") or " "%></td></tr>
+		<tr><td width="33%"><%:CPU型号%></td><td><%=pcdata(boardinfo.model or "?")%></td></tr>
+		<tr><td width="33%"><%:Architecture%></td><td><%=pcdata(boardinfo.release.target or "?")%> <%=luci.sys.exec("cat /etc/bench.log |awk -F '.' '{print $1}'") or " "%></td></tr>
 		<tr><td width="33%"><%:Firmware Version%></td><td>
-			<%=pcdata(ver.distname)%> <%=pcdata(ver.distversion)%> /
-			<%=pcdata(ver.luciname)%> (<%=pcdata(ver.luciversion)%>)
+			<%=pcdata(ver.distname)%> <%=pcdata(ver.distversion)%>
 		</td></tr>
 		<tr><td width="33%"><%:Kernel Version%></td><td><%=unameinfo.release or "?"%></td></tr>
 		<tr><td width="33%"><%:Local Time%></td><td id="currenttime">-</td></tr>
 		<tr><td width="33%"><%:Uptime%></td><td id="runtime">-</td></tr>
 		<tr><td width="33%"><%:Load Average%></td><td id="loadavg">-</td></tr>
-		<tr><td width="33%"><%:帮助反馈%></td><td> <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=YOnQxrd1GTEjUnkI1X5hjelItzDghIhA&jump_from=webapi&authKey=z3OsHvLBu6RvAQ55glDyXvVaEpM6iYzmJYAprwgp0Yi5A4a10qrHH6HJ534h3pd5"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="软路由/R5S/R5C/H68K交流" title="软路由/R5S/R5C/H68K交流"</a></ta></tr>
+		 
   <% local traffic = luci.sys.exec("uci get argon.@global[0].traffic")
 if tonumber(traffic) and tonumber(traffic) == 0 then %>
         <tr><td width="33%"><%:LAN速率%></td><td id="lanspeed">-</td></tr>
