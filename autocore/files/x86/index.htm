@@ -946,7 +946,8 @@ function userinfol(v, m) {
 	<legend><%:System%></legend>
 	<table width="100%" cellspacing="10">
 		<tr><td width="33%"><%:主机名称%></td><td><%=luci.sys.hostname() or "?"%></td></tr>
-		<tr><td width="33%"><%:CPU型号%></td><td><%=pcdata(boardinfo.model or "?")%> <%=luci.sys.exec("cat /etc/bench.log") or " "%></td></tr>
+		<tr><td width="33%"><%:CPU型号%></td><td><%=pcdata(boardinfo.model or "?")%></td></tr>
+		<tr><td width="33%"><%:目标平台%></td><td><%=pcdata(boardinfo.release.target or "?")%> <%=luci.sys.exec("cat /etc/bench.log") or " "%></td></tr>
 		<tr><td width="33%"><%:Firmware Version%></td><td>
 			<%=pcdata(ver.distname)%> <%=pcdata(ver.distversion)%>
 		</td></tr>
