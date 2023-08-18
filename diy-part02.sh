@@ -22,7 +22,7 @@ sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt 23.05'|g" packag
 
 # alist
 #git clone https://github.com/sbwml/luci-app-alist package/alist
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-alist feeds/luci/applications/luci-app-alist
+svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/applications/luci-app-alist feeds/luci/applications/luci-app-alist
 ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci-app-alist
 svn export -q https://github.com/immortalwrt/packages/branches/openwrt-23.05/net/alist package/new/alist
 
