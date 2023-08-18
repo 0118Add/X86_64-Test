@@ -17,32 +17,32 @@ sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
 # 更改固件版本信息
 sed -i "s|DISTRIB_REVISION='.*'|DISTRIB_REVISION=''|g" package/base-files/files/etc/openwrt_release
-sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt 23.05'|g" package/base-files/files/etc/openwrt_release
-#sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT'|g" package/base-files/files/etc/openwrt_release
+#sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt 23.05'|g" package/base-files/files/etc/openwrt_release
+sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT'|g" package/base-files/files/etc/openwrt_release
 
 # alist
 #git clone https://github.com/sbwml/luci-app-alist package/alist
-svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/applications/luci-app-alist feeds/luci/applications/luci-app-alist
+svn export -q https://github.com/0118Add/luci-immortalwrt/branches/master/applications/luci-app-alist feeds/luci/applications/luci-app-alist
 ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci-app-alist
-svn export -q https://github.com/immortalwrt/packages/branches/openwrt-23.05/net/alist package/new/alist
+svn export -q https://github.com/kiddin9/openwrt-packages/trunk/alist package/new/alist
 
 # ADBYBY Plus +
 #svn export -q https://github.com/0118Add/openwrt-packages/trunk/adbyby package/new/adbyby
 #svn export -q https://github.com/0118Add/openwrt-packages/trunk/luci-app-adbyby-plus package/new/luci-app-adbyby-plus
 
 # DDNS GO
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
+svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
 ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
-#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/ddns-go package/new/ddns-go
-svn export -q https://github.com/immortalwrt/packages/branches/openwrt-23.05/net/ddns-go package/new/ddns-go
+svn export -q https://github.com/kiddin9/openwrt-packages/trunk/ddns-go package/new/ddns-go
+#svn export -q https://github.com/immortalwrt/packages/branches/openwrt-23.05/net/ddns-go package/new/ddns-go
 
 # OpenClash
 svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
 
 # Daed
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-daed feeds/luci/applications/luci-app-daed
+svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-daed feeds/luci/applications/luci-app-daed
 ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
-svn export -q https://github.com/immortalwrt/packages/branches/openwrt-23.05/net/daed package/new/daed
+svn export -q https://github.com/immortalwrt/packages/branches/master/net/daed package/new/daed
 
 # Shared for PassWall and ShadowsocksR Plus+
 #svn export -q https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/luci-app-ssr-plus
@@ -91,15 +91,15 @@ svn export -q https://github.com/kiddin9/openwrt-packages/trunk/lua-maxminddb pa
 #sed -i '/builddir dependencies/a\$(curdir)/upx/compile := $(curdir)/ucl/compile' tools/Makefile
 
 # homeproxy
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-homeproxy feeds/luci/applications/luci-app-homeproxy
+svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-homeproxy feeds/luci/applications/luci-app-homeproxy
 ln -sf ../../../feeds/luci/applications/luci-app-homeproxy ./package/feeds/luci/luci-app-homeproxy
 
 # Release Ram
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-ramfree feeds/luci/applications/luci-app-ramfree
+svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-ramfree feeds/luci/applications/luci-app-ramfree
 ln -sf ../../../feeds/luci/applications/luci-app-ramfree ./package/feeds/luci/luci-app-ramfree
 
 # Scheduled Reboot
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-autoreboot feeds/luci/applications/luci-app-autoreboot
+svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-autoreboot feeds/luci/applications/luci-app-autoreboot
 ln -sf ../../../feeds/luci/applications/luci-app-autoreboot ./package/feeds/luci/luci-app-autoreboot
 
 # frpc
@@ -110,7 +110,7 @@ svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-frpc pa
 
 # ttyd
 rm -rf feeds/luci/applications/luci-app-ttyd
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-ttyd feeds/luci/applications/luci-app-ttyd
+svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-ttyd feeds/luci/applications/luci-app-ttyd
 ln -sf ../../../feeds/luci/applications/luci-app-ttyd ./package/feeds/luci/luci-app-ttyd
 
 # vlmcsd
@@ -124,9 +124,9 @@ ln -sf ../../../feeds/luci/applications/luci-app-ttyd ./package/feeds/luci/luci-
 #ln -sf ../../../feeds/luci/applications/luci-app-firewall ./package/feeds/luci/luci-app-firewall
 
 # Filetransfer
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-filetransfer feeds/luci/applications/luci-app-filetransfer
+svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-filetransfer feeds/luci/applications/luci-app-filetransfer
 ln -sf ../../../feeds/luci/applications/luci-app-filetransfer ./package/feeds/luci/luci-app-filetransfer
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/libs/luci-lib-fs feeds/luci/libs/luci-lib-fs
+svn export -q https://github.com/immortalwrt/luci/branches/master/libs/luci-lib-fs feeds/luci/libs/luci-lib-fs
 ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
 
 # AutoCore
@@ -147,19 +147,19 @@ rm -rf feeds/luci/applications/luci-app-zerotier
 #rm -rf feeds/packages/net/zerotier
 #svn export -q https://github.com/0118Add/openwrt-packages/trunk/zerotier package/new/zerotier
 #svn export -q https://github.com/0118Add/openwrt-packages/trunk/luci-app-zerotier package/new/luci-app-zerotier
-svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
+svn export -q https://github.com/0118Add/luci-immortalwrt/branches/master/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
 ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
 
 # unblockneteasemusic
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
+svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
 ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/feeds/luci/luci-app-unblockneteasemusic
 
 # ipsec-vpnd
-svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/applications/luci-app-ipsec-vpnd feeds/luci/applications/luci-app-ipsec-vpnd
+svn export -q https://github.com/0118Add/luci-immortalwrt/branches/master/applications/luci-app-ipsec-vpnd feeds/luci/applications/luci-app-ipsec-vpnd
 ln -sf ../../../feeds/luci/applications/luci-app-ipsec-vpnd ./package/feeds/luci/luci-app-ipsec-vpnd
 
 # wechatpush
-svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/applications/luci-app-wechatpush feeds/luci/applications/luci-app-wechatpush
+svn export -q https://github.com/0118Add/luci-immortalwrt/branches/master/applications/luci-app-wechatpush feeds/luci/applications/luci-app-wechatpush
 ln -sf ../../../feeds/luci/applications/luci-app-wechatpush ./package/feeds/luci/luci-app-wechatpush
 
 # net.netfilter.nf_conntrack_max from 16384 to 65535
