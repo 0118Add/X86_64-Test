@@ -166,9 +166,9 @@ ln -sf ../../../feeds/luci/applications/luci-app-wechatpush ./package/feeds/luci
 sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65535#g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 
 # kernel
-#svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/r8125 package/new/r8125
-#svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/r8152 package/new/r8152
-#svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/r8168 package/new/r8168
+#svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/kernel/r8125 package/new/r8125
+#svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/kernel/r8152 package/new/r8152
+#svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/kernel/r8168 package/new/r8168
 
 #sed -i 's/ShadowSocksR Plus+/SSR Plus+/g' package/new/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 sed -i 's/Frp 内网穿透/内网穿透/g' package/new/luci-app-frpc/po/zh-cn/frp.po
