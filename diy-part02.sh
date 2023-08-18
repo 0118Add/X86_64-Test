@@ -40,7 +40,8 @@ svn export -q https://github.com/kiddin9/openwrt-packages/trunk/ddns-go package/
 svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
 
 # Daed
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-daed package/new/luci-app-daed
+svn export -q https://github.com/0118Add/luci-immortalwrt/branches/master/applications/luci-app-daed feeds/luci/applications/luci-app-daed
+ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
 svn export -q https://github.com/kiddin9/openwrt-packages/trunk/daed package/new/daed
 
 # Shared for PassWall and ShadowsocksR Plus+
@@ -152,9 +153,6 @@ ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/l
 # unblockneteasemusic
 svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
 ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/feeds/luci/luci-app-unblockneteasemusic
-
-# ipsec-vpnd
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-ipsec-vpnd package/new/luci-app-ipsec-vpnd
 
 # wechatpush
 svn export -q https://github.com/0118Add/luci-immortalwrt/branches/master/applications/luci-app-wechatpush feeds/luci/applications/luci-app-wechatpush
