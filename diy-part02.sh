@@ -22,20 +22,27 @@ sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt 23.05'|g" packag
 
 # alist
 #git clone https://github.com/sbwml/luci-app-alist package/alist
-#rm -rf feeds/packages/lang/golang
-#git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
+svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-alist feeds/luci/applications/luci-app-alist
+ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci-app-alist
+svn export -q https://github.com/immortalwrt/packages/branches/openwrt-23.05/net/alist package/new/alist
 
 # ADBYBY Plus +
 #svn export -q https://github.com/0118Add/openwrt-packages/trunk/adbyby package/new/adbyby
 #svn export -q https://github.com/0118Add/openwrt-packages/trunk/luci-app-adbyby-plus package/new/luci-app-adbyby-plus
 
 # DDNS GO
-#svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
-#ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
+svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
+ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/ddns-go package/new/ddns-go
+svn export -q https://github.com/immortalwrt/packages/branches/openwrt-23.05/net/ddns-go package/new/ddns-go
 
 # OpenClash
 svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
+
+# Daed
+svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-daed feeds/luci/applications/luci-app-daed
+ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
+svn export -q https://github.com/immortalwrt/packages/branches/openwrt-23.05/net/daed package/new/daed
 
 # Shared for PassWall and ShadowsocksR Plus+
 #svn export -q https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/luci-app-ssr-plus
@@ -147,8 +154,13 @@ ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/l
 svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
 ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/feeds/luci/luci-app-unblockneteasemusic
 
+# ipsec-vpnd
+svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/applications/luci-app-ipsec-vpnd feeds/luci/applications/luci-app-ipsec-vpnd
+ln -sf ../../../feeds/luci/applications/luci-app-ipsec-vpnd ./package/feeds/luci/luci-app-ipsec-vpnd
+
 # wechatpush
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-wechatpush package/new/luci-app-wechatpush
+svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/applications/luci-app-wechatpush feeds/luci/applications/luci-app-wechatpush
+ln -sf ../../../feeds/luci/applications/luci-app-wechatpush ./package/feeds/luci/luci-app-wechatpush
 
 # net.netfilter.nf_conntrack_max from 16384 to 65535
 sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65535#g' package/kernel/linux/files/sysctl-nf-conntrack.conf
