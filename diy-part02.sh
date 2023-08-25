@@ -22,9 +22,9 @@ sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT'|g" pac
 
 # alist
 #git clone https://github.com/sbwml/luci-app-alist package/alist
-svn export -q https://github.com/0118Add/luci-immortalwrt/branches/master/applications/luci-app-alist feeds/luci/applications/luci-app-alist
-ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci-app-alist
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/alist package/new/alist
+#svn export -q https://github.com/0118Add/luci-immortalwrt/branches/master/applications/luci-app-alist feeds/luci/applications/luci-app-alist
+#ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci-app-alist
+#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/alist package/new/alist
 
 # ADBYBY Plus +
 #svn export -q https://github.com/0118Add/openwrt-packages/trunk/adbyby package/new/adbyby
