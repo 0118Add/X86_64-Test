@@ -16,8 +16,8 @@ rm -rf package/feeds/luci/luci-app-apinger
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
 # 更改固件版本信息
-sed -i "s|DISTRIB_REVISION='.*'|DISTRIB_REVISION=''|g" package/base-files/files/etc/openwrt_release
-sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt 23.05'|g" package/base-files/files/etc/openwrt_release
+#sed -i "s|DISTRIB_REVISION='.*'|DISTRIB_REVISION=''|g" package/base-files/files/etc/openwrt_release
+#sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt 23.05'|g" package/base-files/files/etc/openwrt_release
 #sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT'|g" package/base-files/files/etc/openwrt_release
 
 # alist
@@ -43,6 +43,9 @@ svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash p
 svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/applications/luci-app-daed feeds/luci/applications/luci-app-daed
 ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
 svn export -q https://github.com/kiddin9/openwrt-packages/trunk/daed package/new/daed
+
+# Dae
+svn export -q https://github.com/kiddin9/openwrt-packages/trunk/dae package/new/dae
 
 # Shared for PassWall and ShadowsocksR Plus+
 #svn export -q https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/luci-app-ssr-plus
