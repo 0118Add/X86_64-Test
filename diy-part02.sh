@@ -42,7 +42,7 @@ svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash p
 # Daed
 svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/applications/luci-app-daed feeds/luci/applications/luci-app-daed
 ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/daed package/new/daed
+svn export -q https://github.com/0118Add/openwrt-packages/trunk/daed package/new/daed
 
 # Dae
 svn export -q https://github.com/kiddin9/openwrt-packages/trunk/dae package/new/dae
