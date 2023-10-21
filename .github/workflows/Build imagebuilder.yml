@@ -45,7 +45,9 @@ jobs:
         cd openwrt-imagebuilder-23.05.0-x86-64.Linux-x86_64
         wget -P ./packages https://github.com/tty228/luci-app-wechatpush/releases/download/v3.3.3/luci-app-wechatpush_3.3.3_all.ipk
         wget -P ./packages https://github.com/tty228/luci-app-wechatpush/releases/download/v3.3.3/luci-i18n-wechatpush-zh-cn_git-23.288.19319-c68c19c_all.ipk
-         
+        wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/luci/luci-app-passwall_4.71-2_all.ipk
+        wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/luci/luci-i18n-passwall-zh-cn_git-23.291.10149-ad47f73_all.ipk
+    
     - name: Build 
       run: |
         cd openwrt-imagebuilder-23.05.0-x86-64.Linux-x86_64
