@@ -45,6 +45,8 @@ jobs:
         cd openwrt-imagebuilder-23.05.0-x86-64.Linux-x86_64
         wget -P ./packages https://github.com/tty228/luci-app-wechatpush/releases/download/v3.3.3/luci-app-wechatpush_3.3.3_all.ipk
         wget -P ./packages https://github.com/tty228/luci-app-wechatpush/releases/download/v3.3.3/luci-i18n-wechatpush-zh-cn_git-23.288.19319-c68c19c_all.ipk
+        wget -P ./packages https://github.com/xiaorouji/openwrt-passwall/releases/download/4.71-2/luci-app-passwall_4.71-2_all.ipk
+        wget -P ./packages https://github.com/xiaorouji/openwrt-passwall/releases/download/4.71-2/luci-i18n-passwall-zh-cn_git-23.289.45328-a953315_all.ipk
     
     - name: Build 
       run: |
@@ -58,7 +60,7 @@ jobs:
         sed -i 's/CONFIG_TARGET_ROOTFS_PARTSIZE=300/CONFIG_TARGET_ROOTFS_PARTSIZE=500/' .config
        
         
-        make image PACKAGES="kmod-alx luci-i18n-base-zh-cn luci-i18n-opkg-zh-cn luci-i18n-firewall-zh-cn kmod-tun luci-compat luci-lib-ip htop coremark ca-bundle kmod-sched-core kmod-sched-bpf kmod-nf-socket kmod-nf-tproxy kmod-nft-socket kmod-nft-tproxy luci-app-wechatpush luci-i18n-wechatpush-zh-cn"
+        make image PACKAGES="kmod-alx luci-i18n-base-zh-cn luci-i18n-opkg-zh-cn luci-i18n-firewall-zh-cn kmod-tun luci-compat luci-lib-ip htop coremark ca-bundle kmod-sched-core kmod-sched-bpf kmod-nf-socket kmod-nf-tproxy kmod-nft-socket kmod-nft-tproxy luci-app-passwall luci-i18n-passwall-zh-cn luci-app-wechatpush luci-i18n-wechatpush-zh-cn"
 
     - name: Upload firmware
       uses: actions/upload-artifact@master
