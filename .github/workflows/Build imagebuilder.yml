@@ -52,7 +52,7 @@ jobs:
         sed -i 's/CONFIG_TARGET_ROOTFS_PARTSIZE=300/CONFIG_TARGET_ROOTFS_PARTSIZE=500/' .config
        
         
-        make image PACKAGES="kmod-alx luci-i18n-base-zh-cn luci-i18n-opkg-zh-cn luci-i18n-firewall-zh-cn kmod-tun luci-compat luci-lib-ip htop coremark ca-bundle kmod-sched-core kmod-sched-bpf kmod-xdp-sockets-diag kmod-nf-socket kmod-nf-tproxy kmod-nft-socket kmod-nft-tproxy"
+        make image PACKAGES="kmod-alx luci-i18n-base-zh-cn luci-i18n-opkg-zh-cn luci-i18n-firewall-zh-cn kmod-tun luci-compat luci-lib-ip htop coremark ca-bundle kmod-sched-core kmod-sched-bpf kmod-nf-socket kmod-nf-tproxy kmod-nft-socket kmod-nft-tproxy"
 
     - name: Upload firmware
       uses: actions/upload-artifact@master
