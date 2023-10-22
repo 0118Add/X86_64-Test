@@ -57,6 +57,25 @@ jobs:
         wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/packages/tcping_0.3-2_x86_64.ipk
         wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/packages/trojan-plus_10.0.3-2_x86_64.ipk
         wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/packages/v2ray-plugin_5.8.0-1_x86_64.ipk
+        wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/targets/x86/64/kmods/5.15.132-1-18763f571ff4df5e03c8e55f640ed2f2/kmod-xdp-sockets-diag_5.15.132-1_x86_64.ipk
+        wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/luci/luci-app-alist_git-23.274.11309-859245b_all.ipk
+        wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/packages/alist_3.28.0-1_x86_64.ipk
+        wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/luci/luci-app-autoreboot_1.0_all.ipk
+        wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/luci/luci-app-filetransfer_git-23.274.11309-859245b_all.ipk
+        wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/luci/luci-app-ramfree_1.0_all.ipk
+        wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/luci/luci-app-daed_git-23.274.11309-859245b_all.ipk
+        wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/packages/daed_0.3.3.p1-1_x86_64.ipk
+        wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/packages/daed-geoip_0.3.3.p1-1_all.ipk
+        wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/packages/daed-geosite_0.3.3.p1-1_all.ipk
+        wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/packages/dae_0.3.0-1_x86_64.ipk
+        wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/packages/dae-geoip_0.3.0-1_all.ipk
+        wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/packages/dae-geosite_0.3.0-1_all.ipk
+        wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/luci/luci-app-ddns-go_git-23.274.11309-859245b_all.ipk
+        wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/packages/ddns-go_5.6.3-1_x86_64.ipk
+        wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/luci/luci-app-openclash_0.45.141-beta_all.ipk
+        wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/luci/luci-app-unblockneteasemusic_3.2_all.ipk
+        wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/luci/luci-app-zerotier_git-23.274.11309-859245b_all.ipk
+        wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/packages/zerotier_1.12.2-1_x86_64.ipk
     
     - name: Build 
       run: |
@@ -70,7 +89,7 @@ jobs:
         sed -i 's/CONFIG_TARGET_ROOTFS_PARTSIZE=300/CONFIG_TARGET_ROOTFS_PARTSIZE=500/' .config
        
         
-        make image PACKAGES="kmod-alx luci-i18n-base-zh-cn luci-i18n-opkg-zh-cn luci-i18n-firewall-zh-cn kmod-tun luci-compat luci-lib-ip htop coremark ca-bundle kmod-sched-core kmod-sched-bpf kmod-nf-socket kmod-nf-tproxy kmod-nft-socket kmod-nft-tproxy luci-app-passwall luci-i18n-passwall-zh-cn luci-app-wechatpush luci-i18n-wechatpush-zh-cn"
+        make image PACKAGES="kmod-alx luci-i18n-base-zh-cn luci-i18n-opkg-zh-cn luci-i18n-firewall-zh-cn kmod-tun luci-compat luci-lib-ip htop coremark ca-bundle kmod-sched-core kmod-sched-bpf kmod-nf-socket kmod-xdp-sockets-diag kmod-nf-tproxy kmod-nft-socket kmod-nft-tproxy dae dae-geoip dae-geosite hysteria luci-app-alist luci-app-daed luci-app-ddns-go luci-app-filetransfer luci-app-firewall luci-app-ramfree luci-app-openclash luci-app-passwall luci-app-unblockneteasemusic luci-app-wechatpush luci-app-zerotier luci-i18n-alist-zh-cn luci-i18n-daed-zh-cn luci-i18n-ddns-go-zh-cn luci-i18n-filetransfer-zh-cn luci-i18n-ramfree-zh-cn luci-i18n-passwall-zh-cn luci-i18n-wechatpush-zh-cn luci-i18n-zerotier-zh-cn"
 
     - name: Upload firmware
       uses: actions/upload-artifact@master
