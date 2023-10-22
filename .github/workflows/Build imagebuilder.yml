@@ -57,7 +57,7 @@ jobs:
         wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/packages/tcping_0.3-2_x86_64.ipk
         wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/packages/trojan-plus_10.0.3-2_x86_64.ipk
         wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/packages/v2ray-plugin_5.8.0-1_x86_64.ipk
-        wget -P ./packages https://downloads.immortalwrt.org/releases/23.05-SNAPSHOT/targets/x86/64/kmods/5.15.134-1-18763f571ff4df5e03c8e55f640ed2f2/kmod-xdp-sockets-diag_5.15.132-1_x86_64.ipk
+        wget -P ./packages https://downloads.immortalwrt.org/releases/23.05-SNAPSHOT/targets/x86/64/kmods/5.15.134-1-18763f571ff4df5e03c8e55f640ed2f2/kmod-xdp-sockets-diag_5.15.134-1_x86_64.ipk
         wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/luci/luci-app-alist_git-23.274.11309-859245b_all.ipk
         wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/packages/alist_3.28.0-1_x86_64.ipk
         wget -P ./packages https://downloads.immortalwrt.org/releases/23.05.0-rc4/packages/x86_64/luci/luci-app-autoreboot_1.0_all.ipk
