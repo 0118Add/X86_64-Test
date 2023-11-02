@@ -9,6 +9,9 @@
 # File name: diy-part02.sh
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 
+# 替换内核
+sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=6.1/g' target/linux/x86/Makefile
+
 # 删除插件
 rm -rf package/feeds/luci/luci-app-apinger
 
