@@ -68,20 +68,7 @@ svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/micro
 svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/pdnsd-alt package/new/pdnsd-alt
 svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/redsocks2 package/new/redsocks2
 svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/gn package/new/gn
-svn export -q https://github.com/fw876/helloworld/trunk/xray-plugin package/new/xray-plugin
-svn export -q https://github.com/fw876/helloworld/trunk/lua-neturl package/new/lua-neturl
-svn export -q https://github.com/fw876/helloworld/trunk/dns2tcp package/new/dns2tcp
-svn export -q https://github.com/fw876/helloworld/trunk/tuic-client package/new/tuic-client
-svn export -q https://github.com/fw876/helloworld/trunk/naiveproxy package/new/naiveproxy
-svn export -q https://github.com/fw876/helloworld/trunk/shadowsocks-rust package/new/shadowsocks-rust
-svn export -q https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/new/shadowsocksr-libev
-svn export -q https://github.com/fw876/helloworld/trunk/simple-obfs package/new/simple-obfs
-svn export -q https://github.com/fw876/helloworld/trunk/tcping package/new/tcping
-svn export -q https://github.com/fw876/helloworld/trunk/trojan package/new/trojan
-svn export -q https://github.com/fw876/helloworld/trunk/v2ray-core package/new/v2ray-core
-svn export -q https://github.com/fw876/helloworld/trunk/v2ray-geodata package/new/v2ray-geodata
-svn export -q https://github.com/fw876/helloworld/trunk/v2ray-plugin package/new/v2ray-plugin
-svn export -q https://github.com/fw876/helloworld/trunk/xray-core package/new/xray-core
+git clone -b main https://github.com/fw876/helloworld package/helloworld
 
 # bypass
 svn export -q https://github.com/kiddin9/openwrt-packages/trunk/lua-maxminddb package/new/lua-maxminddb
