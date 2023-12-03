@@ -161,7 +161,7 @@ sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65
 # R8168驱动
 git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git package/new/r8168
 # R8152驱动
-svn export -q https://github.com/0118Add/immortalwrt/package/kernel/r8152 ./package/new/r8152
+svn export -q https://github.com/0118Add/openwrt-packages/trunk/r8152 ./package/new/r8152
 # r8125驱动
 git clone https://github.com/sbwml/package_kernel_r8125 package/new/r8125
 
