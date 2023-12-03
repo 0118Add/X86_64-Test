@@ -84,8 +84,8 @@ svn export -q https://github.com/kiddin9/openwrt-packages/trunk/lua-maxminddb pa
 # UPX 可执行软件压缩
 sed -i '/patchelf pkgconf/i\tools-y += ucl upx' ./tools/Makefile
 sed -i '\/autoconf\/compile :=/i\$(curdir)/upx/compile := $(curdir)/ucl/compile' ./tools/Makefile
-cp -rf ../Lienol/tools/ucl ./tools/ucl
-cp -rf ../Lienol/tools/upx ./tools/upx
+svn export -q https://github.com/Lienol/openwrt/branches/23.05/tools/ucl ./tools/ucl
+svn export -q https://github.com/Lienol/openwrt/branches/23.05/tools/upx ./tools/upx
 
 # homeproxy
 #svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-homeproxy feeds/luci/applications/luci-app-homeproxy
@@ -160,7 +160,6 @@ sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65
 
 # R8168驱动
 git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git package/new/r8168
-patch -p1 <../PATCH/r8168/r8168-fix_LAN_led-for_r4s-from_TL.patch
 # R8152驱动
 cp -rf ../immortalwrt/package/kernel/r8152 ./package/new/r8152
 # r8125驱动
