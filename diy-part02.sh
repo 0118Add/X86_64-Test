@@ -88,8 +88,8 @@ sed -i '/patchelf pkgconf/i\tools-y += ucl upx' ./tools/Makefile
 sed -i '\/autoconf\/compile :=/i\$(curdir)/upx/compile := $(curdir)/ucl/compile' ./tools/Makefile
 
 # homeproxy
-#svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-homeproxy feeds/luci/applications/luci-app-homeproxy
-#ln -sf ../../../feeds/luci/applications/luci-app-homeproxy ./package/feeds/luci/luci-app-homeproxy
+svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-homeproxy feeds/luci/applications/luci-app-homeproxy
+ln -sf ../../../feeds/luci/applications/luci-app-homeproxy ./package/feeds/luci/luci-app-homeproxy
 
 # Release Ram
 svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-ramfree feeds/luci/applications/luci-app-ramfree
@@ -163,7 +163,7 @@ git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git packa
 # R8152驱动
 svn export -q https://github.com/0118Add/openwrt-packages/trunk/r8152 ./package/new/r8152
 # r8125驱动
-git clone https://github.com/sbwml/package_kernel_r8125 package/new/r8125
+svn export -q https://github.com/0118Add/openwrt-packages/trunk/r8125 ./package/new/r8152
 
 #sed -i 's/ShadowSocksR Plus+/SSR Plus+/g' package/new/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 #sed -i 's/Frp 内网穿透/内网穿透/g' package/new/luci-app-frpc/po/zh-cn/frp.po
