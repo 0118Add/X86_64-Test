@@ -81,14 +81,14 @@ svn export -q https://github.com/kiddin9/openwrt-packages/trunk/lua-maxminddb pa
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-vssr package/new/luci-app-vssr
 
 # UPX 可执行软件压缩
+svn export -q https://github.com/Lienol/openwrt/branches/23.05/tools/ucl ./tools/ucl
+svn export -q https://github.com/Lienol/openwrt/branches/23.05/tools/upx ./tools/upx
 sed -i '/patchelf pkgconf/i\tools-y += ucl upx' ./tools/Makefile
 sed -i '\/autoconf\/compile :=/i\$(curdir)/upx/compile := $(curdir)/ucl/compile' ./tools/Makefile
-cp -rf ../Lienol/tools/ucl ./tools/ucl
-cp -rf ../Lienol/tools/upx ./tools/upx
 
 # homeproxy
-#svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-homeproxy feeds/luci/applications/luci-app-homeproxy
-#ln -sf ../../../feeds/luci/applications/luci-app-homeproxy ./package/feeds/luci/luci-app-homeproxy
+svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-homeproxy feeds/luci/applications/luci-app-homeproxy
+ln -sf ../../../feeds/luci/applications/luci-app-homeproxy ./package/feeds/luci/luci-app-homeproxy
 
 # Release Ram
 svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-ramfree feeds/luci/applications/luci-app-ramfree
@@ -159,11 +159,10 @@ sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65
 
 # R8168驱动
 git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git package/new/r8168
-patch -p1 <../PATCH/r8168/r8168-fix_LAN_led-for_r4s-from_TL.patch
 # R8152驱动
-cp -rf ../immortalwrt/package/kernel/r8152 ./package/new/r8152
+svn export -q https://github.com/0118Add/openwrt-packages/trunk/r8152 package/new/r8152
 # r8125驱动
-git clone https://github.com/sbwml/package_kernel_r8125 package/new/r8125
+svn export -q https://github.com/0118Add/openwrt-packages/trunk/r8125 package/new/r8125
 
 #sed -i 's/ShadowSocksR Plus+/SSR Plus+/g' package/new/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 #sed -i 's/Frp 内网穿透/内网穿透/g' package/new/luci-app-frpc/po/zh-cn/frp.po
