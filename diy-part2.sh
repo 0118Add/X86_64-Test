@@ -80,12 +80,11 @@ svn export -q https://github.com/kiddin9/openwrt-packages/trunk/lua-maxminddb pa
 # vssr
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-vssr package/new/luci-app-vssr
 
-# upx & ucl
-#svn export --force https://github.com/coolsnowwolf/lede/trunk/package/lean/upx   tools/upx
-#svn export --force https://github.com/coolsnowwolf/lede/trunk/package/lean/ucl   tools/ucl
-#svn export --force https://github.com/coolsnowwolf/lede/trunk/tools/ninja tools/ninja
-#sed -i '/builddir dependencies/i\tools-y += ucl upx' tools/Makefile
-#sed -i '/builddir dependencies/a\$(curdir)/upx/compile := $(curdir)/ucl/compile' tools/Makefile
+# UPX 可执行软件压缩
+sed -i '/patchelf pkgconf/i\tools-y += ucl upx' ./tools/Makefile
+sed -i '\/autoconf\/compile :=/i\$(curdir)/upx/compile := $(curdir)/ucl/compile' ./tools/Makefile
+cp -rf ../Lienol/tools/ucl ./tools/ucl
+cp -rf ../Lienol/tools/upx ./tools/upx
 
 # homeproxy
 #svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-homeproxy feeds/luci/applications/luci-app-homeproxy
