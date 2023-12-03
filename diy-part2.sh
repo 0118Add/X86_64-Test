@@ -87,7 +87,7 @@ sed -i '/patchelf pkgconf/i\tools-y += ucl upx' ./tools/Makefile
 sed -i '\/autoconf\/compile :=/i\$(curdir)/upx/compile := $(curdir)/ucl/compile' ./tools/Makefile
 
 # homeproxy
-svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-homeproxy feeds/luci/applications/luci-app-homeproxy
+svn export -q https://github.com/0118Add/luci/branches/master/applications/luci-app-homeproxy feeds/luci/applications/luci-app-homeproxy
 ln -sf ../../../feeds/luci/applications/luci-app-homeproxy ./package/feeds/luci/luci-app-homeproxy
 
 # Release Ram
@@ -120,9 +120,9 @@ ln -sf ../../../feeds/luci/applications/luci-app-ttyd ./package/feeds/luci/luci-
 #ln -sf ../../../feeds/luci/applications/luci-app-firewall ./package/feeds/luci/luci-app-firewall
 
 # Filetransfer
-svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-filetransfer feeds/luci/applications/luci-app-filetransfer
+svn export -q https://github.com/0118Add/luci/branches/master/applications/luci-app-filetransfer feeds/luci/applications/luci-app-filetransfer
 ln -sf ../../../feeds/luci/applications/luci-app-filetransfer ./package/feeds/luci/luci-app-filetransfer
-svn export -q https://github.com/immortalwrt/luci/branches/master/libs/luci-lib-fs feeds/luci/libs/luci-lib-fs
+svn export -q https://github.com/0118Add/luci/branches/master/libs/luci-lib-fs feeds/luci/libs/luci-lib-fs
 ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
 
 # AutoCore
