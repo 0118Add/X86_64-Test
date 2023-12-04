@@ -148,7 +148,7 @@ jobs:
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
         cd openwrt/bin/targets/*/*
-        rm -rf packages
+        rm -rf packages openwrt-23.05-r23642-6264d12ed8-armsr-armv8-generic-ext4-combined.img.gz openwrt-23.05-r23642-6264d12ed8-armsr-armv8-generic-ext4-rootfs.img.gz openwrt-23.05-r23642-6264d12ed8-armsr-armv8-generic-initramfs-kernel.bin openwrt-23.05-r23642-6264d12ed8-armsr-armv8-generic-kernel.bin openwrt-23.05-r23642-6264d12ed8-armsr-armv8-generic-squashfs-combined.img.gz openwrt-23.05-r23642-6264d12ed8-armsr-armv8-generic-squashfs-rootfs.img.gz openwrt-23.05-r23642-6264d12ed8-armsr-armv8-generic.manifest openwrt-23.05-r23642-6264d12ed8-armsr-armv8-rootfs.cpio.gz openwrt-imagebuilder-23.05-armsr-armv8.Linux-x86_64.tar.xz
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >>$GITHUB_OUTPUT
     
