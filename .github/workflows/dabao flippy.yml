@@ -65,7 +65,7 @@ jobs:
       uses: 0118Add/flippy-openwrt-actions@main
       env:
         SCRIPT_REPO_URL: 0118Add/openwrt_packit
-        OPENWRT_ARMVIRT: https://github.com/0118Add/X86_64-Test/releases/download/2023.12.04-1453/openwrt-armvirt-64-default-rootfs.tar.gz
+        OPENWRT_ARMVIRT: https://github.com/0118Add/X86_64-Test/releases/download/2023.12.16-1217/openwrt-armvirt-64-default-rootfs.tar.gz
         PACKAGE_SOC: vplus_s905x3_s905d_s922x
         WHOAMI: BGG
         #OPENWRT_VER: "R22.10.10"
