@@ -28,8 +28,8 @@ git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packa
 #sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT'|g" package/base-files/files/etc/openwrt_release
 
 # 内核替换 kernel xxx
-sed -i 's/LINUX_KERNEL_HASH-6.1.67 = 7537db7289ca4854a126bc1237c47c5b21784bcbf27b4e571d389e3528c59285/LINUX_KERNEL_HASH-6.1.66 = 419e62cd6c4239e6950b688db9e8753eb1e99c216dc3204f7932398a3fef1a0c/g' ./include/kernel-6.1
-sed -i 's/LINUX_VERSION-6.1 = .67/LINUX_VERSION-6.1 = .66/g' ./include/kernel-6.1
+#sed -i 's/LINUX_KERNEL_HASH-6.1.67 = 7537db7289ca4854a126bc1237c47c5b21784bcbf27b4e571d389e3528c59285/LINUX_KERNEL_HASH-6.1.66 = 419e62cd6c4239e6950b688db9e8753eb1e99c216dc3204f7932398a3fef1a0c/g' ./include/kernel-6.1
+#sed -i 's/LINUX_VERSION-6.1 = .67/LINUX_VERSION-6.1 = .66/g' ./include/kernel-6.1
 
 # alist
 #git clone https://github.com/sbwml/luci-app-alist package/alist
