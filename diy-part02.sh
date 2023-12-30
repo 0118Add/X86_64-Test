@@ -132,7 +132,7 @@ svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/libs/lu
 ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
 
 # AutoCore
-#svn export -q https://github.com/padavanonly/immortalwrtARM/branches/master/package/emortal/autocore package/new/autocore
+rm -rf feeds/packages/utils/coremark
 #svn export -q https://github.com/8688Add/OpenWrt-CI/trunk/autocore package/new/autocore
 #svn export -q https://github.com/immortalwrt/immortalwrt/branches/master/package/utils/mhz package/new/mhz
 
