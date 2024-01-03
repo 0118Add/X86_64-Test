@@ -161,6 +161,9 @@ ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/f
 svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/applications/luci-app-wechatpush feeds/luci/applications/luci-app-wechatpush
 ln -sf ../../../feeds/luci/applications/luci-app-wechatpush ./package/feeds/luci/luci-app-wechatpush
 
+# turboacc
+git clone https://github.com/chenmozhijin/turboacc package/new/luci-app-turboacc
+
 # net.netfilter.nf_conntrack_max from 16384 to 65535
 sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65535#g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 
