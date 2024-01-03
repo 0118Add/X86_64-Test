@@ -163,6 +163,7 @@ ln -sf ../../../feeds/luci/applications/luci-app-wechatpush ./package/feeds/luci
 
 # turboacc
 git clone https://github.com/chenmozhijin/turboacc package/new/luci-app-turboacc
+curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 
 # net.netfilter.nf_conntrack_max from 16384 to 65535
 sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65535#g' package/kernel/linux/files/sysctl-nf-conntrack.conf
