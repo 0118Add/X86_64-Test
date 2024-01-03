@@ -135,7 +135,8 @@ ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
 rm -rf feeds/packages/utils/coremark
 svn export -q https://github.com/immortalwrt/packages/branches/openwrt-23.05/utils/coremark package/new/coremark
 svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/emortal/autocore package/new/autocore
-svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/utils/mhz package/new/mhz
+svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/emortal/default-settings package/new/default-settings
+#svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/utils/mhz package/new/mhz
 
 # default settings and translation
 #svn export -q https://github.com/immortalwrt/immortalwrt/branches/master/package/emortal/default-settings package/new/default-settings
