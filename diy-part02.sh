@@ -37,6 +37,7 @@ sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-alist feeds/luci/applications/luci-app-alist
 ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci-app-alist
 svn export -q https://github.com/immortalwrt/packages/branches/master/net/alist feeds/packages/net/alist
+ln -sf ../../../feeds/packages/net/alist ./package/feeds/net/alist
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/alist package/new/alist
 
 # ADBYBY Plus +
@@ -48,6 +49,7 @@ svn export -q https://github.com/immortalwrt/luci/branches/master/applications/l
 ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/ddns-go package/new/ddns-go
 svn export -q https://github.com/immortalwrt/packages/branches/master/net/ddns-go feeds/packages/net/ddns-go
+ln -sf ../../../feeds/packages/net/ddns-go ./package/feeds/net/ddns-go
 
 # OpenClash
 svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
