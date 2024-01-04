@@ -34,7 +34,7 @@ sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 
 # alist
 #git clone https://github.com/sbwml/luci-app-alist package/alist
-svn export -q https://github.com/0118Add/luci-immortalwrt/branches/master/applications/luci-app-alist feeds/luci/applications/luci-app-alist
+svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-alist feeds/luci/applications/luci-app-alist
 ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci-app-alist
 svn export -q https://github.com/kiddin9/openwrt-packages/trunk/alist package/new/alist
 
