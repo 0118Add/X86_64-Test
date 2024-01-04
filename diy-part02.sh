@@ -134,9 +134,12 @@ ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
 # AutoCore
 rm -rf feeds/packages/utils/coremark
 svn export -q https://github.com/immortalwrt/packages/branches/openwrt-23.05/utils/coremark package/new/coremark
-#svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/emortal/autocore package/new/autocore
-#svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/emortal/default-settings package/new/default-settings
-#svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/utils/mhz package/new/mhz
+svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/emortal/autocore package/new/autocore
+svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/utils/mhz package/new/mhz
+rm -rf feeds/luci/modules/luci-base
+svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/modules/luci-base feeds/luci/modules/luci-base
+rm -rf feeds/luci/modules/luci-mod-status
+svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/modules/luci-mod-status feeds/luci/modules/luci-mod-status
 
 # default settings and translation
 #svn export -q https://github.com/immortalwrt/immortalwrt/branches/master/package/emortal/default-settings package/new/default-settings
@@ -165,6 +168,7 @@ ln -sf ../../../feeds/luci/applications/luci-app-wechatpush ./package/feeds/luci
 # turboacc
 git clone https://github.com/chenmozhijin/turboacc package/new/luci-app-turboacc
 curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
+sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
 
 # net.netfilter.nf_conntrack_max from 16384 to 65535
 sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65535#g' package/kernel/linux/files/sysctl-nf-conntrack.conf
