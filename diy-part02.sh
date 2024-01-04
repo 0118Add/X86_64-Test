@@ -142,7 +142,7 @@ rm -rf feeds/luci/modules/luci-mod-status
 svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/modules/luci-mod-status feeds/luci/modules/luci-mod-status
 
 # default settings and translation
-#svn export -q https://github.com/immortalwrt/immortalwrt/branches/master/package/emortal/default-settings package/new/default-settings
+svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/emortal/default-settings package/new/default-settings
 #svn export -q https://github.com/jinlife/OpenWrt-Autobuild/trunk/default-settings package/new/default-settings
 
 # fullconenat
