@@ -34,7 +34,7 @@ sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 
 # alist
 #git clone https://github.com/sbwml/luci-app-alist package/alist
-svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/applications/luci-app-alist feeds/luci/applications/luci-app-alist
+svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/applications/luci-app-alist package/new/luci-app-alist
 ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci-app-alist
 svn export -q https://github.com/kiddin9/openwrt-packages/trunk/alist package/new/alist
 
@@ -43,7 +43,7 @@ svn export -q https://github.com/kiddin9/openwrt-packages/trunk/alist package/ne
 #svn export -q https://github.com/0118Add/openwrt-packages/trunk/luci-app-adbyby-plus package/new/luci-app-adbyby-plus
 
 # DDNS GO
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
+svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-ddns-go package/new/luci-app-ddns-go
 ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
 svn export -q https://github.com/kiddin9/openwrt-packages/trunk/ddns-go package/new/ddns-go
 #svn export -q https://github.com/immortalwrt/packages/branches/openwrt-23.05/net/ddns-go package/new/ddns-go
@@ -104,10 +104,10 @@ svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applica
 ln -sf ../../../feeds/luci/applications/luci-app-autoreboot ./package/feeds/luci/luci-app-autoreboot
 
 # frpc
-rm -rf feeds/luci/applications/luci-app-frpc
+#rm -rf feeds/luci/applications/luci-app-frpc
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-frpc feeds/luci/applications/luci-app-frpc
 #ln -sf ../../../feeds/luci/applications/luci-app-frpc ./package/feeds/luci/luci-app-frpc
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-frpc package/new/luci-app-frpc 
+#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-frpc package/new/luci-app-frpc 
 
 # ttyd
 rm -rf feeds/luci/applications/luci-app-ttyd
