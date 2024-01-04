@@ -33,23 +33,20 @@ sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 #sed -i 's/LINUX_VERSION-5.15 = .139/LINUX_VERSION-5.15 = .138/g' ./include/kernel-5.15
 
 # alist
-#git clone https://github.com/sbwml/luci-app-alist package/alist
-svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-alist feeds/luci/applications/luci-app-alist
-ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci-app-alist
-svn export -q https://github.com/immortalwrt/packages/branches/master/net/alist feeds/packages/net/alist
-ln -sf ../../../feeds/packages/net/alist ./package/feeds/packages/net/alist
-#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/alist package/new/alist
+git clone https://github.com/sbwml/luci-app-alist package/alist
+sed -i 's/Alist 文件列表/网络云盘/g' package/alist/luci-app-alist/po/zh-cn/alist.po
+sed -i 's/nas/services/g' package/alist/luci-app-alist/luasrc/controller/*.lua
+sed -i 's/nas/services/g' package/alist/luci-app-alist/luasrc/model/cbi/alist/*.lua
+sed -i 's/nas/services/g' package/alist/luci-app-alist/luasrc/view/alist/*.htm
 
 # ADBYBY Plus +
 #svn export -q https://github.com/0118Add/openwrt-packages/trunk/adbyby package/new/adbyby
 #svn export -q https://github.com/0118Add/openwrt-packages/trunk/luci-app-adbyby-plus package/new/luci-app-adbyby-plus
 
 # DDNS GO
-svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
-ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
+#svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
+#ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/ddns-go package/new/ddns-go
-svn export -q https://github.com/immortalwrt/packages/branches/master/net/ddns-go feeds/packages/net/ddns-go
-ln -sf ../../../feeds/packages/net/ddns-go ./package/feeds/packages/net/ddns-go
 
 # OpenClash
 svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
