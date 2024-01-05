@@ -38,10 +38,10 @@ sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 
 # alist
 git clone https://github.com/sbwml/luci-app-alist package/alist
-sed -i 's/Alist 文件列表/Alist/g' package/alist/luci-app-alist/po/zh-cn/alist.po
-sed -i 's/nas/services/g' package/alist/luci-app-alist/luasrc/controller/*.lua
-sed -i 's/nas/services/g' package/alist/luci-app-alist/luasrc/model/cbi/alist/*.lua
-sed -i 's/nas/services/g' package/alist/luci-app-alist/luasrc/view/alist/*.htm
+#sed -i 's/Alist 文件列表/Alist/g' package/alist/luci-app-alist/po/zh-cn/alist.po
+#sed -i 's/nas/services/g' package/alist/luci-app-alist/luasrc/controller/*.lua
+#sed -i 's/nas/services/g' package/alist/luci-app-alist/luasrc/model/cbi/alist/*.lua
+#sed -i 's/nas/services/g' package/alist/luci-app-alist/luasrc/view/alist/*.htm
 
 # ADBYBY Plus +
 #svn export -q https://github.com/0118Add/openwrt-packages/trunk/adbyby package/new/adbyby
