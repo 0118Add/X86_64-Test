@@ -64,6 +64,7 @@ svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash p
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/dae package/new/dae
 
 # Shared for PassWall and ShadowsocksR Plus+
+rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata}
 #svn export -q https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/luci-app-ssr-plus
 svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-passwall package/new/luci-app-passwall
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-passwall2 package/new/luci-app-passwall2
