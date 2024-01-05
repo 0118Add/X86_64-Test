@@ -61,8 +61,8 @@ svn export -q https://github.com/kiddin9/openwrt-packages/trunk/dae package/new/
 
 # Shared for PassWall and ShadowsocksR Plus+
 #svn export -q https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/luci-app-ssr-plus
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-passwall package/new/luci-app-passwall
-#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-passwall2 package/new/luci-app-passwall2
+#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-passwall package/new/luci-app-passwall
+svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-passwall2 package/new/luci-app-passwall2
 svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/brook package/new/brook
 svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/dns2socks package/new/dns2socks
 svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/ipt2socks package/new/ipt2socks
