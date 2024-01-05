@@ -80,7 +80,8 @@ svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash p
 #svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/pdnsd-alt package/new/pdnsd-alt
 #svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/redsocks2 package/new/redsocks2
 #svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/gn package/new/gn
-git clone https://github.com/fw876/helloworld package/helloworld
+svn export -q https://github.com/xiaorouji/openwrt-passwall-packages.git package/new/openwrt-passwall-packages
+#git clone https://github.com/fw876/helloworld package/helloworld
 
 # bypass
 svn export -q https://github.com/kiddin9/openwrt-packages/trunk/lua-maxminddb package/new/lua-maxminddb
