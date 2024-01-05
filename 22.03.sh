@@ -197,3 +197,4 @@ sed -i 's/解除网易云音乐播放限制/音乐解锁/g' feeds/luci/applicati
 #wget -O ./feeds/luci/modules/luci-mod-status/htdocs/luci-s
 rm -rf feeds/luci/modules/luci-base
 svn export -q https://github.com/openwrt/luci/branches/master/modules/luci-base feeds/luci/modules/luci-base
+svn export -q https://github.com/openwrt/luci/branches/master/contrib/package/ucode-mod-html feeds/luci/contrib/package/ucode-mod-html
