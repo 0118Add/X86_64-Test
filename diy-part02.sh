@@ -52,9 +52,10 @@ git clone https://github.com/sbwml/luci-app-alist package/alist
 svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
 
 # Daed
-svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/applications/luci-app-daed feeds/luci/applications/luci-app-daed
-ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
-svn export -q https://github.com/0118Add/openwrt-packages/trunk/daed package/new/daed
+#svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/applications/luci-app-daed feeds/luci/applications/luci-app-daed
+#ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
+#svn export -q https://github.com/0118Add/openwrt-packages/trunk/daed package/new/daed
+git clone https://github.com/sbwml/luci-app-daed-next package/new/luci-app-daed-next
 
 # Dae
 svn export -q https://github.com/kiddin9/openwrt-packages/trunk/dae package/new/dae
@@ -152,10 +153,9 @@ svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/
 # Zerotier
 rm -rf feeds/luci/applications/luci-app-zerotier
 #rm -rf feeds/packages/net/zerotier
-#svn export -q https://github.com/0118Add/openwrt-packages/trunk/zerotier package/new/zerotier
-#svn export -q https://github.com/0118Add/openwrt-packages/trunk/luci-app-zerotier package/new/luci-app-zerotier
-svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
-ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
+git clone https://$gitea/sbwml/luci-app-zerotier package/new/luci-app-zerotier
+#svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
+#ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
 
 # unblockneteasemusic
 svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
