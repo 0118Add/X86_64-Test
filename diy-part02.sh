@@ -155,7 +155,6 @@ rm -rf feeds/luci/applications/luci-app-zerotier
 #rm -rf feeds/packages/net/zerotier
 svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
 ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
-sed -i 's/vpn/services/g' ./feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d
 
 # unblockneteasemusic
 svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
