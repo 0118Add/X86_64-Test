@@ -32,6 +32,9 @@ sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 # alist
 git clone https://github.com/sbwml/luci-app-alist package/alist
 
+# SSRP & Passwall
+git clone https://github.com/sbwml/openwrt_helloworld package/helloworld -b v5
+
 # OpenClash
 git clone -b dev --depth 1 https://github.com/vernesong/OpenClash package/luci-app-openclash
 
