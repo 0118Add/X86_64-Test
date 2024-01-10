@@ -10,8 +10,8 @@
 # Description: OpenWrt DIY script part 1 (Before Update feeds)
 #
 
-# Uncomment a feed source
-#sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
+#git clone https://github.com/kiddin9/openwrt-packages package/openwrt-packages
+#rm -rf package/openwrt-packages/{automount,v2ray-core,v2ray-geodata,sing-box}
 
 # Add a feed source
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
@@ -25,9 +25,6 @@ git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packa
 # 移除 SNAPSHOT 标签
 sed -i 's,-SNAPSHOT,,g' include/version.mk
 sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
-
-#git clone https://github.com/kiddin9/openwrt-packages package/openwrt-packages
-#rm -rf package/openwrt-packages/{automount,v2ray-core,v2ray-geodata,sing-box}
 
 # alist
 git clone https://github.com/sbwml/luci-app-alist package/alist
