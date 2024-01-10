@@ -29,6 +29,30 @@ sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 #git clone https://github.com/kiddin9/openwrt-packages package/openwrt-packages
 #rm -rf package/openwrt-packages/{automount,v2ray-core,v2ray-geodata,sing-box}
 
+# alist
+git clone https://github.com/sbwml/luci-app-alist package/alist
+
+# OpenClash
+git clone -b dev --depth 1 https://github.com/vernesong/OpenClash package/luci-app-openclash
+
+# Daed
+git clone https://github.com/sbwml/luci-app-daed-next package/new/luci-app-daed-next
+
+# homeproxy
+git clone -b dev --depth 1 https://github.com/immortalwrt/homeproxy package/homeproxy
+
+# unblockneteasemusic
+git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
+sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
+
+# wechatpush
+git clone https://github.com/tty228/luci-app-wechatpush package/luci-app-wechatpush
+
+# turboacc
+git clone https://github.com/chenmozhijin/turboacc package/new/luci-app-turboacc
+curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
+sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
+
 # net.netfilter.nf_conntrack_max from 16384 to 65535
 sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65535#g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 
