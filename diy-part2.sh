@@ -24,8 +24,8 @@ SVN_PACKAGE() {
     rm -rf $REPO_NAME
 }
 mkdir ./svn-package
-SVN_PACKAGE "openwrt/aliyundrive-webdav" "https://github.com/messense/aliyundrive-webdav" "main"
-SVN_PACKAGE "openwrt/luci-app-aliyundrive-webdav" "https://github.com/messense/aliyundrive-webdav" "main"
+#SVN_PACKAGE "openwrt/aliyundrive-webdav" "https://github.com/messense/aliyundrive-webdav" "main"
+#SVN_PACKAGE "openwrt/luci-app-aliyundrive-webdav" "https://github.com/messense/aliyundrive-webdav" "main"
 
 # 替换内核
 #sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=6.1/g' target/linux/x86/Makefile
@@ -68,52 +68,49 @@ SVN_PACKAGE "net/daed" "https://github.com/immortalwrt/packages" "master"
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/daed package/new/daed
 
 # Dae
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/dae package/new/dae
+SVN_PACKAGE "net/dae" "https://github.com/immortalwrt/packages" "master"
+#SVN_PACKAGE "dae" "https://github.com/kiddin9/openwrt-packages" "master"
 
 # Shared for PassWall and ShadowsocksR Plus+
 #svn export -q https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/luci-app-ssr-plus
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-passwall package/new/luci-app-passwall
-#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-passwall2 package/new/luci-app-passwall2
-svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/brook package/new/brook
-svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/dns2socks package/new/dns2socks
-svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/ipt2socks package/new/ipt2socks
-svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/kcptun package/new/kcptun
-svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/hysteria package/new/hysteria
-svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/sing-box package/new/sing-box
-svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/chinadns-ng package/new/chinadns-ng
-svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/trojan-go package/new/trojan-go
-svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/trojan-plus package/new/trojan-plus
-svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/microsocks package/new/microsocks
-svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/pdnsd-alt package/new/pdnsd-alt
-svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/redsocks2 package/new/redsocks2
-svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/gn package/new/gn
-git clone -b main https://github.com/fw876/helloworld package/helloworld
+SVN_PACKAGE "luci-app-passwall" "https://github.com/kiddin9/openwrt-packages" "master"
+SVN_PACKAGE "luci-app-passwall2" "https://github.com/kiddin9/openwrt-packages" "master"
+SVN_PACKAGE "brook" "https://github.com/xiaorouji/openwrt-passwall-packages" "main"
+SVN_PACKAGE "dns2socks" "https://github.com/xiaorouji/openwrt-passwall-packages" "main"
+SVN_PACKAGE "ipt2socks" "https://github.com/xiaorouji/openwrt-passwall-packages" "main"
+SVN_PACKAGE "net/kcptun" "https://github.com/immortalwrt/packages" "openwrt-21.02"
+SVN_PACKAGE "hysteria" "https://github.com/xiaorouji/openwrt-passwall-packages" "main"
+SVN_PACKAGE "sing-box" "https://github.com/xiaorouji/openwrt-passwall-packages" "main"
+SVN_PACKAGE "chinadns-ng" "https://github.com/xiaorouji/openwrt-passwall-packages" "main"
+SVN_PACKAGE "trojan-go" "https://github.com/xiaorouji/openwrt-passwall-packages" "main"
+SVN_PACKAGE "trojan-plus" "https://github.com/xiaorouji/openwrt-passwall-packages" "main"
+SVN_PACKAGE "microsocks" "https://github.com/xiaorouji/openwrt-passwall-packages" "main"
+SVN_PACKAGE "pdnsd-alt" "https://github.com/xiaorouji/openwrt-passwall-packages" "main"
+SVN_PACKAGE "net/redsocks2" "https://github.com/immortalwrt/packages" "openwrt-21.02"
+SVN_PACKAGE "gn" "https://github.com/xiaorouji/openwrt-passwall-packages" "main"
+git clone https://github.com/fw876/helloworld package/helloworld
 
 # bypass
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/lua-maxminddb package/new/lua-maxminddb
-#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-bypass package/new/luci-app-bypass
+SVN_PACKAGE "lua-maxminddb" "https://github.com/kiddin9/openwrt-packages" "master"
+#SVN_PACKAGE "luci-app-bypass" "https://github.com/kiddin9/openwrt-packages" "master"
 
 # vssr
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-vssr package/new/luci-app-vssr
 
 # UPX 可执行软件压缩
-svn export -q https://github.com/Lienol/openwrt/branches/23.05/tools/ucl ./tools/ucl
-svn export -q https://github.com/Lienol/openwrt/branches/23.05/tools/upx ./tools/upx
+SVN_PACKAGE "tools/ucl" "https://github.com/Lienol/openwrt" "23.05"
+SVN_PACKAGE "tools/upx" "https://github.com/Lienol/openwrt" "23.05"
 sed -i '/patchelf pkgconf/i\tools-y += ucl upx' ./tools/Makefile
 sed -i '\/autoconf\/compile :=/i\$(curdir)/upx/compile := $(curdir)/ucl/compile' ./tools/Makefile
 
 # homeproxy
-git clone https://github.com/immortalwrt/homeproxy package/new/luci-app-homeproxy
-#svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-homeproxy feeds/luci/applications/luci-app-homeproxy
-#ln -sf ../../../feeds/luci/applications/luci-app-homeproxy ./package/feeds/luci/luci-app-homeproxy
+git clone https://github.com/immortalwrt/homeproxy package/luci-app-homeproxy
 
 # Release Ram
-svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-ramfree feeds/luci/applications/luci-app-ramfree
-ln -sf ../../../feeds/luci/applications/luci-app-ramfree ./package/feeds/luci/luci-app-ramfree
+SVN_PACKAGE "applications/luci-app-ramfree" "https://github.com/immortalwrt/luci" "master"
 
 # Scheduled Reboot
-svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-autoreboot feeds/luci/applications/luci-app-autoreboot
-ln -sf ../../../feeds/luci/applications/luci-app-autoreboot ./package/feeds/luci/luci-app-autoreboot
+SVN_PACKAGE "applications/luci-app-autoreboot" "https://github.com/immortalwrt/luci" "master"
 
 # frpc
 #rm -rf feeds/luci/applications/luci-app-frpc
@@ -122,9 +119,8 @@ ln -sf ../../../feeds/luci/applications/luci-app-autoreboot ./package/feeds/luci
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-frpc package/new/luci-app-frpc 
 
 # ttyd
-rm -rf feeds/luci/applications/luci-app-ttyd
-svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-ttyd feeds/luci/applications/luci-app-ttyd
-ln -sf ../../../feeds/luci/applications/luci-app-ttyd ./package/feeds/luci/luci-app-ttyd
+#rm -rf feeds/luci/applications/luci-app-ttyd
+SVN_PACKAGE "applications/luci-app-ttyd" "https://github.com/immortalwrt/luci" "master"
 
 # vlmcsd
 #svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-vlmcsd feeds/luci/applications/luci-app-vlmcsd
@@ -137,19 +133,15 @@ ln -sf ../../../feeds/luci/applications/luci-app-ttyd ./package/feeds/luci/luci-
 #ln -sf ../../../feeds/luci/applications/luci-app-firewall ./package/feeds/luci/luci-app-firewall
 
 # Filetransfer
-svn export -q https://github.com/0118Add/luci/branches/master/applications/luci-app-filetransfer feeds/luci/applications/luci-app-filetransfer
-ln -sf ../../../feeds/luci/applications/luci-app-filetransfer ./package/feeds/luci/luci-app-filetransfer
-svn export -q https://github.com/0118Add/luci/branches/master/libs/luci-lib-fs feeds/luci/libs/luci-lib-fs
-ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
+SVN_PACKAGE "applications/luci-app-filetransfer" "https://github.com/immortalwrt/luci" "master"
+SVN_PACKAGE "libs/luci-lib-fs" "https://github.com/immortalwrt/luci" "master"
 
 # AutoCore
-#svn export -q https://github.com/padavanonly/immortalwrtARM/branches/master/package/emortal/autocore package/new/autocore
-#svn export -q https://github.com/8688Add/OpenWrt-CI/trunk/autocore package/new/autocore
-#svn export -q https://github.com/immortalwrt/immortalwrt/branches/master/package/utils/mhz package/new/mhz
+SVN_PACKAGE "package/emortal/autocore" "https://github.com/immortalwrt/immortalwrt" "master"
+SVN_PACKAGE "package/utils/mhz" "https://github.com/immortalwrt/immortalwrt" "master"
 
 # default settings and translation
-#svn export -q https://github.com/immortalwrt/immortalwrt/branches/master/package/emortal/default-settings package/new/default-settings
-#svn export -q https://github.com/jinlife/OpenWrt-Autobuild/trunk/default-settings package/new/default-settings
+SVN_PACKAGE "package/emortal/default-settings" "https://github.com/immortalwrt/immortalwrt" "master"
 
 # fullconenat
 #svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/network/utils/fullconenat-nft package/new/fullconenat-nft
@@ -157,19 +149,13 @@ ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
 
 # Zerotier
 rm -rf feeds/luci/applications/luci-app-zerotier
-#rm -rf feeds/packages/net/zerotier
-#svn export -q https://github.com/0118Add/openwrt-packages/trunk/zerotier package/new/zerotier
-#svn export -q https://github.com/0118Add/openwrt-packages/trunk/luci-app-zerotier package/new/luci-app-zerotier
-svn export -q https://github.com/0118Add/luci-immortalwrt/branches/master/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
-ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
+SVN_PACKAGE "applications/luci-app-zerotier" "https://github.com/0118Add/luci-immortalwrt" "master"
 
 # unblockneteasemusic
-svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
-ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/feeds/luci/luci-app-unblockneteasemusic
+SVN_PACKAGE "applications/luci-app-unblockneteasemusic" "https://github.com/immortalwrt/luci" "master"
 
 # wechatpush
-svn export -q https://github.com/0118Add/luci-immortalwrt/branches/master/applications/luci-app-wechatpush feeds/luci/applications/luci-app-wechatpush
-ln -sf ../../../feeds/luci/applications/luci-app-wechatpush ./package/feeds/luci/luci-app-wechatpush
+SVN_PACKAGE "applications/luci-app-wechatpush" "https://github.com/0118Add/luci-immortalwrt" "master"
 
 # net.netfilter.nf_conntrack_max from 16384 to 65535
 sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65535#g' package/kernel/linux/files/sysctl-nf-conntrack.conf
@@ -177,13 +163,13 @@ sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65
 # R8168驱动
 git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git package/new/r8168
 # R8152驱动
-svn export -q https://github.com/0118Add/openwrt-packages/trunk/r8152 package/new/r8152
+SVN_PACKAGE "r8152" "https://github.com/0118Add/openwrt-packages" "master"
 # r8125驱动
-svn export -q https://github.com/0118Add/openwrt-packages/trunk/r8125 package/new/r8125
+SVN_PACKAGE "r8125" "https://github.com/0118Add/openwrt-packages" "master"
 
 #sed -i 's/ShadowSocksR Plus+/SSR Plus+/g' package/new/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 #sed -i 's/Frp 内网穿透/内网穿透/g' package/new/luci-app-frpc/po/zh-cn/frp.po
-sed -i 's/解除网易云音乐播放限制/音乐解锁/g' feeds/luci/applications/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
+#sed -i 's/解除网易云音乐播放限制/音乐解锁/g' feeds/luci/applications/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 #sed -i 's/UPnP/UPnP设置/g' feeds/luci/applications/luci-app-upnp/po/zh_Hans/upnp.po
 
 # 修改系统文件
