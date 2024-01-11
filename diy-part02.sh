@@ -76,8 +76,8 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/dae
 
 # Shared for PassWall and ShadowsocksR Plus+
 #merge_package https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/luci-app-ssr-plus
-#merge_package https://github.com/kiddin9/openwrt-packages/trunk/luci-app-passwall package/new/luci-app-passwall
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-passwall2
+merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-passwall
+#merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-passwall2
 merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/brook
 merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/dns2socks
 merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/ipt2socks
