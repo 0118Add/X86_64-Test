@@ -9,6 +9,30 @@
 # File name: diy-part02.sh
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 
+echo "开始 DIY2 配置……"
+echo "========================="
+
+function merge_package(){
+    repo=`echo $1 | rev | cut -d'/' -f 1 | rev`
+    pkg=`echo $2 | rev | cut -d'/' -f 1 | rev`
+    # find package/ -follow -name $pkg -not -path "package/custom/*" | xargs -rt rm -rf
+    git clone --depth=1 --single-branch $1
+    mv $2 package/custom/
+    rm -rf $repo
+}
+function drop_package(){
+    find package/ -follow -name $1 -not -path "package/custom/*" | xargs -rt rm -rf
+}
+function merge_feed(){
+    if [ ! -d "feed/$1" ]; then
+        echo >> feeds.conf.default
+        echo "src-git $1 $2" >> feeds.conf.default
+    fi
+    ./scripts/feeds update $1
+    ./scripts/feeds install -a -p $1
+}
+rm -rf package/custom; mkdir package/custom
+
 # 删除插件
 rm -rf package/feeds/luci/luci-app-apinger
 
@@ -34,22 +58,13 @@ sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 
 # alist
 git clone https://github.com/sbwml/luci-app-alist package/alist
-#sed -i 's/Alist 文件列表/Alist/g' package/alist/luci-app-alist/po/zh-cn/alist.po
-#sed -i 's/nas/services/g' package/alist/luci-app-alist/luasrc/controller/*.lua
-#sed -i 's/nas/services/g' package/alist/luci-app-alist/luasrc/model/cbi/alist/*.lua
-#sed -i 's/nas/services/g' package/alist/luci-app-alist/luasrc/view/alist/*.htm
-
-# ADBYBY Plus +
-#svn export -q https://github.com/0118Add/openwrt-packages/trunk/adbyby package/new/adbyby
-#svn export -q https://github.com/0118Add/openwrt-packages/trunk/luci-app-adbyby-plus package/new/luci-app-adbyby-plus
 
 # DDNS GO
-#svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
-#ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
-#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/ddns-go package/new/ddns-go
+merge_package https://github.com/immortalwrt/luci luci/applications/luci-app-ddns-go
+merge_package https://github.com/immortalwrt/packages packages/net/ddns-go
 
 # OpenClash
-svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
+git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-openclash
 
 # Daed
 #svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/applications/luci-app-daed feeds/luci/applications/luci-app-daed
@@ -58,51 +73,48 @@ svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash p
 git clone https://github.com/sbwml/luci-app-daed-next package/new/luci-app-daed-next
 
 # Dae
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/dae package/new/dae
+merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/dae
 
 # Shared for PassWall and ShadowsocksR Plus+
-#svn export -q https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/luci-app-ssr-plus
-#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-passwall package/new/luci-app-passwall
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-passwall2 package/new/luci-app-passwall2
-svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/brook package/new/brook
-svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/dns2socks package/new/dns2socks
-svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/ipt2socks package/new/ipt2socks
-svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/kcptun package/new/kcptun
-svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/hysteria package/new/hysteria
-svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/sing-box package/new/sing-box
-svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/chinadns-ng package/new/chinadns-ng
-svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/trojan-go package/new/trojan-go
-svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/trojan-plus package/new/trojan-plus
-svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/microsocks package/new/microsocks
-svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/pdnsd-alt package/new/pdnsd-alt
-svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/redsocks2 package/new/redsocks2
-svn export -q https://github.com/xiaorouji/openwrt-passwall-packages/trunk/gn package/new/gn
-git clone -b main https://github.com/fw876/helloworld package/helloworld
+#merge_package https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/luci-app-ssr-plus
+#merge_package https://github.com/kiddin9/openwrt-packages/trunk/luci-app-passwall package/new/luci-app-passwall
+merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-passwall2
+merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/brook
+merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/dns2socks
+merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/ipt2socks
+merge_package https://github.com/immortalwrt/packages packages/net/kcptun
+merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/hysteria
+merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/sing-box
+merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/chinadns-ng
+merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/trojan-go
+merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/trojan-plus
+merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/microsocks
+merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/pdnsd-alt
+merge_package https://github.com/immortalwrt/packages packages/net/redsocks2
+merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/gn
+git clone https://github.com/fw876/helloworld package/helloworld
 
 # bypass
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/lua-maxminddb package/new/lua-maxminddb
+merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/lua-maxminddb
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-bypass package/new/luci-app-bypass
 
 # vssr
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-vssr package/new/luci-app-vssr
 
 # UPX 可执行软件压缩
-svn export -q https://github.com/Lienol/openwrt/branches/23.05/tools/ucl ./tools/ucl
-svn export -q https://github.com/Lienol/openwrt/branches/23.05/tools/upx ./tools/upx
+merge_package https://github.com/Lienol/openwrt openwrt/tools/ucl
+merge_package https://github.com/Lienol/openwrt openwrt/tools/upx
 sed -i '/patchelf pkgconf/i\tools-y += ucl upx' ./tools/Makefile
 sed -i '\/autoconf\/compile :=/i\$(curdir)/upx/compile := $(curdir)/ucl/compile' ./tools/Makefile
 
 # homeproxy
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-homeproxy feeds/luci/applications/luci-app-homeproxy
-ln -sf ../../../feeds/luci/applications/luci-app-homeproxy ./package/feeds/luci/luci-app-homeproxy
+merge_package https://github.com/immortalwrt/luci luci/applications/luci-app-homeproxy
 
 # Release Ram
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-ramfree feeds/luci/applications/luci-app-ramfree
-ln -sf ../../../feeds/luci/applications/luci-app-ramfree ./package/feeds/luci/luci-app-ramfree
+merge_package https://github.com/immortalwrt/luci luci/applications/luci-app-ramfree
 
 # Scheduled Reboot
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-autoreboot feeds/luci/applications/luci-app-autoreboot
-ln -sf ../../../feeds/luci/applications/luci-app-autoreboot ./package/feeds/luci/luci-app-autoreboot
+merge_package https://github.com/immortalwrt/luci luci/applications/luci-app-autoreboot
 
 # frpc
 #rm -rf feeds/luci/applications/luci-app-frpc
@@ -112,8 +124,7 @@ ln -sf ../../../feeds/luci/applications/luci-app-autoreboot ./package/feeds/luci
 
 # ttyd
 rm -rf feeds/luci/applications/luci-app-ttyd
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-ttyd feeds/luci/applications/luci-app-ttyd
-ln -sf ../../../feeds/luci/applications/luci-app-ttyd ./package/feeds/luci/luci-app-ttyd
+merge_package https://github.com/immortalwrt/luci luci/applications/luci-app-ttyd
 
 # vlmcsd
 #svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-vlmcsd feeds/luci/applications/luci-app-vlmcsd
@@ -126,25 +137,22 @@ ln -sf ../../../feeds/luci/applications/luci-app-ttyd ./package/feeds/luci/luci-
 #ln -sf ../../../feeds/luci/applications/luci-app-firewall ./package/feeds/luci/luci-app-firewall
 
 # Filetransfer
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-filetransfer package/new/luci-app-filetransfer
-#svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-filetransfer feeds/luci/applications/luci-app-filetransfer
-#ln -sf ../../../feeds/luci/applications/luci-app-filetransfer ./package/feeds/luci/luci-app-filetransfer
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/libs/luci-lib-fs feeds/luci/libs/luci-lib-fs
-ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
+merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-filetransfer
+merge_package https://github.com/immortalwrt/luci luci/libs/luci-lib-fs
+
 
 # AutoCore
 rm -rf feeds/packages/utils/coremark
-svn export -q https://github.com/immortalwrt/packages/branches/openwrt-23.05/utils/coremark package/new/coremark
-svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/emortal/autocore package/new/autocore
-svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/utils/mhz package/new/mhz
+merge_package https://github.com/immortalwrt/packages/branches/openwrt-23.05/utils/coremark packages/utils/coremark
+merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/autocore
+merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/utils/mhz
 rm -rf feeds/luci/modules/luci-base
-svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/modules/luci-base feeds/luci/modules/luci-base
+merge_package https://github.com/0118Add/luci-immortalwrt luci-immortalwrt/modules/luci-base
 rm -rf feeds/luci/modules/luci-mod-status
-svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/modules/luci-mod-status feeds/luci/modules/luci-mod-status
+merge_package https://github.com/0118Add/luci-immortalwrt luci-immortalwrt/modules/luci-mod-status
 
 # default settings and translation
-svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/emortal/default-settings package/new/default-settings
-#svn export -q https://github.com/jinlife/OpenWrt-Autobuild/trunk/default-settings package/new/default-settings
+merge_package https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/emortal/default-settings immortalwrt/package/emortal/default-settings
 
 # fullconenat
 #svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/network/utils/fullconenat-nft package/new/fullconenat-nft
@@ -153,16 +161,13 @@ svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/
 # Zerotier
 rm -rf feeds/luci/applications/luci-app-zerotier
 #rm -rf feeds/packages/net/zerotier
-svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
-ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
+merge_package https://github.com/0118Add/luci-immortalwrt luci-immortalwrt/applications/luci-app-zerotier
 
 # unblockneteasemusic
-svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
-ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/feeds/luci/luci-app-unblockneteasemusic
+merge_package https://github.com/immortalwrt/luci luci/applications/luci-app-unblockneteasemusic
 
 # wechatpush
-svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/applications/luci-app-wechatpush feeds/luci/applications/luci-app-wechatpush
-ln -sf ../../../feeds/luci/applications/luci-app-wechatpush ./package/feeds/luci/luci-app-wechatpush
+merge_package https://github.com/0118Add/luci-immortalwrt luci-immortalwrt/applications/luci-app-wechatpush
 
 # turboacc
 git clone https://github.com/chenmozhijin/turboacc package/new/luci-app-turboacc
@@ -175,13 +180,13 @@ sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65
 # R8168驱动
 git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git package/new/r8168
 # R8152驱动
-svn export -q https://github.com/0118Add/openwrt-packages/trunk/r8152 package/new/r8152
+merge_package https://github.com/0118Add/openwrt-packages openwrt-packages/r8152
 # r8125驱动
-svn export -q https://github.com/0118Add/openwrt-packages/trunk/r8125 package/new/r8125
+merge_package https://github.com/0118Add/openwrt-packages openwrt-packages/r8125
 
 #sed -i 's/ShadowSocksR Plus+/SSR Plus+/g' package/new/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 #sed -i 's/Frp 内网穿透/内网穿透/g' package/new/luci-app-frpc/po/zh-cn/frp.po
-sed -i 's/解除网易云音乐播放限制/音乐解锁/g' feeds/luci/applications/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
+#sed -i 's/解除网易云音乐播放限制/音乐解锁/g' feeds/luci/applications/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 #sed -i 's/UPnP/UPnP设置/g' feeds/luci/applications/luci-app-upnp/po/zh_Hans/upnp.po
 
 # 修改系统文件
