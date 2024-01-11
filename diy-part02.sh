@@ -60,8 +60,7 @@ sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 git clone https://github.com/sbwml/luci-app-alist package/alist
 
 # DDNS GO
-merge_package https://github.com/immortalwrt/luci luci/applications/luci-app-ddns-go
-merge_package https://github.com/immortalwrt/packages packages/net/ddns-go
+git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
 
 # OpenClash
 git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-openclash
@@ -108,13 +107,13 @@ sed -i '/patchelf pkgconf/i\tools-y += ucl upx' ./tools/Makefile
 sed -i '\/autoconf\/compile :=/i\$(curdir)/upx/compile := $(curdir)/ucl/compile' ./tools/Makefile
 
 # homeproxy
-merge_package https://github.com/immortalwrt/luci luci/applications/luci-app-homeproxy
+merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-homeproxy
 
 # Release Ram
-merge_package https://github.com/immortalwrt/luci luci/applications/luci-app-ramfree
+merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-ramfree
 
 # Scheduled Reboot
-merge_package https://github.com/immortalwrt/luci luci/applications/luci-app-autoreboot
+merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-autoreboot
 
 # frpc
 #rm -rf feeds/luci/applications/luci-app-frpc
@@ -124,7 +123,7 @@ merge_package https://github.com/immortalwrt/luci luci/applications/luci-app-aut
 
 # ttyd
 rm -rf feeds/luci/applications/luci-app-ttyd
-merge_package https://github.com/immortalwrt/luci luci/applications/luci-app-ttyd
+merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-ttyd
 
 # vlmcsd
 #svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-vlmcsd feeds/luci/applications/luci-app-vlmcsd
@@ -161,10 +160,10 @@ merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emo
 # Zerotier
 rm -rf feeds/luci/applications/luci-app-zerotier
 #rm -rf feeds/packages/net/zerotier
-merge_package https://github.com/0118Add/luci-immortalwrt luci-immortalwrt/applications/luci-app-zerotier
+merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-zerotier
 
 # unblockneteasemusic
-merge_package https://github.com/immortalwrt/luci luci/applications/luci-app-unblockneteasemusic
+merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-unblockneteasemusic
 
 # wechatpush
 merge_package https://github.com/0118Add/luci-immortalwrt luci-immortalwrt/applications/luci-app-wechatpush
