@@ -24,7 +24,6 @@ SVN_PACKAGE() {
     rm -rf $REPO_NAME
 }
 mkdir ./svn-package
-#https://github.com/messense/aliyundrive-webdav/tree/main/openwrt/luci-app-aliyundrive-webdav
 SVN_PACKAGE "openwrt/aliyundrive-webdav" "https://github.com/messense/aliyundrive-webdav" "main"
 SVN_PACKAGE "openwrt/luci-app-aliyundrive-webdav" "https://github.com/messense/aliyundrive-webdav" "main"
 
