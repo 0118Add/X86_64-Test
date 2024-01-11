@@ -50,28 +50,22 @@ git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packa
 #sed -i 's/LINUX_VERSION-6.1 = .67/LINUX_VERSION-6.1 = .66/g' ./include/kernel-6.1
 
 # alist
-#git clone https://github.com/sbwml/luci-app-alist package/alist
-svn export -q https://github.com/0118Add/luci-immortalwrt/branches/master/applications/luci-app-alist feeds/luci/applications/luci-app-alist
-ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci-app-alist
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/alist package/new/alist
-
-# ADBYBY Plus +
-#svn export -q https://github.com/0118Add/openwrt-packages/trunk/adbyby package/new/adbyby
-#svn export -q https://github.com/0118Add/openwrt-packages/trunk/luci-app-adbyby-plus package/new/luci-app-adbyby-plus
+git clone https://github.com/sbwml/luci-app-alist package/alist
 
 # DDNS GO
-svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
-ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/ddns-go package/new/ddns-go
+#svn export -q https://github.com/immortalwrt/luci/branches/master/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
+#ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
+#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/ddns-go package/new/ddns-go
 #svn export -q https://github.com/immortalwrt/packages/branches/openwrt-23.05/net/ddns-go package/new/ddns-go
 
 # OpenClash
-svn export -q  https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
+git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-openclash
 
 # Daed
-svn export -q https://github.com/0118Add/luci-immortalwrt/branches/master/applications/luci-app-daed feeds/luci/applications/luci-app-daed
-ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
-svn export -q https://github.com/kiddin9/openwrt-packages/trunk/daed package/new/daed
+SVN_PACKAGE "applications/luci-app-daed" "https://github.com/0118Add/luci-immortalwrt" "master"
+SVN_PACKAGE "net/dae" "https://github.com/immortalwrt/packages" "master"
+SVN_PACKAGE "net/daed" "https://github.com/immortalwrt/packages" "master"
+#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/daed package/new/daed
 
 # Dae
 svn export -q https://github.com/kiddin9/openwrt-packages/trunk/dae package/new/dae
