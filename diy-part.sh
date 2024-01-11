@@ -24,14 +24,14 @@ rm -rf feeds/luci/modules/luci-base
 rm -rf feeds/luci/modules/luci-mod-status
 rm -rf feeds/luci/applications/luci-app-ttyd
 rm -rf feeds/luci/applications/luci-app-zerotier
-git clone https://github.com/0118Add/openwrt-package package/openwrt-packages
+#git clone https://github.com/0118Add/openwrt-package package/openwrt-packages
 
 # 移除 SNAPSHOT 标签
 sed -i 's,-SNAPSHOT,,g' include/version.mk
 sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 
 # alist
-git clone https://github.com/sbwml/luci-app-alist package/alist
+#git clone https://github.com/sbwml/luci-app-alist package/alist
 
 # SSRP & Passwall
 git clone https://github.com/sbwml/openwrt_helloworld package/helloworld -b v5
