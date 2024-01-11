@@ -34,7 +34,7 @@ sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 #git clone -b dev --depth 1 https://github.com/vernesong/OpenClash package/luci-app-openclash
 
 # Daed
-git clone https://github.com/sbwml/luci-app-daed-next package/new/luci-app-daed-next
+git clone https://github.com/sbwml/luci-app-daed-next package/luci-app-daed-next
 
 # homeproxy
 #git clone -b dev --depth 1 https://github.com/immortalwrt/homeproxy package/homeproxy
