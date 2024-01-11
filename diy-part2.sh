@@ -63,7 +63,6 @@ git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-open
 
 # Daed
 SVN_PACKAGE "applications/luci-app-daed" "https://github.com/0118Add/luci-immortalwrt" "master"
-SVN_PACKAGE "net/dae" "https://github.com/immortalwrt/packages" "master"
 SVN_PACKAGE "net/daed" "https://github.com/immortalwrt/packages" "master"
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/daed package/new/daed
 
@@ -133,7 +132,7 @@ SVN_PACKAGE "applications/luci-app-ttyd" "https://github.com/immortalwrt/luci" "
 #ln -sf ../../../feeds/luci/applications/luci-app-firewall ./package/feeds/luci/luci-app-firewall
 
 # Filetransfer
-SVN_PACKAGE "applications/luci-app-filetransfer" "https://github.com/immortalwrt/luci" "master"
+SVN_PACKAGE "luci-app-filetransfer" "https://github.com/kiddin9/openwrt-packages" "master"
 SVN_PACKAGE "libs/luci-lib-fs" "https://github.com/immortalwrt/luci" "master"
 
 # AutoCore
