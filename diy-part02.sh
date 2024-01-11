@@ -122,8 +122,8 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-frpc package/new/luci-app-frpc 
 
 # ttyd
-rm -rf feeds/luci/applications/luci-app-ttyd
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-ttyd
+#rm -rf feeds/luci/applications/luci-app-ttyd
+#merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-ttyd
 
 # vlmcsd
 #svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-vlmcsd feeds/luci/applications/luci-app-vlmcsd
@@ -164,9 +164,11 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-
 
 # unblockneteasemusic
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-unblockneteasemusic
+merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/UnblockNeteaseMusic
+sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/custom/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 
 # wechatpush
-merge_package https://github.com/0118Add/luci-immortalwrt luci-immortalwrt/applications/luci-app-wechatpush
+merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-wechatpush
 
 # turboacc
 git clone https://github.com/chenmozhijin/turboacc package/new/luci-app-turboacc
@@ -177,7 +179,7 @@ sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turbo
 sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65535#g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 
 # R8168驱动
-git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git package/new/r8168
+git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git package/r8168
 # R8152驱动
 merge_package https://github.com/0118Add/openwrt-packages openwrt-packages/r8152
 # r8125驱动
