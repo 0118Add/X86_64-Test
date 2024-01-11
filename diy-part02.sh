@@ -169,6 +169,7 @@ sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/custom/luci-
 
 # wechatpush
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-wechatpush
+merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/wrtbwmon
 
 # turboacc
 git clone https://github.com/chenmozhijin/turboacc package/new/luci-app-turboacc
