@@ -146,10 +146,10 @@ rm -rf feeds/packages/utils/coremark
 merge_package https://github.com/immortalwrt/packages packages/utils/coremark
 merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/autocore
 merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/utils/mhz
-rm -rf feeds/luci/modules/luci-base
-merge_package https://github.com/0118Add/luci-immortalwrt luci-immortalwrt/modules/luci-base
-rm -rf feeds/luci/modules/luci-mod-status
-merge_package https://github.com/0118Add/luci-immortalwrt luci-immortalwrt/modules/luci-mod-status
+#rm -rf feeds/luci/modules/luci-base
+#merge_package https://github.com/0118Add/luci-immortalwrt luci-immortalwrt/modules/luci-base
+#rm -rf feeds/luci/modules/luci-mod-status
+#merge_package https://github.com/0118Add/luci-immortalwrt luci-immortalwrt/modules/luci-mod-status
 
 # default settings and translation
 merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/default-settings
