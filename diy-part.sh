@@ -20,8 +20,8 @@ rm -rf feeds/packages/lang/node
 git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packages/lang/node
 
 rm -rf feeds/packages/utils/coremark
-rm -rf feeds/luci/modules/luci-base
-rm -rf feeds/luci/modules/luci-mod-status
+#rm -rf feeds/luci/modules/luci-base
+#rm -rf feeds/luci/modules/luci-mod-status
 rm -rf feeds/luci/applications/luci-app-ttyd
 rm -rf feeds/luci/applications/luci-app-zerotier
 #git clone https://github.com/0118Add/openwrt-package package/openwrt-packages
