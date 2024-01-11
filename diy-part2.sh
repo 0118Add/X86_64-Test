@@ -9,6 +9,25 @@
 # File name: diy-part02.sh
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 
+#!/bin/bash
+###仓库单独拉一个文件夹 替代SVN
+# $1=被拉文件夹路径  $2=仓库地址 $3=BRANCH
+SVN_PACKAGE() {
+ local PKG_PATH=$1
+ local PKG_REPO=$2
+ local PKG_BRANCH=$3
+ local REPO_NAME=$(echo $PKG_REPO | rev | cut -d'/' -f 1 | rev)
+
+ git clone --depth=1 --single-branch --branch $PKG_BRANCH $PKG_REPO
+   
+ mv $REPO_NAME/$PKG_PATH ./svn-package/
+    rm -rf $REPO_NAME
+}
+mkdir ./svn-package
+#https://github.com/messense/aliyundrive-webdav/tree/main/openwrt/luci-app-aliyundrive-webdav
+SVN_PACKAGE "openwrt/aliyundrive-webdav" "https://github.com/messense/aliyundrive-webdav" "main"
+SVN_PACKAGE "openwrt/luci-app-aliyundrive-webdav" "https://github.com/messense/aliyundrive-webdav" "main"
+
 # 替换内核
 #sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=6.1/g' target/linux/x86/Makefile
 
