@@ -163,6 +163,7 @@ merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emo
 rm -rf feeds/luci/applications/luci-app-zerotier
 #rm -rf feeds/packages/net/zerotier
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-zerotier
+sed -i 's/vpn/services/g' package/custom/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 
 # unblockneteasemusic
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-unblockneteasemusic
