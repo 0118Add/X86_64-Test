@@ -107,7 +107,8 @@ sed -i '/patchelf pkgconf/i\tools-y += ucl upx' ./tools/Makefile
 sed -i '\/autoconf\/compile :=/i\$(curdir)/upx/compile := $(curdir)/ucl/compile' ./tools/Makefile
 
 # homeproxy
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-homeproxy
+git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
+#merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-homeproxy
 
 # Release Ram
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-ramfree
