@@ -148,9 +148,9 @@ merge_package https://github.com/immortalwrt/packages packages/utils/coremark
 merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/autocore
 merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/utils/mhz
 rm -rf feeds/luci/modules/luci-base
-wget -P feeds/luci/modules https://github.com/immortalwrt/luci/raw/openwrt-23.05/modules/luci-base
+wget -P luci/modules https://github.com/immortalwrt/luci/raw/openwrt-23.05/modules/luci-base
 rm -rf feeds/luci/modules/luci-mod-status
-wget -P feeds/luci/modules https://github.com/immortalwrt/luci/raw/openwrt-23.05/modules/luci-mod-status
+wget -P luci/modules https://github.com/immortalwrt/luci/raw/openwrt-23.05/modules/luci-mod-status
 #cp -rf $GITHUB_WORKSPACE/general/luci-mod-status feeds/luci/modules/luci-mod-status
 
 # default settings and translation
