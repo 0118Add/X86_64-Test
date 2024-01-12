@@ -144,17 +144,22 @@ merge_package https://github.com/immortalwrt/luci luci/libs/luci-lib-fs
 
 # AutoCore
 rm -rf feeds/packages/utils/coremark
-merge_package https://github.com/immortalwrt/packages packages/utils/coremark
-merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/autocore
-merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/utils/mhz
+cp -rf $GITHUB_WORKSPACE/general/coremark package/new/coremark
+#merge_package https://github.com/immortalwrt/packages packages/utils/coremark
+cp -rf $GITHUB_WORKSPACE/general/autocore package/new/autocore
+#merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/autocore
+cp -rf $GITHUB_WORKSPACE/general/mhz package/new/mhz
+#merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/utils/mhz
 rm -rf feeds/luci/modules/luci-base
-wget -P luci/modules https://github.com/immortalwrt/luci/raw/openwrt-23.05/modules/luci-base
+#wget -P luci/modules https://github.com/immortalwrt/luci/raw/openwrt-23.05/modules/luci-base
+cp -rf $GITHUB_WORKSPACE/general/luci-mod-status feeds/luci/modules/luci-base
 rm -rf feeds/luci/modules/luci-mod-status
-wget -P luci/modules https://github.com/immortalwrt/luci/raw/openwrt-23.05/modules/luci-mod-status
-#cp -rf $GITHUB_WORKSPACE/general/luci-mod-status feeds/luci/modules/luci-mod-status
+#wget -P luci/modules https://github.com/immortalwrt/luci/raw/openwrt-23.05/modules/luci-mod-status
+cp -rf $GITHUB_WORKSPACE/general/luci-mod-status feeds/luci/modules/luci-mod-status
 
 # default settings and translation
-merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/default-settings
+cp -rf $GITHUB_WORKSPACE/general/default-settings package/new/default-settings
+#merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/default-settings
 
 # fullconenat
 #svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/network/utils/fullconenat-nft package/new/fullconenat-nft
