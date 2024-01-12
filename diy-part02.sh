@@ -122,7 +122,8 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-frpc package/new/luci-app-frpc 
 
 # ttyd
-#rm -rf feeds/luci/applications/luci-app-ttyd
+rm -rf feeds/luci/applications/luci-app-ttyd
+git clone https://github.com/deplives/luci-app-ttyd package/luci-app-ttyd
 #merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-ttyd
 
 # vlmcsd
