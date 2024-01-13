@@ -54,13 +54,12 @@ git clone https://github.com/sbwml/luci-app-alist package/alist
 git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-openclash
 
 # Daed
-MY_PACKAGE "applications/luci-app-daed" "https://github.com/0118Add/luci-immortalwrt" "master"
-MY_PACKAGE "net/daed" "https://github.com/immortalwrt/packages" "master"
+git_sparse_clone master https://github.com/immortalwrt/luci applications/luci-app-daed
+git_sparse_clone master https://github.com/immortalwrt/packages net/daed
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/daed package/new/daed
 
 # Dae
-MY_PACKAGE "net/dae" "https://github.com/immortalwrt/packages" "master"
-#SVN_PACKAGE "dae" "https://github.com/kiddin9/openwrt-packages" "master"
+git_sparse_clone master https://github.com/immortalwrt/packages net/dae
 
 # Shared for PassWall and ShadowsocksR Plus+
 #svn export -q https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/luci-app-ssr-plus
