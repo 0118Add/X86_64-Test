@@ -63,33 +63,32 @@ git_sparse_clone master https://github.com/immortalwrt/packages net/dae
 
 # Shared for PassWall and ShadowsocksR Plus+
 #svn export -q https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/luci-app-ssr-plus
-MY_PACKAGE "luci-app-passwall" "https://github.com/kiddin9/openwrt-packages" "master"
-MY_PACKAGE "luci-app-passwall2" "https://github.com/kiddin9/openwrt-packages" "master"
-MY_PACKAGE "brook" "https://github.com/xiaorouji/openwrt-passwall-packages" "main"
-MY_PACKAGE "dns2socks" "https://github.com/xiaorouji/openwrt-passwall-packages" "main"
-MY_PACKAGE "ipt2socks" "https://github.com/xiaorouji/openwrt-passwall-packages" "main"
-MY_PACKAGE "net/kcptun" "https://github.com/immortalwrt/packages" "openwrt-21.02"
-MY_PACKAGE "hysteria" "https://github.com/xiaorouji/openwrt-passwall-packages" "main"
-MY_PACKAGE "sing-box" "https://github.com/xiaorouji/openwrt-passwall-packages" "main"
-MY_PACKAGE "chinadns-ng" "https://github.com/xiaorouji/openwrt-passwall-packages" "main"
-MY_PACKAGE "trojan-go" "https://github.com/xiaorouji/openwrt-passwall-packages" "main"
-MY_PACKAGE "trojan-plus" "https://github.com/xiaorouji/openwrt-passwall-packages" "main"
-MY_PACKAGE "microsocks" "https://github.com/xiaorouji/openwrt-passwall-packages" "main"
-MY_PACKAGE "pdnsd-alt" "https://github.com/xiaorouji/openwrt-passwall-packages" "main"
-MY_PACKAGE "net/redsocks2" "https://github.com/immortalwrt/packages" "openwrt-21.02"
-MY_PACKAGE "gn" "https://github.com/xiaorouji/openwrt-passwall-packages" "main"
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-passwall
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-passwall2
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages brook
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages dns2socks
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages ipt2socks
+git_sparse_clone openwrt-21.02 https://github.com/immortalwrt/packages net/kcptun
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages hysteria
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages sing-box
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages chinadns-ng
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages trojan-go
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages trojan-plus
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages microsocks
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages pdnsd-alt
+git_sparse_clone openwrt-21.02 https://github.com/immortalwrt/packages net/redsocks2
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages gn
 git clone https://github.com/fw876/helloworld package/helloworld
 
 # bypass
-MY_PACKAGE "lua-maxminddb" "https://github.com/kiddin9/openwrt-packages" "master"
-#SVN_PACKAGE "luci-app-bypass" "https://github.com/kiddin9/openwrt-packages" "master"
+git_sparse_clone master https://github.com/xiaorouji/openwrt-passwall-packages lua-maxminddb
 
 # vssr
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-vssr package/new/luci-app-vssr
 
 # UPX 可执行软件压缩
-MY_PACKAGE "tools/ucl" "https://github.com/Lienol/openwrt" "23.05"
-MY_PACKAGE "tools/upx" "https://github.com/Lienol/openwrt" "23.05"
+git_sparse_clone 23.05 https://github.com/Lienol/openwrt tools/ucl
+git_sparse_clone 23.05 https://github.com/Lienol/openwrt tools/upx
 sed -i '/patchelf pkgconf/i\tools-y += ucl upx' ./tools/Makefile
 sed -i '\/autoconf\/compile :=/i\$(curdir)/upx/compile := $(curdir)/ucl/compile' ./tools/Makefile
 
@@ -97,10 +96,10 @@ sed -i '\/autoconf\/compile :=/i\$(curdir)/upx/compile := $(curdir)/ucl/compile'
 git clone https://github.com/immortalwrt/homeproxy package/luci-app-homeproxy
 
 # Release Ram
-MY_PACKAGE "applications/luci-app-ramfree" "https://github.com/immortalwrt/luci" "master"
+git_sparse_clone master https://github.com/immortalwrt/luci applications/luci-app-ramfree
 
 # Scheduled Reboot
-MY_PACKAGE "applications/luci-app-autoreboot" "https://github.com/immortalwrt/luci" "master"
+git_sparse_clone master https://github.com/immortalwrt/luci applications/luci-app-autoreboot
 
 # frpc
 #rm -rf feeds/luci/applications/luci-app-frpc
@@ -110,7 +109,7 @@ MY_PACKAGE "applications/luci-app-autoreboot" "https://github.com/immortalwrt/lu
 
 # ttyd
 #rm -rf feeds/luci/applications/luci-app-ttyd
-MY_PACKAGE "applications/luci-app-ttyd" "https://github.com/immortalwrt/luci" "master"
+git_sparse_clone master https://github.com/immortalwrt/luci applications/luci-app-ttyd
 
 # vlmcsd
 #svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-vlmcsd feeds/luci/applications/luci-app-vlmcsd
@@ -123,15 +122,16 @@ MY_PACKAGE "applications/luci-app-ttyd" "https://github.com/immortalwrt/luci" "m
 #ln -sf ../../../feeds/luci/applications/luci-app-firewall ./package/feeds/luci/luci-app-firewall
 
 # Filetransfer
-MY_PACKAGE "luci-app-filetransfer" "https://github.com/kiddin9/openwrt-packages" "master"
-MY_PACKAGE "libs/luci-lib-fs" "https://github.com/immortalwrt/luci" "master"
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-filetransfer
+git_sparse_clone master https://github.com/immortalwrt/luci libs/luci-lib-fs
 
 # AutoCore
-MY_PACKAGE "package/emortal/autocore" "https://github.com/immortalwrt/immortalwrt" "master"
-MY_PACKAGE "package/utils/mhz" "https://github.com/immortalwrt/immortalwrt" "master"
+git_sparse_clone master https://github.com/immortalwrt/immortalwrt package/emortal/autocore
+git_sparse_clone master https://github.com/immortalwrt/immortalwrt package/utils/mhz
+
 
 # default settings and translation
-MY_PACKAGE "package/emortal/default-settings" "https://github.com/immortalwrt/immortalwrt" "master"
+git_sparse_clone master https://github.com/immortalwrt/immortalwrt package/emortal/default-settings
 
 # fullconenat
 #svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/network/utils/fullconenat-nft package/new/fullconenat-nft
@@ -139,13 +139,13 @@ MY_PACKAGE "package/emortal/default-settings" "https://github.com/immortalwrt/im
 
 # Zerotier
 rm -rf feeds/luci/applications/luci-app-zerotier
-MY_PACKAGE "applications/luci-app-zerotier" "https://github.com/0118Add/luci-immortalwrt" "master"
+git_sparse_clone master https://github.com/0118Add/luci-immortalwrt applications/luci-app-zerotier
 
 # unblockneteasemusic
-MY_PACKAGE "applications/luci-app-unblockneteasemusic" "https://github.com/immortalwrt/luci" "master"
+git_sparse_clone master https://github.com/immortalwrt/luci applications/luci-app-unblockneteasemusic
 
 # wechatpush
-MY_PACKAGE "applications/luci-app-wechatpush" "https://github.com/0118Add/luci-immortalwrt" "master"
+git_sparse_clone master https://github.com/0118Add/luci-immortalwrt applications/luci-app-wechatpush
 
 # net.netfilter.nf_conntrack_max from 16384 to 65535
 sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65535#g' package/kernel/linux/files/sysctl-nf-conntrack.conf
@@ -153,9 +153,9 @@ sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65
 # R8168驱动
 git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git package/new/r8168
 # R8152驱动
-MY_PACKAGE "r8152" "https://github.com/0118Add/openwrt-packages" "master"
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages r8152
 # r8125驱动
-MY_PACKAGE "r8125" "https://github.com/0118Add/openwrt-packages" "master"
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages r8125
 
 #sed -i 's/ShadowSocksR Plus+/SSR Plus+/g' package/new/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 #sed -i 's/Frp 内网穿透/内网穿透/g' package/new/luci-app-frpc/po/zh-cn/frp.po
