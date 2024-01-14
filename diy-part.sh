@@ -10,49 +10,33 @@
 # Description: OpenWrt DIY script part 1 (Before Update feeds)
 #
 
-# Add a feed source
-#echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
-# Modify default IP
-sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
+echo "开始 DIY1 配置……"
+echo "========================="
 
-# node - prebuilt
-rm -rf feeds/packages/lang/node
-git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packages/lang/node
+function merge_package(){
+    repo=`echo $1 | rev | cut -d'/' -f 1 | rev`
+    pkg=`echo $2 | rev | cut -d'/' -f 1 | rev`
+    # find package/ -follow -name $pkg -not -path "package/custom/*" | xargs -rt rm -rf
+    git clone --depth=1 --single-branch $1
+    mv $2 feeds/luci/modules/
+    rm -rf $repo
+}
+function drop_package(){
+    find package/ -follow -name $1 -not -path "package/custom/*" | xargs -rt rm -rf
+}
+function merge_feed(){
+    if [ ! -d "feed/$1" ]; then
+        echo >> feeds.conf.default
+        echo "src-git $1 $2" >> feeds.conf.default
+    fi
+    ./scripts/feeds update $1
+    ./scripts/feeds install -a -p $1
+}
+rm -rf feeds/luci/modules; mkdir feeds/luci/modules
 
- # 移除 SNAPSHOT 标签
-sed -i 's,-SNAPSHOT,,g' include/version.mk
-sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 
-# alist
-#git clone https://github.com/sbwml/luci-app-alist package/alist
-
-Passwall
-rm -rf feeds/luci/applications/luci-app-passwall
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
-
-# OpenClash
-#git clone -b dev --depth 1 https://github.com/vernesong/OpenClash package/luci-app-openclash
-
-# Daed
-git clone https://github.com/sbwml/luci-app-daed-next package/luci-app-daed-next
-
-# homeproxy
-#git clone -b dev --depth 1 https://github.com/immortalwrt/homeproxy package/homeproxy
-
-# unblockneteasemusic
-#git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
-#sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
-
-# wechatpush
-#git clone https://github.com/tty228/luci-app-wechatpush package/luci-app-wechatpush
-
-# turboacc
-#git clone https://github.com/chenmozhijin/turboacc package/new/luci-app-turboacc
-#curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
-#sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
-
-# net.netfilter.nf_conntrack_max from 16384 to 65535
-sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65535#g' package/kernel/linux/files/sysctl-nf-conntrack.conf
-
-# R8168驱动
-#git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git package/new/r8168
+merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/mhz
+rm -rf feeds/luci/modules/luci-base
+merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-base
+rm -rf feeds/luci/modules/luci-mod-status
+merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-mod-status
