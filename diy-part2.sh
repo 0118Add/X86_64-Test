@@ -59,7 +59,7 @@ git_sparse_clone master https://github.com/immortalwrt/packages net/daed
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/daed package/new/daed
 
 # Dae
-git_sparse_clone master https://github.com/immortalwrt/packages net/dae
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages dae
 
 # Shared for PassWall and ShadowsocksR Plus+
 #svn export -q https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/luci-app-ssr-plus
