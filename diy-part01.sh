@@ -16,33 +16,3 @@
 # Add a feed source
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
-echo "开始 DIY1 配置……"
-echo "========================="
-
-function merge_package(){
-    repo=`echo $1 | rev | cut -d'/' -f 1 | rev`
-    pkg=`echo $2 | rev | cut -d'/' -f 1 | rev`
-    # find package/ -follow -name $pkg -not -path "package/custom/*" | xargs -rt rm -rf
-    git clone --depth=1 --single-branch $1
-    mv $2 feeds/luci/modules/
-    rm -rf $repo
-}
-function drop_package(){
-    find package/ -follow -name $1 -not -path "package/custom/*" | xargs -rt rm -rf
-}
-function merge_feed(){
-    if [ ! -d "feed/$1" ]; then
-        echo >> feeds.conf.default
-        echo "src-git $1 $2" >> feeds.conf.default
-    fi
-    ./scripts/feeds update $1
-    ./scripts/feeds install -a -p $1
-}
-rm -rf feeds/luci/modules; mkdir feeds/luci/modules
-
-
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/mhz
-rm -rf feeds/luci/modules/luci-base
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-base
-rm -rf feeds/luci/modules/luci-mod-status
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-mod-status
