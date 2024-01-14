@@ -81,16 +81,16 @@ git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages gn
 git clone https://github.com/fw876/helloworld package/helloworld
 
 # bypass
-git_sparse_clone master https://github.com/xiaorouji/openwrt-passwall-packages lua-maxminddb
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-maxminddb
 
 # vssr
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-vssr package/new/luci-app-vssr
 
 # UPX 可执行软件压缩
-git_sparse_clone 23.05 https://github.com/Lienol/openwrt tools/ucl
-git_sparse_clone 23.05 https://github.com/Lienol/openwrt tools/upx
-sed -i '/patchelf pkgconf/i\tools-y += ucl upx' ./tools/Makefile
-sed -i '\/autoconf\/compile :=/i\$(curdir)/upx/compile := $(curdir)/ucl/compile' ./tools/Makefile
+#git_sparse_clone 23.05 https://github.com/Lienol/openwrt tools/ucl
+#git_sparse_clone 23.05 https://github.com/Lienol/openwrt tools/upx
+#sed -i '/patchelf pkgconf/i\tools-y += ucl upx' ./tools/Makefile
+#sed -i '\/autoconf\/compile :=/i\$(curdir)/upx/compile := $(curdir)/ucl/compile' ./tools/Makefile
 
 # homeproxy
 git clone https://github.com/immortalwrt/homeproxy package/luci-app-homeproxy
