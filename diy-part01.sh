@@ -40,7 +40,7 @@ function merge_feed(){
 }
 rm -rf feeds/luci/modules; mkdir feeds/luci/modules
 
-# Dae
+
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/mhz
 rm -rf feeds/luci/modules/luci-base
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-base
