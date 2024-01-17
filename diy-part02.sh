@@ -146,7 +146,6 @@ merge_package https://github.com/immortalwrt/luci luci/libs/luci-lib-fs
 rm -rf feeds/packages/utils/coremark
 #cp -rf $GITHUB_WORKSPACE/general/coremark package/new/coremark
 #curl -fsSL https://raw.githubusercontent.com/immortalwrt/packages/master/utils/coremark > ./feeds/packages/utils/coremark
-wget -P feeds/packages/utils/coremark https://raw.githubusercontent.com/immortalwrt/packages/master/utils/coremark
 #merge_package https://github.com/immortalwrt/packages packages/utils/coremark
 #cp -rf $GITHUB_WORKSPACE/general/autocore package/new/autocore
 merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/autocore
@@ -154,11 +153,9 @@ merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emo
 #merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/utils/mhz
 rm -rf feeds/luci/modules/luci-base
 #curl -fsSL https://raw.githubusercontent.com/immortalwrt/luci/master/modules/luci-base > ./feeds/luci/modules/luci-base
-wget -P feeds/luci/modules/luci-base https://raw.githubusercontent.com/immortalwrt/luci/master/modules/luci-base
 #cp -rf $GITHUB_WORKSPACE/general/luci-base feeds/luci/modules/luci-base
 rm -rf feeds/luci/modules/luci-mod-status
 #curl -fsSL https://raw.githubusercontent.com/immortalwrt/luci/master/modules/luci-mod-status > ./feeds/luci/modules/luci-mod-status
-wget -P feeds/luci/modules/luci-mod-status https://raw.githubusercontent.com/immortalwrt/luci/master/modules/luci-mod-status
 #cp -rf $GITHUB_WORKSPACE/general/luci-mod-status feeds/luci/modules/luci-mod-status
 
 # default settings and translation
