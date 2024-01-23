@@ -152,14 +152,14 @@ rm -rf feeds/luci/modules/luci-mod-status
 git clone --depth=1 -b openwrt-23.05 https://github.com/immortalwrt/luci.git immortalwrt-luci
 cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
 cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
-cp -rf immortalwrt-luci/applications/luci-app-alist package/new/luci-app-alist
-cp -rf immortalwrt-luci/applications/luci-app-ddns-go package/new/luci-app-ddns-go
+cp -rf immortalwrt-luci/applications/luci-app-alist feeds/luci/applications/luci-app-alist
+cp -rf immortalwrt-luci/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
 # 克隆immortalwrt-packages仓库
 git clone --depth=1 https://github.com/immortalwrt/packages.git immortalwrt-packages
 cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
 cp -rf immortalwrt-packages/utils/mhz package/new/mhz
-cp -rf immortalwrt-packages/net/alist package/new/alist
-cp -rf immortalwrt-packages/net/ddns-go package/new/ddns-go
+cp -rf immortalwrt-packages/net/alist feeds/packages/net/alist
+cp -rf immortalwrt-packages/net/ddns-go feeds/packages/net/ddns-go
 
 # default settings and translation
 #cp -rf $GITHUB_WORKSPACE/general/default-settings package/new/default-settings
