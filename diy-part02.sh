@@ -142,22 +142,22 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-
 merge_package https://github.com/immortalwrt/luci luci/libs/luci-lib-fs
 
 # 克隆immortalwrt-packages仓库
-git clone --depth=1 https://github.com/immortalwrt/packages.git immortalwrt-packages
-cp -rf immortalwrt-packages/net/brook package/brook
-cp -rf immortalwrt-packages/net/gost package/gost
-cp -rf immortalwrt-packages/libs/quickjspp package/quickjspp
-cp -rf immortalwrt-packages/libs/jpcre2 package/jpcre2
-cp -rf immortalwrt-packages/libs/libcron package/libcron
-cp -rf immortalwrt-packages/libs/rapidjson package/rapidjson
-cp -rf immortalwrt-packages/net/subconverter package/subconverter
-cp -rf immortalwrt-packages/libs/toml11 package/toml11
-cp -rf immortalwrt-packages/net/udp2raw package/udp2raw
+#git clone --depth=1 https://github.com/immortalwrt/packages.git immortalwrt-packages
+#cp -rf immortalwrt-packages/net/brook package/brook
+#cp -rf immortalwrt-packages/net/gost package/gost
+#cp -rf immortalwrt-packages/libs/quickjspp package/quickjspp
+#cp -rf immortalwrt-packages/libs/jpcre2 package/jpcre2
+#cp -rf immortalwrt-packages/libs/libcron package/libcron
+#cp -rf immortalwrt-packages/libs/rapidjson package/rapidjson
+#cp -rf immortalwrt-packages/net/subconverter package/subconverter
+#cp -rf immortalwrt-packages/libs/toml11 package/toml11
+#cp -rf immortalwrt-packages/net/udp2raw package/udp2raw
 # 克隆immortalwrt-luci仓库
-git clone --depth=1 -b openwrt-18.06 https://github.com/immortalwrt/luci.git immortalwrt-luci
-cp -rf immortalwrt-luci/applications/luci-app-socat package/luci-app-socat
-cp -rf immortalwrt-luci/applications/luci-app-gost package/luci-app-gost
-cp -rf immortalwrt-luci/applications/luci-app-smartdns package/luci-app-smartdns
-cp -rf immortalwrt-luci/applications/luci-app-udp2raw package/luci-app-udp2raw
+git clone --depth=1 -b openwrt-23.05 https://github.com/immortalwrt/luci.git immortalwrt-luci
+#cp -rf immortalwrt-luci/applications/luci-app-socat package/luci-app-socat
+#cp -rf immortalwrt-luci/applications/luci-app-gost package/luci-app-gost
+#cp -rf immortalwrt-luci/applications/luci-app-smartdns package/luci-app-smartdns
+#cp -rf immortalwrt-luci/applications/luci-app-udp2raw package/luci-app-udp2raw
 # AutoCore
 rm -rf feeds/packages/utils/coremark
 #cp -rf $GITHUB_WORKSPACE/general/coremark package/new/coremark
