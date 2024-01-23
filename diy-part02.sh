@@ -157,7 +157,6 @@ cp -rf immortalwrt-luci/applications/luci-app-ddns-go feeds/luci/applications/lu
 # 克隆immortalwrt-packages仓库
 git clone --depth=1 https://github.com/immortalwrt/packages.git immortalwrt-packages
 cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
-cp -rf immortalwrt-packages/utils/mhz package/new/mhz
 cp -rf immortalwrt-packages/net/alist feeds/packages/net/alist
 cp -rf immortalwrt-packages/net/ddns-go feeds/packages/net/ddns-go
 
