@@ -57,7 +57,7 @@ sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 #sed -i 's/LINUX_VERSION-5.15 = .139/LINUX_VERSION-5.15 = .138/g' ./include/kernel-5.15
 
 # alist
-git clone https://github.com/sbwml/luci-app-alist package/alist
+#git clone https://github.com/sbwml/luci-app-alist package/alist
 
 # DDNS GO
 git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
@@ -143,25 +143,23 @@ merge_package https://github.com/immortalwrt/luci luci/libs/luci-lib-fs
 
 # AutoCore
 rm -rf feeds/packages/utils/coremark
-#cp -rf $GITHUB_WORKSPACE/general/coremark package/new/coremark
-#curl -fsSL https://raw.githubusercontent.com/immortalwrt/packages/master/utils/coremark > ./feeds/packages/utils/coremark
 merge_package https://github.com/immortalwrt/packages packages/utils/coremark
-#cp -rf $GITHUB_WORKSPACE/general/autocore package/new/autocore
 merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/autocore
-#cp -rf $GITHUB_WORKSPACE/general/mhz package/new/mhz
 merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/utils/mhz
 rm -rf feeds/luci/modules/luci-base
-#curl -fsSL https://raw.githubusercontent.com/immortalwrt/luci/master/modules/luci-base > ./feeds/luci/modules/luci-base
-#cp -rf $GITHUB_WORKSPACE/general/luci-base feeds/luci/modules/luci-base
 rm -rf feeds/luci/modules/luci-mod-status
-#curl -fsSL https://raw.githubusercontent.com/immortalwrt/luci/master/modules/luci-mod-status > ./feeds/luci/modules/luci-mod-status
-#cp -rf $GITHUB_WORKSPACE/general/luci-mod-status feeds/luci/modules/luci-mod-status
 # 克隆immortalwrt-luci仓库
 git clone --depth=1 -b openwrt-23.05 https://github.com/immortalwrt/luci.git immortalwrt-luci
 cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
 cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
-#cp -rf immortalwrt-luci/applications/luci-app-smartdns package/luci-app-smartdns
-#cp -rf immortalwrt-luci/applications/luci-app-udp2raw package/luci-app-udp2raw
+cp -rf immortalwrt-luci/applications/luci-app-alist package/new/luci-app-alist
+cp -rf immortalwrt-luci/applications/luci-app-ddns-go package/new/luci-app-ddns-go
+# 克隆immortalwrt-packages仓库
+git clone --depth=1 https://github.com/immortalwrt/packages.git immortalwrt-packages
+cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
+cp -rf immortalwrt-packages/utils/mhz package/new/mhz
+cp -rf immortalwrt-packages/net/alist package/new/alist
+cp -rf immortalwrt-packages/net/ddns-go package/new/ddns-go
 
 # default settings and translation
 #cp -rf $GITHUB_WORKSPACE/general/default-settings package/new/default-settings
