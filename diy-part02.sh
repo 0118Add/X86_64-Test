@@ -152,6 +152,12 @@ cp -rf immortalwrt-packages/libs/rapidjson package/rapidjson
 cp -rf immortalwrt-packages/net/subconverter package/subconverter
 cp -rf immortalwrt-packages/libs/toml11 package/toml11
 cp -rf immortalwrt-packages/net/udp2raw package/udp2raw
+# 克隆immortalwrt-luci仓库
+git clone --depth=1 -b openwrt-18.06 https://github.com/immortalwrt/luci.git immortalwrt-luci
+cp -rf immortalwrt-luci/applications/luci-app-socat package/luci-app-socat
+cp -rf immortalwrt-luci/applications/luci-app-gost package/luci-app-gost
+cp -rf immortalwrt-luci/applications/luci-app-smartdns package/luci-app-smartdns
+cp -rf immortalwrt-luci/applications/luci-app-udp2raw package/luci-app-udp2raw
 # AutoCore
 rm -rf feeds/packages/utils/coremark
 #cp -rf $GITHUB_WORKSPACE/general/coremark package/new/coremark
