@@ -141,7 +141,17 @@ sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/shar
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-filetransfer
 merge_package https://github.com/immortalwrt/luci luci/libs/luci-lib-fs
 
-
+# 克隆immortalwrt-packages仓库
+git clone --depth=1 https://github.com/immortalwrt/packages.git immortalwrt-packages
+cp -rf immortalwrt-packages/net/brook package/brook
+cp -rf immortalwrt-packages/net/gost package/gost
+cp -rf immortalwrt-packages/libs/quickjspp package/quickjspp
+cp -rf immortalwrt-packages/libs/jpcre2 package/jpcre2
+cp -rf immortalwrt-packages/libs/libcron package/libcron
+cp -rf immortalwrt-packages/libs/rapidjson package/rapidjson
+cp -rf immortalwrt-packages/net/subconverter package/subconverter
+cp -rf immortalwrt-packages/libs/toml11 package/toml11
+cp -rf immortalwrt-packages/net/udp2raw package/udp2raw
 # AutoCore
 rm -rf feeds/packages/utils/coremark
 #cp -rf $GITHUB_WORKSPACE/general/coremark package/new/coremark
