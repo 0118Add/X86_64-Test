@@ -60,7 +60,7 @@ sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 #git clone https://github.com/sbwml/luci-app-alist package/alist
 
 # DDNS GO
-git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
+#git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
 
 # OpenClash
 git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-openclash
