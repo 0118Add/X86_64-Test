@@ -141,38 +141,27 @@ sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/shar
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-filetransfer
 merge_package https://github.com/immortalwrt/luci luci/libs/luci-lib-fs
 
-# 克隆immortalwrt-packages仓库
-#git clone --depth=1 https://github.com/immortalwrt/packages.git immortalwrt-packages
-#cp -rf immortalwrt-packages/net/brook package/brook
-#cp -rf immortalwrt-packages/net/gost package/gost
-#cp -rf immortalwrt-packages/libs/quickjspp package/quickjspp
-#cp -rf immortalwrt-packages/libs/jpcre2 package/jpcre2
-#cp -rf immortalwrt-packages/libs/libcron package/libcron
-#cp -rf immortalwrt-packages/libs/rapidjson package/rapidjson
-#cp -rf immortalwrt-packages/net/subconverter package/subconverter
-#cp -rf immortalwrt-packages/libs/toml11 package/toml11
-#cp -rf immortalwrt-packages/net/udp2raw package/udp2raw
-# 克隆immortalwrt-luci仓库
-git clone --depth=1 -b openwrt-23.05 https://github.com/immortalwrt/luci.git immortalwrt-luci
-#cp -rf immortalwrt-luci/applications/luci-app-socat package/luci-app-socat
-#cp -rf immortalwrt-luci/applications/luci-app-gost package/luci-app-gost
-#cp -rf immortalwrt-luci/applications/luci-app-smartdns package/luci-app-smartdns
-#cp -rf immortalwrt-luci/applications/luci-app-udp2raw package/luci-app-udp2raw
 # AutoCore
 rm -rf feeds/packages/utils/coremark
 #cp -rf $GITHUB_WORKSPACE/general/coremark package/new/coremark
 #curl -fsSL https://raw.githubusercontent.com/immortalwrt/packages/master/utils/coremark > ./feeds/packages/utils/coremark
-#merge_package https://github.com/immortalwrt/packages packages/utils/coremark
+merge_package https://github.com/immortalwrt/packages packages/utils/coremark
 #cp -rf $GITHUB_WORKSPACE/general/autocore package/new/autocore
 merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/autocore
 #cp -rf $GITHUB_WORKSPACE/general/mhz package/new/mhz
-#merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/utils/mhz
+merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/utils/mhz
 rm -rf feeds/luci/modules/luci-base
 #curl -fsSL https://raw.githubusercontent.com/immortalwrt/luci/master/modules/luci-base > ./feeds/luci/modules/luci-base
 #cp -rf $GITHUB_WORKSPACE/general/luci-base feeds/luci/modules/luci-base
 rm -rf feeds/luci/modules/luci-mod-status
 #curl -fsSL https://raw.githubusercontent.com/immortalwrt/luci/master/modules/luci-mod-status > ./feeds/luci/modules/luci-mod-status
 #cp -rf $GITHUB_WORKSPACE/general/luci-mod-status feeds/luci/modules/luci-mod-status
+# 克隆immortalwrt-luci仓库
+git clone --depth=1 -b openwrt-23.05 https://github.com/immortalwrt/luci.git immortalwrt-luci
+cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
+cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
+#cp -rf immortalwrt-luci/applications/luci-app-smartdns package/luci-app-smartdns
+#cp -rf immortalwrt-luci/applications/luci-app-udp2raw package/luci-app-udp2raw
 
 # default settings and translation
 #cp -rf $GITHUB_WORKSPACE/general/default-settings package/new/default-settings
