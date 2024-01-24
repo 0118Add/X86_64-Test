@@ -157,7 +157,7 @@ ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci
 cp -rf immortalwrt-luci/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
 ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
 # 克隆immortalwrt-packages仓库
-git clone --depth=1 https://github.com/immortalwrt/packages.git immortalwrt-packages
+git clone --depth=1 -b openwrt-23.05 https://github.com/immortalwrt/packages.git immortalwrt-packages
 cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
 cp -rf immortalwrt-packages/net/alist feeds/packages/net/alist
 ln -sf ../../../feeds/packages/net/alist ./package/feeds/packages/alist
