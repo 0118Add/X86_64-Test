@@ -149,7 +149,7 @@ merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/uti
 rm -rf feeds/luci/modules/luci-base
 rm -rf feeds/luci/modules/luci-mod-status
 # 克隆immortalwrt-luci仓库
-git clone --depth=1 -b openwrt-23.05 https://github.com/immortalwrt/luci.git immortalwrt-luci
+git clone --depth=1 https://github.com/immortalwrt/luci.git immortalwrt-luci
 cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
 cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
 cp -rf immortalwrt-luci/applications/luci-app-alist feeds/luci/applications/luci-app-alist
