@@ -148,21 +148,21 @@ merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emo
 merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/utils/mhz
 rm -rf feeds/luci/modules/luci-base
 rm -rf feeds/luci/modules/luci-mod-status
-rm -rf feeds/luci/applications/luci-app-alist
-rm -rf feeds/packages/net/alist
+#rm -rf feeds/luci/applications/luci-app-alist
+#rm -rf feeds/packages/net/alist
 # 克隆immortalwrt-luci仓库
 git clone --depth=1 https://github.com/immortalwrt/luci.git immortalwrt-luci
 cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
 cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
-cp -rf immortalwrt-luci/applications/luci-app-alist feeds/luci/applications/luci-app-alist
-ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci-app-alist
+#cp -rf immortalwrt-luci/applications/luci-app-alist feeds/luci/applications/luci-app-alist
+#ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci-app-alist
 cp -rf immortalwrt-luci/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
 ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
 # 克隆immortalwrt-packages仓库
 git clone --depth=1 https://github.com/immortalwrt/packages.git immortalwrt-packages
 cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
-cp -rf immortalwrt-packages/net/alist feeds/packages/net/alist
-ln -sf ../../../feeds/packages/net/alist ./package/feeds/packages/alist
+#cp -rf immortalwrt-packages/net/alist feeds/packages/net/alist
+#ln -sf ../../../feeds/packages/net/alist ./package/feeds/packages/alist
 cp -rf immortalwrt-packages/net/ddns-go feeds/packages/net/ddns-go
 ln -sf ../../../feeds/packages/net/ddns-go ./package/feeds/packages/ddns-go
 
