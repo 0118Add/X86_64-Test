@@ -70,8 +70,7 @@ git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-open
 #ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
 #svn export -q https://github.com/0118Add/openwrt-packages/trunk/daed package/new/daed
 #git clone https://github.com/sbwml/luci-app-daed-next package/new/luci-app-daed-next
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/daed
-
+git clone https://github.com/sbwml/luci-app-daed package/new/luci-app-daed
 # Dae
 #merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/dae
 
@@ -157,8 +156,8 @@ cp -rf immortalwrt-luci/applications/luci-app-alist feeds/luci/applications/luci
 ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci-app-alist
 cp -rf immortalwrt-luci/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
 ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
-cp -rf immortalwrt-luci/applications/luci-app-daed feeds/luci/applications/luci-app-daed
-ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
+#cp -rf immortalwrt-luci/applications/luci-app-daed feeds/luci/applications/luci-app-daed
+#ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
 # 克隆immortalwrt-packages仓库
 git clone --depth=1 -b openwrt-23.05 https://github.com/immortalwrt/packages.git immortalwrt-packages
 cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
