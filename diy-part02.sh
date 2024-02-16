@@ -167,8 +167,8 @@ cp -rf immortalwrt-packages/net/ddns-go feeds/packages/net/ddns-go
 ln -sf ../../../feeds/packages/net/ddns-go ./package/feeds/packages/ddns-go
 cp -rf immortalwrt-packages/net/dae feeds/packages/net/dae
 ln -sf ../../../feeds/packages/net/dae ./package/feeds/packages/dae
-cp -rf immortalwrt-packages/net/daed feeds/packages/net/daed
-ln -sf ../../../feeds/packages/net/daed ./package/feeds/packages/daed
+#cp -rf immortalwrt-packages/net/daed feeds/packages/net/daed
+#ln -sf ../../../feeds/packages/net/daed ./package/feeds/packages/daed
 
 # default settings and translation
 #cp -rf $GITHUB_WORKSPACE/general/default-settings package/new/default-settings
