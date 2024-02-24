@@ -69,8 +69,8 @@ git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-open
 #svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/applications/luci-app-daed feeds/luci/applications/luci-app-daed
 #ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
 #svn export -q https://github.com/0118Add/openwrt-packages/trunk/daed package/new/daed
-#git clone https://github.com/sbwml/luci-app-daed-next package/new/luci-app-daed-next
-git clone https://github.com/sbwml/luci-app-daed package/new/luci-app-daed
+git clone https://github.com/sbwml/luci-app-daed-next package/new/luci-app-daed-next
+#git clone https://github.com/sbwml/luci-app-daed package/new/luci-app-daed
 # Dae
 #merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/dae
 
