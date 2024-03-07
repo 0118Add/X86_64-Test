@@ -72,7 +72,7 @@ git clone https://github.com/8688Add/autocore-arm -b openwrt-23.05 package/new/a
 
 # SSRP & Passwall
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
-git clone https://github.com/sbwml/openwrt_helloworld package/new/helloworld -b v5
+git clone https://github.com/8688Add/openwrt_helloworld package/new/helloworld -b v5
 sed -i 's/ShadowSocksR Plus+/SSR Plus+/g' package/new/helloworld/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 
 # DAED
