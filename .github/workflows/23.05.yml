@@ -67,36 +67,22 @@ jobs:
         sudo -E apt -y purge azure-cli* docker* ghc* zulu* llvm* firefox google* dotnet* powershell* openjdk* mysql* php* mongodb* dotnet* snap* aspnetcore*
         [ -n "$AGENT_TOOLSDIRECTORY" ] && sudo rm -rf "$AGENT_TOOLSDIRECTORY"
         sudo -E apt update
-        sudo -E apt -y install libfuse-dev clang-15 $(curl -fsSL https://is.gd/depends_ubuntu_2204)
+        sudo -E apt -y install libfuse-dev clang-13 $(curl -fsSL https://is.gd/depends_ubuntu_2204)
         sudo -E apt -y autoremove --purge
         sudo -E systemctl daemon-reload
         sudo -E apt clean
         sudo timedatectl set-timezone "$TZ"
-        sudo mkdir -p /workdir
-        sudo chown $USER:$GROUPS /workdir
+        sudo mkdir -p /mnt/workdir
+        sudo chown $USER:$GROUPS /mnt/workdir
         echo "status=success" >> ${GITHUB_OUTPUT}
         df -Th
-
-    - name: 释放Ubuntu磁盘空间
-      uses: jlumbroso/free-disk-space@main
-      with:
-        # this might remove tools that are actually needed,
-        # if set to "true" but frees about 6 GB
-        tool-cache: true
-        # all of these default to true, but feel free to set to
-        # "false" if necessary for your workflow
-        android: true
-        dotnet: true
-        haskell: true
-        large-packages: true
-        swap-storage: true    
-    
+ 
     - name: Clone source code
-      working-directory: /workdir
+      working-directory: /mnt/workdir
       run: |
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
-        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        ln -sf /mnt/workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Load custom feeds
       run: |
