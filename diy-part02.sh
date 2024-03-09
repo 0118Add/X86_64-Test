@@ -75,7 +75,7 @@ git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-open
 #merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/dae
 
 # Shared for PassWall and ShadowsocksR Plus+
-git clone https://$github/sbwml/openwrt_helloworld package/new/helloworld -b v5
+git clone https://github.com/sbwml/openwrt_helloworld package/new/helloworld -b v5
 #merge_package https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/luci-app-ssr-plus
 #merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-passwall
 #merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-passwall2
