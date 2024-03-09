@@ -71,8 +71,9 @@ git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-open
 #svn export -q https://github.com/0118Add/openwrt-packages/trunk/daed package/new/daed
 #git clone https://github.com/sbwml/luci-app-daed-next package/new/luci-app-daed-next
 #git clone https://github.com/sbwml/luci-app-daed package/new/luci-app-daed
+
 # Dae
-#merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/dae
+git clone https://github.com/8688Add/luci-app-dae package/luci-app-dae
 
 # Shared for PassWall and ShadowsocksR Plus+
 git clone https://github.com/sbwml/openwrt_helloworld package/new/helloworld -b v5
