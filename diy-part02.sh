@@ -75,23 +75,24 @@ git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-open
 #merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/dae
 
 # Shared for PassWall and ShadowsocksR Plus+
+git clone https://$github/sbwml/openwrt_helloworld package/new/helloworld -b v5
 #merge_package https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/luci-app-ssr-plus
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-passwall
+#merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-passwall
 #merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-passwall2
-merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/brook
-merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/dns2socks
-merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/ipt2socks
-merge_package https://github.com/immortalwrt/packages packages/net/kcptun
-merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/hysteria
-merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/sing-box
-merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/chinadns-ng
-merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/trojan-go
-merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/trojan-plus
-merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/microsocks
-merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/pdnsd-alt
-merge_package https://github.com/immortalwrt/packages packages/net/redsocks2
-merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/gn
-git clone https://github.com/fw876/helloworld package/helloworld
+#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/brook
+#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/dns2socks
+#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/ipt2socks
+#merge_package https://github.com/immortalwrt/packages packages/net/kcptun
+#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/hysteria
+#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/sing-box
+#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/chinadns-ng
+#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/trojan-go
+#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/trojan-plus
+#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/microsocks
+#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/pdnsd-alt
+#merge_package https://github.com/immortalwrt/packages packages/net/redsocks2
+#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/gn
+#git clone https://github.com/fw876/helloworld package/helloworld
 
 # bypass
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/lua-maxminddb
