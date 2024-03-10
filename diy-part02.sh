@@ -39,6 +39,10 @@ rm -rf package/feeds/luci/luci-app-apinger
 # Modify default IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
+# golang 1.22
+rm -rf feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
+
 # node - prebuilt
 rm -rf feeds/packages/lang/node
 git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packages/lang/node
@@ -76,6 +80,7 @@ git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-open
 git clone https://github.com/8688Add/luci-app-dae package/luci-app-dae
 
 # Shared for PassWall and ShadowsocksR Plus+
+rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
 git clone https://github.com/sbwml/openwrt_helloworld package/new/helloworld -b v5
 #merge_package https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/luci-app-ssr-plus
 #merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-passwall
