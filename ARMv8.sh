@@ -227,3 +227,7 @@ curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25
 
 # 替换文件
 #wget -O ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js
+
+# libpfring
+rm -rf feeds/packages/libs/libpfring
+cp -rf $GITHUB_WORKSPACE/general/libpfring feeds/packages/libs/libpfring
