@@ -156,7 +156,7 @@ merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/uti
 rm -rf feeds/luci/modules/luci-base
 rm -rf feeds/luci/modules/luci-mod-status
 # 克隆immortalwrt-luci仓库
-git clone --depth=1 master https://github.com/immortalwrt/luci.git immortalwrt-luci
+git clone --depth=1 -b master https://github.com/immortalwrt/luci.git immortalwrt-luci
 cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
 cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
 #cp -rf immortalwrt-luci/applications/luci-app-alist feeds/luci/applications/luci-app-alist
@@ -166,7 +166,7 @@ ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/lu
 #cp -rf immortalwrt-luci/applications/luci-app-daed feeds/luci/applications/luci-app-daed
 #ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
 # 克隆immortalwrt-packages仓库
-git clone --depth=1 master https://github.com/immortalwrt/packages.git immortalwrt-packages
+git clone --depth=1 -b master https://github.com/immortalwrt/packages.git immortalwrt-packages
 cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
 #cp -rf immortalwrt-packages/net/alist feeds/packages/net/alist
 #ln -sf ../../../feeds/packages/net/alist ./package/feeds/packages/alist
