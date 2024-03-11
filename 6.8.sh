@@ -67,8 +67,11 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-
 # Scheduled Reboot
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-autoreboot
 
-# ttyd
+# TTYD
 sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
+sed -i '3 a\\t\t"order": 50,' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
+sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' feeds/packages/utils/ttyd/files/ttyd.init
+sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 
 # Filetransfer
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-filetransfer
@@ -112,12 +115,18 @@ sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/custom/luci-
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-wechatpush
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/wrtbwmon
 
-# R8168驱动
-git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git package/r8168
-# R8152驱动
-merge_package https://github.com/0118Add/openwrt-packages openwrt-packages/r8152
-# r8125驱动
-merge_package https://github.com/0118Add/openwrt-packages openwrt-packages/r8125
+# FullCone module
+git clone https://github.com/sbwml/nft-fullcone package/new/nft-fullcone
+
+# IPv6 NAT
+git clone https://github.com/sbwml/packages_new_nat6 package/new/nat6
+
+# Realtek driver - R8168 & R8125 & R8126 & R8152 & R8101
+git clone https://github.com/sbwml/package_kernel_r8168 package/kernel/r8168
+git clone https://github.com/sbwml/package_kernel_r8152 package/kernel/r8152
+git clone https://github.com/sbwml/package_kernel_r8101 package/kernel/r8101
+git clone https://github.com/sbwml/package_kernel_r8125 package/kernel/r8125
+git clone https://github.com/sbwml/package_kernel_r8126 package/kernel/r8126
 
 # 修改系统文件
 #curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
