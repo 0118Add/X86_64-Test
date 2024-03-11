@@ -115,11 +115,6 @@ sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/custom/luci-
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-wechatpush
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/wrtbwmon
 
-# turboacc
-git clone https://github.com/chenmozhijin/turboacc package/new/luci-app-turboacc
-git clone https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-fullcone
-curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
-
 # R8168驱动
 git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git package/r8168
 # R8152驱动
