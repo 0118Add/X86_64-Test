@@ -121,13 +121,6 @@ git clone https://github.com/sbwml/nft-fullcone package/new/nft-fullcone
 # IPv6 NAT
 git clone https://github.com/sbwml/packages_new_nat6 package/new/nat6
 
-# Realtek driver - R8168 & R8125 & R8126 & R8152 & R8101
-git clone https://github.com/sbwml/package_kernel_r8168 package/kernel/r8168
-git clone https://github.com/sbwml/package_kernel_r8152 package/kernel/r8152
-git clone https://github.com/sbwml/package_kernel_r8101 package/kernel/r8101
-git clone https://github.com/sbwml/package_kernel_r8125 package/kernel/r8125
-git clone https://github.com/sbwml/package_kernel_r8126 package/kernel/r8126
-
 # 修改系统文件
 #curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25_storage.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/25_storage.js
