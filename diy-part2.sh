@@ -47,6 +47,12 @@ git clone https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/l
 rm -rf feeds/packages/lang/node
 git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packages/lang/node
 
+# 修改连接数
+sed -i 's/net.netfilter.nf_conntrack_max=.*/net.netfilter.nf_conntrack_max=65535/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
+
+# 修正连接数
+sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
+
 # 移除 SNAPSHOT 标签
 #sed -i 's,-SNAPSHOT,,g' include/version.mk
 #sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
