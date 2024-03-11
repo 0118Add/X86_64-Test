@@ -20,15 +20,15 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/mj22227/openwrt
+  REPO_URL: https://github.com/mj22226/openwrt
   REPO_BRANCH: linux-6.8
-  CONFIG_FILE: 23.05.config
-  DIY_SCRIPT: diy-part02.sh
+  CONFIG_FILE: 6.8.config
+  DIY_SCRIPT: 6.8.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: false
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: X86_64
+  FIRMWARE_TAG: X86_64-6.8
   TZ: Asia/Shanghai
 
 jobs:
