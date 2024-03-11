@@ -50,9 +50,6 @@ sed -i 's/net.netfilter.nf_conntrack_max=.*/net.netfilter.nf_conntrack_max=65535
 # 修正连接数
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
 
-# alist
-git clone https://github.com/sbwml/luci-app-alist package/alist
-
 # OpenClash
 git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-openclash
 
