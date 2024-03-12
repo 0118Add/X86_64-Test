@@ -107,25 +107,25 @@ ln -sf ../../../feeds/packages/net/dae ./package/feeds/packages/dae
 #ln -sf ../../../feeds/packages/net/daed ./package/feeds/packages/daed
 
 # 克隆immortalwrt仓库
-git clone --depth=1 -b master https://github.com/immortalwrt/immortalwrt immortalwrt
+#git clone --depth=1 -b master https://github.com/immortalwrt/immortalwrt immortalwrt
 # fullconenat-nft
-cp -rf immortalwrt/package/network/utils/fullconenat-nft package/network/utils/fullconenat-nft
-ln -sf ../../../package/network/utils/fullconenat-nft ./package/network/utils/fullconenat-nft
+#cp -rf immortalwrt/package/network/utils/fullconenat-nft package/network/utils/fullconenat-nft
+#ln -sf ../../../package/network/utils/fullconenat-nft ./package/network/utils/fullconenat-nft
 # libnftnl
-mkdir -p package/libs/libnftnl/patches
-cp -f $GITHUB_WORKSPACE/general/libnftnl/001-libnftnl-add-fullcone-expression-support.patch ./package/libs/libnftnl/patches/001-libnftnl-add-fullcone-expression-support.patch
-sed -i '/PKG_INSTALL:=/iPKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
+#mkdir -p package/libs/libnftnl/patches
+#cp -f $GITHUB_WORKSPACE/general/libnftnl/001-libnftnl-add-fullcone-expression-support.patch ./package/libs/libnftnl/patches/001-libnftnl-add-fullcone-expression-support.patch
+#sed -i '/PKG_INSTALL:=/iPKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
 # nftables
-rm -rf package/network/utils/nftables/
-cp -rf immortalwrt/package/network/utils/nftables package/network/utils/nftables
-ln -sf ../../../package/network/utils/nftables ./package/network/utils/nftables
+#rm -rf package/network/utils/nftables/
+#cp -rf immortalwrt/package/network/utils/nftables package/network/utils/nftables
+#ln -sf ../../../package/network/utils/nftables ./package/network/utils/nftables
 # firewall4
-rm -rf package/network/config/firewall4
-cp -rf immortalwrt/package/network/config/firewall4 package/network/config/firewall4
-ln -sf ../../../package/network/config/firewall4 ./package/network/config/firewall4
+#rm -rf package/network/config/firewall4
+#cp -rf immortalwrt/package/network/config/firewall4 package/network/config/firewall4
+#ln -sf ../../../package/network/config/firewall4 ./package/network/config/firewall4
 # patch luci
-patch -d feeds/luci -p1 -i $GITHUB_WORKSPACE/general/fullconenat-luci.patch
-curl -sSL https://github.com/coolsnowwolf/lede/files/11473487/952-add-net-conntrack-events-support-multiple-registrant.patch -o target/linux/generic/hack-6.1/952-add-net-conntrack-events-support-multiple-registrant.patch
+#patch -d feeds/luci -p1 -i $GITHUB_WORKSPACE/general/fullconenat-luci.patch
+#curl -sSL https://github.com/coolsnowwolf/lede/files/11473487/952-add-net-conntrack-events-support-multiple-registrant.patch -o target/linux/generic/hack-6.1/952-add-net-conntrack-events-support-multiple-registrant.patch
 
 # unblockneteasemusic
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-unblockneteasemusic
@@ -139,3 +139,46 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/wrtbw
 # 修改系统文件
 #curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25_storage.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/25_storage.js
+
+
+# Shortcut Forwarding Engine
+git clone https://$gitea/sbwml/shortcut-fe package/new/shortcut-fe
+
+# Patch FireWall 4
+if [ "$version" = "snapshots-23.05" ] || [ "$version" = "rc2" ]; then
+    # firewall4
+    rm -rf package/network/config/firewall4
+    cp -a ../master/openwrt/package/network/config/firewall4 package/network/config/firewall4
+    mkdir -p package/network/config/firewall4/patches
+    curl -s https://$mirror/openwrt/patch/firewall4/999-01-firewall4-add-fullcone-support.patch > package/network/config/firewall4/patches/999-01-firewall4-add-fullcone-support.patch
+    # kernel version
+    curl -s https://$mirror/openwrt/patch/firewall4/002-fix-fw4.uc-adept-kernel-version-type-of-x.x.patch > package/network/config/firewall4/patches/002-fix-fw4.uc-adept-kernel-version-type-of-x.x.patch
+    # fix flow offload
+    curl -s https://$mirror/openwrt/patch/firewall4/001-fix-fw4-flow-offload.patch > package/network/config/firewall4/patches/001-fix-fw4-flow-offload.patch
+    # libnftnl
+    mkdir -p package/libs/libnftnl/patches
+    curl -s https://$mirror/openwrt/patch/firewall4/libnftnl/001-libnftnl-add-fullcone-expression-support.patch > package/libs/libnftnl/patches/001-libnftnl-add-fullcone-expression-support.patch
+    sed -i '/PKG_INSTALL:=1/iPKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
+    # nftables
+    rm -rf package/network/utils/nftables
+    cp -a ../master/openwrt/package/network/utils/nftables package/network/utils/nftables
+    mkdir -p package/network/utils/nftables/patches
+    curl -s https://$mirror/openwrt/patch/firewall4/nftables/002-nftables-add-fullcone-expression-support.patch > package/network/utils/nftables/patches/002-nftables-add-fullcone-expression-support.patch
+    # hide nftables warning message
+    pushd feeds/luci
+        curl -s https://$mirror/openwrt/patch/luci/luci-nftables.patch | patch -p1
+    popd
+fi
+
+# FullCone module
+git clone https://$gitea/sbwml/nft-fullcone package/new/nft-fullcone
+
+# IPv6 NAT
+git clone https://$github/sbwml/packages_new_nat6 package/new/nat6
+
+# Patch Luci add fullcone & shortcut-fe & ipv6-nat option
+pushd feeds/luci
+    curl -s https://$mirror/openwrt/patch/firewall4/01-luci-app-firewall_add_fullcone.patch | patch -p1
+    curl -s https://$mirror/openwrt/patch/firewall4/02-luci-app-firewall_add_shortcut-fe.patch | patch -p1
+    curl -s https://$mirror/openwrt/patch/firewall4/03-luci-app-firewall_add_ipv6-nat.patch | patch -p1
+popd
