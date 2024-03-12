@@ -119,7 +119,7 @@ merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/net
 rm -rf ./package/network/config/firewall4
 merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/network/config/firewall4
 # patch luci
-patch -d feeds/luci -p1 -i ../../../general/fullconenat-luci.patch
+patch -d feeds/luci -p1 -i $GITHUB_WORKSPACE/general/fullconenat-luci.patch
 
 # unblockneteasemusic
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-unblockneteasemusic
@@ -129,12 +129,6 @@ sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/custom/luci-
 # wechatpush
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-wechatpush
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/wrtbwmon
-
-# FullCone module
-git clone https://github.com/sbwml/nft-fullcone package/new/nft-fullcone
-
-# IPv6 NAT
-git clone https://github.com/sbwml/packages_new_nat6 package/new/nat6
 
 # 修改系统文件
 #curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
