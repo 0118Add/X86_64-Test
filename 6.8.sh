@@ -112,15 +112,15 @@ git clone --depth=1 -b master https://github.com/immortalwrt/immortalwrt immorta
 cp -rf immortalwrt/package/network/utils/fullconenat-nft package/network/utils/fullconenat-nft
 ln -sf ../../../package/network/utils/fullconenat-nft ./package/network/utils/fullconenat-nft
 # libnftnl
-rm -rf ./package/libs/libnftnl
+rm -rf package/libs/libnftnl
 cp -rf immortalwrt/package/libs/libnftnl package/libs/libnftnl
 ln -sf ../../../package/libs/libnftnl ./package/libs/libnftnl
 # nftables
-rm -rf ./package/network/utils/nftables/
+rm -rf package/network/utils/nftables/
 cp -rf immortalwrt/package/network/utils/nftables package/network/utils/nftables
 ln -sf ../../../package/network/utils/nftables ./package/network/utils/nftables
 # firewall4
-rm -rf ./package/network/config/firewall4
+rm -rf package/network/config/firewall4
 cp -rf immortalwrt/package/network/config/firewall4 package/network/config/firewall4
 ln -sf ../../../package/network/config/firewall4 ./package/network/config/firewall4
 # patch luci
