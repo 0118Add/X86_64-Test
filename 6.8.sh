@@ -108,18 +108,18 @@ ln -sf ../../../feeds/packages/net/dae ./package/feeds/packages/dae
 
 curl -sSL https://github.com/coolsnowwolf/lede/files/11473487/952-add-net-conntrack-events-support-multiple-registrant.patch -o target/linux/generic/hack-6.1/952-add-net-conntrack-events-support-multiple-registrant.patch
 # fullconenat-nft
-cp -rf ../immortalwrt/package/network/utils/fullconenat-nft package/network/utils/
+merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/network/utils/fullconenat-nft
 # libnftnl
 rm -rf ./package/libs/libnftnl
-cp -rf ../immortalwrt/package/libs/libnftnl package/libs/
+merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/libs/libnftnl
 # nftables
 rm -rf ./package/network/utils/nftables/
-cp -rf ../immortalwrt/package/network/utils/nftables package/network/utils/
+merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/network/utils/nftables
 # firewall4
 rm -rf ./package/network/config/firewall4
-cp -rf ../immortalwrt/package/network/config/firewall4 package/network/config/
+merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/network/config/firewall4
 # patch luci
-patch -d feeds/luci -p1 -i ../../../patches/fullconenat-luci.patch
+patch -d feeds/luci -p1 -i ../../../general/fullconenat-luci.patch
 
 # unblockneteasemusic
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-unblockneteasemusic
