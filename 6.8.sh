@@ -107,25 +107,25 @@ ln -sf ../../../feeds/packages/net/dae ./package/feeds/packages/dae
 #ln -sf ../../../feeds/packages/net/daed ./package/feeds/packages/daed
 
 # 克隆immortalwrt仓库
-git clone --depth=1 -b master https://github.com/immortalwrt/immortalwrt immortalwrt
+#git clone --depth=1 -b master https://github.com/immortalwrt/immortalwrt immortalwrt
 # fullconenat-nft
-cp -rf immortalwrt/package/network/utils/fullconenat-nft package/network/utils/fullconenat-nft
-ln -sf ../../../package/network/utils/fullconenat-nft ./package/network/utils/fullconenat-nft
+#cp -rf immortalwrt/package/network/utils/fullconenat-nft package/network/utils/fullconenat-nft
+#ln -sf ../../../package/network/utils/fullconenat-nft ./package/network/utils/fullconenat-nft
 # libnftnl
-mkdir -p package/libs/libnftnl/patches
-cp -f $GITHUB_WORKSPACE/general/libnftnl/001-libnftnl-add-fullcone-expression-support.patch ./package/libs/libnftnl/patches/001-libnftnl-add-fullcone-expression-support.patch
-sed -i '/PKG_INSTALL:=/iPKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
+#mkdir -p package/libs/libnftnl/patches
+#cp -f $GITHUB_WORKSPACE/general/libnftnl/001-libnftnl-add-fullcone-expression-support.patch ./package/libs/libnftnl/patches/001-libnftnl-add-fullcone-expression-support.patch
+#sed -i '/PKG_INSTALL:=/iPKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
 # nftables
-rm -rf package/network/utils/nftables/
-cp -rf immortalwrt/package/network/utils/nftables package/network/utils/nftables
-ln -sf ../../../package/network/utils/nftables ./package/network/utils/nftables
+#rm -rf package/network/utils/nftables/
+#cp -rf immortalwrt/package/network/utils/nftables package/network/utils/nftables
+#ln -sf ../../../package/network/utils/nftables ./package/network/utils/nftables
 # firewall4
-rm -rf package/network/config/firewall4
-cp -rf immortalwrt/package/network/config/firewall4 package/network/config/firewall4
-ln -sf ../../../package/network/config/firewall4 ./package/network/config/firewall4
+#rm -rf package/network/config/firewall4
+#cp -rf immortalwrt/package/network/config/firewall4 package/network/config/firewall4
+#ln -sf ../../../package/network/config/firewall4 ./package/network/config/firewall4
 # patch luci
-patch -d feeds/luci -p1 -i $GITHUB_WORKSPACE/general/fullconenat-luci.patch
-curl -sSL https://github.com/coolsnowwolf/lede/files/11473487/952-add-net-conntrack-events-support-multiple-registrant.patch -o target/linux/generic/hack-6.1/952-add-net-conntrack-events-support-multiple-registrant.patch
+#patch -d feeds/luci -p1 -i $GITHUB_WORKSPACE/general/fullconenat-luci.patch
+#curl -sSL https://github.com/coolsnowwolf/lede/files/11473487/952-add-net-conntrack-events-support-multiple-registrant.patch -o target/linux/generic/hack-6.1/952-add-net-conntrack-events-support-multiple-registrant.patch
 
 # unblockneteasemusic
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-unblockneteasemusic
