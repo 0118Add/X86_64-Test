@@ -112,9 +112,9 @@ git clone --depth=1 -b master https://github.com/immortalwrt/immortalwrt immorta
 cp -rf immortalwrt/package/network/utils/fullconenat-nft package/network/utils/fullconenat-nft
 ln -sf ../../../package/network/utils/fullconenat-nft ./package/network/utils/fullconenat-nft
 # libnftnl
-rm -rf package/libs/libnftnl
-cp -rf immortalwrt/package/libs/libnftnl package/libs/libnftnl
-ln -sf ../../../package/libs/libnftnl ./package/libs/libnftnl
+mkdir -p package/libs/libnftnl/patches
+cp -f ../general/libnftnl/001-libnftnl-add-fullcone-expression-support.patch ./package/libs/libnftnl/patches/001-libnftnl-add-fullcone-expression-support.patch
+sed -i '/PKG_INSTALL:=/iPKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
 # nftables
 rm -rf package/network/utils/nftables/
 cp -rf immortalwrt/package/network/utils/nftables package/network/utils/nftables
