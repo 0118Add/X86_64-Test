@@ -106,20 +106,26 @@ ln -sf ../../../feeds/packages/net/dae ./package/feeds/packages/dae
 #cp -rf immortalwrt-packages/net/daed feeds/packages/net/daed
 #ln -sf ../../../feeds/packages/net/daed ./package/feeds/packages/daed
 
-curl -sSL https://github.com/coolsnowwolf/lede/files/11473487/952-add-net-conntrack-events-support-multiple-registrant.patch -o target/linux/generic/hack-6.1/952-add-net-conntrack-events-support-multiple-registrant.patch
+# 克隆immortalwrt仓库
+git clone --depth=1 -b master https://github.com/immortalwrt/immortalwrt immortalwrt
 # fullconenat-nft
-merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/network/utils/fullconenat-nft
+cp -rf immortalwrt/package/network/utils/fullconenat-nft package/network/utils/fullconenat-nft
+ln -sf ../../../package/network/utils/fullconenat-nft ./package/network/utils/fullconenat-nft
 # libnftnl
 rm -rf ./package/libs/libnftnl
-merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/libs/libnftnl
+cp -rf immortalwrt/package/libs/libnftnl package/libs/libnftnl
+ln -sf ../../../package/libs/libnftnl ./package/libs/libnftnl
 # nftables
 rm -rf ./package/network/utils/nftables/
-merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/network/utils/nftables
+cp -rf immortalwrt/package/network/utils/nftables package/network/utils/nftables
+ln -sf ../../../package/network/utils/nftables ./package/network/utils/nftables
 # firewall4
 rm -rf ./package/network/config/firewall4
-merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/network/config/firewall4
+cp -rf immortalwrt/package/network/config/firewall4 package/network/config/firewall4
+ln -sf ../../../package/network/config/firewall4 ./package/network/config/firewall4
 # patch luci
 patch -d feeds/luci -p1 -i $GITHUB_WORKSPACE/general/fullconenat-luci.patch
+curl -sSL https://github.com/coolsnowwolf/lede/files/11473487/952-add-net-conntrack-events-support-multiple-registrant.patch -o target/linux/generic/hack-6.1/952-add-net-conntrack-events-support-multiple-registrant.patch
 
 # unblockneteasemusic
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-unblockneteasemusic
