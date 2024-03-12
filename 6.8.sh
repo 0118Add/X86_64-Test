@@ -113,7 +113,7 @@ cp -rf immortalwrt/package/network/utils/fullconenat-nft package/network/utils/f
 ln -sf ../../../package/network/utils/fullconenat-nft ./package/network/utils/fullconenat-nft
 # libnftnl
 mkdir -p package/libs/libnftnl/patches
-cp -f ../general/libnftnl/001-libnftnl-add-fullcone-expression-support.patch ./package/libs/libnftnl/patches/001-libnftnl-add-fullcone-expression-support.patch
+cp -f $GITHUB_WORKSPACE/general/libnftnl/001-libnftnl-add-fullcone-expression-support.patch ./package/libs/libnftnl/patches/001-libnftnl-add-fullcone-expression-support.patch
 sed -i '/PKG_INSTALL:=/iPKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
 # nftables
 rm -rf package/network/utils/nftables/
