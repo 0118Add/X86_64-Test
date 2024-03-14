@@ -76,14 +76,12 @@ sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-openclash
 
 # Daed
-#svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/applications/luci-app-daed feeds/luci/applications/luci-app-daed
-#ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
-#svn export -q https://github.com/0118Add/openwrt-packages/trunk/daed package/new/daed
 git clone https://github.com/sbwml/luci-app-daed-next package/new/luci-app-daed-next
 #git clone https://github.com/sbwml/luci-app-daed package/new/luci-app-daed
 
 # Dae
 #git clone https://github.com/8688Add/luci-app-dae package/luci-app-dae
+merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/dae
 
 # Shared for PassWall and ShadowsocksR Plus+
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
@@ -178,8 +176,8 @@ cp -rf immortalwrt-packages/net/alist feeds/packages/net/alist
 ln -sf ../../../feeds/packages/net/alist ./package/feeds/packages/alist
 cp -rf immortalwrt-packages/net/ddns-go feeds/packages/net/ddns-go
 ln -sf ../../../feeds/packages/net/ddns-go ./package/feeds/packages/ddns-go
-cp -rf immortalwrt-packages/net/dae feeds/packages/net/dae
-ln -sf ../../../feeds/packages/net/dae ./package/feeds/packages/dae
+#cp -rf immortalwrt-packages/net/dae feeds/packages/net/dae
+#ln -sf ../../../feeds/packages/net/dae ./package/feeds/packages/dae
 #cp -rf immortalwrt-packages/net/daed feeds/packages/net/daed
 #ln -sf ../../../feeds/packages/net/daed ./package/feeds/packages/daed
 
