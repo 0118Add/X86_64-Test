@@ -207,10 +207,10 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/wrtbwmon
 
 # turboacc
-curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 git clone https://github.com/chenmozhijin/turboacc package/new/luci-app-turboacc
-#git clone https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-fullcone
-#git clone --depth=1 -b package https://github.com/chenmozhijin/turboacc package/new/turboacc
+git clone https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-fullcone
+git clone --depth=1 -b package https://github.com/chenmozhijin/turboacc package/new/turboacc
+curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 #sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
 
 # net.netfilter.nf_conntrack_max from 16384 to 65535
