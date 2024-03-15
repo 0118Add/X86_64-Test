@@ -21,7 +21,7 @@ on:
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt
-  REPO_BRANCH: main
+  REPO_BRANCH: master
   CONFIG_FILE: main.config
   DIY_SCRIPT: diy-part2.sh
   CLASH_KERNEL: amd64
