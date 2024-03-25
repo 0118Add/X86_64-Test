@@ -58,7 +58,7 @@ cp -a ../master/packages/net/haproxy feeds/packages/net/haproxy
 git clone https://$github/sbwml/autocore-arm -b openwrt-23.05 package/new/autocore
 
 # netkit-ftp
-git clone https://$github/sbwml/package_new_ftp package/new/ftp
+#git clone https://github.com/sbwml/package_new_ftp package/new/ftp
 
 # SSRP & Passwall
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
