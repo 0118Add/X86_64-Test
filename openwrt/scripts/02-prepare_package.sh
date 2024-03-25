@@ -2,14 +2,14 @@
 
 # golang 1.22
 rm -rf feeds/packages/lang/golang
-git clone https://$github/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
 
 # node - prebuilt
 rm -rf feeds/packages/lang/node
-git clone https://$github/sbwml/feeds_packages_lang_node-prebuilt feeds/packages/lang/node
+git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packages/lang/node
 
 # Default settings
-git clone https://$github/sbwml/default-settings package/new/default-settings
+git clone https://github.com/sbwml/default-settings package/new/default-settings
 
 # boost - 1.84.0
 rm -rf feeds/packages/libs/boost
@@ -17,7 +17,7 @@ cp -a ../master/packages/libs/boost feeds/packages/libs/boost
 
 # lrzsz - 0.12.20
 rm -rf feeds/packages/utils/lrzsz
-git clone https://$github/sbwml/packages_utils_lrzsz package/new/lrzsz
+git clone https://github.com/sbwml/packages_utils_lrzsz package/new/lrzsz
 
 # irqbalance - openwrt master
 rm -rf feeds/packages/utils/irqbalance
@@ -55,14 +55,14 @@ cp -a ../master/packages/net/haproxy feeds/packages/net/haproxy
 #sed -i 's/0666/0644/g;s/0777/0755/g' feeds/packages/net/samba4/files/smb.conf.template
 
 # autoCore
-git clone https://$github/sbwml/autocore-arm -b openwrt-23.05 package/new/autocore
+git clone https://github.com/sbwml/autocore-arm -b openwrt-23.05 package/new/autocore
 
 # netkit-ftp
-git clone https://$github/sbwml/package_new_ftp package/new/ftp
+git clone https://github.com/sbwml/package_new_ftp package/new/ftp
 
 # SSRP & Passwall
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
-git clone https://$github/sbwml/openwrt_helloworld package/new/helloworld -b v5
+git clone https://github.com/8688Add/openwrt_helloworld package/new/helloworld -b v5
 sed -i 's/ShadowSocksR Plus+/SSR Plus+/g' package/new/helloworld/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 
 # OpenClash
@@ -70,7 +70,7 @@ git clone --depth=1 -b dev https://github.com/vernesong/OpenClash package/new/Op
 
 # DAED
 #git clone https://$github/sbwml/luci-app-daed package/new/daed
-git clone https://$github/sbwml/luci-app-daed-next package/new/daed-next
+git clone https://github.com/sbwml/luci-app-daed-next package/new/daed-next
 
 # immortalwrt homeproxy
 #git clone https://$github/immortalwrt/homeproxy package/new/homeproxy
@@ -81,7 +81,7 @@ git clone https://$github/sbwml/luci-app-daed-next package/new/daed-next
 #git clone https://$github/sbwml/openwrt-alist package/new/alist
 
 # 解除网易云音乐播放限制
-git clone https://$github/UnblockNeteaseMusic/luci-app-unblockneteasemusic package/new/luci-app-unblockneteasemusic
+git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic package/new/luci-app-unblockneteasemusic
 sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/new/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 
 # wechatpush
@@ -91,7 +91,7 @@ git clone https://github.com/tty228/luci-app-wechatpush package/new/luci-app-wec
 git clone https://$gitea/sbwml/luci-app-zerotier package/new/luci-app-zerotier
 
 # Theme
-git clone --depth 1 https://$github/sbwml/luci-theme-argon.git package/new/luci-theme-argon
+git clone --depth 1 https://github.com/sbwml/luci-theme-argon.git package/new/luci-theme-argon
 sed -i 's/Argon 主题设置/主题设置/g' package/new/luci-theme-argon/luci-app-argon-config/po/zh_Hans/argon-config.po
 
 # iperf3
@@ -124,7 +124,7 @@ curl -s https://$mirror/openwrt/patch/sqm/001-help-translation.patch > feeds/pac
 
 # unzip
 rm -rf feeds/packages/utils/unzip
-git clone https://$github/sbwml/feeds_packages_utils_unzip feeds/packages/utils/unzip
+git clone https://github.com/sbwml/feeds_packages_utils_unzip feeds/packages/utils/unzip
 
 # 克隆immortalwrt-luci仓库
 git clone --depth=1 -b openwrt-23.05 https://github.com/immortalwrt/luci.git immortalwrt-luci
