@@ -137,10 +137,8 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-
 sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
 #merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-ttyd
 
-# vlmcsd
-#svn export -q https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-vlmcsd feeds/luci/applications/luci-app-vlmcsd
-#ln -sf ../../../feeds/luci/applications/luci-app-vlmcsd ./package/feeds/luci/luci-app-vlmcsd
-#svn export -q https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/vlmcsd package/new/vlmcsd
+# partexp
+git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 
 # luci-app-firewall
 #rm -rf feeds/luci/applications/luci-app-firewall
