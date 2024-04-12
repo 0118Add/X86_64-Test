@@ -217,11 +217,11 @@ sed -i 's/Turbo ACC 网络加速/网络加速/g' package/new/luci-app-turboacc/l
 sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65535#g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 
 # R8168驱动
-git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git package/r8168
+#git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git package/r8168
 # R8152驱动
-merge_package https://github.com/0118Add/openwrt-packages openwrt-packages/r8152
+#merge_package https://github.com/0118Add/openwrt-packages openwrt-packages/r8152
 # r8125驱动
-merge_package https://github.com/0118Add/openwrt-packages openwrt-packages/r8125
+#merge_package https://github.com/0118Add/openwrt-packages openwrt-packages/r8125
 
 #sed -i 's/ShadowSocksR Plus+/SSR Plus+/g' package/new/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 #sed -i 's/Frp 内网穿透/内网穿透/g' package/new/luci-app-frpc/po/zh-cn/frp.po
