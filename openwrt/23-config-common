@@ -77,15 +77,15 @@ CONFIG_LUCI_LANG_zh_Hans=y
 
 ### APPS
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
-# CONFIG_PACKAGE_luci-app-alist=y
+CONFIG_PACKAGE_luci-app-alist=y
 CONFIG_PACKAGE_luci-app-argon-config=y
 # CONFIG_PACKAGE_luci-app-aria2 is not set
 CONFIG_PACKAGE_luci-app-autoreboot=y
 # CONFIG_PACKAGE_luci-app-cpufreq is not set
-# CONFIG_PACKAGE_dae=y
-# CONFIG_PACKAGE_luci-app-dae is not set
+CONFIG_PACKAGE_dae=y
+CONFIG_PACKAGE_luci-app-dae=y
 # CONFIG_PACKAGE_luci-app-daed is not set
-CONFIG_PACKAGE_luci-app-daed-next=y
+# CONFIG_PACKAGE_luci-app-daed-next is not set
 # CONFIG_PACKAGE_luci-app-ddns is not set
 CONFIG_PACKAGE_luci-app-ddns-go=y
 CONFIG_PACKAGE_luci-app-diskman=y
