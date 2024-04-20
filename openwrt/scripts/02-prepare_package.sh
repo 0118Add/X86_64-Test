@@ -85,7 +85,7 @@ git clone --depth=1 -b dev https://github.com/vernesong/OpenClash package/new/Op
 #git clone https://$github/sbwml/openwrt-alist package/new/alist
 
 # ddns-go
-git clone https://github.com/sirpdboy/luci-app-ddns-go package/new/ddns-go
+#git clone https://github.com/sirpdboy/luci-app-ddns-go package/new/ddns-go
 
 # 解除网易云音乐播放限制
 git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic package/new/luci-app-unblockneteasemusic
@@ -136,16 +136,16 @@ git clone https://github.com/sbwml/feeds_packages_utils_unzip feeds/packages/uti
 git clone --depth=1 -b openwrt-23.05 https://github.com/immortalwrt/luci.git immortalwrt-luci
 cp -rf immortalwrt-luci/applications/luci-app-alist feeds/luci/applications/luci-app-alist
 ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci-app-alist
-cp -rf immortalwrt-luci/applications/luci-app-alist feeds/luci/applications/luci-app-dae
-ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci-app-dae
-#cp -rf immortalwrt-luci/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
-#ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
+cp -rf immortalwrt-luci/applications/luci-app-dae feeds/luci/applications/luci-app-dae
+ln -sf ../../../feeds/luci/applications/luci-app-dae ./package/feeds/luci/luci-app-dae
+cp -rf immortalwrt-luci/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
+ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
 # 克隆immortalwrt-packages仓库
 git clone --depth=1 -b openwrt-23.05 https://github.com/immortalwrt/packages.git immortalwrt-packages
 cp -rf immortalwrt-packages/net/alist feeds/packages/net/alist
 ln -sf ../../../feeds/packages/net/alist ./package/feeds/packages/alist
-#cp -rf immortalwrt-packages/net/ddns-go feeds/packages/net/ddns-go
-#ln -sf ../../../feeds/packages/net/ddns-go ./package/feeds/packages/ddns-go
+cp -rf immortalwrt-packages/net/ddns-go feeds/packages/net/ddns-go
+ln -sf ../../../feeds/packages/net/ddns-go ./package/feeds/packages/ddns-go
 cp -rf immortalwrt-packages/net/dae feeds/packages/net/dae
 ln -sf ../../../feeds/packages/net/dae ./package/feeds/packages/dae
 
