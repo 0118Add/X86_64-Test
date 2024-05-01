@@ -24,8 +24,8 @@ rm -rf feeds/packages/utils/irqbalance
 cp -a ../master/packages/utils/irqbalance feeds/packages/utils/irqbalance
 
 # 更改固件版本信息
-sed -i "s|DISTRIB_REVISION='.*'|DISTRIB_REVISION=''|g" package/base-files/files/etc/openwrt_release
-sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt 23.05.2'|g" package/base-files/files/etc/openwrt_release
+#sed -i "s|DISTRIB_REVISION='.*'|DISTRIB_REVISION=''|g" package/base-files/files/etc/openwrt_release
+#sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt 23.05.2'|g" package/base-files/files/etc/openwrt_release
 
 # FRPC
 #rm -rf feeds/packages/net/frp
