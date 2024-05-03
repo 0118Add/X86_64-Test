@@ -1,29 +1,5 @@
 #!/bin/bash -e
 
-echo "开始配置……"
-echo "========================="
-
-function merge_package(){
-    repo=`echo $1 | rev | cut -d'/' -f 1 | rev`
-    pkg=`echo $2 | rev | cut -d'/' -f 1 | rev`
-    # find package/ -follow -name $pkg -not -path "package/custom/*" | xargs -rt rm -rf
-    git clone --depth=1 --single-branch $1
-    mv $2 package/custom/
-    rm -rf $repo
-}
-function drop_package(){
-    find package/ -follow -name $1 -not -path "package/custom/*" | xargs -rt rm -rf
-}
-function merge_feed(){
-    if [ ! -d "feed/$1" ]; then
-        echo >> feeds.conf.default
-        echo "src-git $1 $2" >> feeds.conf.default
-    fi
-    ./scripts/feeds update $1
-    ./scripts/feeds install -a -p $1
-}
-rm -rf package/custom; mkdir package/custom
-
 # golang 1.22
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
@@ -109,7 +85,7 @@ git clone https://github.com/QiuSimons/luci-app-daed-next package/new/daed-next
 #git clone https://$github/sbwml/openwrt-alist package/new/alist
 
 # ddns-go
-git clone https://github.com/sirpdboy/luci-app-ddns-go package/new/ddns-go
+#git clone https://github.com/sirpdboy/luci-app-ddns-go package/new/ddns-go
 
 # 解除网易云音乐播放限制
 git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic package/new/luci-app-unblockneteasemusic
@@ -156,26 +132,22 @@ curl -s https://$mirror/openwrt/patch/sqm/001-help-translation.patch > feeds/pac
 rm -rf feeds/packages/utils/unzip
 git clone https://github.com/sbwml/feeds_packages_utils_unzip feeds/packages/utils/unzip
 
-merge_package https://github.com/immortalwrt/luci luci/luci-app-alist
-merge_package https://github.com/immortalwrt/packages packages/alist
-merge_package https://github.com/immortalwrt/packages packages/dae
-
 # 克隆immortalwrt-luci仓库
-#git clone --depth=1 -b openwrt-23.05 https://github.com/immortalwrt/luci.git immortalwrt-luci
-#cp -rf immortalwrt-luci/applications/luci-app-alist feeds/luci/applications/luci-app-alist
-#ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci-app-alist
+git clone --depth=1 -b openwrt-23.05 https://github.com/immortalwrt/luci.git immortalwrt-luci
+cp -rf immortalwrt-luci/applications/luci-app-alist feeds/luci/applications/luci-app-alist
+ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci-app-alist
 #cp -rf immortalwrt-luci/applications/luci-app-dae feeds/luci/applications/luci-app-dae
 #ln -sf ../../../feeds/luci/applications/luci-app-dae ./package/feeds/luci/luci-app-dae
-#cp -rf immortalwrt-luci/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
-#ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
+cp -rf immortalwrt-luci/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
+ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
 # 克隆immortalwrt-packages仓库
-#git clone --depth=1 -b openwrt-23.05 https://github.com/immortalwrt/packages.git immortalwrt-packages
-#cp -rf immortalwrt-packages/net/alist feeds/packages/net/alist
-#ln -sf ../../../feeds/packages/net/alist ./package/feeds/packages/alist
-#cp -rf immortalwrt-packages/net/ddns-go feeds/packages/net/ddns-go
-#ln -sf ../../../feeds/packages/net/ddns-go ./package/feeds/packages/ddns-go
-#cp -rf immortalwrt-packages/net/dae feeds/packages/net/dae
-#ln -sf ../../../feeds/packages/net/dae ./package/feeds/packages/dae
+git clone --depth=1 -b openwrt-23.05 https://github.com/immortalwrt/packages.git immortalwrt-packages
+cp -rf immortalwrt-packages/net/alist feeds/packages/net/alist
+ln -sf ../../../feeds/packages/net/alist ./package/feeds/packages/alist
+cp -rf immortalwrt-packages/net/ddns-go feeds/packages/net/ddns-go
+ln -sf ../../../feeds/packages/net/ddns-go ./package/feeds/packages/ddns-go
+cp -rf immortalwrt-packages/net/dae feeds/packages/net/dae
+ln -sf ../../../feeds/packages/net/dae ./package/feeds/packages/dae
 
 # 修改系统文件
 sed -i 's/WireGuard/WiGd状态/g' feeds/luci/protocols/luci-proto-wireguard/root/usr/share/luci/menu.d/luci-proto-wireguard.json
