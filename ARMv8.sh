@@ -76,7 +76,7 @@ sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-openclash
 
 # Daed
-git clone https://github.com/sbwml/luci-app-daed-next package/new/luci-app-daed-next
+git clone https://github.com/QiuSimons/luci-app-daed-next package/new/luci-app-daed-next
 #git clone https://github.com/sbwml/luci-app-daed package/new/luci-app-daed
 
 # Dae
@@ -111,10 +111,10 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/lua-m
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-vssr package/new/luci-app-vssr
 
 # UPX 可执行软件压缩
-merge_package https://github.com/Lienol/openwrt openwrt/tools/ucl
-merge_package https://github.com/Lienol/openwrt openwrt/tools/upx
-sed -i '/patchelf pkgconf/i\tools-y += ucl upx' ./tools/Makefile
-sed -i '\/autoconf\/compile :=/i\$(curdir)/upx/compile := $(curdir)/ucl/compile' ./tools/Makefile
+#merge_package https://github.com/Lienol/openwrt openwrt/tools/ucl
+#merge_package https://github.com/Lienol/openwrt openwrt/tools/upx
+#sed -i '/patchelf pkgconf/i\tools-y += ucl upx' ./tools/Makefile
+#sed -i '\/autoconf\/compile :=/i\$(curdir)/upx/compile := $(curdir)/ucl/compile' ./tools/Makefile
 
 # homeproxy
 #git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
@@ -147,7 +147,7 @@ git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 
 # Filetransfer
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-filetransfer
-merge_package https://github.com/immortalwrt/luci luci/libs/luci-lib-fs
+merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-lib-fs
 
 # AutoCore
 rm -rf feeds/packages/utils/coremark
@@ -208,8 +208,10 @@ git clone https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-
 curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 sed -i 's/Turbo ACC 网络加速/网络加速/g' package/new/luci-app-turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
 
-# net.netfilter.nf_conntrack_max from 16384 to 65535
-sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65535#g' package/kernel/linux/files/sysctl-nf-conntrack.conf
+# 修改连接数
+sed -i 's/net.netfilter.nf_conntrack_max=.*/net.netfilter.nf_conntrack_max=65535/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
+# 修正连接数
+sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
 
 # R8168驱动
 git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git package/r8168
@@ -217,11 +219,6 @@ git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git packa
 merge_package https://github.com/0118Add/openwrt-packages openwrt-packages/r8152
 # r8125驱动
 merge_package https://github.com/0118Add/openwrt-packages openwrt-packages/r8125
-
-#sed -i 's/ShadowSocksR Plus+/SSR Plus+/g' package/new/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
-#sed -i 's/Frp 内网穿透/内网穿透/g' package/new/luci-app-frpc/po/zh-cn/frp.po
-#sed -i 's/解除网易云音乐播放限制/音乐解锁/g' feeds/luci/applications/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
-#sed -i 's/UPnP/UPnP设置/g' feeds/luci/applications/luci-app-upnp/po/zh_Hans/upnp.po
 
 # 修改系统文件
 #curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
@@ -231,5 +228,5 @@ curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25
 #wget -O ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js
 
 # libpfring
-rm -rf feeds/packages/libs/libpfring
-cp -rf $GITHUB_WORKSPACE/general/libpfring feeds/packages/libs/libpfring
+#rm -rf feeds/packages/libs/libpfring
+#cp -rf $GITHUB_WORKSPACE/general/libpfring feeds/packages/libs/libpfring
