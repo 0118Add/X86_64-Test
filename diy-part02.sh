@@ -147,7 +147,7 @@ git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 
 # Filetransfer
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-filetransfer
-merge_package https://github.com/immortalwrt/luci luci/libs/luci-lib-fs
+merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-lib-fs
 
 # AutoCore
 rm -rf feeds/packages/utils/coremark
