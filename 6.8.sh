@@ -202,11 +202,11 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/wrtbwmon
 
 # turboacc
-git clone https://github.com/chenmozhijin/turboacc package/new/luci-app-turboacc
-git clone https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-fullcone
+#git clone https://github.com/chenmozhijin/turboacc package/new/luci-app-turboacc
+#git clone https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-fullcone
 #git clone --depth=1 -b package https://github.com/chenmozhijin/turboacc package/new/turboacc
-curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
-sed -i 's/Turbo ACC 网络加速/网络加速/g' package/new/luci-app-turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
+#curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
+#sed -i 's/Turbo ACC 网络加速/网络加速/g' package/new/luci-app-turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
 
 # net.netfilter.nf_conntrack_max from 16384 to 65535
 sed -i 's/net.netfilter.nf_conntrack_max=.*/net.netfilter.nf_conntrack_max=65535/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
@@ -236,14 +236,14 @@ curl -sSL https://github.com/coolsnowwolf/lede/files/11473487/952-add-net-conntr
 # fullconenat-nft
 git clone --depth=1 -b master https://github.com/immortalwrt/immortalwrt immortalwrt-immortalwrt 
 cp -rf ../immortalwrt/package/network/utils/fullconenat-nft package/network/utils/
-# libnftnl
+
 rm -rf ./package/libs/libnftnl
 cp -rf ../immortalwrt/package/libs/libnftnl package/libs/
-# nftables
+
 rm -rf ./package/network/utils/nftables/
 cp -rf ../immortalwrt/package/network/utils/nftables package/network/utils/
-# firewall4
+
 rm -rf ./package/network/config/firewall4
 cp -rf ../immortalwrt/package/network/config/firewall4 package/network/config/
 # patch luci
-patch -d feeds/luci -p1 -i ../../../patches/fullconenat-luci.patch
+patch -d feeds/luci -p1 -i ../patches/fullconenat-luci.patch
