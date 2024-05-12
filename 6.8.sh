@@ -236,14 +236,15 @@ curl -sSL https://github.com/coolsnowwolf/lede/files/11473487/952-add-net-conntr
 # fullconenat-nft
 git clone --depth=1 -b master https://github.com/immortalwrt/immortalwrt immortalwrt-immortalwrt 
 cp -rf ../immortalwrt/package/network/utils/fullconenat-nft package/network/utils/
-
 rm -rf ./package/libs/libnftnl
+git clone --depth=1 -b master https://github.com/immortalwrt/immortalwrt immortalwrt-immortalwrt
 cp -rf ../immortalwrt/package/libs/libnftnl package/libs/
-
 rm -rf ./package/network/utils/nftables/
+git clone --depth=1 -b master https://github.com/immortalwrt/immortalwrt immortalwrt-immortalwrt
 cp -rf ../immortalwrt/package/network/utils/nftables package/network/utils/
-
 rm -rf ./package/network/config/firewall4
+git clone --depth=1 -b master https://github.com/immortalwrt/immortalwrt immortalwrt-immortalwrt
 cp -rf ../immortalwrt/package/network/config/firewall4 package/network/config/
-# patch luci
-patch -d feeds/luci -p1 -i ../patches/fullconenat-luci.patch
+# Patch LuCI 以增添 FullCone 开关
+git clone --depth 1 https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-fullcone
+cp -rf ../Lienol/package/network/utils/fullconenat package/new/fullconenat
