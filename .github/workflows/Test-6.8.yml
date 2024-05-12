@@ -20,7 +20,7 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/breeze303/openwrt-6.x
+  REPO_URL: https://github.com/8688Add/openwrt-6.x
   REPO_BRANCH: kernel-6.8
   CONFIG_FILE: 6.8.config
   DIY_SCRIPT: 6.8.sh
