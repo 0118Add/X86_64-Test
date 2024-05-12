@@ -9,7 +9,7 @@
 # File name: diy-part02.sh
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 
-echo "开始 DIY2 配置……"
+echo "开始配置……"
 echo "========================="
 
 function merge_package(){
@@ -32,9 +32,6 @@ function merge_feed(){
     ./scripts/feeds install -a -p $1
 }
 rm -rf package/custom; mkdir package/custom
-
-# 删除插件
-rm -rf package/feeds/luci/luci-app-apinger
 
 # Modify default IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
@@ -73,13 +70,13 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' packag
 #git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
 
 # OpenClash
-git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-openclash
+git clone --depth=1 -b dev https://github.com/vernesong/OpenClash package/OpenClash
 
 # Daed
 #svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/applications/luci-app-daed feeds/luci/applications/luci-app-daed
 #ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
 #svn export -q https://github.com/0118Add/openwrt-packages/trunk/daed package/new/daed
-git clone https://github.com/sbwml/luci-app-daed-next package/new/luci-app-daed-next
+git clone https://github.com/QiuSimons/luci-app-daed-next package/new/luci-app-daed-next
 #git clone https://github.com/sbwml/luci-app-daed package/new/luci-app-daed
 
 # Dae
@@ -150,7 +147,7 @@ git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 
 # Filetransfer
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-filetransfer
-merge_package https://github.com/immortalwrt/luci luci/libs/luci-lib-fs
+merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-lib-fs
 
 # AutoCore
 rm -rf feeds/packages/utils/coremark
@@ -212,7 +209,8 @@ curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turbo
 sed -i 's/Turbo ACC 网络加速/网络加速/g' package/new/luci-app-turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
 
 # net.netfilter.nf_conntrack_max from 16384 to 65535
-sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65535#g' package/kernel/linux/files/sysctl-nf-conntrack.conf
+sed -i 's/net.netfilter.nf_conntrack_max=.*/net.netfilter.nf_conntrack_max=65535/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
+sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
 
 # R8168驱动
 #git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git package/r8168
