@@ -9,4 +9,4 @@
 # File name: diy-part02.sh
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 
-sed -i '$a src-git openwrt-packages https://github.com/kiddin9/openwrt-packages' feeds.conf.default
+git clone https://github.com/kiddin9/openwrt-packages package/openwrt-packages
