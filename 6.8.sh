@@ -184,7 +184,7 @@ ln -sf ../../../feeds/packages/net/dae ./package/feeds/packages/dae
 
 # fullconenat
 #svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/network/utils/fullconenat-nft package/new/fullconenat-nft
-#svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/network/utils/fullconenat package/new/fullconenat-nft
+#svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/network/utils/fullconenat package/new/fullconenat
 
 # Zerotier
 rm -rf feeds/luci/applications/luci-app-zerotier
@@ -231,27 +231,6 @@ curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25
 # 替换文件
 #wget -O ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js
 
-#sed -i 's|CONFIG_WERROR=y|# CONFIG_WERROR is not set|g' target/linux/generic/config-6.1
-curl -sSL https://github.com/coolsnowwolf/lede/files/11473487/952-add-net-conntrack-events-support-multiple-registrant.patch -o target/linux/generic/hack-6.1/952-add-net-conntrack-events-support-multiple-registrant.patch
-# fullconenat-nft
-git clone --depth=1 -b openwrt-23.05 https://github.com/immortalwrt/immortalwrt immortalwrt-immortalwrt
-cp -rf immortalwrt-immortalwrt/package/network/utils/fullconenat-nft package/network/utils/fullconenat-nft
-#merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/network/utils/fullconenat-nft
-# libnftnl
-rm -rf ./package/libs/libnftnl
-git clone --depth=1 -b openwrt-23.05 https://github.com/immortalwrt/immortalwrt immortalwrt-immortalwrt
-cp -rf immortalwrt-immortalwrt/package/libs/libnftnl package/libs/libnftnl
-#merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/libs/libnftnl
-# nftables
-rm -rf ./package/network/utils/nftables/
-git clone --depth=1 -b openwrt-23.05 https://github.com/immortalwrt/immortalwrt immortalwrt-immortalwrt
-cp -rf immortalwrt-immortalwrt/package/network/utils/nftables package/network/utils/nftables
-#merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/network/utils/nftables
-# firewall4
-rm -rf ./package/network/config/firewall4
-git clone --depth=1 -b openwrt-23.05 https://github.com/immortalwrt/immortalwrt immortalwrt-immortalwrt
-cp -rf immortalwrt-immortalwrt/package/network/config/firewall4 package/network/config/firewall4
-#merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/network/config/firewall4
 # Patch LuCI 以增添 FullCone 开关
 git clone --depth 1 https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-fullcone
 git clone --depth=1 -b 23.05 https://github.com/Lienol/openwrt Lienol-openwrt
