@@ -230,3 +230,20 @@ curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25
 
 # 替换文件
 #wget -O ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js
+
+#sed -i 's|CONFIG_WERROR=y|# CONFIG_WERROR is not set|g' target/linux/generic/config-6.1
+curl -sSL https://github.com/coolsnowwolf/lede/files/11473487/952-add-net-conntrack-events-support-multiple-registrant.patch -o target/linux/generic/hack-6.1/952-add-net-conntrack-events-support-multiple-registrant.patch
+# fullconenat-nft
+git clone --depth=1 -b master https://github.com/immortalwrt/immortalwrt immortalwrt-immortalwrt 
+cp -rf ../immortalwrt/package/network/utils/fullconenat-nft package/network/utils/
+# libnftnl
+rm -rf ./package/libs/libnftnl
+cp -rf ../immortalwrt/package/libs/libnftnl package/libs/
+# nftables
+rm -rf ./package/network/utils/nftables/
+cp -rf ../immortalwrt/package/network/utils/nftables package/network/utils/
+# firewall4
+rm -rf ./package/network/config/firewall4
+cp -rf ../immortalwrt/package/network/config/firewall4 package/network/config/
+# patch luci
+patch -d feeds/luci -p1 -i ../../../patches/fullconenat-luci.patch
