@@ -157,6 +157,7 @@ cp -rf immortalwrt-luci/applications/luci-app-ddns-go applications/luci-app-ddns
 
 git clone --depth=1 -b openwrt-23.05 https://github.com/immortalwrt/packages immortalwrt-packages
 cp -rf immortalwrt-packages/net/alist net/alist
+cp -rf immortalwrt-packages/net/dae net/dae
 cp -rf immortalwrt-packages/net/ddns-go net/ddns-go
 
 # 修改系统文件
