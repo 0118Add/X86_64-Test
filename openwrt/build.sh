@@ -188,6 +188,7 @@ git clone https://$github/openwrt/routing master/routing --depth=1
 [ "$1" = "rc2" ] && git clone https://$github/openwrt/openwrt -b openwrt-23.05 master/openwrt-23.05 --depth=1
 
 # immortalwrt master
+git clone https://$github/immortalwrt/luci master/immortalwrt_luci --depth=1
 git clone https://$github/immortalwrt/packages master/immortalwrt_packages --depth=1
 [ "$(whoami)" = "runner" ] && endgroup
 
