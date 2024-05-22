@@ -152,11 +152,11 @@ rm -rf feeds/packages/utils/unzip
 git clone https://$github/sbwml/feeds_packages_utils_unzip feeds/packages/utils/unzip
 
 # immortalwrt
-cp -a ../master/immortalwrt_luci/applications/luci-app-alist feeds/luci/applications/luci-app-alist
-cp -a ../master/immortalwrt_luci/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
-cp -a ../master/immortalwrt_packages/net/dae feeds/packages/net/alist
-cp -a ../master/immortalwrt_packages/net/dae feeds/packages/net/dae
-cp -a ../master/immortalwrt_packages/net/dae feeds/packages/net/ddns-go
+cp -rf ../master/immortalwrt_luci/applications/luci-app-alist feeds/luci/applications/luci-app-alist
+cp -rf ../master/immortalwrt_luci/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
+cp -rf ../master/immortalwrt_packages/net/dae feeds/packages/net/alist
+cp -rf ../master/immortalwrt_packages/net/dae feeds/packages/net/dae
+cp -rf ../master/immortalwrt_packages/net/dae feeds/packages/net/ddns-go
 
 # 修改系统文件
 sed -i 's/WireGuard/WiGd状态/g' feeds/luci/protocols/luci-proto-wireguard/root/usr/share/luci/menu.d/luci-proto-wireguard.json
