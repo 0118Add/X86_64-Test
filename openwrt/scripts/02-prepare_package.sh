@@ -68,7 +68,7 @@ git clone --depth=1 -b dev https://github.com/vernesong/OpenClash package/new/Op
 git clone https://$github/sbwml/autocore-arm -b openwrt-23.05 package/new/autocore
 
 # ddns-go
-git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
+#git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
 
 # netkit-ftp
 git clone https://$github/sbwml/package_new_ftp package/new/ftp
@@ -90,7 +90,7 @@ sed -i "s/ImmortalWrt/OpenWrt/g" package/new/homeproxy/po/zh_Hans/homeproxy.po
 sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/new/homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 
 # alist
-git clone https://$github/sbwml/openwrt-alist package/new/alist
+#git clone https://$github/sbwml/openwrt-alist package/new/alist
 
 # Netdata
 rm -rf feeds/packages/admin/netdata
@@ -150,6 +150,14 @@ sed -i "s,option fps '5',option fps '25',g" feeds/packages/multimedia/mjpg-strea
 # unzip
 rm -rf feeds/packages/utils/unzip
 git clone https://$github/sbwml/feeds_packages_utils_unzip feeds/packages/utils/unzip
+
+git clone --depth=1 -b openwrt-23.05 https://github.com/immortalwrt/luci immortalwrt-luci 
+cp -rf immortalwrt-luci/applications/luci-app-alist applications/luci-app-alist
+cp -rf immortalwrt-luci/applications/luci-app-ddns-go applications/luci-app-ddns-go
+
+git clone --depth=1 -b openwrt-23.05 https://github.com/immortalwrt/packages immortalwrt-packages
+cp -rf immortalwrt-packages/net/alist net/alist
+cp -rf immortalwrt-packages/net/ddns-go net/ddns-go
 
 # 修改系统文件
 sed -i 's/WireGuard/WiGd状态/g' feeds/luci/protocols/luci-proto-wireguard/root/usr/share/luci/menu.d/luci-proto-wireguard.json
