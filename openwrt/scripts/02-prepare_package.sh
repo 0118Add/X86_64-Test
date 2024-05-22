@@ -151,12 +151,19 @@ sed -i "s,option fps '5',option fps '25',g" feeds/packages/multimedia/mjpg-strea
 rm -rf feeds/packages/utils/unzip
 git clone https://$github/sbwml/feeds_packages_utils_unzip feeds/packages/utils/unzip
 
-# immortalwrt
-cp -rf ../master/immortalwrt_luci/applications/luci-app-alist feeds/luci/applications/luci-app-alist
-cp -rf ../master/immortalwrt_luci/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
-cp -rf ../master/immortalwrt_packages/net/dae feeds/packages/net/alist
-cp -rf ../master/immortalwrt_packages/net/dae feeds/packages/net/dae
-cp -rf ../master/immortalwrt_packages/net/dae feeds/packages/net/ddns-go
-
 # 修改系统文件
 sed -i 's/WireGuard/WiGd状态/g' feeds/luci/protocols/luci-proto-wireguard/root/usr/share/luci/menu.d/luci-proto-wireguard.json
+
+# Git稀疏克隆，只克隆指定目录到本地
+function git_sparse_clone() {
+  branch="$1" repourl="$2" && shift 2
+  git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
+  repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
+  cd $repodir && git sparse-checkout set $@
+  mv -f $@ ../package
+  cd .. && rm -rf $repodir
+}
+
+git_sparse_clone openwrt-23.05 https://github.com/immortalwrt/luci applications/luci-app-alist
+git_sparse_clone openwrt-23.05 https://github.com/immortalwrt/packages net/alist
+git_sparse_clone openwrt-23.05 https://github.com/immortalwrt/packages net/dae
