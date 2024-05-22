@@ -68,7 +68,7 @@ git clone --depth=1 -b dev https://github.com/vernesong/OpenClash package/new/Op
 git clone https://$github/sbwml/autocore-arm -b openwrt-23.05 package/new/autocore
 
 # ddns-go
-#git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
+git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
 
 # netkit-ftp
 git clone https://$github/sbwml/package_new_ftp package/new/ftp
