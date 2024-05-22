@@ -151,14 +151,7 @@ sed -i "s,option fps '5',option fps '25',g" feeds/packages/multimedia/mjpg-strea
 rm -rf feeds/packages/utils/unzip
 git clone https://$github/sbwml/feeds_packages_utils_unzip feeds/packages/utils/unzip
 
-git clone -b openwrt-23.05 --depth 1 --single-branch https://github.com/immortalwrt/luci immortalwrt-luci 
-cp -rf ../immortalwrt-luci/applications/luci-app-alist package/new/
-cp -rf ../immortalwrt-luci/applications/luci-app-ddns-go package/new/
-
-git clone -b openwrt-23.05 --depth 1 --single-branch https://github.com/immortalwrt/packages immortalwrt-packages
-cp -rf ../immortalwrt-packages/net/alist package/new/
-cp -rf ../immortalwrt-packages/net/dae package/new/
-cp -rf ../immortalwrt-packages/net/ddns-go package/new/
+cp -a ../master/packages/net/dae feeds/packages/net/dae
 
 # 修改系统文件
 sed -i 's/WireGuard/WiGd状态/g' feeds/luci/protocols/luci-proto-wireguard/root/usr/share/luci/menu.d/luci-proto-wireguard.json
