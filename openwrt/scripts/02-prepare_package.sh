@@ -105,9 +105,6 @@ sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/new/luci-app
 git clone --depth 1 https://$github/sbwml/luci-theme-argon.git package/new/luci-theme-argon
 sed -i 's/Argon 主题设置/主题设置/g' package/new/luci-theme-argon/luci-app-argon-config/po/zh_Hans/argon-config.po
 
-# OpenAppFilter
-git clone https://$github/sbwml/OpenAppFilter --depth=1 package/new/OpenAppFilter
-
 # iperf3
 rm -rf feeds/packages/net/iperf3
 cp -a ../master/packages/net/iperf3 feeds/packages/net/iperf3
