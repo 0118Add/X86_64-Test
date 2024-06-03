@@ -61,7 +61,7 @@ git clone https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/l
 #git clone https://github.com/sbwml/luci-app-alist package/alist
 
 # DDNS GO
-#git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
+git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
 
 # OpenClash
 git clone --depth=1 -b dev https://github.com/vernesong/OpenClash package/OpenClash
@@ -111,7 +111,7 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/lua-m
 #sed -i '\/autoconf\/compile :=/i\$(curdir)/upx/compile := $(curdir)/ucl/compile' ./tools/Makefile
 
 # homeproxy
-#git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
+git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
 #merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-homeproxy
 
 # Release Ram
@@ -189,7 +189,8 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-
 # unblockneteasemusic
 # merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-unblockneteasemusic
 # merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/UnblockNeteaseMusic
-# sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/custom/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
+git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
+sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 
 # wechatpush
 # merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-wechatpush
