@@ -20,8 +20,8 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/mj22226/openwrt
-  REPO_BRANCH: linux-6.6
+  REPO_URL: https://github.com/openwrt/openwrt
+  REPO_BRANCH: master
   CONFIG_FILE: main.config
   DIY_SCRIPT: diy-part2.sh
   CLASH_KERNEL: amd64
