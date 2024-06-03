@@ -21,7 +21,7 @@ on:
 
 env:
   REPO_URL: https://github.com/mj22226/openwrt
-  REPO_BRANCH: kernel-6.10
+  REPO_BRANCH: linux-6.10
   CONFIG_FILE: 6.10.config
   DIY_SCRIPT: 6.10.sh
   CLASH_KERNEL: amd64
