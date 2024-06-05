@@ -53,10 +53,6 @@ git clone https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/l
 #sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt 23.05'|g" package/base-files/files/etc/openwrt_release
 #sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT'|g" package/base-files/files/etc/openwrt_release
 
-# 内核替换 kernel xxx
-#sed -i 's/LINUX_KERNEL_HASH-5.15.139 = 9c68c10dfe18e59b892e940436dea6a18d167160d55e62563cf7282244d8044e/LINUX_KERNEL_HASH-5.15.138 = af84e54164e1c01f59764ba528448ed36b377d22aafbd81b4b0cf47792ef4aaa/g' ./include/kernel-5.15
-#sed -i 's/LINUX_VERSION-5.15 = .139/LINUX_VERSION-5.15 = .138/g' ./include/kernel-5.15
-
 # alist
 #git clone https://github.com/sbwml/luci-app-alist package/alist
 
@@ -67,9 +63,6 @@ git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
 git clone --depth=1 -b dev https://github.com/vernesong/OpenClash package/OpenClash
 
 # Daed
-#svn export -q https://github.com/0118Add/luci-immortalwrt/branches/openwrt-23.05/applications/luci-app-daed feeds/luci/applications/luci-app-daed
-#ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
-#svn export -q https://github.com/0118Add/openwrt-packages/trunk/daed package/new/daed
 git clone https://github.com/QiuSimons/luci-app-daed-next package/new/luci-app-daed-next
 #git clone https://github.com/sbwml/luci-app-daed package/new/luci-app-daed
 
@@ -79,36 +72,10 @@ git clone https://github.com/QiuSimons/luci-app-daed-next package/new/luci-app-d
 # Shared for PassWall and ShadowsocksR Plus+
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
 git clone https://github.com/sbwml/openwrt_helloworld package/new/helloworld -b v5
-#merge_package https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/luci-app-ssr-plus
-#merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-passwall
-#merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-passwall2
-#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/brook
-#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/dns2socks
-#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/ipt2socks
-#merge_package https://github.com/immortalwrt/packages packages/net/kcptun
-#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/hysteria
-#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/sing-box
-#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/chinadns-ng
-#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/trojan-go
-#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/trojan-plus
-#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/microsocks
-#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/pdnsd-alt
-#merge_package https://github.com/immortalwrt/packages packages/net/redsocks2
-#merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/gn
-#git clone https://github.com/fw876/helloworld package/helloworld
 
 # bypass
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/lua-maxminddb
 #svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-bypass package/new/luci-app-bypass
-
-# vssr
-#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-vssr package/new/luci-app-vssr
-
-# UPX 可执行软件压缩
-#merge_package https://github.com/Lienol/openwrt openwrt/tools/ucl
-#merge_package https://github.com/Lienol/openwrt openwrt/tools/upx
-#sed -i '/patchelf pkgconf/i\tools-y += ucl upx' ./tools/Makefile
-#sed -i '\/autoconf\/compile :=/i\$(curdir)/upx/compile := $(curdir)/ucl/compile' ./tools/Makefile
 
 # homeproxy
 git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
@@ -133,11 +100,6 @@ sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/shar
 
 # partexp
 git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
-
-# luci-app-firewall
-#rm -rf feeds/luci/applications/luci-app-firewall
-#svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-firewall feeds/luci/applications/luci-app-firewall
-#ln -sf ../../../feeds/luci/applications/luci-app-firewall ./package/feeds/luci/luci-app-firewall
 
 # Filetransfer
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-filetransfer
@@ -176,10 +138,6 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-
 #cp -rf $GITHUB_WORKSPACE/general/default-settings package/new/default-settings
 #merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/default-settings
 
-# fullconenat
-#svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/network/utils/fullconenat-nft package/new/fullconenat-nft
-#svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/network/utils/fullconenat package/new/fullconenat
-
 # Zerotier
 # rm -rf feeds/luci/applications/luci-app-zerotier
 #rm -rf feeds/packages/net/zerotier
@@ -213,11 +171,6 @@ git clone https://github.com/sbwml/package_kernel_r8152 package/kernel/r8152
 git clone https://github.com/sbwml/package_kernel_r8101 package/kernel/r8101
 git clone https://github.com/sbwml/package_kernel_r8125 package/kernel/r8125
 git clone https://github.com/sbwml/package_kernel_r8126 package/kernel/r8126
-
-#sed -i 's/ShadowSocksR Plus+/SSR Plus+/g' package/new/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
-#sed -i 's/Frp 内网穿透/内网穿透/g' package/new/luci-app-frpc/po/zh-cn/frp.po
-#sed -i 's/解除网易云音乐播放限制/音乐解锁/g' feeds/luci/applications/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
-#sed -i 's/UPnP/UPnP设置/g' feeds/luci/applications/luci-app-upnp/po/zh_Hans/upnp.po
 
 # 修改系统文件
 #curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
