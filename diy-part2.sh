@@ -85,7 +85,7 @@ git clone https://github.com/QiuSimons/luci-app-daed-next package/new/luci-app-d
 #git clone https://github.com/8688Add/luci-app-dae package/luci-app-dae
 
 # Shared for PassWall and ShadowsocksR Plus+
-rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
+rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,hysteria}
 git clone https://github.com/sbwml/openwrt_helloworld package/new/helloworld -b v5
 #merge_package https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/luci-app-ssr-plus
 #merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-passwall
