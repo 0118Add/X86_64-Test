@@ -28,7 +28,7 @@ env:
   CACHE_TOOLCHAIN: false
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: X86_64-6.10
+  FIRMWARE_TAG: X86_64-6.9
   TZ: Asia/Shanghai
 
 jobs:
