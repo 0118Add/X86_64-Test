@@ -34,8 +34,8 @@ function merge_feed(){
 rm -rf package/custom; mkdir package/custom
 
 # 删除插件
-rm -rf package/libs/mbedtls
-cp -rf $GITHUB_WORKSPACE/general/mbedtls package/libs/mbedtls
+#rm -rf package/libs/mbedtls
+#cp -rf $GITHUB_WORKSPACE/general/mbedtls package/libs/mbedtls
 
 # Modify default IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
@@ -79,7 +79,7 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' packag
 git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-openclash
 
 # Daed
-git clone https://github.com/QiuSimons/luci-app-daed-next package/new/luci-app-daed-next
+#git clone https://github.com/QiuSimons/luci-app-daed-next package/new/luci-app-daed-next
 #git clone https://github.com/sbwml/luci-app-daed package/new/luci-app-daed
 
 # Dae
@@ -106,22 +106,11 @@ git clone https://github.com/sbwml/openwrt_helloworld package/new/helloworld -b 
 #merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/gn
 #git clone https://github.com/fw876/helloworld package/helloworld
 
-# bypass
+# lua-maxminddb
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/lua-maxminddb
-#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-bypass package/new/luci-app-bypass
-
-# vssr
-#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-vssr package/new/luci-app-vssr
-
-# UPX 可执行软件压缩
-#merge_package https://github.com/Lienol/openwrt openwrt/tools/ucl
-#merge_package https://github.com/Lienol/openwrt openwrt/tools/upx
-#sed -i '/patchelf pkgconf/i\tools-y += ucl upx' ./tools/Makefile
-#sed -i '\/autoconf\/compile :=/i\$(curdir)/upx/compile := $(curdir)/ucl/compile' ./tools/Makefile
 
 # homeproxy
-#git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
-#merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-homeproxy
+git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
 
 # Release Ram
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-ramfree
@@ -129,24 +118,13 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-
 # Scheduled Reboot
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-autoreboot
 
-# frpc
-#rm -rf feeds/luci/applications/luci-app-frpc
-#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-frpc feeds/luci/applications/luci-app-frpc
-#ln -sf ../../../feeds/luci/applications/luci-app-frpc ./package/feeds/luci/luci-app-frpc
-#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-frpc package/new/luci-app-frpc 
-
-# ttyd
+ # ttyd
 #rm -rf feeds/luci/applications/luci-app-ttyd
 sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
 #merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-ttyd
 
 # partexp
 git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
-
-# luci-app-firewall
-#rm -rf feeds/luci/applications/luci-app-firewall
-#svn export -q https://github.com/immortalwrt/luci/branches/openwrt-23.05/applications/luci-app-firewall feeds/luci/applications/luci-app-firewall
-#ln -sf ../../../feeds/luci/applications/luci-app-firewall ./package/feeds/luci/luci-app-firewall
 
 # Filetransfer
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-filetransfer
@@ -181,14 +159,6 @@ ln -sf ../../../feeds/packages/net/dae ./package/feeds/packages/dae
 #cp -rf immortalwrt-packages/net/daed feeds/packages/net/daed
 #ln -sf ../../../feeds/packages/net/daed ./package/feeds/packages/daed
 
-# default settings and translation
-#cp -rf $GITHUB_WORKSPACE/general/default-settings package/new/default-settings
-#merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/default-settings
-
-# fullconenat
-#svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/network/utils/fullconenat-nft package/new/fullconenat-nft
-#svn export -q https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/network/utils/fullconenat package/new/fullconenat-nft
-
 # Zerotier
 rm -rf feeds/luci/applications/luci-app-zerotier
 #rm -rf feeds/packages/net/zerotier
@@ -220,15 +190,10 @@ git clone https://github.com/sbwml/package_kernel_r8101 package/kernel/r8101
 git clone https://github.com/sbwml/package_kernel_r8125 package/kernel/r8125
 git clone https://github.com/sbwml/package_kernel_r8126 package/kernel/r8126
 
-#sed -i 's/ShadowSocksR Plus+/SSR Plus+/g' package/new/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
-#sed -i 's/Frp 内网穿透/内网穿透/g' package/new/luci-app-frpc/po/zh-cn/frp.po
-#sed -i 's/解除网易云音乐播放限制/音乐解锁/g' feeds/luci/applications/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
-#sed -i 's/UPnP/UPnP设置/g' feeds/luci/applications/luci-app-upnp/po/zh_Hans/upnp.po
-
 # 修改系统文件
 #curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25_storage.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/25_storage.js
 curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/30_network.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/30_network.js
 
 # 替换文件
-wget -O ./package/kernel/linux/modules/netsupport.mk https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/netsupport.mk
+#wget -O ./package/kernel/linux/modules/netsupport.mk https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/netsupport.mk
