@@ -22,8 +22,8 @@ on:
 env:
   REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: openwrt-23.05
-  CONFIG_FILE: 23.05.config
-  DIY_SCRIPT: diy-part02.sh
+  CONFIG_FILE: configs/23.05.config
+  DIY_SCRIPT: custom/diy-part02.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: false
   UPLOAD_BIN_DIR: false
