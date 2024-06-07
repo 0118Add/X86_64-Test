@@ -104,6 +104,7 @@ git clone https://github.com/sbwml/openwrt_helloworld package/new/helloworld -b 
 #merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/pdnsd-alt
 #merge_package https://github.com/immortalwrt/packages packages/net/redsocks2
 #merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/gn
+sed -i 's/ +libopenssl-legacy//g' package/new/helloworld/shadowsocksr-libev/Makefile
 sed -i 's/ShadowSocksR Plus+/SSR Plus+/g' package/new/helloworld/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 
 # lua-maxminddb
