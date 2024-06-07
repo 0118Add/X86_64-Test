@@ -75,23 +75,15 @@ git clone https://github.com/sbwml/openwrt_helloworld package/new/helloworld -b 
 
 # bypass
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/lua-maxminddb
-#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-bypass package/new/luci-app-bypass
 
 # homeproxy
 git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
-#merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-homeproxy
 
 # Release Ram
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-ramfree
 
 # Scheduled Reboot
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-autoreboot
-
-# frpc
-#rm -rf feeds/luci/applications/luci-app-frpc
-#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-frpc feeds/luci/applications/luci-app-frpc
-#ln -sf ../../../feeds/luci/applications/luci-app-frpc ./package/feeds/luci/luci-app-frpc
-#svn export -q https://github.com/kiddin9/openwrt-packages/trunk/luci-app-frpc package/new/luci-app-frpc 
 
 # ttyd
 #rm -rf feeds/luci/applications/luci-app-ttyd
@@ -106,37 +98,18 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-lib-fs
 
 # AutoCore
-# rm -rf feeds/packages/utils/coremark
-#merge_package https://github.com/immortalwrt/packages packages/utils/coremark
-# merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/autocore
-# merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/utils/mhz
-# rm -rf feeds/luci/modules/luci-base
-# rm -rf feeds/luci/modules/luci-mod-status
+rm -rf feeds/packages/utils/coremark
+merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/autocore
+merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/utils/mhz
+rm -rf feeds/luci/modules/luci-base
+rm -rf feeds/luci/modules/luci-mod-status
 # 克隆immortalwrt-luci仓库
-# git clone --depth=1 -b master https://github.com/immortalwrt/luci.git immortalwrt-luci
-# cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
-# cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
-#cp -rf immortalwrt-luci/applications/luci-app-alist feeds/luci/applications/luci-app-alist
-#ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci-app-alist
-# cp -rf immortalwrt-luci/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
-# ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
-#cp -rf immortalwrt-luci/applications/luci-app-daed feeds/luci/applications/luci-app-daed
-#ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
+git clone --depth=1 -b master https://github.com/immortalwrt/luci.git immortalwrt-luci
+cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
+cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
 # 克隆immortalwrt-packages仓库
-# git clone --depth=1 -b master https://github.com/immortalwrt/packages.git immortalwrt-packages
-# cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
-#cp -rf immortalwrt-packages/net/alist feeds/packages/net/alist
-#ln -sf ../../../feeds/packages/net/alist ./package/feeds/packages/alist
-# cp -rf immortalwrt-packages/net/ddns-go feeds/packages/net/ddns-go
-# ln -sf ../../../feeds/packages/net/ddns-go ./package/feeds/packages/ddns-go
-# cp -rf immortalwrt-packages/net/dae feeds/packages/net/dae
-# ln -sf ../../../feeds/packages/net/dae ./package/feeds/packages/dae
-#cp -rf immortalwrt-packages/net/daed feeds/packages/net/daed
-#ln -sf ../../../feeds/packages/net/daed ./package/feeds/packages/daed
-
-# default settings and translation
-#cp -rf $GITHUB_WORKSPACE/general/default-settings package/new/default-settings
-#merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/default-settings
+git clone --depth=1 -b master https://github.com/immortalwrt/packages.git immortalwrt-packages
+cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
 
 # Zerotier
 # rm -rf feeds/luci/applications/luci-app-zerotier
