@@ -73,7 +73,7 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' packag
 #git clone https://github.com/sbwml/luci-app-alist package/alist
 
 # DDNS GO
-#git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
+git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
 
 # OpenClash
 git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-openclash
@@ -104,7 +104,7 @@ git clone https://github.com/sbwml/openwrt_helloworld package/new/helloworld -b 
 #merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/pdnsd-alt
 #merge_package https://github.com/immortalwrt/packages packages/net/redsocks2
 #merge_package https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages/gn
-#git clone https://github.com/fw876/helloworld package/helloworld
+sed -i 's/ShadowSocksR Plus+/SSR Plus+/g' package/new/helloworld/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 
 # lua-maxminddb
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/lua-maxminddb
@@ -125,6 +125,7 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/lua-m
 
 # partexp
 git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
+sed -i 's/一键分区扩容/分区扩容/g' package/luci-app-partexp/po/zh-cn/partexp.po
 
 # Filetransfer
 #merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-filetransfer
