@@ -34,8 +34,8 @@ function merge_feed(){
 rm -rf package/custom; mkdir package/custom
 
 # 删除插件
-#rm -rf package/libs/mbedtls
-#cp -rf $GITHUB_WORKSPACE/general/mbedtls package/libs/mbedtls
+rm -rf package/feeds/packages/glib2
+cp -rf $GITHUB_WORKSPACE/general/mbedtls package/feeds/packages/glib2
 
 # Modify default IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
