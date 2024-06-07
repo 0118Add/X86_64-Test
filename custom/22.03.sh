@@ -110,90 +110,36 @@ git clone https://github.com/sbwml/openwrt_helloworld package/new/helloworld -b 
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/lua-maxminddb
 
 # homeproxy
-git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
+#git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
 
 # Release Ram
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-ramfree
+#merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-ramfree
 
 # Scheduled Reboot
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-autoreboot
+#merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-autoreboot
 
  # ttyd
 #rm -rf feeds/luci/applications/luci-app-ttyd
-sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
+#sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
 #merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-ttyd
 
 # partexp
 git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 
 # Filetransfer
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-filetransfer
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-lib-fs
-
-# AutoCore
-rm -rf feeds/packages/utils/coremark
-#merge_package https://github.com/immortalwrt/packages packages/utils/coremark
-merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/autocore
-merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/utils/mhz
-rm -rf feeds/luci/modules/luci-base
-rm -rf feeds/luci/modules/luci-mod-status
-# 克隆immortalwrt-luci仓库
-git clone --depth=1 -b master https://github.com/immortalwrt/luci.git immortalwrt-luci
-cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
-cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
-#cp -rf immortalwrt-luci/applications/luci-app-alist feeds/luci/applications/luci-app-alist
-#ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci-app-alist
-cp -rf immortalwrt-luci/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
-ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
-#cp -rf immortalwrt-luci/applications/luci-app-daed feeds/luci/applications/luci-app-daed
-#ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
-# 克隆immortalwrt-packages仓库
-git clone --depth=1 -b master https://github.com/immortalwrt/packages.git immortalwrt-packages
-cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
-#cp -rf immortalwrt-packages/net/alist feeds/packages/net/alist
-#ln -sf ../../../feeds/packages/net/alist ./package/feeds/packages/alist
-cp -rf immortalwrt-packages/net/ddns-go feeds/packages/net/ddns-go
-ln -sf ../../../feeds/packages/net/ddns-go ./package/feeds/packages/ddns-go
-cp -rf immortalwrt-packages/net/dae feeds/packages/net/dae
-ln -sf ../../../feeds/packages/net/dae ./package/feeds/packages/dae
-#cp -rf immortalwrt-packages/net/daed feeds/packages/net/daed
-#ln -sf ../../../feeds/packages/net/daed ./package/feeds/packages/daed
+#merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-filetransfer
+#merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-lib-fs
 
 # Zerotier
-rm -rf feeds/luci/applications/luci-app-zerotier
+#rm -rf feeds/luci/applications/luci-app-zerotier
 #rm -rf feeds/packages/net/zerotier
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-zerotier
+#merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-zerotier
 #sed -i 's/vpn/services/g' package/custom/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 
 # unblockneteasemusic
-git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
-sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
+git clone -b master https://github.com/0118Add/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
+sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/luasrc/controller/unblockneteasemusic.lua
 
 # wechatpush
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-wechatpush
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/wrtbwmon
-
-# turboacc
-git clone https://github.com/chenmozhijin/turboacc package/new/luci-app-turboacc
-git clone https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-fullcone
-#git clone --depth=1 -b package https://github.com/chenmozhijin/turboacc package/new/turboacc
-curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
-sed -i 's/Turbo ACC 网络加速/网络加速/g' package/new/luci-app-turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
-
-# net.netfilter.nf_conntrack_max from 16384 to 65535
-sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65535#g' package/kernel/linux/files/sysctl-nf-conntrack.conf
-
-# Realtek driver - R8168 & R8125 & R8126 & R8152 & R8101
-git clone https://github.com/sbwml/package_kernel_r8168 package/kernel/r8168
-git clone https://github.com/sbwml/package_kernel_r8152 package/kernel/r8152
-git clone https://github.com/sbwml/package_kernel_r8101 package/kernel/r8101
-git clone https://github.com/sbwml/package_kernel_r8125 package/kernel/r8125
-git clone https://github.com/sbwml/package_kernel_r8126 package/kernel/r8126
-
-# 修改系统文件
-#curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
-curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25_storage.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/25_storage.js
-curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/30_network.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/30_network.js
-
-# 替换文件
-#wget -O ./package/kernel/linux/modules/netsupport.mk https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/netsupport.mk
+#merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-wechatpush
+#merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/wrtbwmon
