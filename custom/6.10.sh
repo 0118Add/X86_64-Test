@@ -127,12 +127,19 @@ sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unb
 # merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-wechatpush
 # merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/wrtbwmon
 
-# turboacc
-#git clone https://github.com/chenmozhijin/turboacc package/new/luci-app-turboacc
-#git clone https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-fullcone
-#git clone --depth=1 -b package https://github.com/chenmozhijin/turboacc package/new/turboacc
-#curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
-#sed -i 's/Turbo ACC 网络加速/网络加速/g' package/new/luci-app-turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
+# AutoCore
+rm -rf feeds/packages/utils/coremark
+merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/autocore
+merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/utils/mhz
+rm -rf feeds/luci/modules/luci-base
+rm -rf feeds/luci/modules/luci-mod-status
+# 克隆immortalwrt-luci仓库
+git clone --depth=1 -b master https://github.com/immortalwrt/luci.git immortalwrt-luci
+cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
+cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
+# 克隆immortalwrt-packages仓库
+git clone --depth=1 -b master https://github.com/immortalwrt/packages.git immortalwrt-packages
+cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
 
 # net.netfilter.nf_conntrack_max from 16384 to 65535
 sed -i 's/net.netfilter.nf_conntrack_max=.*/net.netfilter.nf_conntrack_max=65535/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
