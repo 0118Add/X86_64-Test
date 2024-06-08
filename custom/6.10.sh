@@ -99,12 +99,9 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-
 
 # AutoCore
 rm -rf feeds/packages/utils/coremark
-git clone --depth=1 -b master https://github.com/immortalwrt/immortalwrt immortalwrt-immortalwrt
-cp -rf immortalwrt-immortalwrt/package/emortal/autocore package/emortal/autocore
-cp -rf immortalwrt-immortalwrt/package/utils/mhz package/utils/mhz
 #merge_package https://github.com/immortalwrt/packages packages/utils/coremark
-#merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/autocore
-#merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/utils/mhz
+merge_package https://github.com/0118Add/immortalwrt immortalwrt/package/emortal/autocore
+merge_package https://github.com/0118Add/immortalwrt immortalwrt/package/utils/mhz
 rm -rf feeds/luci/modules/luci-base
 rm -rf feeds/luci/modules/luci-mod-status
 # 克隆immortalwrt-luci仓库
