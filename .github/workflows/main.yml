@@ -59,7 +59,7 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo rm -rf /usr/share/dotnet /etc/apt/sources.list.d /usr/local/lib/android 2>/dev/null
-        sudo -E apt -y purge azure-cli ghc* zulu* llvm* firefox google* dotnet* powershell openjdk* mongodb* moby* || true
+        sudo -E apt -y purge purge firefox clang* gcc-12 gcc-14 ghc* google* llvm* mono* mongo* mysql* php* || true
         [[ -n "${AGENT_TOOLSDIRECTORY}" ]] && sudo rm -rf "${AGENT_TOOLSDIRECTORY}"
         sudo -E apt update
         sudo -E apt -y install clang* $(curl -fsSL https://is.gd/depends_ubuntu_2404)
