@@ -33,7 +33,7 @@ env:
 
 jobs:
   Build:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
 
     steps:
     - name: Checkout
@@ -58,14 +58,15 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        sudo rm -rf /usr/share/dotnet /etc/apt/sources.list.d /usr/local/lib/android 2>/dev/null
-        sudo -E apt -y purge purge firefox clang* gcc-12 gcc-14 ghc* google* llvm* mono* mongo* mysql* php* || true
-        [[ -n "${AGENT_TOOLSDIRECTORY}" ]] && sudo rm -rf "${AGENT_TOOLSDIRECTORY}"
+        docker rmi `docker images -q`
+        sudo -E rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
+        sudo -E apt -y purge azure-cli* docker* ghc* zulu* llvm* firefox google* dotnet* powershell* openjdk* mysql* php* mongodb* dotnet* snap* aspnetcore*
+        [ -n "$AGENT_TOOLSDIRECTORY" ] && sudo rm -rf "$AGENT_TOOLSDIRECTORY"
         sudo -E apt update
-        sudo -E apt -y install clang* $(curl -fsSL https://is.gd/depends_ubuntu_2404)
+        sudo -E apt -y install rename libfuse-dev clang-13 $(curl -fsSL https://is.gd/depends_ubuntu_2204)
         sudo -E apt -y autoremove --purge
         sudo -E systemctl daemon-reload
-        sudo -E apt clean && sudo -E apt autoclean
+        sudo -E apt clean
         sudo timedatectl set-timezone "$TZ"    
         sudo mkdir -p /mnt/workdir
         sudo chown $USER:$GROUPS /mnt/workdir
