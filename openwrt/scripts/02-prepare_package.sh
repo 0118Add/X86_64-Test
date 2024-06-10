@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 # 更改固件版本信息
-sed -i "s|DISTRIB_REVISION='.*'|DISTRIB_REVISION='LuCI openwrt-23.05'|g" package/base-files/files/etc/openwrt_release
+#sed -i "s|DISTRIB_REVISION='.*'|DISTRIB_REVISION='LuCI openwrt-23.05'|g" package/base-files/files/etc/openwrt_release
 #sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt 23.05'|g" package/base-files/files/etc/openwrt_release
 
 # golang 1.22
