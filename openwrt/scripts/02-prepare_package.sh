@@ -78,12 +78,15 @@ git clone https://$github/sbwml/openwrt_helloworld package/new/helloworld -b v5
 
 # DAED
 #git clone https://$github/sbwml/luci-app-daed package/new/daed
-git clone https://github.com/QiuSimons/luci-app-daed-next package/new/daed-next
+git clone https://$github/QiuSimons/luci-app-daed-next package/new/daed-next
 
 # immortalwrt homeproxy
 git clone https://$github/immortalwrt/homeproxy package/new/homeproxy
 sed -i "s/ImmortalWrt/OpenWrt/g" package/new/homeproxy/po/zh_Hans/homeproxy.po
 sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/new/homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
+
+# mihomo
+git clone https://$github/JohnsonRan/OpenWrt-mihomo  package/new/openwrt-mihomo
 
 # alist
 #git clone https://$github/sbwml/openwrt-alist package/new/alist
@@ -108,7 +111,7 @@ sed -i "s/D_GNU_SOURCE/D_GNU_SOURCE -funroll-loops/g" feeds/packages/net/iperf3/
 
 # custom packages
 rm -rf feeds/packages/utils/coremark
-git clone https://github.com/8688Add/openwrt_pkgs package/new/custom --depth=1
+git clone https://$github/8688Add/openwrt_pkgs package/new/custom --depth=1
 # coremark - prebuilt with gcc15
 if [ "$platform" = "rk3568" ]; then
     curl -s https://$mirror/openwrt/patch/coremark/coremark.aarch64-4-threads > package/new/custom/coremark/src/musl/coremark.aarch64
