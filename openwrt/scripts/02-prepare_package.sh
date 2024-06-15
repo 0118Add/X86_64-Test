@@ -82,7 +82,7 @@ git clone https://$github/QiuSimons/luci-app-daed-next package/new/daed-next
 
 # immortalwrt homeproxy
 git clone https://$github/immortalwrt/homeproxy package/new/homeproxy
-#sed -i "s/ImmortalWrt/OpenWrt/g" package/new/homeproxy/po/zh_Hans/homeproxy.po
+sed -i "s/ImmortalWrt/OpenWrt/g" package/new/homeproxy/po/zh_Hans/homeproxy.po
 #sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/new/homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 
 # mihomo
