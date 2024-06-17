@@ -77,6 +77,8 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/lua-m
 
 # homeproxy
 git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
+sed -i "s/ImmortalWrt/OpenWrt/g" package/homeproxy/po/zh_Hans/homeproxy.po
+sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 
 # Release Ram
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-ramfree
