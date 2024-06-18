@@ -43,7 +43,7 @@ rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
 git clone https://$github/sbwml/openwrt_helloworld package/new/helloworld -b v5
 
 # DAED
-#git clone https://$github/sbwml/luci-app-daed package/new/daed
+#git clone https://$github/QiuSimons/luci-app-daed package/new/daed
 git clone https://$github/QiuSimons/luci-app-daed-next package/new/daed-next
 
 # immortalwrt homeproxy
