@@ -77,7 +77,7 @@ sed -i "s/D_GNU_SOURCE/D_GNU_SOURCE -funroll-loops/g" feeds/packages/net/iperf3/
 rm -rf feeds/packages/utils/coremark
 rm -rf feeds/packages/net/zerotier
 git clone https://$github/8688Add/openwrt_pkgs package/new/custom --depth=1
-rm -rf package/new/luci-app-zerotier
+rm -rf package/new/custom/luci-app-zerotier
 # coremark - prebuilt with gcc15
 if [ "$platform" = "rk3568" ]; then
     curl -s https://$mirror/openwrt/patch/coremark/coremark.aarch64-4-threads > package/new/custom/coremark/src/musl/coremark.aarch64
@@ -117,5 +117,7 @@ cp -rf immortalwrt-packages/net/dae feeds/packages/net/dae
 ln -sf ../../../feeds/packages/net/dae ./package/feeds/packages/dae
 cp -rf immortalwrt-packages/net/daed feeds/packages/net/daed
 ln -sf ../../../feeds/packages/net/daed ./package/feeds/packages/daed
+cp -rf immortalwrt-packages/net/zerotier feeds/packages/net/zerotier
+ln -sf ../../../feeds/packages/net/zerotier ./package/feeds/packages/zerotier
 cp -rf immortalwrt-packages/libs/libcron feeds/packages/libs/libcron
 ln -sf ../../../feeds/packages/libs/libcron ./package/feeds/packages/libcron
