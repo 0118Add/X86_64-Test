@@ -122,5 +122,5 @@ cp -rf immortalwrt-packages/libs/libcron feeds/packages/libs/libcron
 ln -sf ../../../feeds/packages/libs/libcron ./package/feeds/packages/libcron
 
 # Zerotier
-git clone -b master --depth 1 --single-branch https://github.com/immortalwrt/luci immortalwrt-luci
-cp -rf ../immortalwrt-luci/applications/luci-app-zerotier package/new/
+git clone -b master --depth 1 --single-branch https://github.com/immortalwrt/luci immwrt-luci
+cp -rf ../immwrt-luci/applications/luci-app-zerotier package/new/
