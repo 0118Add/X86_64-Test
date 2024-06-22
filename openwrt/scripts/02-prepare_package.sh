@@ -77,6 +77,7 @@ sed -i "s/D_GNU_SOURCE/D_GNU_SOURCE -funroll-loops/g" feeds/packages/net/iperf3/
 rm -rf feeds/packages/utils/coremark
 rm -rf feeds/packages/net/zerotier
 git clone https://$github/8688Add/openwrt_pkgs package/new/custom --depth=1
+rm -rf package/new/luci-app-zerotier
 # coremark - prebuilt with gcc15
 if [ "$platform" = "rk3568" ]; then
     curl -s https://$mirror/openwrt/patch/coremark/coremark.aarch64-4-threads > package/new/custom/coremark/src/musl/coremark.aarch64
@@ -105,6 +106,7 @@ cp -rf immortalwrt-luci/applications/luci-app-daed feeds/luci/applications/luci-
 ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
 cp -rf immortalwrt-luci/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
 ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
+cp -rf immortalwrt-luci/luci/applications/luci-app-zerotier luci/applications/luci-app-zerotier
 # 克隆immortalwrt-packages仓库
 git clone --depth=1 -b openwrt-23.05 https://github.com/immortalwrt/packages.git immortalwrt-packages
 #cp -rf immortalwrt-packages/net/alist feeds/packages/net/alist
