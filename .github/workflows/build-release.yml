@@ -15,9 +15,6 @@ jobs:
       fail-fast: false
       matrix:
         model:
-          #- armv8
-          #- nanopi-r4s
-          #- nanopi-r5s
           - x86_64
         tag:
           - type: rc2
@@ -45,8 +42,6 @@ jobs:
 
     - name: Free disk space
       run: |
-        sudo rm -rf /etc/apt/sources.list.d
-        sudo bash -c "curl -s https://us.cooluc.com/ubuntu-apt/sources-24.04.list > /etc/apt/sources.list"
         sudo swapoff -a
         sudo rm -f /swapfile /mnt/swapfile
         sudo docker image prune -a -f
@@ -66,8 +61,8 @@ jobs:
         sudo chmod 600 /mnt/swapfile
         sudo mkswap /mnt/swapfile
         sudo swapon /mnt/swapfile
-        free -h | grep -i swap    
-    
+        free -h | grep -i swap
+
     - name: Build System Setup
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -96,8 +91,8 @@ jobs:
         sudo mkdir -p /builder
         sudo mount /dev/github/runner /builder
         sudo chown -R runner:runner /builder
-        df -Th    
-    
+        df -Th
+
     - name: Install LLVM
       run: |
         export PATH="/opt/clang/bin:$PATH"
@@ -114,10 +109,13 @@ jobs:
       run: |
         export PATH="/opt/clang/bin:$PATH"
         export GITHUB_REPO=${{ github.repository }}
-        BUILD_FAST=y ENABLE_LTO=y ENABLE_LRNG=y ENABLE_BPF=y USE_GCC15=y KERNEL_CLANG_LTO=y USE_MOLD=y bash <(curl -sS https://raw.githubusercontent.com/${{ github.repository }}/master/openwrt/build.sh) ${{ matrix.tag.type }} ${{ matrix.model }}
+        export LAN=10.0.0.1
+        export KERNEL_CLANG_LTO=y USE_GCC15=y ENABLE_LTO=y USE_MOLD=y ENABLE_BPF=y ENABLE_LRNG=y BUILD_FAST=y
+        bash <(curl -sS https://raw.githubusercontent.com/${{ github.repository }}/master/openwrt/build.sh) ${{ matrix.tag.type }} ${{ matrix.model }}
         cd openwrt
         tags=$(git describe --abbrev=0 --tags)
-        echo "latest_release=$tags" >>$GITHUB_ENV
+        kernel=$(curl -s "https://raw.githubusercontent.com/${{ github.repository }}/master/tags/kernel-6.6" | awk -F"LINUX_KERNEL_HASH-| =" '/LINUX_KERNEL_HASH/{print $2}')
+        echo "latest_release=$tags-k$kernel" >>$GITHUB_ENV
 
     - name: Extensive logs after a failed compilation
       working-directory: /builder
@@ -170,7 +168,7 @@ jobs:
       continue-on-error: true
       uses: sbwml/release-action@main
       with:
-        name: OpenWRT-${{ env.latest_release }}
+        name: OpenWrt-${{ env.latest_release }}
         allowUpdates: true
         tag: ${{ env.latest_release }}
         commit: master
