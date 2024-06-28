@@ -268,7 +268,6 @@ bash 03-convert_translation.sh
 bash 04-fix_kmod.sh
 bash 05-fix-source.sh
 bash 10-customize-config.sh
-
 [ "$(whoami)" = "runner" ] && endgroup
 
 if [ "$USE_GCC14" = "y" ] || [ "$USE_GCC15" = "y" ]; then
