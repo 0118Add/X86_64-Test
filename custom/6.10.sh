@@ -113,10 +113,12 @@ git clone --depth=1 -b master https://github.com/immortalwrt/luci.git immortalwr
 cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
 cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
 cp -rf immortalwrt-luci/applications/luci-app-daed feeds/luci/applications/luci-app-daed
+ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
 # 克隆immortalwrt-packages仓库
 git clone --depth=1 -b master https://github.com/immortalwrt/packages.git immortalwrt-packages
 cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
 cp -rf immortalwrt-packages/net/daed feeds/packages/net/daed
+ln -sf ../../../feeds/packages/net/daed ./package/feeds/packages/daed
 
 # unblockneteasemusic
 # merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-unblockneteasemusic
