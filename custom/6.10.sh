@@ -50,7 +50,7 @@ git clone https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/l
 
 # 更改固件版本信息
 #sed -i "s|DISTRIB_REVISION='.*'|DISTRIB_REVISION=''|g" package/base-files/files/etc/openwrt_release
-sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt %V'|g" package/base-files/files/etc/openwrt_release
+#sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt %V'|g" package/base-files/files/etc/openwrt_release
 
 # alist
 #git clone https://github.com/sbwml/luci-app-alist package/alist
@@ -105,6 +105,7 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-
 rm -rf feeds/packages/utils/coremark
 #merge_package https://github.com/immortalwrt/packages packages/utils/coremark
 merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/autocore
+merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/default-settings
 merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/utils/mhz
 rm -rf feeds/luci/modules/luci-base
 rm -rf feeds/luci/modules/luci-mod-status
