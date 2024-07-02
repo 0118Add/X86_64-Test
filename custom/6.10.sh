@@ -62,8 +62,8 @@ git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
 git clone --depth=1 -b dev https://github.com/vernesong/OpenClash package/OpenClash
 
 # Daed
-git clone https://github.com/QiuSimons/luci-app-daed-next package/new/luci-app-daed-next
-#git clone https://github.com/sbwml/luci-app-daed package/new/luci-app-daed
+#git clone https://github.com/QiuSimons/luci-app-daed-next package/new/luci-app-daed-next
+git clone https://github.com/QiuSimons/luci-app-daed package/luci-app-daed
 
 # Dae
 #git clone https://github.com/8688Add/luci-app-dae package/luci-app-dae
@@ -112,12 +112,9 @@ rm -rf feeds/luci/modules/luci-mod-status
 git clone --depth=1 -b master https://github.com/immortalwrt/luci.git immortalwrt-luci
 cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
 cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
-merge_package https://github.com/immortalwrt/luci luci/applications/luci-app-daed
 # 克隆immortalwrt-packages仓库
 git clone --depth=1 -b master https://github.com/immortalwrt/packages.git immortalwrt-packages
 cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
-cp -rf immortalwrt-packages/net/daed feeds/packages/net/daed
-merge_package https://github.com/immortalwrt/packages packages/net/daed
 
 # unblockneteasemusic
 # merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-unblockneteasemusic
