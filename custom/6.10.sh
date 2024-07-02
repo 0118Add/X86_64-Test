@@ -63,7 +63,7 @@ git clone --depth=1 -b dev https://github.com/vernesong/OpenClash package/OpenCl
 
 # Daed
 #git clone https://github.com/QiuSimons/luci-app-daed-next package/new/luci-app-daed-next
-git clone https://github.com/QiuSimons/luci-app-daed package/luci-app-daed
+#git clone https://github.com/QiuSimons/luci-app-daed package/luci-app-daed
 
 # Dae
 #git clone https://github.com/8688Add/luci-app-dae package/luci-app-dae
