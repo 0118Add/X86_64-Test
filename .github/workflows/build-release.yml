@@ -1,3 +1,5 @@
+name: Build releases
+
 on:
   workflow_dispatch:
     inputs:
