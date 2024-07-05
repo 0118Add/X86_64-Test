@@ -81,7 +81,14 @@ git clone --depth=1 https://github.com/muink/luci-app-homeproxy package/luci-app
 #sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 
 # mihomo
-git clone https://github.com/morytyann/OpenWrt-mihomo  package/openwrt-mihomo
+git clone https://github.com/morytyann/OpenWrt-mihomo  package/new/openwrt-mihomo
+mkdir -p /builder/openwrt/files/etc/mihomo/run/ui
+curl -Lso /builder/openwrt/files/etc/mihomo/run/Country.mmdb https://github.com/NobyDa/geoip/raw/release/Private-GeoIP-CN.mmdb
+curl -Lso /builder/openwrt/files/etc/mihomo/run/GeoIP.dat https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat
+curl -Lso /builder/openwrt/files/etc/mihomo/run/GeoSite.dat https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
+curl -Lso metacubexd-gh-pages.tar.gz https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.tar.gz
+tar zxf metacubexd-gh-pages.tar.gz
+mv metacubexd-gh-pages /builder/openwrt/files/etc/mihomo/run/ui/metacubexd
 
 # Release Ram
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-ramfree
