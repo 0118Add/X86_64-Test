@@ -101,6 +101,9 @@ git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-filetransfer
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-lib-fs
 
+# zerotier
+merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/luci-app-zerotier
+
 # AutoCore
 #rm -rf feeds/packages/utils/coremark
 #merge_package https://github.com/immortalwrt/packages packages/utils/coremark
@@ -132,7 +135,7 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' packag
 
 # 修改系统文件
 #curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
-#curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25_storage.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/25_storage.js
+curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25_storage.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/25_storage.js
 sed -i 's/WireGuard/WiGd状态/g' feeds/luci/protocols/luci-proto-wireguard/root/usr/share/luci/menu.d/luci-proto-wireguard.json
 rm -rf feeds/packages/lang/ruby
 cp -rf $GITHUB_WORKSPACE/general/ruby feeds/packages/lang/ruby
