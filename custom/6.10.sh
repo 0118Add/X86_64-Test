@@ -102,19 +102,19 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-lib-fs
 
 # AutoCore
-rm -rf feeds/packages/utils/coremark
+#rm -rf feeds/packages/utils/coremark
 #merge_package https://github.com/immortalwrt/packages packages/utils/coremark
-merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/autocore
-merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/utils/mhz
-rm -rf feeds/luci/modules/luci-base
-rm -rf feeds/luci/modules/luci-mod-status
+#merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/autocore
+#merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/utils/mhz
+#rm -rf feeds/luci/modules/luci-base
+#rm -rf feeds/luci/modules/luci-mod-status
 # 克隆immortalwrt-luci仓库
-git clone --depth=1 -b master https://github.com/immortalwrt/luci.git immortalwrt-luci
-cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
-cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
+#git clone --depth=1 -b master https://github.com/immortalwrt/luci.git immortalwrt-luci
+#cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
+#cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
 # 克隆immortalwrt-packages仓库
-git clone --depth=1 -b master https://github.com/immortalwrt/packages.git immortalwrt-packages
-cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
+#git clone --depth=1 -b master https://github.com/immortalwrt/packages.git immortalwrt-packages
+#cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
 
 # unblockneteasemusic
 # merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-unblockneteasemusic
@@ -132,7 +132,7 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' packag
 
 # 修改系统文件
 #curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
-curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25_storage.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/25_storage.js
+#curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25_storage.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/25_storage.js
 sed -i 's/WireGuard/WiGd状态/g' feeds/luci/protocols/luci-proto-wireguard/root/usr/share/luci/menu.d/luci-proto-wireguard.json
 
 # comment out the following line to restore the full description
