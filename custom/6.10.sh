@@ -74,9 +74,10 @@ git clone https://github.com/sbwml/openwrt_helloworld package/new/helloworld -b 
 rm -rf package/new/helloworld/{luci-app-ssr-plus,luci-app-passwall}
 git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwrt-passwall package/passwall-luci
 
-# SmartDNS
+# SmartDNS zerotier
 rm -rf feeds/luci/applications/luci-app-smartdns
 rm -rf feeds/packages/net/smartdns
+rm -rf feeds/packages/net/zerotier
 
 # bypass
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/lua-maxminddb
@@ -128,6 +129,8 @@ git clone --depth=1 -b master https://github.com/immortalwrt/packages.git immort
 #cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
 cp -rf immortalwrt-packages/net/smartdns feeds/packages/net/smartdns
 ln -sf ../../../feeds/packages/net/smartdns ./package/feeds/packages/smartdns
+cp -rf immortalwrt-packages/net/zerotier feeds/packages/net/zerotier
+ln -sf ../../../feeds/packages/net/zerotier ./package/feeds/packages/zerotier
 
 # unblockneteasemusic
 git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
