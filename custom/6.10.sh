@@ -127,8 +127,6 @@ merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/luci-app-zero
 #cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
 
 # unblockneteasemusic
-# merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-unblockneteasemusic
-# merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/UnblockNeteaseMusic
 git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
 sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 
