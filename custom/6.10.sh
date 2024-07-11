@@ -76,8 +76,6 @@ git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwr
 
 # SmartDNS
 rm -rf feeds/luci/applications/luci-app-smartdns
-git clone --single-branch https://github.com/lwb1978/luci-app-smartdns package/luci-app-smartdns
-git clone --single-branch https://github.com/pymumu/openwrt-smartdns package/openwrt-smartdns
 
 # bypass
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/lua-maxminddb
@@ -119,12 +117,16 @@ merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/luci-app-zero
 #rm -rf feeds/luci/modules/luci-base
 #rm -rf feeds/luci/modules/luci-mod-status
 # 克隆immortalwrt-luci仓库
-#git clone --depth=1 -b master https://github.com/immortalwrt/luci.git immortalwrt-luci
+git clone --depth=1 -b master https://github.com/immortalwrt/luci.git immortalwrt-luci
 #cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
 #cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
+cp -rf immortalwrt-luci/applications/luci-app-smartdns feeds/luci/applications/luci-app-smartdns
+ln -sf ../../../feeds/luci/applications/luci-app-smartdns ./package/feeds/luci/luci-app-smartdns
 # 克隆immortalwrt-packages仓库
-#git clone --depth=1 -b master https://github.com/immortalwrt/packages.git immortalwrt-packages
+git clone --depth=1 -b master https://github.com/immortalwrt/packages.git immortalwrt-packages
 #cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
+cp -rf immortalwrt-packages/net/smartdns feeds/packages/net/smartdns
+ln -sf ../../../feeds/packages/net/smartdns ./package/feeds/packages/smartdns
 
 # unblockneteasemusic
 git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
