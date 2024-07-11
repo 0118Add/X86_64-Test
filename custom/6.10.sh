@@ -76,6 +76,7 @@ git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwr
 
 # SmartDNS
 rm -rf feeds/luci/applications/luci-app-smartdns
+rm -rf feeds/packages/net/smartdns
 
 # bypass
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/lua-maxminddb
