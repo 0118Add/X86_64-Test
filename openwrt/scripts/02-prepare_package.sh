@@ -26,7 +26,7 @@ if [ "$ENABLE_DPDK" = "y" ]; then
 fi
 
 # OpenClash
-git clone --depth=1 -b dev https://github.com/vernesong/OpenClash package/new/OpenClash
+#git clone --depth=1 -b dev https://github.com/vernesong/OpenClash package/new/OpenClash
 
 # autoCore
 git clone https://$github/sbwml/autocore-arm -b openwrt-23.05 package/new/autocore
