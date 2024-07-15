@@ -131,10 +131,6 @@ ln -sf ../../../feeds/packages/net/zerotier ./package/feeds/packages/zerotier
 cp -rf immortalwrt-packages/libs/libcron feeds/packages/libs/libcron
 ln -sf ../../../feeds/packages/libs/libcron ./package/feeds/packages/libcron
 
-# from pmkol/openwrt-plus
-# remove ssrplus
-rm -rf package/new/helloworld/luci-app-ssr-plus
-rm -rf package/new/helloworld/patch-luci-app-ssr-plus.patch
 # configure default-settings
 sed -i 's/mirrors.pku.edu.cn/mirrors.cernet.edu.cn/g' package/new/default-settings/default/zzz-default-settings
 sed -i '/# opkg mirror/a case $(uname -m) in\n    x86_64)\n        echo -e '\''src/gz immortalwrt_luci https://mirrors.cernet.edu.cn/openwrt/releases/packages-23.05/x86_64/luci\nsrc/gz immortalwrt_packages https://mirrors.cernet.edu.cn/openwrt/releases/packages-23.05/x86_64/packages'\'' >> /etc/opkg/distfeeds.conf\n        ;;\n    aarch64)\n        echo -e '\''src/gz immortalwrt_luci https://mirrors.cernet.edu.cn/openwrt/releases/packages-23.05/aarch64_generic/luci\nsrc/gz immortalwrt_packages https://mirrors.cernet.edu.cn/openwrt/releases/packages-23.05/aarch64_generic/packages'\'' >> /etc/opkg/distfeeds.conf\n        ;;\n    *)\n        echo "Warning: This system architecture is not supported."\n        ;;\nesac' package/new/default-settings/default/zzz-default-settings
@@ -152,6 +148,3 @@ curl -Lso /builder/openwrt/files/etc/mihomo/run/GeoSite.dat https://$github/Meta
 curl -Lso metacubexd-gh-pages.tar.gz https://$github/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.tar.gz
 tar zxf metacubexd-gh-pages.tar.gz
 mv metacubexd-gh-pages /builder/openwrt/files/etc/mihomo/run/ui/metacubexd
-
-# sysupgrade keep files
-echo "/etc/hotplug.d/iface/*.sh" >> files/etc/sysupgrade.conf
