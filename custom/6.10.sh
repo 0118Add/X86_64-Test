@@ -59,7 +59,7 @@ sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt %V'|g" package/b
 git clone https://github.com/sbwml/default-settings package/default-settings
 
 # autoCore
-git clone https://github.com/sbwml/autocore-arm -b openwrt-23.05 package/autocore
+merge_package https://github.com/0118Add/openwrt-packages openwrt-packages/autocore-arm
 
 # DDNS GO
 git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
