@@ -89,7 +89,7 @@ rm -rf feeds/packages/net/smartdns
 rm -rf feeds/packages/net/zerotier
 
 # neko
-git clone -b luci-app-neko --depth 1 https://github.com/nosignals/neko package/neko
+#git clone -b luci-app-neko --depth 1 https://github.com/nosignals/neko package/neko
 
 # homeproxy
 #git clone --depth=1 https://github.com/muink/luci-app-homeproxy package/luci-app-homeproxy
