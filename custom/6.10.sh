@@ -88,8 +88,8 @@ rm -rf feeds/luci/applications/luci-app-smartdns
 rm -rf feeds/packages/net/smartdns
 rm -rf feeds/packages/net/zerotier
 
-# bypass
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/lua-maxminddb
+# neko
+git clone -b luci-app-neko --depth 1 https://github.com/nosignals/neko package/luci-app-neko
 
 # homeproxy
 #git clone --depth=1 https://github.com/muink/luci-app-homeproxy package/luci-app-homeproxy
