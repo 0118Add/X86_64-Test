@@ -153,8 +153,8 @@ merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/uti
 git clone --depth=1 -b master https://github.com/immortalwrt/luci.git immortalwrt-luci
 #cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
 #cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
-cp -rf immortalwrt-luci/applications/luci-app-alist feeds/luci/applications/luci-app-smartdns
-ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci-app-smartdns
+cp -rf immortalwrt-luci/applications/luci-app-smartdns feeds/luci/applications/luci-app-smartdns
+ln -sf ../../../feeds/luci/applications/luci-app-smartdns ./package/feeds/luci/luci-app-smartdns
 cp -rf immortalwrt-luci/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
 ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
 #cp -rf immortalwrt-luci/applications/luci-app-daed feeds/luci/applications/luci-app-daed
