@@ -145,8 +145,8 @@ rm -rf feeds/packages/net/zerotier
 # AutoCore
 rm -rf feeds/packages/utils/coremark
 #merge_package https://github.com/immortalwrt/packages packages/utils/coremark
-merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/autocore
-merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/utils/mhz
+#merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/autocore
+#merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/utils/mhz
 #rm -rf feeds/luci/modules/luci-base
 #rm -rf feeds/luci/modules/luci-mod-status
 # 克隆immortalwrt-luci仓库
