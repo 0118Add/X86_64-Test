@@ -185,7 +185,7 @@ git clone https://github.com/chenmozhijin/turboacc package/new/luci-app-turboacc
 git clone https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-fullcone
 #git clone --depth=1 -b package https://github.com/chenmozhijin/turboacc package/new/turboacc
 curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
-sed -i 's/Turbo ACC 网络加速/网络加速/g' package/new/luci-app-turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
+sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
 
 # Realtek driver - R8168 & R8125 & R8126 & R8152 & R8101
 git clone https://github.com/sbwml/package_kernel_r8168 package/kernel/r8168
