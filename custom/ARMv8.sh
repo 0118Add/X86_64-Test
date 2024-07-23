@@ -111,14 +111,7 @@ sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/homeproxy/htdocs/luci-stati
 # mihomo
 #git clone https://github.com/morytyann/OpenWrt-mihomo  package/openwrt-mihomo
 git clone https://github.com/morytyann/OpenWrt-mihomo  package/openwrt-mihomo
-mkdir -p files/etc/mihomo/run/ui
-curl -Lso files/etc/mihomo/run/Country.mmdb https://github.com/NobyDa/geoip/raw/release/Private-GeoIP-CN.mmdb
-curl -Lso files/etc/mihomo/run/GeoIP.dat https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat
-curl -Lso files/etc/mihomo/run/GeoSite.dat https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
-curl -Lso metacubexd-gh-pages.tar.gz https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.tar.gz
-tar zxf metacubexd-gh-pages.tar.gz
-mv metacubexd-gh-pages files/etc/mihomo/run/ui/metacubexd
-
+ 
 # Release Ram
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-ramfree
 
@@ -181,8 +174,8 @@ git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.gi
 sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 
 # wechatpush
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-wechatpush
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/wrtbwmon
+#merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-wechatpush
+#merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/wrtbwmon
 
 # turboacc
 git clone https://github.com/chenmozhijin/turboacc package/new/luci-app-turboacc
@@ -191,22 +184,19 @@ git clone https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-
 curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
 
-# net.netfilter.nf_conntrack_max from 16384 to 65535
-sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65535#g' package/kernel/linux/files/sysctl-nf-conntrack.conf
-
 # Realtek driver - R8168 & R8125 & R8126 & R8152 & R8101
-git clone https://github.com/sbwml/package_kernel_r8168 package/kernel/r8168
-git clone https://github.com/sbwml/package_kernel_r8152 package/kernel/r8152
-git clone https://github.com/sbwml/package_kernel_r8101 package/kernel/r8101
-git clone https://github.com/sbwml/package_kernel_r8125 package/kernel/r8125
-git clone https://github.com/sbwml/package_kernel_r8126 package/kernel/r8126
+#git clone https://github.com/sbwml/package_kernel_r8168 package/kernel/r8168
+#git clone https://github.com/sbwml/package_kernel_r8152 package/kernel/r8152
+#git clone https://github.com/sbwml/package_kernel_r8101 package/kernel/r8101
+#git clone https://github.com/sbwml/package_kernel_r8125 package/kernel/r8125
+#git clone https://github.com/sbwml/package_kernel_r8126 package/kernel/r8126
 
 # 替换文件
 #curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25_storage.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/25_storage.js
 sed -i 's/WireGuard/WiGd状态/g' feeds/luci/protocols/luci-proto-wireguard/root/usr/share/luci/menu.d/luci-proto-wireguard.json
-rm -rf feeds/packages/lang/ruby
-cp -rf $GITHUB_WORKSPACE/general/ruby feeds/packages/lang/ruby
+#rm -rf feeds/packages/lang/ruby
+#cp -rf $GITHUB_WORKSPACE/general/ruby feeds/packages/lang/ruby
 
 # comment out the following line to restore the full description
 sed -i '/# timezone/i grep -q '\''/tmp/sysinfo/model'\'' /etc/rc.local || sudo sed -i '\''/exit 0/i [ "$(cat /sys\\/class\\/dmi\\/id\\/sys_vendor 2>\\/dev\\/null)" = "Default string" ] \&\& echo "x86_64" > \\/tmp\\/sysinfo\\/model'\'' /etc/rc.local\n' package/default-settings/default/zzz-default-settings
