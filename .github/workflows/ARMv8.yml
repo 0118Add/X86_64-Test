@@ -22,7 +22,7 @@ on:
 env:
   REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: master
-  CONFIG_FILE: configs/ARMv8.config
+  CONFIG_FILE: configs/Armv8.config
   DIY_SCRIPT: custom/ARMv8.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: false
