@@ -78,6 +78,9 @@ git clone https://github.com/sbwml/default-settings package/default-settings
 # autoCore
 merge_package https://github.com/0118Add/openwrt-packages openwrt-packages/autocore-arm
 
+# amlogic
+git clone https://github.com/ophub/luci-app-amlogic package/amlogic
+
 # alist
 #git clone https://github.com/sbwml/luci-app-alist package/alist
 
