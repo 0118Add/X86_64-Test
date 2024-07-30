@@ -87,6 +87,7 @@ git clone https://github.com/ophub/luci-app-amlogic package/amlogic
 # cpufreq
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/cpufreq
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-cpufreq
+merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-cpu-status
 
 # DDNS GO
 #git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
