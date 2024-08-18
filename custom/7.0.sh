@@ -100,7 +100,6 @@ sed -i "s/ImmortalWrt/OpenWrt/g" package/homeproxy/luci-app-homeproxy/po/zh_Hans
 sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/homeproxy/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 
 # mihomo
-#git clone https://github.com/morytyann/OpenWrt-mihomo  package/openwrt-mihomo
 git clone https://github.com/morytyann/OpenWrt-mihomo  package/openwrt-mihomo
 mkdir -p files/etc/mihomo/run/ui
 curl -Lso files/etc/mihomo/run/Country.mmdb https://github.com/NobyDa/geoip/raw/release/Private-GeoIP-CN.mmdb
@@ -109,6 +108,14 @@ curl -Lso files/etc/mihomo/run/GeoSite.dat https://github.com/MetaCubeX/meta-rul
 curl -Lso metacubexd-gh-pages.tar.gz https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.tar.gz
 tar zxf metacubexd-gh-pages.tar.gz
 mv metacubexd-gh-pages files/etc/mihomo/run/ui/metacubexd
+
+# sysupgrade keep files
+echo "/etc/hotplug.d/iface/*.sh" >> files/etc/sysupgrade.conf
+echo "/etc/mihomo/run/proxies" >> files/etc/sysupgrade.conf
+echo "/etc/mihomo/run/rules" >> files/etc/sysupgrade.conf
+echo "/etc/mihomo/run/config.yaml" >> files/etc/sysupgrade.conf
+echo "/opt" >> files/etc/sysupgrade.conf
+echo "/etc/init.d/nezha-service" >> files/etc/sysupgrade.conf
 
 # custom packages
 rm -rf feeds/packages/utils/coremark
