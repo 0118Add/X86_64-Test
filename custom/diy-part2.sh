@@ -119,6 +119,14 @@ curl -Lso metacubexd-gh-pages.tar.gz https://github.com/MetaCubeX/metacubexd/arc
 tar zxf metacubexd-gh-pages.tar.gz
 mv metacubexd-gh-pages files/etc/mihomo/run/ui/metacubexd
 
+# sysupgrade keep files
+echo "/etc/hotplug.d/iface/*.sh" >> files/etc/sysupgrade.conf
+echo "/etc/mihomo/run/proxies" >> files/etc/sysupgrade.conf
+echo "/etc/mihomo/run/rules" >> files/etc/sysupgrade.conf
+echo "/etc/mihomo/run/config.yaml" >> files/etc/sysupgrade.conf
+echo "/opt" >> files/etc/sysupgrade.conf
+echo "/etc/init.d/nezha-service" >> files/etc/sysupgrade.conf
+
 # Release Ram
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-ramfree
 
@@ -144,6 +152,7 @@ rm -rf feeds/packages/net/zerotier
 
 # AutoCore
 rm -rf feeds/packages/utils/coremark
+merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/coremark
 #merge_package https://github.com/immortalwrt/packages packages/utils/coremark
 #merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/autocore
 #merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/utils/mhz
@@ -161,7 +170,7 @@ ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/lu
 #ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
 # 克隆immortalwrt-packages仓库
 git clone --depth=1 -b master https://github.com/immortalwrt/packages.git immortalwrt-packages
-cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
+#cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
 cp -rf immortalwrt-packages/net/zerotier feeds/packages/net/zerotier
 ln -sf ../../../feeds/packages/net/zerotier ./package/feeds/packages/zerotier
 cp -rf immortalwrt-packages/net/ddns-go feeds/packages/net/ddns-go
