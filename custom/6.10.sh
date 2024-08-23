@@ -92,12 +92,11 @@ rm -rf feeds/packages/net/zerotier
 #git clone -b luci-app-neko --depth 1 https://github.com/nosignals/neko package/neko
 
 # homeproxy
-#git clone --depth=1 https://github.com/muink/luci-app-homeproxy package/luci-app-homeproxy
-git clone https://github.com/lxiaya/openwrt-homeproxy package/homeproxy
+git clone --depth 1 -b test https://github.com/m0eak/homeproxy package/homeproxy
 rm -rf package/homeproxy/{chinadns-ng,sing-box}
 #git clone https://github.com/immortalwrt/homeproxy package/homeproxy
-sed -i "s/ImmortalWrt/OpenWrt/g" package/homeproxy/luci-app-homeproxy/po/zh_Hans/homeproxy.po
-sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/homeproxy/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
+sed -i "s/ImmortalWrt/OpenWrt/g" package/homeproxy/po/zh_Hans/homeproxy.po
+sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 
 # mihomo
 git clone https://github.com/morytyann/OpenWrt-mihomo  package/openwrt-mihomo
