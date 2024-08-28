@@ -96,8 +96,8 @@ git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-open
 
 # Shared for PassWall and ShadowsocksR Plus+
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
-git clone https://github.com/sbwml/openwrt_helloworld package/new/helloworld -b v5
-rm -rf package/new/helloworld/{luci-app-ssr-plus,luci-app-passwall}
+git clone https://github.com/sbwml/openwrt_helloworld package/helloworld -b v5
+rm -rf package/helloworld/{luci-app-ssr-plus,luci-app-passwall}
 git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwrt-passwall package/passwall-luci
 
 # homeproxy
