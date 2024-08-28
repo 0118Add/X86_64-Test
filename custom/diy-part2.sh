@@ -105,6 +105,9 @@ git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
 sed -i "s/ImmortalWrt/OpenWrt/g" package/homeproxy/po/zh_Hans/homeproxy.po
 sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 
+# neko
+git clone -b luci-app-neko --depth 1 https://github.com/Thaolga/neko package/neko
+
 # mihomo
 git clone https://github.com/morytyann/OpenWrt-mihomo  package/openwrt-mihomo
 
