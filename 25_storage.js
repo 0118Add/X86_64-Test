@@ -11,10 +11,9 @@ function progressbar(value, max, byte) {
 	var vn = parseInt(value) || 0,
 	    mn = parseInt(max) || 100,
 	    fv = byte ? String.format('%1024.2mB', value) : value,
-	    fm = byte ? String.format('%1024.2mB', max) : max,
-	    pc = Math.floor((100 / mn) * vn);
-
-	return E('div', {
+	    fm = byte ? String.format('%1024.2mB', max) : max;
+	    
+        return E('div', {
 		'class': 'cbi-progressbar',
 		'title': '%s / %s (%d%%)'.format(fv, fm, pc)
 	}, E('div', { 'style': 'width:%.2f%%'.format(pc) }));
