@@ -197,6 +197,9 @@ sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turbo
 #git clone https://github.com/sbwml/package_kernel_r8125 package/kernel/r8125
 #git clone https://github.com/sbwml/package_kernel_r8126 package/kernel/r8126
 
+# 修复编译时提示 freeswitch 缺少 libpcre 依赖
+sed -i 's/+libpcre \\$/+libpcre2 \\/g' package/feeds/telephony/freeswitch/Makefile
+
 # 替换文件
 #curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25_storage.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/25_storage.js
