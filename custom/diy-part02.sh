@@ -9,7 +9,7 @@
 # File name: diy-part02.sh
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 
-echo "开始 DIY2 配置……"
+echo "开始配置……"
 echo "========================="
 
 function merge_package(){
@@ -33,26 +33,32 @@ function merge_feed(){
 }
 rm -rf package/custom; mkdir package/custom
 
+# 删除插件
+#rm -rf package/libs/mbedtls
+#cp -rf $GITHUB_WORKSPACE/general/mbedtls package/libs/mbedtls
+
 # Modify default IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
-# golang 1.22
+# golang 1.23
 rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
 
 # node - prebuilt
 #rm -rf feeds/packages/lang/node
 #git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packages/lang/node
 
+# 替换内核
+#sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' target/linux/x86/Makefile
+
 # 修改连接数
 sed -i 's/net.netfilter.nf_conntrack_max=.*/net.netfilter.nf_conntrack_max=65535/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
-
 # 修正连接数
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
 
 # 移除 SNAPSHOT 标签
-sed -i 's,-SNAPSHOT,,g' include/version.mk
-sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
+#sed -i 's,-SNAPSHOT,,g' include/version.mk
+#sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 
 # 更改固件版本信息
 #sed -i "s|DISTRIB_REVISION='.*'|DISTRIB_REVISION=''|g" package/base-files/files/etc/openwrt_release
@@ -90,17 +96,17 @@ git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-open
 
 # Shared for PassWall and ShadowsocksR Plus+
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
-git clone https://github.com/sbwml/openwrt_helloworld package/new/helloworld -b v5
-rm -rf package/new/helloworld/{luci-app-ssr-plus,luci-app-passwall}
+git clone https://github.com/sbwml/openwrt_helloworld package/helloworld -b v5
+rm -rf package/helloworld/{luci-app-ssr-plus,luci-app-homeproxy,luci-app-passwall}
 git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwrt-passwall package/passwall-luci
-
-# lua-maxminddb
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/lua-maxminddb
 
 # homeproxy
 git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
 sed -i "s/ImmortalWrt/OpenWrt/g" package/homeproxy/po/zh_Hans/homeproxy.po
 sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
+
+# neko
+git clone -b luci-app-neko --depth 1 https://github.com/Thaolga/neko package/neko
 
 # mihomo
 git clone https://github.com/morytyann/OpenWrt-mihomo  package/openwrt-mihomo
@@ -111,7 +117,7 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-
 # Scheduled Reboot
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-autoreboot
 
-# ttyd
+ # ttyd
 #rm -rf feeds/luci/applications/luci-app-ttyd
 sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
 #merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-ttyd
@@ -130,13 +136,14 @@ rm -rf feeds/packages/net/zerotier
 
 # AutoCore
 rm -rf feeds/packages/utils/coremark
+merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/coremark
 #merge_package https://github.com/immortalwrt/packages packages/utils/coremark
 #merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/autocore
 #merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/utils/mhz
 #rm -rf feeds/luci/modules/luci-base
 #rm -rf feeds/luci/modules/luci-mod-status
 # 克隆immortalwrt-luci仓库
-git clone --depth=1 -b openwrt-23.05 https://github.com/immortalwrt/luci.git immortalwrt-luci
+git clone --depth=1 -b master https://github.com/immortalwrt/luci.git immortalwrt-luci
 #cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
 #cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
 cp -rf immortalwrt-luci/applications/luci-app-smartdns feeds/luci/applications/luci-app-smartdns
@@ -146,8 +153,8 @@ ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/lu
 #cp -rf immortalwrt-luci/applications/luci-app-daed feeds/luci/applications/luci-app-daed
 #ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
 # 克隆immortalwrt-packages仓库
-git clone --depth=1 -b openwrt-23.05 https://github.com/immortalwrt/packages.git immortalwrt-packages
-cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
+git clone --depth=1 -b master https://github.com/immortalwrt/packages.git immortalwrt-packages
+#cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
 cp -rf immortalwrt-packages/net/zerotier feeds/packages/net/zerotier
 ln -sf ../../../feeds/packages/net/zerotier ./package/feeds/packages/zerotier
 cp -rf immortalwrt-packages/net/ddns-go feeds/packages/net/ddns-go
@@ -158,40 +165,42 @@ ln -sf ../../../feeds/packages/net/smartdns ./package/feeds/packages/smartdns
 #ln -sf ../../../feeds/packages/net/daed ./package/feeds/packages/daed
 
 # Zerotier
-# Zerotier
 rm -rf feeds/luci/applications/luci-app-zerotier
 merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/luci-app-zerotier
 #sed -i 's/vpn/services/g' package/custom/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 
 # unblockneteasemusic
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-unblockneteasemusic
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/UnblockNeteaseMusic
-sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/custom/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
+git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
+sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 
 # wechatpush
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-wechatpush
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/wrtbwmon
 
 # turboacc
-git clone https://github.com/chenmozhijin/turboacc package/new/luci-app-turboacc
-git clone https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-fullcone
-#git clone --depth=1 -b package https://github.com/chenmozhijin/turboacc package/new/turboacc
+#git clone https://github.com/chenmozhijin/turboacc package/new/luci-app-turboacc
 curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
 
+# net.netfilter.nf_conntrack_max from 16384 to 65535
+sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65535#g' package/kernel/linux/files/sysctl-nf-conntrack.conf
+
 # Realtek driver - R8168 & R8125 & R8126 & R8152 & R8101
-git clone https://github.com/sbwml/package_kernel_r8168 package/kernel/r8168
-git clone https://github.com/sbwml/package_kernel_r8152 package/kernel/r8152
-git clone https://github.com/sbwml/package_kernel_r8101 package/kernel/r8101
-git clone https://github.com/sbwml/package_kernel_r8125 package/kernel/r8125
-git clone https://github.com/sbwml/package_kernel_r8126 package/kernel/r8126
+#git clone https://github.com/sbwml/package_kernel_r8168 package/kernel/r8168
+#git clone https://github.com/sbwml/package_kernel_r8152 package/kernel/r8152
+#git clone https://github.com/sbwml/package_kernel_r8101 package/kernel/r8101
+#git clone https://github.com/sbwml/package_kernel_r8125 package/kernel/r8125
+#git clone https://github.com/sbwml/package_kernel_r8126 package/kernel/r8126
+
+# 修复编译时提示 freeswitch 缺少 libpcre 依赖
+#sed -i 's/+libpcre \\$/+libpcre2 \\/g' package/feeds/telephony/freeswitch/Makefile
 
 # 替换文件
 #curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25_storage.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/25_storage.js
 sed -i 's/WireGuard/WiGd状态/g' feeds/luci/protocols/luci-proto-wireguard/root/usr/share/luci/menu.d/luci-proto-wireguard.json
-#rm -rf feeds/packages/lang/ruby
-#cp -rf $GITHUB_WORKSPACE/general/ruby feeds/packages/lang/ruby
+rm -rf feeds/packages/lang/ruby
+cp -rf $GITHUB_WORKSPACE/general/ruby feeds/packages/lang/ruby
 
 # comment out the following line to restore the full description
 sed -i '/# timezone/i grep -q '\''/tmp/sysinfo/model'\'' /etc/rc.local || sudo sed -i '\''/exit 0/i [ "$(cat /sys\\/class\\/dmi\\/id\\/sys_vendor 2>\\/dev\\/null)" = "Default string" ] \&\& echo "x86_64" > \\/tmp\\/sysinfo\\/model'\'' /etc/rc.local\n' package/default-settings/default/zzz-default-settings
