@@ -94,7 +94,7 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-
 #git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
 
 # OpenClash
-git clone --depth=1 https://github.com/vernesong/OpenClash package/openclash
+git clone --depth=1 -b dev https://github.com/vernesong/OpenClash package/OpenClash
 
 # Daed
 #git clone https://github.com/QiuSimons/luci-app-daed-next package/new/luci-app-daed-next
