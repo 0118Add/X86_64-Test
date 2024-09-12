@@ -94,7 +94,7 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-
 #git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
 
 # OpenClash
-git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-openclash
+git clone --depth=1 https://github.com/vernesong/OpenClash package/openclash
 
 # Daed
 #git clone https://github.com/QiuSimons/luci-app-daed-next package/new/luci-app-daed-next
@@ -115,7 +115,7 @@ sed -i "s/ImmortalWrt/OpenWrt/g" package/homeproxy/po/zh_Hans/homeproxy.po
 sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 
 # neko
-git clone -b luci-app-neko --depth 1 https://github.com/Thaolga/neko package/neko
+git clone -b neko --depth 1 https://github.com/Thaolga/luci-app-nekoclash package/nekoclash
 
 # mihomo
 git clone https://github.com/morytyann/OpenWrt-mihomo  package/openwrt-mihomo
