@@ -106,7 +106,7 @@ sed -i "s/ImmortalWrt/OpenWrt/g" package/homeproxy/po/zh_Hans/homeproxy.po
 sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 
 # neko
-git clone -b neko --depth 1 https://github.com/Thaolga/luci-app-nekoclash package/luci-app-nekoclash
+git clone -b neko --depth 1 https://github.com/Thaolga/luci-app-nekoclash package/nekoclash
 
 # mihomo
 git clone https://github.com/morytyann/OpenWrt-mihomo  package/openwrt-mihomo
