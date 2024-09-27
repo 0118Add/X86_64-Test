@@ -177,9 +177,6 @@ sed -i '/# timezone/i sed -i "s/\\(DISTRIB_DESCRIPTION=\\).*/\\1'\''OpenWrt $(se
 git clone https://$gitea/sbwml/shortcut-fe package/new/shortcut-fe
 
 # firewall4 - master
-grm -rf package/network/config/firewall4
-gcp -a ../master/openwrt/package/network/config/firewall4 package/network/config/firewall4
-gsed -i 's|$(PROJECT_GIT)/project|https://github.com/openwrt|g' package/network/config/firewall4/Makefile
 mkdir -p package/network/config/firewall4/patches
 # fix ct status dnat
 curl -s https://$mirror/patch/firewall4/firewall4_patches/990-unconditionally-allow-ct-status-dnat.patch > package/network/config/firewall4/patches/990-unconditionally-allow-ct-status-dnat.patch
@@ -194,15 +191,11 @@ curl -s https://$mirror/patch/firewall4/firewall4_patches/001-fix-fw4-flow-offlo
 # add custom nft command support
 curl -s https://$mirror/patch/firewall4/100-openwrt-firewall4-add-custom-nft-command-support.patch | patch -p1
 # libnftnl
-grm -rf package/libs/libnftnl
-gcp -a ../master/openwrt/package/libs/libnftnl package/libs/libnftnl
 mkdir -p package/libs/libnftnl/patches
 curl -s https://$mirror/patch/firewall4/libnftnl/001-libnftnl-add-fullcone-expression-support.patch > package/libs/libnftnl/patches/001-libnftnl-add-fullcone-expression-support.patch
 curl -s https://$mirror/patch/firewall4/libnftnl/002-libnftnl-add-brcm-fullcone-support.patch > package/libs/libnftnl/patches/002-libnftnl-add-brcm-fullcone-support.patch
 sed -i '/PKG_INSTALL:=1/iPKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
 # nftables
-grm -rf package/network/utils/nftables
-gcp -a ../master/openwrt/package/network/utils/nftables package/network/utils/nftables
 mkdir -p package/network/utils/nftables/patches
 curl -s https://$mirror/patch/firewall4/nftables/002-nftables-add-fullcone-expression-support.patch > package/network/utils/nftables/patches/002-nftables-add-fullcone-expression-support.patch
 curl -s https://$mirror/patch/firewall4/nftables/003-nftables-add-brcm-fullconenat-support.patch > package/network/utils/nftables/patches/003-nftables-add-brcm-fullconenat-support.patch
