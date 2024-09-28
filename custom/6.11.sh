@@ -174,6 +174,9 @@ cp -rf $GITHUB_WORKSPACE/general/ruby feeds/packages/lang/ruby
 sed -i '/# timezone/i sed -i "s/\\(DISTRIB_DESCRIPTION=\\).*/\\1'\''OpenWrt $(sed -n "s/DISTRIB_DESCRIPTION='\''OpenWrt \\([^ ]*\\) .*/\\1/p" /etc/openwrt_release)'\'',/" /etc/openwrt_release\nsource /etc/openwrt_release \&\& sed -i -e "s/distversion\\s=\\s\\".*\\"/distversion = \\"$DISTRIB_ID $DISTRIB_RELEASE ($DISTRIB_REVISION)\\"/g" -e '\''s/distname    = .*$/distname    = ""/g'\'' /usr/lib/lua/luci/version.lua\nsed -i "s/luciname    = \\".*\\"/luciname    = \\"LuCI openwrt-23.05\\"/g" /usr/lib/lua/luci/version.lua\nsed -i "s/luciversion = \\".*\\"/luciversion = \\"v'$(date +%Y%m%d)'\\"/g" /usr/lib/lua/luci/version.lua\necho "export const revision = '\''v'$(date +%Y%m%d)'\'\'', branch = '\''LuCI Master'\'';" > /usr/share/ucode/luci/version.uc\n/etc/init.d/rpcd restart\n' package/default-settings/default/zzz-default-settings
 
 # firewall4 - master
+rm -rf package/network/config/firewall4
+merge_package https://github.com/openwrt/openwrt openwrt/package/network/config/firewall4
+sed -i 's|$(PROJECT_GIT)/project|https://github.com/openwrt|g' package/network/config/firewall4/Makefile
 mkdir -p package/network/config/firewall4/patches
 # fix ct status dnat
 curl -s https://$mirror/patch/firewall4/firewall4_patches/990-unconditionally-allow-ct-status-dnat.patch > package/network/config/firewall4/patches/990-unconditionally-allow-ct-status-dnat.patch
@@ -188,11 +191,15 @@ curl -s https://$mirror/patch/firewall4/firewall4_patches/001-fix-fw4-flow-offlo
 # add custom nft command support
 curl -s https://$mirror/patch/firewall4/100-openwrt-firewall4-add-custom-nft-command-support.patch | patch -p1
 # libnftnl
+rm -rf package/libs/libnftnl
+merge_package https://github.com/openwrt/openwrt openwrt/package/libs/libnftnl
 mkdir -p package/libs/libnftnl/patches
 curl -s https://$mirror/patch/firewall4/libnftnl/001-libnftnl-add-fullcone-expression-support.patch > package/libs/libnftnl/patches/001-libnftnl-add-fullcone-expression-support.patch
 curl -s https://$mirror/patch/firewall4/libnftnl/002-libnftnl-add-brcm-fullcone-support.patch > package/libs/libnftnl/patches/002-libnftnl-add-brcm-fullcone-support.patch
 sed -i '/PKG_INSTALL:=1/iPKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
 # nftables
+rm -rf package/network/utils/nftables
+merge_package https://github.com/openwrt/openwrt openwrt/package/network/utils/nftables
 mkdir -p package/network/utils/nftables/patches
 curl -s https://$mirror/patch/firewall4/nftables/002-nftables-add-fullcone-expression-support.patch > package/network/utils/nftables/patches/002-nftables-add-fullcone-expression-support.patch
 curl -s https://$mirror/patch/firewall4/nftables/003-nftables-add-brcm-fullconenat-support.patch > package/network/utils/nftables/patches/003-nftables-add-brcm-fullconenat-support.patch
