@@ -147,6 +147,19 @@ ln -sf ../../../feeds/packages/net/smartdns ./package/feeds/packages/smartdns
 cp -rf immortalwrt-packages/net/zerotier feeds/packages/net/zerotier
 ln -sf ../../../feeds/packages/net/zerotier ./package/feeds/packages/zerotier
 
+# fullconenat
+git clone --depth=1 -b master https://github.com/immortalwrt/immortalwrt immortalwrt
+cp -rf ./immortalwrt/package/network/utils/fullconenat-nft ./openwrt/package/network/utils/
+rm -rf ./openwrt/package/libs/libnftnl
+cp -rf ./immortalwrt/package/libs/libnftnl ./openwrt/package/libs/
+rm -rf ./openwrt/package/network/utils/nftables/
+cp -rf ./immortalwrt/package/network/utils/nftables ./openwrt/package/network/utils/
+rm -rf ./openwrt/package/network/config/firewall4
+cp -rf ./immortalwrt/package/network/config/firewall4 ./openwrt/package/network/config/
+rm -rf feeds/luci/applications/luci-app-firewall
+cp -rf immortalwrt-luci/applications/luci-app-firewall feeds/luci/applications/luci-app-firewall
+ln -sf ../../../feeds/luci/applications/luci-app-firewall ./package/feeds/luci/luci-app-firewall
+
 # unblockneteasemusic
 git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
 sed -i 's/解除网易云音乐播放限制/音乐云解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
