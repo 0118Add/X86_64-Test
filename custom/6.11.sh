@@ -148,7 +148,7 @@ cp -rf immortalwrt-packages/net/zerotier feeds/packages/net/zerotier
 ln -sf ../../../feeds/packages/net/zerotier ./package/feeds/packages/zerotier
 
 # disable KERNEL_WERROR
-sed -i 's,imply KERNEL_WERROR,#imply KERNEL_WERROR,g' ./openwrt/toolchain/gcc/Config.version
+sed -i 's,imply KERNEL_WERROR,#imply KERNEL_WERROR,g' ./toolchain/gcc/Config.version
 # fullconenat
 merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/network/utils/fullconenat-nft
 rm -rf ./openwrt/package/libs/libnftnl
