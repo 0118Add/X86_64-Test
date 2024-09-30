@@ -147,6 +147,20 @@ ln -sf ../../../feeds/packages/net/smartdns ./package/feeds/packages/smartdns
 cp -rf immortalwrt-packages/net/zerotier feeds/packages/net/zerotier
 ln -sf ../../../feeds/packages/net/zerotier ./package/feeds/packages/zerotier
 
+# disable KERNEL_WERROR
+sed -i 's,imply KERNEL_WERROR,#imply KERNEL_WERROR,g' ./toolchain/gcc/Config.version
+# fullconenat
+merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/network/utils/fullconenat-nft
+rm -rf ./openwrt/package/libs/libnftnl
+merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/libs/libnftnl
+rm -rf ./openwrt/package/network/utils/nftables/
+merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/network/utils/nftables
+rm -rf ./openwrt/package/network/config/firewall4
+merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/network/config/firewall4
+rm -rf feeds/luci/applications/luci-app-firewall
+cp -rf immortalwrt-luci/applications/luci-app-firewall feeds/luci/applications/luci-app-firewall
+ln -sf ../../../feeds/luci/applications/luci-app-firewall ./package/feeds/luci/luci-app-firewall
+
 # unblockneteasemusic
 git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
 sed -i 's/解除网易云音乐播放限制/音乐云解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
