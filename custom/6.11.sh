@@ -62,7 +62,7 @@ wget -O ./package/base-files/files/etc/banner https://raw.githubusercontent.com/
 git clone https://github.com/sbwml/default-settings package/default-settings
 
 # autoCore
-merge_package https://github.com/0118Add/openwrt-packages openwrt-packages/autocore-arm
+git clone https://github.com/sbwml/autocore-arm package/autocore-arm
 
 # DDNS GO
 git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
