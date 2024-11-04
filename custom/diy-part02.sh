@@ -76,7 +76,7 @@ wget -O ./package/base-files/files/etc/banner https://raw.githubusercontent.com/
 git clone https://github.com/sbwml/default-settings package/default-settings
 
 # autoCore
-merge_package https://github.com/0118Add/openwrt-packages openwrt-packages/autocore-arm
+merge_package https://github.com/0118Add/mywrt-packages mywrt-packages/autocore-arm
 
 # alist
 #git clone https://github.com/sbwml/luci-app-alist package/alist
@@ -112,10 +112,10 @@ git clone -b luci-app-neko --depth 1 https://github.com/Thaolga/neko package/nek
 git clone https://github.com/morytyann/OpenWrt-mihomo  package/openwrt-mihomo
 
 # Release Ram
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-ramfree
+merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-ramfree
 
 # Scheduled Reboot
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-autoreboot
+merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-autoreboot
 
  # ttyd
 #rm -rf feeds/luci/applications/luci-app-ttyd
@@ -126,8 +126,8 @@ sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/shar
 git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 
 # Filetransfer
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-filetransfer
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-lib-fs
+merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-filetransfer
+merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-lib-fs
 
 # SmartDNS zerotier
 rm -rf feeds/luci/applications/luci-app-smartdns
@@ -166,16 +166,18 @@ ln -sf ../../../feeds/packages/net/smartdns ./package/feeds/packages/smartdns
 
 # Zerotier
 rm -rf feeds/luci/applications/luci-app-zerotier
-merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/luci-app-zerotier
-#sed -i 's/vpn/services/g' package/custom/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
+git clone --depth=1 -b master https://github.com/coolsnowwolf/luci lean-luci
+cp -rf lean-luci/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
+ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
+sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 
 # unblockneteasemusic
 git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
 sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 
 # wechatpush
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-wechatpush
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/wrtbwmon
+merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-wechatpush
+merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/wrtbwmon
 
 # turboacc
 #git clone https://github.com/chenmozhijin/turboacc package/new/luci-app-turboacc
