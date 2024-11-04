@@ -76,7 +76,7 @@ wget -O ./package/base-files/files/etc/banner https://raw.githubusercontent.com/
 git clone https://github.com/sbwml/default-settings package/default-settings
 
 # autoCore
-merge_package https://github.com/0118Add/mywrt-packages mywrt-packages/autocore-arm
+merge_package https://github.com/0118Add/OP-Packages OP-Packages/autocore-arm
 
 # alist
 #git clone https://github.com/sbwml/luci-app-alist package/alist
