@@ -164,11 +164,13 @@ ln -sf ../../../feeds/packages/net/smartdns ./package/feeds/packages/smartdns
 #cp -rf immortalwrt-packages/net/daed feeds/packages/net/daed
 #ln -sf ../../../feeds/packages/net/daed ./package/feeds/packages/daed
 
-# Zerotier
+# 克隆lean-luci仓库
 rm -rf feeds/luci/applications/luci-app-zerotier
 git clone --depth=1 -b master https://github.com/coolsnowwolf/luci lean-luci
 cp -rf lean-luci/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
 ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
+cp -rf lean-luci/applications/luci-app-daed feeds/luci/applications/luci-app-daed
+ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 
 # unblockneteasemusic
