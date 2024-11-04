@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt-23.05
+name: Build OpenWrt-24.10
 
 on:
   repository_dispatch:
@@ -21,14 +21,14 @@ on:
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt
-  REPO_BRANCH: openwrt-23.05
-  CONFIG_FILE: configs/23.05.config
+  REPO_BRANCH: openwrt-24.10
+  CONFIG_FILE: configs/24.10.config
   DIY_SCRIPT: custom/diy-part02.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: false
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: X86_64-23.05
+  FIRMWARE_TAG: X86_64-24.10
   TZ: Asia/Shanghai
 
 jobs:
