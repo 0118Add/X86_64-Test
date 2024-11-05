@@ -166,7 +166,6 @@ ln -sf ../../../feeds/packages/net/smartdns ./package/feeds/packages/smartdns
 #ln -sf ../../../feeds/packages/net/daed ./package/feeds/packages/daed
 
 # 克隆lean-luci仓库
-rm -rf feeds/luci/applications/luci-app-zerotier
 git clone --depth=1 -b openwrt-23.05 https://github.com/coolsnowwolf/luci lean-luci
 cp -rf lean-luci/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
 ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
