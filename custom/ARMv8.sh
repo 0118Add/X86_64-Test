@@ -91,8 +91,9 @@ git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-open
 #git clone https://github.com/QiuSimons/luci-app-daed-next package/new/luci-app-daed-next
 #git clone https://github.com/sbwml/luci-app-daed package/new/luci-app-daed
 
-# Dae
-#git clone https://github.com/8688Add/luci-app-dae package/luci-app-dae
+# cpufreq
+merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/cpufreq
+merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-cpufreq
 
 # Shared for PassWall and ShadowsocksR Plus+
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
