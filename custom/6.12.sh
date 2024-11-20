@@ -106,10 +106,10 @@ rm -rf feeds/packages/utils/coremark
 merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/coremark
 
 # Release Ram
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-ramfree
+merge_package https://github.com/mgz0227/OP-Packages OP-Packages/luci-app-ramfree
 
 # Scheduled Reboot
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-autoreboot
+merge_package https://github.com/mgz0227/OP-Packages OP-Packages/luci-app-autoreboot
 
 # ttyd
 #rm -rf feeds/luci/applications/luci-app-ttyd
@@ -120,11 +120,12 @@ sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/shar
 git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 
 # Filetransfer
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-filetransfer
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-lib-fs
+merge_package https://github.com/mgz0227/OP-Packages OP-Packages/luci-app-filetransfer
+merge_package https://github.com/mgz0227/OP-Packages OP-Packages/luci-lib-fs
 
 # zerotier
 merge_package https://github.com/mgz0227/OP-Packages OP-Packages/luci-app-zerotier
+sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 
 # AutoCore
 #rm -rf feeds/packages/utils/coremark
