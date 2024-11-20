@@ -124,7 +124,7 @@ merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-
 merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-lib-fs
 
 # zerotier
-merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/luci-app-zerotier
+merge_package https://github.com/mgz0227/OP-Packages OP-Packages/luci-app-zerotier
 
 # AutoCore
 #rm -rf feeds/packages/utils/coremark
@@ -149,7 +149,7 @@ ln -sf ../../../feeds/packages/net/zerotier ./package/feeds/packages/zerotier
 
 # unblockneteasemusic
 git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
-sed -i 's/解除网易云音乐播放限制/音乐云解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
+sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 
 # wechatpush
 # merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-wechatpush
