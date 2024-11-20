@@ -123,6 +123,10 @@ git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-filetransfer
 merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-lib-fs
 
+# zerotier
+merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-zerotier
+sed -i 's/vpn/services/g' package/custom/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
+
 # AutoCore
 #rm -rf feeds/packages/utils/coremark
 #merge_package https://github.com/immortalwrt/packages packages/utils/coremark
@@ -132,10 +136,10 @@ merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-lib-fs
 #rm -rf feeds/luci/modules/luci-mod-status
 
 # 克隆Lean-luci仓库
-git clone --depth=1 -b openwrt-23.05 https://github.com/coolsnowwolf/luci lean-luci
-cp -rf lean-luci/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
-ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
-sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
+#git clone --depth=1 -b openwrt-23.05 https://github.com/coolsnowwolf/luci lean-luci
+#cp -rf lean-luci/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
+#ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
+#sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 # 克隆immortalwrt-luci仓库
 git clone --depth=1 -b master https://github.com/immortalwrt/luci.git immortalwrt-luci
 #cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
