@@ -101,7 +101,7 @@ sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/homeproxy/htdocs/luci-stati
 # mihomo
 git clone https://github.com/morytyann/OpenWrt-mihomo  package/openwrt-mihomo
 
-# custom packages
+# coremark
 rm -rf feeds/packages/utils/coremark
 merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/coremark
 
