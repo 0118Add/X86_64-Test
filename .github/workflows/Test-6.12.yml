@@ -18,7 +18,7 @@ env:
   REPO_BRANCH: linux-6.12
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: configs/6.12.config
-  DIY_P1_SH: diy-part1.sh
+  DIY_P1_SH: custom/diy-part1.sh
   DIY_SCRIPT: custom/6.12.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: false
@@ -125,6 +125,7 @@ jobs:
     - name: Load custom feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF $OPENWRT_PATH/feeds.conf.default
+        chmod +x $GITHUB_WORKSPACE/custom/*.sh
         chmod +x $DIY_P1_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH    
@@ -139,6 +140,7 @@ jobs:
       run: |
         [ -e files ] && mv files $OPENWRT_PATH/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_PATH/.config
+        chmod +x $GITHUB_WORKSPACE/custom/*.sh
         chmod +x $DIY_SCRIPT
         cd $OPENWRT_PATH
         $GITHUB_WORKSPACE/$DIY_SCRIPT
