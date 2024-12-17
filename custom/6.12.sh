@@ -124,8 +124,8 @@ merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-fi
 merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-lib-fs
 
 # zerotier
-merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-zerotier
-sed -i 's/vpn/services/g' package/custom/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
+merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/luci-app-zerotier
+#sed -i 's/vpn/services/g' package/custom/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 
 # AutoCore
 #rm -rf feeds/packages/utils/coremark
