@@ -63,7 +63,7 @@ git clone https://github.com/sbwml/default-settings package/default-settings
 
 # autoCore
 #merge_package https://github.com/0118Add/mywrt-packages mywrt-packages/autocore-arm
-git clone https://$github/sbwml/autocore-arm -b openwrt-24.10 package/autocore
+git clone https://github.com/sbwml/autocore-arm -b openwrt-24.10 package/autocore
 
 # DDNS GO
 git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
