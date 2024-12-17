@@ -62,7 +62,8 @@ wget -O ./package/base-files/files/etc/banner https://raw.githubusercontent.com/
 git clone https://github.com/sbwml/default-settings package/default-settings
 
 # autoCore
-merge_package https://github.com/0118Add/mywrt-packages mywrt-packages/autocore-arm
+#merge_package https://github.com/0118Add/mywrt-packages mywrt-packages/autocore-arm
+git clone https://$github/sbwml/autocore-arm -b openwrt-24.10 package/autocore
 
 # DDNS GO
 git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
@@ -86,7 +87,6 @@ git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwr
 # SmartDNS zerotier
 rm -rf feeds/luci/applications/luci-app-smartdns
 rm -rf feeds/packages/net/smartdns
-rm -rf feeds/packages/net/zerotier
 
 # homeproxy
 git clone --depth 1 -b test https://github.com/m0eak/homeproxy package/homeproxy
@@ -101,15 +101,9 @@ sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/homeproxy/htdocs/luci-stati
 # mihomo
 git clone https://github.com/morytyann/OpenWrt-mihomo  package/openwrt-mihomo
 
-# coremark
+# custom packages
 rm -rf feeds/packages/utils/coremark
-merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/coremark
-
-# Release Ram
-merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-ramfree
-
-# Scheduled Reboot
-merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-autoreboot
+git clone https://$github/8688Add/openwrt_apk package/custom --depth=1
 
 # ttyd
 #rm -rf feeds/luci/applications/luci-app-ttyd
@@ -119,12 +113,8 @@ sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/shar
 # partexp
 git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 
-# Filetransfer
-merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-filetransfer
-merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-lib-fs
-
 # zerotier
-merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/luci-app-zerotier
+#merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/luci-app-zerotier
 #sed -i 's/vpn/services/g' package/custom/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 
 # AutoCore
@@ -151,8 +141,8 @@ git clone --depth=1 -b master https://github.com/immortalwrt/packages.git immort
 #cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
 cp -rf immortalwrt-packages/net/smartdns feeds/packages/net/smartdns
 ln -sf ../../../feeds/packages/net/smartdns ./package/feeds/packages/smartdns
-cp -rf immortalwrt-packages/net/zerotier feeds/packages/net/zerotier
-ln -sf ../../../feeds/packages/net/zerotier ./package/feeds/packages/zerotier
+#cp -rf immortalwrt-packages/net/zerotier feeds/packages/net/zerotier
+#ln -sf ../../../feeds/packages/net/zerotier ./package/feeds/packages/zerotier
 
 # unblockneteasemusic
 git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
