@@ -103,7 +103,7 @@ git clone https://github.com/morytyann/OpenWrt-mihomo  package/openwrt-mihomo
 
 # custom packages
 rm -rf feeds/packages/utils/coremark
-git clone https://$github/8688Add/openwrt_apk package/custom --depth=1
+git clone https://github.com/8688Add/openwrt_apk package/custom
 
 # ttyd
 #rm -rf feeds/luci/applications/luci-app-ttyd
