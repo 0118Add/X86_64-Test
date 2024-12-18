@@ -101,9 +101,15 @@ sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/homeproxy/htdocs/luci-stati
 # mihomo
 git clone https://github.com/morytyann/OpenWrt-mihomo  package/openwrt-mihomo
 
-# custom packages
+# coremark
 rm -rf feeds/packages/utils/coremark
-git clone https://github.com/8688Add/openwrt_apk package/custom
+merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/coremark
+
+# Release Ram
+merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-ramfree
+
+# Scheduled Reboot
+merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-autoreboot
 
 # ttyd
 #rm -rf feeds/luci/applications/luci-app-ttyd
@@ -112,6 +118,10 @@ sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/shar
 
 # partexp
 git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
+
+# Filetransfer
+merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-filetransfer
+merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-lib-fs
 
 # zerotier
 #merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/luci-app-zerotier
