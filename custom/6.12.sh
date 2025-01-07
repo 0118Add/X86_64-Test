@@ -123,9 +123,6 @@ git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 merge_package https://github.com/0118Add/OP-Packages OP-Packages/luci-app-filetransfer
 merge_package https://github.com/0118Add/OP-Packages OP-Packages/luci-lib-fs
 
-# luci-app-fullconenat
-merge_package https://github.com/mgz0227/OP-Packages OP-Packages/luci-app-fullconenat
-
 # zerotier
 rm -rf feeds/packages/net/zerotier
 #merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/luci-app-zerotier
