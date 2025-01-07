@@ -124,6 +124,7 @@ merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-fi
 merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-lib-fs
 
 # zerotier
+rm -rf feeds/packages/net/zerotier
 #merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/luci-app-zerotier
 #sed -i 's/vpn/services/g' package/custom/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 
@@ -150,7 +151,7 @@ cp -rf immortalwrt-luci/applications/luci-app-zerotier feeds/luci/applications/l
 ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
 # 克隆immortalwrt-packages仓库
 git clone --depth=1 -b openwrt-24.10 https://github.com/immortalwrt/packages.git immortalwrt-packages
-#cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
+# cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
 cp -rf immortalwrt-packages/net/smartdns feeds/packages/net/smartdns
 ln -sf ../../../feeds/packages/net/smartdns ./package/feeds/packages/smartdns
 cp -rf immortalwrt-packages/net/zerotier feeds/packages/net/zerotier
@@ -177,6 +178,7 @@ curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25
 sed -i 's/WireGuard/WiGd状态/g' feeds/luci/protocols/luci-proto-wireguard/root/usr/share/luci/menu.d/luci-proto-wireguard.json
 rm -rf feeds/packages/lang/ruby
 cp -rf $GITHUB_WORKSPACE/general/ruby feeds/packages/lang/ruby
+sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 
 # comment out the following line to restore the full description
 #sed -i '/# timezone/i grep -q '\''/tmp/sysinfo/model'\'' /etc/rc.local || sudo sed -i '\''/exit 0/i [ "$(cat /sys\\/class\\/dmi\\/id\\/sys_vendor 2>\\/dev\\/null)" = "Default string" ] \&\& echo "x86_64" > \\/tmp\\/sysinfo\\/model'\'' /etc/rc.local\n' package/default-settings/default/zzz-default-settings
