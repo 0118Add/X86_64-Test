@@ -120,8 +120,11 @@ sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/shar
 git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 
 # Filetransfer
-merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-filetransfer
-merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-lib-fs
+merge_package https://github.com/0118Add/OP-Packages OP-Packages/luci-app-filetransfer
+merge_package https://github.com/0118Add/OP-Packages OP-Packages/luci-lib-fs
+
+# luci-app-fullconenat
+merge_package https://github.com/mgz0227/OP-Packages OP-Packages/luci-app-fullconenat
 
 # zerotier
 rm -rf feeds/packages/net/zerotier
