@@ -61,9 +61,9 @@ wget -O ./package/base-files/files/etc/banner https://raw.githubusercontent.com/
 # Default settings
 git clone https://github.com/sbwml/default-settings package/default-settings
 
-# autoCore
-#merge_package https://github.com/0118Add/mywrt-packages mywrt-packages/autocore-arm
-git clone https://github.com/sbwml/autocore-arm -b openwrt-24.10 package/autocore
+# autocore
+git clone https://github.com/8688Add/autocore-arm -b openwrt-24.10 package/autocore
+#git clone https://github.com/sbwml/autocore-arm -b openwrt-24.10 package/autocore
 
 # DDNS GO
 git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
@@ -119,9 +119,8 @@ sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/shar
 # partexp
 git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 
-# Filetransfer
-merge_package https://github.com/0118Add/OP-Packages OP-Packages/luci-app-filetransfer
-merge_package https://github.com/0118Add/OP-Packages OP-Packages/luci-lib-fs
+# filemanager
+git clone https://github.com/sbwml/luci-app-filemanager package/luci-app-filemanager
 
 # zerotier
 rm -rf feeds/packages/net/zerotier
@@ -145,21 +144,21 @@ rm -rf feeds/packages/net/zerotier
 git clone --depth=1 -b openwrt-24.10 https://github.com/immortalwrt/luci.git immortalwrt-luci
 #cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
 #cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
-cp -rf immortalwrt-luci/applications/luci-app-smartdns feeds/luci/applications/luci-app-smartdns
-ln -sf ../../../feeds/luci/applications/luci-app-smartdns ./package/feeds/luci/luci-app-smartdns
+cp -rf immortalwrt-luci/applications/luci-app-msd_lite feeds/luci/applications/luci-app-msd_lite
+ln -sf ../../../feeds/luci/applications/luci-app-msd_lite ./package/feeds/luci/luci-app-msd_lite
 cp -rf immortalwrt-luci/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
 ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
 # 克隆immortalwrt-packages仓库
 git clone --depth=1 -b openwrt-24.10 https://github.com/immortalwrt/packages.git immortalwrt-packages
 # cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
-cp -rf immortalwrt-packages/net/smartdns feeds/packages/net/smartdns
-ln -sf ../../../feeds/packages/net/smartdns ./package/feeds/packages/smartdns
+cp -rf immortalwrt-packages/net/msd_lite feeds/packages/net/msd_lite
+ln -sf ../../../feeds/packages/net/msd_lite ./package/feeds/packages/msd_lite
 cp -rf immortalwrt-packages/net/zerotier feeds/packages/net/zerotier
 ln -sf ../../../feeds/packages/net/zerotier ./package/feeds/packages/zerotier
 
 # unblockneteasemusic
 git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
-sed -i 's/解除网易云音乐播放限制/音乐云解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
+sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 
 # wechatpush
 # merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-wechatpush
