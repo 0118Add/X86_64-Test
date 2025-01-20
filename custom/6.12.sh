@@ -141,7 +141,7 @@ rm -rf feeds/packages/net/zerotier
 #ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
 #sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 # 克隆immortalwrt-luci仓库
-git clone --depth=1 -b openwrt-24.10 https://github.com/immortalwrt/luci.git immortalwrt-luci
+git clone --depth=1 -b master https://github.com/immortalwrt/luci.git immortalwrt-luci
 #cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
 #cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
 cp -rf immortalwrt-luci/applications/luci-app-msd_lite feeds/luci/applications/luci-app-msd_lite
@@ -149,7 +149,7 @@ ln -sf ../../../feeds/luci/applications/luci-app-msd_lite ./package/feeds/luci/l
 cp -rf immortalwrt-luci/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
 ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
 # 克隆immortalwrt-packages仓库
-git clone --depth=1 -b openwrt-24.10 https://github.com/immortalwrt/packages.git immortalwrt-packages
+git clone --depth=1 -b master https://github.com/immortalwrt/packages.git immortalwrt-packages
 # cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
 cp -rf immortalwrt-packages/net/msd_lite feeds/packages/net/msd_lite
 ln -sf ../../../feeds/packages/net/msd_lite ./package/feeds/packages/msd_lite
