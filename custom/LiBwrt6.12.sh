@@ -66,10 +66,10 @@ rm -rf feeds/luci/applications/{luci-app-passwall,luci-app-smartdns}
 
 # SmartDNS
 #rm -rf feeds/luci/applications/luci-app-smartdns
-git clone --single-branch https://github.com/lwb1978/luci-app-smartdns package/luci-app-smartdns
+#git clone --single-branch https://github.com/lwb1978/luci-app-smartdns package/luci-app-smartdns
 # 替换immortalwrt 软件仓库smartdns版本为官方最新版
-rm -rf feeds/packages/net/smartdns
-cp -rf ${GITHUB_WORKSPACE}/patch/smartdns feeds/packages/net
+#rm -rf feeds/packages/net/smartdns
+#cp -rf ${GITHUB_WORKSPACE}/patch/smartdns feeds/packages/net
 
 # openclash
 rm -rf feeds/luci/applications/luci-app-openclash
@@ -91,58 +91,6 @@ sed -i 's/MihomoTProxy/Mihomo/g' package/openwrt-mihomo/luci-app-mihomo/root/usr
 # neko
 #git clone -b nekobox --depth 1 https://github.com/Thaolga/openwrt-nekobox package/nekobox
 
-# 防火墙4添加自定义nft命令支持
-# curl -s https://$mirror/openwrt/patch/firewall4/100-openwrt-firewall4-add-custom-nft-command-support.patch | patch -p1
-patch -p1 < ${GITHUB_WORKSPACE}/patch/firewall4/100-openwrt-firewall4-add-custom-nft-command-support.patch
-
-pushd feeds/luci
-	# 防火墙4添加自定义nft命令选项卡
-	# curl -s https://$mirror/openwrt/patch/firewall4/luci-24.10/0004-luci-add-firewall-add-custom-nft-rule-support.patch | patch -p1
-	patch -p1 < ${GITHUB_WORKSPACE}/patch/firewall4/0004-luci-add-firewall-add-custom-nft-rule-support.patch
-	# 状态-防火墙页面去掉iptables警告，并添加nftables、iptables标签页
-	# curl -s https://$mirror/openwrt/patch/luci/0004-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
-	patch -p1 < ${GITHUB_WORKSPACE}/patch/firewall4/0004-luci-mod-status-firewall-disable-legacy-firewall-rul.patch
-popd
-
-# 补充 firewall4 luci 中文翻译
-cat >> "feeds/luci/applications/luci-app-firewall/po/zh_Hans/firewall.po" <<-EOF
-	
-	msgid ""
-	"Custom rules allow you to execute arbitrary nft commands which are not "
-	"otherwise covered by the firewall framework. The rules are executed after "
-	"each firewall restart, right after the default ruleset has been loaded."
-	msgstr ""
-	"自定义规则允许您执行不属于防火墙框架的任意 nft 命令。每次重启防火墙时，"
-	"这些规则在默认的规则运行后立即执行。"
-	
-	msgid ""
-	"Applicable to internet environments where the router is not assigned an IPv6 prefix, "
-	"such as when using an upstream optical modem for dial-up."
-	msgstr ""
-	"适用于路由器未分配 IPv6 前缀的互联网环境，例如上游使用光猫拨号时。"
-
-	msgid "NFtables Firewall"
-	msgstr "NFtables 防火墙"
-
-	msgid "IPtables Firewall"
-	msgstr "IPtables 防火墙"
-EOF
-
-# 精简 UPnP 菜单名称
-sed -i 's#\"title\": \"UPnP IGD \& PCP/NAT-PMP\"#\"title\": \"UPnP\"#g' feeds/luci/applications/luci-app-upnp/root/usr/share/luci/menu.d/luci-app-upnp.json
-# 移动 UPnP 到 “网络” 子菜单
-#sed -i 's/services/network/g' feeds/luci/applications/luci-app-upnp/root/usr/share/luci/menu.d/luci-app-upnp.json
-
-# vim - fix E1187: Failed to source defaults.vim
-pushd feeds/packages
-	vim_ver=$(cat utils/vim/Makefile | grep -i "PKG_VERSION:=" | awk 'BEGIN{FS="="};{print $2}' | awk 'BEGIN{FS=".";OFS="."};{print $1,$2}')
-	[ "$vim_ver" = "9.0" ] && {
-		echo "修复 vim E1187 的错误"
-		# curl -s https://github.com/openwrt/packages/commit/699d3fbee266b676e21b7ed310471c0ed74012c9.patch | patch -p1
-		patch -p1 < ${GITHUB_WORKSPACE}/patch/vim/0001-vim-fix-renamed-defaults-config-file.patch
-	}
-popd
-
 # 修正部分从第三方仓库拉取的软件 Makefile 路径问题
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/lang\/golang\/golang-package.mk/$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang-package.mk/g' {}
@@ -157,14 +105,9 @@ curl -fsSL https://raw.githubusercontent.com/0118Add/Cloudbuild/main/patches/29_
 
 # comment out the following line to restore the full description
 #sed -i '/# timezone/i grep -q '\''/tmp/sysinfo/model'\'' /etc/rc.local || sudo sed -i '\''/exit 0/i [ "$(cat /sys\\/class\\/dmi\\/id\\/sys_vendor 2>\\/dev\\/null)" = "Default string" ] \&\& echo "x86_64" > \\/tmp\\/sysinfo\\/model'\'' /etc/rc.local\n' package/emortal/default-settings/files/99-default-settings
-sed -i '/# timezone/i sed -i "s/\\(DISTRIB_DESCRIPTION=\\).*/\\1'\''ImmortalWrt $(sed -n "s/DISTRIB_DESCRIPTION='\''ImmortalWrt \\([^ ]*\\) .*/\\1/p" /etc/openwrt_release)'\'',/" /etc/openwrt_release\nsource /etc/openwrt_release \&\& sed -i -e "s/distversion\\s=\\s\\".*\\"/distversion = \\"$DISTRIB_ID $DISTRIB_RELEASE ($DISTRIB_REVISION)\\"/g" -e '\''s/distname    = .*$/distname    = ""/g'\'' /usr/lib/lua/luci/version.lua\nsed -i "s/luciname    = \\".*\\"/luciname    = \\"LuCI openwrt-24.10\\"/g" /usr/lib/lua/luci/version.lua\nsed -i "s/luciversion = \\".*\\"/luciversion = \\"\\"/g" /usr/lib/lua/luci/version.lua\necho "export const revision = '\''\'\'', branch = '\''LuCI openwrt-24.10'\'';" > /usr/share/ucode/luci/version.uc\n/etc/init.d/rpcd restart\n' package/emortal/default-settings/files/99-default-settings
+#sed -i '/# timezone/i sed -i "s/\\(DISTRIB_DESCRIPTION=\\).*/\\1'\''ImmortalWrt $(sed -n "s/DISTRIB_DESCRIPTION='\''ImmortalWrt \\([^ ]*\\) .*/\\1/p" /etc/openwrt_release)'\'',/" /etc/openwrt_release\nsource /etc/openwrt_release \&\& sed -i -e "s/distversion\\s=\\s\\".*\\"/distversion = \\"$DISTRIB_ID $DISTRIB_RELEASE ($DISTRIB_REVISION)\\"/g" -e '\''s/distname    = .*$/distname    = ""/g'\'' /usr/lib/lua/luci/version.lua\nsed -i "s/luciname    = \\".*\\"/luciname    = \\"LuCI openwrt-24.10\\"/g" /usr/lib/lua/luci/version.lua\nsed -i "s/luciversion = \\".*\\"/luciversion = \\"\\"/g" /usr/lib/lua/luci/version.lua\necho "export const revision = '\''\'\'', branch = '\''LuCI openwrt-24.10'\'';" > /usr/share/ucode/luci/version.uc\n/etc/init.d/rpcd restart\n' package/emortal/default-settings/files/99-default-settings
 #sed -i '/# timezone/i sed -i "s/\\(DISTRIB_DESCRIPTION=\\).*/\\1'\''ImmortalWrt $(sed -n "s/DISTRIB_DESCRIPTION='\''ImmortalWrt \\([^ ]*\\) .*/\\1/p" /etc/openwrt_release)'\'',/" /etc/openwrt_release\nsource /etc/openwrt_release \&\& sed -i -e "s/distversion\\s=\\s\\".*\\"/distversion = \\"$DISTRIB_ID $DISTRIB_RELEASE ($DISTRIB_REVISION)\\"/g" -e '\''s/distname    = .*$/distname    = ""/g'\'' /usr/lib/lua/luci/version.lua\nsed -i "s/luciname    = \\".*\\"/luciname    = \\"LuCI openwrt-24.10\\"/g" /usr/lib/lua/luci/version.lua\nsed -i "s/luciversion = \\".*\\"/luciversion = \\"v'$(date +%Y%m%d)'\\"/g" /usr/lib/lua/luci/version.lua\necho "export const revision = '\''v'$(date +%Y%m%d)'\'\'', branch = '\''LuCI openwrt-24.10'\'';" > /usr/share/ucode/luci/version.uc\n/etc/init.d/rpcd restart\n' package/emortal/default-settings/files/99-default-settings
-curl -fsSL https://raw.githubusercontent.com/0118Add/Openwrt-CI/main/patch/os-release > package/base-files/files/etc/os-release
-
-# 拷贝自定义文件
-if [ -n "$(ls -A "${GITHUB_WORKSPACE}/immortalwrt/diy" 2>/dev/null)" ]; then
-	cp -Rf ${GITHUB_WORKSPACE}/immortalwrt/diy/* .
-fi
+#curl -fsSL https://raw.githubusercontent.com/0118Add/Openwrt-CI/main/patch/os-release > package/base-files/files/etc/os-release
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
