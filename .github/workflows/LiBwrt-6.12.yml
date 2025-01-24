@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt-6.10
+name: Build LiBwrt-6.12
 
 on:
   repository_dispatch:
@@ -20,15 +20,15 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/mj22226/openwrt
-  REPO_BRANCH: linux-6.10
-  CONFIG_FILE: configs/6.10.config
-  DIY_SCRIPT: custom/6.10.sh
+  REPO_URL: https://github.com/LiBwrt/openwrt-6.x
+  REPO_BRANCH: kernel-6.12
+  CONFIG_FILE: configs/LiBwrt6.12.config
+  DIY_SCRIPT: custom/LiBwrt6.12.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: false
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: X86_64-6.10
+  FIRMWARE_TAG: LiBwrt-6.12
   TZ: Asia/Shanghai
 
 jobs:
