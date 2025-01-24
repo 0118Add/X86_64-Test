@@ -33,6 +33,9 @@ function merge_feed(){
 }
 rm -rf package/custom; mkdir package/custom
 
+# 修改x86内核到6.12版
+sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=6.12/g' ./target/linux/x86/Makefile
+
 # 修改默认IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
