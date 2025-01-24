@@ -51,26 +51,6 @@ sed -i 's/<%:Down%>/<%:Move down%>/g' feeds/luci/modules/luci-compat/luasrc/view
 # 修复procps-ng-top导致首页cpu使用率无法获取
 sed -i 's#top -n1#\/bin\/busybox top -n1#g' feeds/luci/modules/luci-base/root/usr/share/rpcd/ucode/luci
 
-# ------------------PassWall 科学上网--------------------------
-# 移除 openwrt feeds 自带的核心库
-rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,pdnsd-alt,brook,chinadns-ng,dns2socks,dns2tcp,gn,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan,trojan-go,trojan-plus,tuic-client,v2ray-plugin,xray-plugin}
-# 核心库
-git clone https://github.com/xiaorouji/openwrt-passwall-packages package/passwall-packages
-rm -rf package/passwall-packages/{chinadns-ng,naiveproxy,v2ray-geodata}
-#merge_package v5 https://github.com/sbwml/openwrt_helloworld package/passwall-packages chinadns-ng naiveproxy v2ray-geodata
-# app
-rm -rf feeds/luci/applications/{luci-app-passwall,luci-app-smartdns}
-#git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwrt-passwall package/passwall-luci
-# git clone https://github.com/xiaorouji/openwrt-passwall package/passwall-luci
-# ------------------------------------------------------------
-
-# SmartDNS
-#rm -rf feeds/luci/applications/luci-app-smartdns
-#git clone --single-branch https://github.com/lwb1978/luci-app-smartdns package/luci-app-smartdns
-# 替换immortalwrt 软件仓库smartdns版本为官方最新版
-#rm -rf feeds/packages/net/smartdns
-#cp -rf ${GITHUB_WORKSPACE}/patch/smartdns feeds/packages/net
-
 # openclash
 rm -rf feeds/luci/applications/luci-app-openclash
 git clone --depth=1 -b dev https://github.com/vernesong/OpenClash package/OpenClash
