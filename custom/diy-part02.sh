@@ -77,7 +77,7 @@ git clone https://github.com/sbwml/default-settings package/default-settings
 
 # autoCore
 #merge_package https://github.com/0118Add/OP-Packages OP-Packages/autocore-arm
-git clone https://github.com/8688Add/autocore-arm -b openwrt-24.10 package/system/autocore
+git clone https://github.com/8688Add/autocore-arm -b openwrt-24.10 package/autocore
 
 # alist
 #git clone https://github.com/sbwml/luci-app-alist package/alist
