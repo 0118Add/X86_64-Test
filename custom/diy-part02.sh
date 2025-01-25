@@ -135,6 +135,9 @@ git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 rm -rf feeds/luci/applications/luci-app-filemanager
 git clone https://github.com/sbwml/luci-app-filemanager package/luci-app-filemanager
 
+# tailscale
+git clone https://github.com/asvow/luci-app-tailscale  package/luci-app-tailscale
+
 # SmartDNS zerotier
 rm -rf feeds/luci/applications/luci-app-smartdns
 rm -rf feeds/packages/net/smartdns
@@ -150,10 +153,10 @@ merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/coremark
 #rm -rf feeds/luci/modules/luci-mod-status
 
 # 克隆Lean-luci仓库
-git clone --depth=1 -b openwrt-23.05 https://github.com/coolsnowwolf/luci lean-luci
-cp -rf lean-luci/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
-ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
-sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
+#git clone --depth=1 -b openwrt-23.05 https://github.com/coolsnowwolf/luci lean-luci
+#cp -rf lean-luci/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
+#ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
+#sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 
 # 克隆immortalwrt-luci仓库
 git clone --depth=1 -b openwrt-24.10 https://github.com/immortalwrt/luci.git immortalwrt-luci
@@ -161,8 +164,8 @@ git clone --depth=1 -b openwrt-24.10 https://github.com/immortalwrt/luci.git imm
 #cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
 #cp -rf immortalwrt-luci/applications/luci-app-smartdns feeds/luci/applications/luci-app-smartdns
 #ln -sf ../../../feeds/luci/applications/luci-app-smartdns ./package/feeds/luci/luci-app-smartdns
-cp -rf immortalwrt-luci/applications/luci-app-ddns-go feeds/luci/applications/luci-app-ddns-go
-ln -sf ../../../feeds/luci/applications/luci-app-ddns-go ./package/feeds/luci/luci-app-ddns-go
+cp -rf immortalwrt-luci/applications/luci-app-alist feeds/luci/applications/luci-app-alist
+ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci-app-alist
 #cp -rf immortalwrt-luci/applications/luci-app-daed feeds/luci/applications/luci-app-daed
 #ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
 # 克隆immortalwrt-packages仓库
@@ -170,8 +173,8 @@ git clone --depth=1 -b openwrt-24.10 https://github.com/immortalwrt/packages.git
 #cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
 cp -rf immortalwrt-packages/net/zerotier feeds/packages/net/zerotier
 ln -sf ../../../feeds/packages/net/zerotier ./package/feeds/packages/zerotier
-cp -rf immortalwrt-packages/net/ddns-go feeds/packages/net/ddns-go
-ln -sf ../../../feeds/packages/net/ddns-go ./package/feeds/packages/ddns-go
+cp -rf immortalwrt-packages/net/alist feeds/packages/net/alist
+ln -sf ../../../feeds/packages/net/alist ./package/feeds/packages/alist
 #cp -rf immortalwrt-packages/net/smartdns feeds/packages/net/smartdns
 #ln -sf ../../../feeds/packages/net/smartdns ./package/feeds/packages/smartdns
 #cp -rf immortalwrt-packages/net/daed feeds/packages/net/daed
