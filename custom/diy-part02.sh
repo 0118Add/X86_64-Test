@@ -33,10 +33,6 @@ function merge_feed(){
 }
 rm -rf package/custom; mkdir package/custom
 
-# 删除插件
-#rm -rf package/libs/mbedtls
-#cp -rf $GITHUB_WORKSPACE/general/mbedtls package/libs/mbedtls
-
 # Modify default IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
@@ -158,6 +154,8 @@ merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/coremark
 #ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
 #sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 
+rm -rf feeds/luci/applications/luci-app-alist
+rm -rf feeds/packages/net/alist
 # 克隆immortalwrt-luci仓库
 git clone --depth=1 -b openwrt-24.10 https://github.com/immortalwrt/luci.git immortalwrt-luci
 #cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
