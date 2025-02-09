@@ -44,7 +44,7 @@ jobs:
         echo -e "Total CPU cores\t: $(nproc)"
         cat /proc/cpuinfo | grep 'model name'    
     
-    - name: Initialization environment
+    - name: Init build dependencies
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
