@@ -127,9 +127,9 @@ sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/shar
 # partexp
 git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 
-# Filetransfer
-merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-filetransfer
-merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-lib-fs
+# luci-app-filemanager
+rm -rf feeds/luci/applications/luci-app-filemanager
+git clone https://github.com/sbwml/luci-app-filemanager package/luci-app-filemanager
 
 # SmartDNS zerotier
 rm -rf feeds/luci/applications/luci-app-smartdns
@@ -179,9 +179,8 @@ sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/root/usr/sha
 git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
 sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 
-# wechatpush
-merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-wechatpush
-merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/wrtbwmon
+# tailscale
+git clone https://github.com/asvow/luci-app-tailscale  package/luci-app-tailscale
 
 # turboacc
 #git clone https://github.com/chenmozhijin/turboacc package/new/luci-app-turboacc
