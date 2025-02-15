@@ -111,7 +111,8 @@ git clone -b neko --depth 1 https://github.com/Thaolga/luci-app-nekoclash packag
 sed -i 's/NekoClash/Clash/g' package/nekoclash/luci-app-nekoclash/luasrc/controller/neko.lua
 
 # mihomo
-git clone https://github.com/morytyann/OpenWrt-mihomo  package/openwrt-mihomo
+#git clone https://github.com/nikkinikki-org/OpenWrt-nikki package/OpenWrt-nikki
+git clone https://github.com/xianren78/OpenWrt-mihomo package/openwrt-mihomo
 
 # Release Ram
 merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-ramfree
