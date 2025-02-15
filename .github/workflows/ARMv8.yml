@@ -107,9 +107,9 @@ jobs:
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_PATH/.config
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF $OPENWRT_PATH/feeds.conf.default
         chmod +x $GITHUB_WORKSPACE/custom/*.sh
-        chmod +x $DIY_P1_SH
+        chmod +x $DIY_SCRIPT
         cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P1_SH
+        $GITHUB_WORKSPACE/$DIY_SCRIPT
     
     - name: Download DL Package(下载DL软件包)
       run: |
