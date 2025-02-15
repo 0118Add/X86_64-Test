@@ -111,7 +111,8 @@ git clone https://github.com/muink/openwrt-fchomo package/openwrt-fchomo
 rm -rf openwrt-fchomo/mihomo
 
 # mihomo
-git clone https://github.com/morytyann/OpenWrt-mihomo  package/openwrt-mihomo
+#git clone https://github.com/nikkinikki-org/OpenWrt-nikki package/OpenWrt-nikki
+git clone https://github.com/xianren78/OpenWrt-mihomo package/openwrt-mihomo
 
 # Release Ram
 merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-ramfree
