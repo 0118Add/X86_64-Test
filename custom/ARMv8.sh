@@ -107,11 +107,11 @@ sed -i "s/ImmortalWrt/OpenWrt/g" package/homeproxy/po/zh_Hans/homeproxy.po
 sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 
 # neko
-git clone -b nekobox --depth 1 https://github.com/Thaolga/openwrt-nekobox package/nekobox
+#git clone -b nekobox --depth 1 https://github.com/Thaolga/openwrt-nekobox package/nekobox
 
 # mihomo
-#git clone https://github.com/nikkinikki-org/OpenWrt-nikki package/OpenWrt-nikki
-git clone https://github.com/xianren78/OpenWrt-mihomo package/openwrt-mihomo
+git clone https://github.com/nikkinikki-org/OpenWrt-nikki package/OpenWrt-nikki
+#git clone https://github.com/xianren78/OpenWrt-mihomo package/openwrt-mihomo
 
 # Release Ram
 merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-ramfree
