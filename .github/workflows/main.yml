@@ -32,9 +32,6 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@main
-
     - name: Show system
       run: |
         echo -e "Total CPU cores\t: $(nproc)"
