@@ -9,15 +9,15 @@ git clone https://$github/8688Add/autocore-arm -b openwrt-24.10 package/system/a
 rm -rf target/linux/rockchip
 git clone https://$github/dd-ray/target_linux_rockchip-6.x target/linux/rockchip -b openwrt-24.10
 
-# bpf-headers - 6.13
+# bpf-headers - 6.14
 sed -ri "s/(PKG_PATCHVER:=)[^\"]*/\16.13/" package/kernel/bpf-headers/Makefile
 
-# x86_64 - target 6.13
-curl -s $mirror/openwrt/patch/openwrt-6.x/x86/64/config-6.13 > target/linux/x86/64/config-6.13
-curl -s $mirror/openwrt/patch/openwrt-6.x/x86/config-6.13 > target/linux/x86/config-6.13
-mkdir -p target/linux/x86/patches-6.13
-curl -s $mirror/openwrt/patch/openwrt-6.x/x86/patches-6.13/100-fix_cs5535_clockevt.patch > target/linux/x86/patches-6.13/100-fix_cs5535_clockevt.patch
-curl -s $mirror/openwrt/patch/openwrt-6.x/x86/patches-6.13/103-pcengines_apu6_platform.patch > target/linux/x86/patches-6.13/103-pcengines_apu6_platform.patch
+# x86_64 - target 6.14
+curl -s $mirror/openwrt/patch/openwrt-6.x/x86/64/config-6.14 > target/linux/x86/64/config-6.14
+curl -s $mirror/openwrt/patch/openwrt-6.x/x86/config-6.14 > target/linux/x86/config-6.14
+mkdir -p target/linux/x86/patches-6.14
+curl -s $mirror/openwrt/patch/openwrt-6.x/x86/patches-6.14/100-fix_cs5535_clockevt.patch > target/linux/x86/patches-6.14/100-fix_cs5535_clockevt.patch
+curl -s $mirror/openwrt/patch/openwrt-6.x/x86/patches-6.14/103-pcengines_apu6_platform.patch > target/linux/x86/patches-6.14/103-pcengines_apu6_platform.patch
 # x86_64 - target
 sed -ri "s/(KERNEL_PATCHVER:=)[^\"]*/\16.13/" target/linux/x86/Makefile
 sed -i '/KERNEL_PATCHVER/a\KERNEL_TESTING_PATCHVER:=6.6' target/linux/x86/Makefile
@@ -38,19 +38,19 @@ git clone https://$github/dd-ray/target_linux_mediatek-6.x target/linux/mediatek
 rm -rf target/linux/armsr
 git clone https://$github/dd-ray/target_linux_armsr target/linux/armsr -b main
 
-# kernel - 6.13
-curl -s $mirror/tags/kernel-6.13 > include/kernel-6.13
+# kernel - 6.14
+curl -s $mirror/tags/kernel-6.14 > include/kernel-6.14
 
 # kenrel Vermagic
 sed -ie 's/^\(.\).*vermagic$/\1cp $(TOPDIR)\/.vermagic $(LINUX_DIR)\/.vermagic/' include/kernel-defaults.mk
 grep HASH include/kernel-6.13 | awk -F'HASH-' '{print $2}' | awk '{print $1}' | md5sum | awk '{print $1}' > .vermagic
 
 # kernel generic patches
-curl -s $mirror/openwrt/patch/kernel-6.13/openwrt/linux-6.13-target-linux-generic.patch | patch -p1
+curl -s $mirror/openwrt/patch/kernel-6.14/openwrt/linux-6.14-target-linux-generic.patch | patch -p1
 # Fix the loss of module.symvers
-curl -s $mirror/openwrt/patch/kernel-6.13/openwrt/fix-openwrt-kmod-module-symvers.patch | patch -p1
-local_kernel_version=$(sed -n 's/^LINUX_KERNEL_HASH-\([0-9.]\+\) = .*/\1/p' include/kernel-6.13)
-release_kernel_version=$(curl -sL https://raw.githubusercontent.com/0118Add/OpenWrt-Actions/master/tags/kernel-6.13 | sed -n 's/^LINUX_KERNEL_HASH-\([0-9.]\+\) = .*/\1/p')
+curl -s $mirror/openwrt/patch/kernel-6.14/openwrt/fix-openwrt-kmod-module-symvers.patch | patch -p1
+local_kernel_version=$(sed -n 's/^LINUX_KERNEL_HASH-\([0-9.]\+\) = .*/\1/p' include/kernel-6.14)
+release_kernel_version=$(curl -sL https://raw.githubusercontent.com/0118Add/OpenWrt-Actions/master/tags/kernel-6.14 | sed -n 's/^LINUX_KERNEL_HASH-\([0-9.]\+\) = .*/\1/p')
 if [ "$local_kernel_version" = "$release_kernel_version" ] && [ -z "$git_password" ] && [ "$(whoami)" != "sbwml" ]; then
     git clone https://$github/dd-ray/target_linux_generic -b openwrt-24.10 target/linux/generic-6.13 --depth=1
 else
@@ -59,7 +59,7 @@ fi
 cp -a target/linux/generic-6.13/* target/linux/generic
 
 # bcm53xx - fix build kernel with clang
-[ "$platform" = "bcm53xx" ] && [ "$KERNEL_CLANG_LTO" = "y" ] && rm -f target/linux/generic/hack-6.6/220-arm-gc_sections.patch target/linux/generic/hack-6.13/220-arm-gc_sections.patch
+[ "$platform" = "bcm53xx" ] && [ "$KERNEL_CLANG_LTO" = "y" ] && rm -f target/linux/generic/hack-6.6/220-arm-gc_sections.patch target/linux/generic/hack-6.14/220-arm-gc_sections.patch
 
 # kernel modules
 rm -rf package/kernel/linux
@@ -96,67 +96,67 @@ pushd package/kernel/linux/modules
 popd
 
 # BBRv3 - linux-6.13
-pushd target/linux/generic/backport-6.13
-    curl -Os $mirror/openwrt/patch/kernel-6.13/bbr3/010-bbr3-0001-net-tcp_bbr-broaden-app-limited-rate-sample-detectio.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/bbr3/010-bbr3-0002-net-tcp_bbr-v2-shrink-delivered_mstamp-first_tx_msta.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/bbr3/010-bbr3-0003-net-tcp_bbr-v2-snapshot-packets-in-flight-at-transmi.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/bbr3/010-bbr3-0004-net-tcp_bbr-v2-count-packets-lost-over-TCP-rate-samp.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/bbr3/010-bbr3-0005-net-tcp_bbr-v2-export-FLAG_ECE-in-rate_sample.is_ece.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/bbr3/010-bbr3-0006-net-tcp_bbr-v2-introduce-ca_ops-skb_marked_lost-CC-m.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/bbr3/010-bbr3-0007-net-tcp_bbr-v2-adjust-skb-tx.in_flight-upon-merge-in.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/bbr3/010-bbr3-0008-net-tcp_bbr-v2-adjust-skb-tx.in_flight-upon-split-in.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/bbr3/010-bbr3-0009-net-tcp-add-new-ca-opts-flag-TCP_CONG_WANTS_CE_EVENT.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/bbr3/010-bbr3-0010-net-tcp-re-generalize-TSO-sizing-in-TCP-CC-module-AP.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/bbr3/010-bbr3-0011-net-tcp-add-fast_ack_mode-1-skip-rwin-check-in-tcp_f.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/bbr3/010-bbr3-0012-net-tcp_bbr-v2-record-app-limited-status-of-TLP-repa.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/bbr3/010-bbr3-0013-net-tcp_bbr-v2-inform-CC-module-of-losses-repaired-b.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/bbr3/010-bbr3-0014-net-tcp_bbr-v2-introduce-is_acking_tlp_retrans_seq-i.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/bbr3/010-bbr3-0015-tcp-introduce-per-route-feature-RTAX_FEATURE_ECN_LOW.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/bbr3/010-bbr3-0016-net-tcp_bbr-v3-update-TCP-bbr-congestion-control-mod.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/bbr3/010-bbr3-0017-net-tcp_bbr-v3-ensure-ECN-enabled-BBR-flows-set-ECT-.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/bbr3/010-bbr3-0018-tcp-export-TCPI_OPT_ECN_LOW-in-tcp_info-tcpi_options.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/bbr3/010-bbr3-0019-x86-cfi-bpf-Add-tso_segs-and-skb_marked_lost-to-bpf_.patch
+pushd target/linux/generic/backport-6.14
+    curl -Os $mirror/openwrt/patch/kernel-6.14/bbr3/010-bbr3-0001-net-tcp_bbr-broaden-app-limited-rate-sample-detectio.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/bbr3/010-bbr3-0002-net-tcp_bbr-v2-shrink-delivered_mstamp-first_tx_msta.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/bbr3/010-bbr3-0003-net-tcp_bbr-v2-snapshot-packets-in-flight-at-transmi.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/bbr3/010-bbr3-0004-net-tcp_bbr-v2-count-packets-lost-over-TCP-rate-samp.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/bbr3/010-bbr3-0005-net-tcp_bbr-v2-export-FLAG_ECE-in-rate_sample.is_ece.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/bbr3/010-bbr3-0006-net-tcp_bbr-v2-introduce-ca_ops-skb_marked_lost-CC-m.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/bbr3/010-bbr3-0007-net-tcp_bbr-v2-adjust-skb-tx.in_flight-upon-merge-in.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/bbr3/010-bbr3-0008-net-tcp_bbr-v2-adjust-skb-tx.in_flight-upon-split-in.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/bbr3/010-bbr3-0009-net-tcp-add-new-ca-opts-flag-TCP_CONG_WANTS_CE_EVENT.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/bbr3/010-bbr3-0010-net-tcp-re-generalize-TSO-sizing-in-TCP-CC-module-AP.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/bbr3/010-bbr3-0011-net-tcp-add-fast_ack_mode-1-skip-rwin-check-in-tcp_f.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/bbr3/010-bbr3-0012-net-tcp_bbr-v2-record-app-limited-status-of-TLP-repa.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/bbr3/010-bbr3-0013-net-tcp_bbr-v2-inform-CC-module-of-losses-repaired-b.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/bbr3/010-bbr3-0014-net-tcp_bbr-v2-introduce-is_acking_tlp_retrans_seq-i.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/bbr3/010-bbr3-0015-tcp-introduce-per-route-feature-RTAX_FEATURE_ECN_LOW.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/bbr3/010-bbr3-0016-net-tcp_bbr-v3-update-TCP-bbr-congestion-control-mod.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/bbr3/010-bbr3-0017-net-tcp_bbr-v3-ensure-ECN-enabled-BBR-flows-set-ECT-.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/bbr3/010-bbr3-0018-tcp-export-TCPI_OPT_ECN_LOW-in-tcp_info-tcpi_options.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/bbr3/010-bbr3-0019-x86-cfi-bpf-Add-tso_segs-and-skb_marked_lost-to-bpf_.patch
 popd
 
-# LRNG - 6.13
-pushd target/linux/generic/hack-6.13
-    curl -Os $mirror/openwrt/patch/kernel-6.13/lrng/011-LRNG-0001-LRNG-Entropy-Source-and-DRNG-Manager.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/lrng/011-LRNG-0002-LRNG-allocate-one-DRNG-instance-per-NUMA-node.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/lrng/011-LRNG-0003-LRNG-proc-interface.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/lrng/011-LRNG-0004-LRNG-add-switchable-DRNG-support.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/lrng/011-LRNG-0005-LRNG-add-common-generic-hash-support.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/lrng/011-LRNG-0006-crypto-DRBG-externalize-DRBG-functions-for-LRNG.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/lrng/011-LRNG-0007-LRNG-add-SP800-90A-DRBG-extension.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/lrng/011-LRNG-0008-LRNG-add-kernel-crypto-API-PRNG-extension.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/lrng/011-LRNG-0009-LRNG-add-atomic-DRNG-implementation.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/lrng/011-LRNG-0010-LRNG-add-common-timer-based-entropy-source-code.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/lrng/011-LRNG-0011-LRNG-add-interrupt-entropy-source.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/lrng/011-LRNG-0012-scheduler-add-entropy-sampling-hook.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/lrng/011-LRNG-0013-LRNG-add-scheduler-based-entropy-source.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/lrng/011-LRNG-0014-LRNG-add-SP800-90B-compliant-health-tests.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/lrng/011-LRNG-0015-LRNG-add-random.c-entropy-source-support.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/lrng/011-LRNG-0016-LRNG-CPU-entropy-source.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/lrng/011-LRNG-0017-LRNG-add-Jitter-RNG-fast-noise-source.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/lrng/011-LRNG-0018-LRNG-add-option-to-enable-runtime-entropy-rate-confi.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/lrng/011-LRNG-0019-LRNG-add-interface-for-gathering-of-raw-entropy.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/lrng/011-LRNG-0020-LRNG-add-power-on-and-runtime-self-tests.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/lrng/011-LRNG-0021-LRNG-sysctls-and-proc-interface.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/lrng/011-LRNG-0022-LRMG-add-drop-in-replacement-random-4-API.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/lrng/011-LRNG-0023-LRNG-add-kernel-crypto-API-interface.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/lrng/011-LRNG-0024-LRNG-add-dev-lrng-device-file-support.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/lrng/011-LRNG-0025-LRNG-add-hwrand-framework-interface.patch
+# LRNG - 6.14
+pushd target/linux/generic/hack-6.14
+    curl -Os $mirror/openwrt/patch/kernel-6.14/lrng/011-LRNG-0001-LRNG-Entropy-Source-and-DRNG-Manager.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/lrng/011-LRNG-0002-LRNG-allocate-one-DRNG-instance-per-NUMA-node.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/lrng/011-LRNG-0003-LRNG-proc-interface.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/lrng/011-LRNG-0004-LRNG-add-switchable-DRNG-support.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/lrng/011-LRNG-0005-LRNG-add-common-generic-hash-support.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/lrng/011-LRNG-0006-crypto-DRBG-externalize-DRBG-functions-for-LRNG.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/lrng/011-LRNG-0007-LRNG-add-SP800-90A-DRBG-extension.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/lrng/011-LRNG-0008-LRNG-add-kernel-crypto-API-PRNG-extension.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/lrng/011-LRNG-0009-LRNG-add-atomic-DRNG-implementation.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/lrng/011-LRNG-0010-LRNG-add-common-timer-based-entropy-source-code.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/lrng/011-LRNG-0011-LRNG-add-interrupt-entropy-source.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/lrng/011-LRNG-0012-scheduler-add-entropy-sampling-hook.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/lrng/011-LRNG-0013-LRNG-add-scheduler-based-entropy-source.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/lrng/011-LRNG-0014-LRNG-add-SP800-90B-compliant-health-tests.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/lrng/011-LRNG-0015-LRNG-add-random.c-entropy-source-support.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/lrng/011-LRNG-0016-LRNG-CPU-entropy-source.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/lrng/011-LRNG-0017-LRNG-add-Jitter-RNG-fast-noise-source.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/lrng/011-LRNG-0018-LRNG-add-option-to-enable-runtime-entropy-rate-confi.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/lrng/011-LRNG-0019-LRNG-add-interface-for-gathering-of-raw-entropy.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/lrng/011-LRNG-0020-LRNG-add-power-on-and-runtime-self-tests.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/lrng/011-LRNG-0021-LRNG-sysctls-and-proc-interface.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/lrng/011-LRNG-0022-LRMG-add-drop-in-replacement-random-4-API.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/lrng/011-LRNG-0023-LRNG-add-kernel-crypto-API-interface.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/lrng/011-LRNG-0024-LRNG-add-dev-lrng-device-file-support.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/lrng/011-LRNG-0025-LRNG-add-hwrand-framework-interface.patch
 popd
 
 # linux-rt - i915
-pushd target/linux/generic/hack-6.13
-    curl -Os $mirror/openwrt/patch/kernel-6.13/linux-rt/012-0001-drm-i915-Use-preempt_disable-enable_rt-where-recomme.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/linux-rt/012-0002-drm-i915-Don-t-disable-interrupts-on-PREEMPT_RT-duri.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/linux-rt/012-0003-drm-i915-Don-t-check-for-atomic-context-on-PREEMPT_R.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/linux-rt/012-0004-drm-i915-Disable-tracing-points-on-PREEMPT_RT.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/linux-rt/012-0005-drm-i915-gt-Use-spin_lock_irq-instead-of-local_irq_d.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/linux-rt/012-0006-drm-i915-Drop-the-irqs_disabled-check.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/linux-rt/012-0007-drm-i915-guc-Consider-also-RCU-depth-in-busy-loop.patch
-    curl -Os $mirror/openwrt/patch/kernel-6.13/linux-rt/012-0008-Revert-drm-i915-Depend-on-PREEMPT_RT.patch
+pushd target/linux/generic/hack-6.14
+    curl -Os $mirror/openwrt/patch/kernel-6.14/linux-rt/012-0001-drm-i915-Use-preempt_disable-enable_rt-where-recomme.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/linux-rt/012-0002-drm-i915-Don-t-disable-interrupts-on-PREEMPT_RT-duri.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/linux-rt/012-0003-drm-i915-Don-t-check-for-atomic-context-on-PREEMPT_R.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/linux-rt/012-0004-drm-i915-Disable-tracing-points-on-PREEMPT_RT.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/linux-rt/012-0005-drm-i915-gt-Use-spin_lock_irq-instead-of-local_irq_d.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/linux-rt/012-0006-drm-i915-Drop-the-irqs_disabled-check.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/linux-rt/012-0007-drm-i915-guc-Consider-also-RCU-depth-in-busy-loop.patch
+    curl -Os $mirror/openwrt/patch/kernel-6.14/linux-rt/012-0008-Revert-drm-i915-Depend-on-PREEMPT_RT.patch
 popd
 
 # iproute2 - bbr3
@@ -186,17 +186,17 @@ git clone https://$github/sbwml/package_kernel_ath10k-ct package/kernel/ath10k-c
 curl -s $mirror/openwrt/patch/packages-patches/ath10k/990-ath10k-fix-for-6.13.patch > package/kernel/ath10k-ct/patches/990-ath10k-fix-for-6.13.patch
 # kernel patch
 # btf: silence btf module warning messages
-curl -s $mirror/openwrt/patch/kernel-6.13/btf/990-btf-silence-btf-module-warning-messages.patch > target/linux/generic/hack-6.13/990-btf-silence-btf-module-warning-messages.patch
+curl -s $mirror/openwrt/patch/kernel-6.14/btf/990-btf-silence-btf-module-warning-messages.patch > target/linux/generic/hack-6.14/990-btf-silence-btf-module-warning-messages.patch
 # cpu model
-curl -s $mirror/openwrt/patch/kernel-6.13/arm64/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch > target/linux/generic/hack-6.13/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch
+curl -s $mirror/openwrt/patch/kernel-6.14/arm64/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch > target/linux/generic/hack-6.14/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch
 # fullcone
-curl -s $mirror/openwrt/patch/kernel-6.13/net/952-net-conntrack-events-support-multiple-registrant.patch > target/linux/generic/hack-6.13/952-net-conntrack-events-support-multiple-registrant.patch
+curl -s $mirror/openwrt/patch/kernel-6.14/net/952-net-conntrack-events-support-multiple-registrant.patch > target/linux/generic/hack-6.14/952-net-conntrack-events-support-multiple-registrant.patch
 # bcm-fullcone
-curl -s $mirror/openwrt/patch/kernel-6.13/net/982-add-bcm-fullcone-support.patch > target/linux/generic/hack-6.13/982-add-bcm-fullcone-support.patch
-curl -s $mirror/openwrt/patch/kernel-6.13/net/983-add-bcm-fullcone-nft_masq-support.patch > target/linux/generic/hack-6.13/983-add-bcm-fullcone-nft_masq-support.patch
+curl -s $mirror/openwrt/patch/kernel-6.14/net/982-add-bcm-fullcone-support.patch > target/linux/generic/hack-6.14/982-add-bcm-fullcone-support.patch
+curl -s $mirror/openwrt/patch/kernel-6.14/net/983-add-bcm-fullcone-nft_masq-support.patch > target/linux/generic/hack-6.14/983-add-bcm-fullcone-nft_masq-support.patch
 # shortcut-fe
-curl -s $mirror/openwrt/patch/kernel-6.13/net/601-netfilter-export-udp_get_timeouts-function.patch > target/linux/generic/hack-6.13/601-netfilter-export-udp_get_timeouts-function.patch
-curl -s $mirror/openwrt/patch/kernel-6.13/net/953-net-patch-linux-kernel-to-support-shortcut-fe.patch > target/linux/generic/hack-6.13/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
+curl -s $mirror/openwrt/patch/kernel-6.14/net/601-netfilter-export-udp_get_timeouts-function.patch > target/linux/generic/hack-6.14/601-netfilter-export-udp_get_timeouts-function.patch
+curl -s $mirror/openwrt/patch/kernel-6.14/net/953-net-patch-linux-kernel-to-support-shortcut-fe.patch > target/linux/generic/hack-6.14/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
 
 # RTC
 if [ "$platform" = "rk3399" ] || [ "$platform" = "rk3568" ]; then
