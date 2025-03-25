@@ -30,9 +30,6 @@ git clone https://$github/sbwml/packages_utils_lrzsz package/lrzsz
 curl -s $mirror/openwrt/patch/irqbalance/011-meson-numa.patch > feeds/packages/utils/irqbalance/patches/011-meson-numa.patch
 sed -i '/-Dcapng=disabled/i\\t-Dnuma=disabled \\' feeds/packages/utils/irqbalance/Makefile
 
-# Docker
-rm -rf feeds/luci/applications/luci-app-dockerman
-
 # luci-app-filemanager
 rm -rf feeds/luci/applications/luci-app-filemanager
 git clone https://$github/sbwml/luci-app-filemanager package/luci-app-filemanager
