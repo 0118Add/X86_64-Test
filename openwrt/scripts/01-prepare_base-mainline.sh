@@ -43,7 +43,7 @@ curl -s $mirror/tags/kernel-6.14 > include/kernel-6.14
 
 # kenrel Vermagic
 sed -ie 's/^\(.\).*vermagic$/\1cp $(TOPDIR)\/.vermagic $(LINUX_DIR)\/.vermagic/' include/kernel-defaults.mk
-grep HASH include/kernel-6.13 | awk -F'HASH-' '{print $2}' | awk '{print $1}' | md5sum | awk '{print $1}' > .vermagic
+grep HASH include/kernel-6.14 | awk -F'HASH-' '{print $2}' | awk '{print $1}' | md5sum | awk '{print $1}' > .vermagic
 
 # kernel generic patches
 curl -s $mirror/openwrt/patch/kernel-6.14/openwrt/linux-6.14-target-linux-generic.patch | patch -p1
