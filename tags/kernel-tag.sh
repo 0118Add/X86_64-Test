@@ -8,5 +8,5 @@ KERNEL_HASH=`curl -s https://cdn.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc
 TAG=`echo $KERNEL_VERSION | awk -F"." '{print $3}'`
 
 [ -z $TAG ] && TAG="" || TAG=.$TAG
-echo "LINUX_VERSION-6.13 = $TAG
+echo "LINUX_VERSION-6.14 = $TAG
 LINUX_KERNEL_HASH-$KERNEL_VERSION = $KERNEL_HASH" > $ROOT/kernel-6.13
