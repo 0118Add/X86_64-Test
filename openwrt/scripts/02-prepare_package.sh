@@ -113,6 +113,23 @@ ln -sf ../../../feeds/packages/net/zerotier ./package/feeds/packages/zerotier
 sed -i 's/net.netfilter.nf_conntrack_max=.*/net.netfilter.nf_conntrack_max=65535/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
 
+# Docker
+rm -rf feeds/luci/applications/luci-app-dockerman
+git clone https://$gitea/sbwml/luci-app-dockerman -b openwrt-23.05 feeds/luci/applications/luci-app-dockerman
+if [ "$version" = "dev" ] || [ "$version" = "rc2" ]; then
+    rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
+    git clone https://$github/sbwml/packages_utils_docker feeds/packages/utils/docker
+    git clone https://$github/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
+    git clone https://$github/sbwml/packages_utils_containerd feeds/packages/utils/containerd
+    git clone https://$github/sbwml/packages_utils_runc feeds/packages/utils/runc
+fi
+sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
+pushd feeds/packages
+    curl -s $mirror/openwrt/patch/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
+    curl -s $mirror/openwrt/patch/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
+    curl -s $mirror/openwrt/patch/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
+popd
+
 # 调整Dockerman到服务菜单
 sed -i 's/"admin",/"admin","services",/g' feeds/luci/applications/luci-app-dockerman/luasrc/controller/*.lua
 sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/luasrc/model/*.lua
