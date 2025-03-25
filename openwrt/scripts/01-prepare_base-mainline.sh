@@ -52,9 +52,9 @@ curl -s $mirror/openwrt/patch/kernel-6.14/openwrt/fix-openwrt-kmod-module-symver
 local_kernel_version=$(sed -n 's/^LINUX_KERNEL_HASH-\([0-9.]\+\) = .*/\1/p' include/kernel-6.14)
 release_kernel_version=$(curl -sL https://raw.githubusercontent.com/0118Add/OpenWrt-Actions/master/tags/kernel-6.14 | sed -n 's/^LINUX_KERNEL_HASH-\([0-9.]\+\) = .*/\1/p')
 if [ "$local_kernel_version" = "$release_kernel_version" ] && [ -z "$git_password" ] && [ "$(whoami)" != "sbwml" ]; then
-    git clone https://$github/0118Add/OpenWrt-Actions -b openwrt-24.10 target/linux/generic-6.14 --depth=1
+    git clone https://github.com/0118Add/OpenWrt-Actions -b openwrt-24.10 target/linux/generic-6.14 --depth=1
 else
-    git clone https://$github/0118Add/OpenWrt-Actionsc -b openwrt-24.10 target/linux/generic-6.14 --depth=1
+    git clone https://github.com/0118Add/OpenWrt-Actions -b openwrt-24.10 target/linux/generic-6.14 --depth=1
 fi
 cp -a target/linux/generic-6.14/* target/linux/generic
 
