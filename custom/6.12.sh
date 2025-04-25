@@ -85,7 +85,7 @@ git clone --depth=1 -b dev https://github.com/vernesong/OpenClash package/OpenCl
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
 git clone https://github.com/sbwml/openwrt_helloworld package/helloworld -b v5
 rm -rf package/helloworld/{luci-app-ssr-plus,luci-app-homeproxy,luci-app-passwall,luci-app-openclash,luci-app-mihomo}
-git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwrt-passwall package/passwall-luci
+git clone -b main --single-branch https://github.com/lwb1978/openwrt-passwall package/passwall-luci
 
 # SmartDNS zerotier
 rm -rf feeds/luci/applications/luci-app-smartdns
