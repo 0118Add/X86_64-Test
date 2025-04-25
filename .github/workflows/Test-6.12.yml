@@ -14,8 +14,8 @@ on:
   workflow_dispatch:
 
 env:
-  REPO_URL: https://github.com/xuanranran/openwrt
-  REPO_BRANCH: 6.12
+  REPO_URL: https://github.com/mj22226/openwrt
+  REPO_BRANCH: linux-6.12
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: configs/6.12.config
   DIY_P1_SH: custom/diy-part1.sh
