@@ -36,9 +36,9 @@ rm -rf package/custom; mkdir package/custom
 # Modify default IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
-# golang 1.23
+# golang 1.24
 rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 
 # node - prebuilt
 #rm -rf feeds/packages/lang/node
@@ -107,12 +107,12 @@ sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/homeproxy/htdocs/luci-stati
 #sed -i 's/NekoClash/Clash/g' package/nekoclash/luci-app-nekoclash/luasrc/controller/neko.lua
 
 # fchomo
-git clone https://github.com/muink/openwrt-fchomo package/openwrt-fchomo
-rm -rf openwrt-fchomo/mihomo
+#git clone https://github.com/muink/openwrt-fchomo package/openwrt-fchomo
+#rm -rf openwrt-fchomo/mihomo
 
 # mihomo
-#git clone https://github.com/nikkinikki-org/OpenWrt-nikki package/OpenWrt-nikki
-git clone https://github.com/xianren78/OpenWrt-mihomo package/openwrt-mihomo
+git clone https://github.com/nikkinikki-org/OpenWrt-nikki package/OpenWrt-nikki
+#git clone https://github.com/xianren78/OpenWrt-mihomo package/openwrt-mihomo
 
 # Release Ram
 merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-ramfree
@@ -137,7 +137,11 @@ rm -rf feeds/luci/applications/luci-app-filemanager
 git clone https://github.com/sbwml/luci-app-filemanager package/luci-app-filemanager
 
 # tailscale
-git clone https://github.com/asvow/luci-app-tailscale  package/luci-app-tailscale
+#git clone https://github.com/asvow/luci-app-tailscale  package/luci-app-tailscale
+
+# zerotier
+git clone https://github.com/lwb1978/luci-app-zerotier package/luci-app-zerotier
+sed -i 's/vpn/services/g' package/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 
 # SmartDNS zerotier
 rm -rf feeds/luci/applications/luci-app-smartdns
@@ -185,11 +189,16 @@ ln -sf ../../../feeds/packages/net/alist ./package/feeds/packages/alist
 
 # unblockneteasemusic
 git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
-sed -i 's/解除网易云音乐播放限制/音乐云解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
+sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 
-# wechatpush
-merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-wechatpush
-merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/wrtbwmon
+# dockerman
+git clone https://github.com/lisaac/luci-app-dockerman package/luci-app-dockerman
+git clone https://github.com/lisaac/luci-in-docker package/luci-in-docker
+sed -i 's/"admin",/"admin","services",/g' package/luci-app-dockerman/applications/luci-app-dockerman/luasrc/controller/*.lua
+sed -i 's/"admin/"admin\/services/g' package/luci-app-dockerman/applications/luci-app-dockerman/luasrc/model/*.lua
+sed -i 's/"admin/"admin\/services/g' package/luci-app-dockerman/applications/luci-app-dockerman/luasrc/model/cbi/dockerman/*.lua
+sed -i 's/"admin/"admin\/services/g' package/luci-app-dockerman/applications/luci-app-dockerman/uasrc/view/dockerman/*.htm
+sed -i 's/"admin/"admin\/services/g' package/luci-app-dockerman/applications/luci-app-dockerman/luasrc/view/dockerman/cbi/*.htm
 
 # turboacc
 #git clone https://github.com/chenmozhijin/turboacc package/new/luci-app-turboacc
