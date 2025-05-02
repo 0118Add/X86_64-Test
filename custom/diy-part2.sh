@@ -114,13 +114,7 @@ sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/homeproxy/htdocs/luci-stati
 git clone https://github.com/nikkinikki-org/OpenWrt-nikki package/OpenWrt-nikki
 #git clone https://github.com/xianren78/OpenWrt-mihomo package/openwrt-mihomo
 
-# Release Ram
-merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-ramfree
-
-# Scheduled Reboot
-merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-autoreboot
-
- # ttyd
+# ttyd
 #rm -rf feeds/luci/applications/luci-app-ttyd
 sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
 #merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-ttyd
@@ -157,35 +151,18 @@ merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/coremark
 #rm -rf feeds/luci/modules/luci-base
 #rm -rf feeds/luci/modules/luci-mod-status
 
-# 克隆Lean-luci仓库
-#git clone --depth=1 -b openwrt-23.05 https://github.com/coolsnowwolf/luci lean-luci
-#cp -rf lean-luci/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
-#ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
-#sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
-
-rm -rf feeds/luci/applications/luci-app-alist
-rm -rf feeds/packages/net/alist
-# 克隆immortalwrt-luci仓库
-git clone --depth=1 -b master https://github.com/immortalwrt/luci.git immortalwrt-luci
-#cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
-#cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
-#cp -rf immortalwrt-luci/applications/luci-app-smartdns feeds/luci/applications/luci-app-smartdns
-#ln -sf ../../../feeds/luci/applications/luci-app-smartdns ./package/feeds/luci/luci-app-smartdns
-cp -rf immortalwrt-luci/applications/luci-app-alist feeds/luci/applications/luci-app-alist
-ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci-app-alist
-#cp -rf immortalwrt-luci/applications/luci-app-daed feeds/luci/applications/luci-app-daed
-#ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
-# 克隆immortalwrt-packages仓库
-git clone --depth=1 -b openwrt-24.10 https://github.com/immortalwrt/packages.git immortalwrt-packages
-#cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
-cp -rf immortalwrt-packages/net/zerotier feeds/packages/net/zerotier
-ln -sf ../../../feeds/packages/net/zerotier ./package/feeds/packages/zerotier
-cp -rf immortalwrt-packages/net/alist feeds/packages/net/alist
-ln -sf ../../../feeds/packages/net/alist ./package/feeds/packages/alist
-#cp -rf immortalwrt-packages/net/smartdns feeds/packages/net/smartdns
-#ln -sf ../../../feeds/packages/net/smartdns ./package/feeds/packages/smartdns
-#cp -rf immortalwrt-packages/net/daed feeds/packages/net/daed
-#ln -sf ../../../feeds/packages/net/daed ./package/feeds/packages/daed
+# 判断 REPO_BRANCH 再设置
+if [ "$REPO_BRANCH" = "openwrt-23.05" ]; then
+    echo "Detected REPO_BRANCH as openwrt-23.05..."
+    # 替换immortalwrt插件
+    clone_dir openwrt-23.05 https://github.com/immortalwrt/luci luci-app-ramfree luci-app-autoreboot luci-app-zerotier
+    # 补全依赖
+    clone_dir openwrt-23.05 https://github.com/immortalwrt/packages zerotier
+else
+    # 替换immortalwrt插件
+    clone_dir master https://github.com/immortalwrt/luci luci-app-zerotier luci-app-ramfree luci-app-autoreboot
+    # 补全依赖
+    clone_dir master https://github.com/immortalwrt/packages zerotier
 
 # unblockneteasemusic
 git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
@@ -207,8 +184,11 @@ sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/
 # net.netfilter.nf_conntrack_max from 16384 to 65535
 sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65535#g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 
-# 修复编译时提示 freeswitch 缺少 libpcre 依赖
-#sed -i 's/+libpcre \\$/+libpcre2 \\/g' package/feeds/telephony/freeswitch/Makefile
+# 修改makefile
+find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/luci\.mk/include \$(TOPDIR)\/feeds\/luci\/luci\.mk/g' {}
+find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/lang\/golang\/golang\-package\.mk/include \$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang\-package\.mk/g' {}
+find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=\@GHREPO/PKG_SOURCE_URL:=https:\/\/github\.com/g' {}
+find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=\@GHCODELOAD/PKG_SOURCE_URL:=https:\/\/codeload\.github\.com/g' {}
 
 # 替换文件
 #curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
