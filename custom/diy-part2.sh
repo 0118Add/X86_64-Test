@@ -140,20 +140,27 @@ sed -i 's/vpn/services/g' package/luci-app-zerotier/root/usr/share/luci/menu.d/l
 # SmartDNS zerotier
 rm -rf feeds/luci/applications/luci-app-smartdns
 rm -rf feeds/packages/net/smartdns
-rm -rf feeds/packages/net/zerotier
+#rm -rf feeds/packages/net/zerotier
 
 # AutoCore
 rm -rf feeds/packages/utils/coremark
 merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/coremark
-#merge_package https://github.com/immortalwrt/packages packages/utils/coremark
-#merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/autocore
-#merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/utils/mhz
-#rm -rf feeds/luci/modules/luci-base
-#rm -rf feeds/luci/modules/luci-mod-status
 
 # unblockneteasemusic
 git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
 sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
+
+# 克隆immortalwrt-luci仓库
+git clone --depth=1 -b master https://github.com/immortalwrt/luci.git immortalwrt-luci
+#cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
+#cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
+#cp -rf immortalwrt-luci/applications/luci-app-alist feeds/luci/applications/luci-app-alist
+#ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci-app-alist
+# 克隆immortalwrt-packages仓库
+git clone --depth=1 -b master https://github.com/immortalwrt/packages.git immortalwrt-packages
+#cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
+#cp -rf immortalwrt-packages/net/zerotier feeds/packages/net/zerotier
+#ln -sf ../../../feeds/packages/net/zerotier ./package/feeds/packages/zerotier
 
 # dockerman
 #git clone https://github.com/lisaac/luci-app-dockerman package/luci-app-dockerman
