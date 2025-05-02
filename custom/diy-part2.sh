@@ -12,26 +12,9 @@
 echo "开始配置……"
 echo "========================="
 
-function merge_package(){
-    repo=`echo $1 | rev | cut -d'/' -f 1 | rev`
-    pkg=`echo $2 | rev | cut -d'/' -f 1 | rev`
-    # find package/ -follow -name $pkg -not -path "package/custom/*" | xargs -rt rm -rf
-    git clone --depth=1 --single-branch $1
-    mv $2 package/custom/
-    rm -rf $repo
-}
-function drop_package(){
-    find package/ -follow -name $1 -not -path "package/custom/*" | xargs -rt rm -rf
-}
-function merge_feed(){
-    if [ ! -d "feed/$1" ]; then
-        echo >> feeds.conf.default
-        echo "src-git $1 $2" >> feeds.conf.default
-    fi
-    ./scripts/feeds update $1
-    ./scripts/feeds install -a -p $1
-}
-rm -rf package/custom; mkdir package/custom
+# Git稀疏克隆，只克隆指定目录到本地
+chmod +x $GITHUB_WORKSPACE/custom/function.sh
+source $GITHUB_WORKSPACE/custom/function.sh
 
 # Modify default IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
