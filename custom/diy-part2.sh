@@ -12,9 +12,26 @@
 echo "开始配置……"
 echo "========================="
 
-# Git稀疏克隆，只克隆指定目录到本地
-chmod +x $GITHUB_WORKSPACE/custom/function.sh
-source $GITHUB_WORKSPACE/custom/function.sh
+function merge_package(){
+    repo=`echo $1 | rev | cut -d'/' -f 1 | rev`
+    pkg=`echo $2 | rev | cut -d'/' -f 1 | rev`
+    # find package/ -follow -name $pkg -not -path "package/custom/*" | xargs -rt rm -rf
+    git clone --depth=1 --single-branch $1
+    mv $2 package/custom/
+    rm -rf $repo
+}
+function drop_package(){
+    find package/ -follow -name $1 -not -path "package/custom/*" | xargs -rt rm -rf
+}
+function merge_feed(){
+    if [ ! -d "feed/$1" ]; then
+        echo >> feeds.conf.default
+        echo "src-git $1 $2" >> feeds.conf.default
+    fi
+    ./scripts/feeds update $1
+    ./scripts/feeds install -a -p $1
+}
+rm -rf package/custom; mkdir package/custom
 
 # Modify default IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
@@ -133,19 +150,6 @@ merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/coremark
 #merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/utils/mhz
 #rm -rf feeds/luci/modules/luci-base
 #rm -rf feeds/luci/modules/luci-mod-status
-
-# 判断 REPO_BRANCH 再设置
-if [ "$REPO_BRANCH" = "openwrt-23.05" ]; then
-    echo "Detected REPO_BRANCH as openwrt-23.05..."
-    # 替换immortalwrt插件
-    clone_dir openwrt-23.05 https://github.com/immortalwrt/luci luci-app-ramfree luci-app-autoreboot luci-app-zerotier
-    # 补全依赖
-    clone_dir openwrt-23.05 https://github.com/immortalwrt/packages zerotier
-else
-    # 替换immortalwrt插件
-    clone_dir master https://github.com/immortalwrt/luci luci-app-zerotier luci-app-ramfree luci-app-autoreboot
-    # 补全依赖
-    clone_dir master https://github.com/immortalwrt/packages zerotier
 
 # unblockneteasemusic
 git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
