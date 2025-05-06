@@ -69,8 +69,7 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' packag
 wget -O ./package/base-files/files/etc/banner https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/banner
 
 # Default settings
-git clone https://github.com/sbwml/default-settings package/default-settings
-
+git clone https://github.com/sbwml/default-settings package/default-settings -b openwrt-24.10
 # autoCore
 #merge_package https://github.com/0118Add/OP-Packages OP-Packages/autocore-arm
 git clone https://github.com/8688Add/autocore-arm -b openwrt-24.10 package/autocore
