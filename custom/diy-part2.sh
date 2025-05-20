@@ -172,7 +172,7 @@ sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/
 
 # turboacc
 #git clone https://github.com/chenmozhijin/turboacc package/turboacc
-curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
+curl -sSL https://raw.githubusercontent.com/0118Add/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
 
 # net.netfilter.nf_conntrack_max from 16384 to 65535
@@ -188,7 +188,6 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_U
 # 替换文件
 #curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25_storage.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/25_storage.js
-curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/patch/952-add-net-conntrack-events-support-multiple-registrant.patch ./target/linux/generic/hack-6.12/952-net-conntrack-events-support-multiple-registrant.patch
 sed -i 's/WireGuard/WiGd状态/g' feeds/luci/protocols/luci-proto-wireguard/root/usr/share/luci/menu.d/luci-proto-wireguard.json
 rm -rf feeds/packages/lang/ruby
 cp -rf $GITHUB_WORKSPACE/general/ruby feeds/packages/lang/ruby
