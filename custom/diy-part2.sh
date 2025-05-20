@@ -174,9 +174,9 @@ sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/
 #git clone https://github.com/chenmozhijin/turboacc package/turboacc
 #curl -sSL https://raw.githubusercontent.com/0118Add/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 #sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
-git clone https://github.com/0118Add/turboacc package/luci-app-turboacc
-git clone https://github.com/fullcone-nat-nftables/nft-fullcone package/nft-fullcone
-git clone -b package --single-branch https://github.com/0118Add/turboacc package/turboacc
+#git clone https://github.com/0118Add/turboacc package/luci-app-turboacc
+#git clone https://github.com/fullcone-nat-nftables/nft-fullcone package/nft-fullcone
+#git clone -b package --single-branch https://github.com/0118Add/turboacc package/turboacc
 
 # 修正部分从第三方仓库拉取的软件 Makefile 路径问题
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}
