@@ -174,6 +174,8 @@ sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/
 #git clone https://github.com/chenmozhijin/turboacc package/turboacc
 #curl -sSL https://raw.githubusercontent.com/0118Add/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 #sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
+git clone https://github.com/chenmozhijin/turboacc package/turboacc
+git clone https://github.com/fullcone-nat-nftables/nft-fullcone package/nft-fullcone
 
 # net.netfilter.nf_conntrack_max from 16384 to 65535
 sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65535#g' package/kernel/linux/files/sysctl-nf-conntrack.conf
