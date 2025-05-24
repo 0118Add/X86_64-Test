@@ -37,8 +37,8 @@ rm -rf package/custom; mkdir package/custom
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
 # golang 1.24
-rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
+#rm -rf feeds/packages/lang/golang
+#git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 
 # node - prebuilt
 #rm -rf feeds/packages/lang/node
@@ -134,6 +134,7 @@ git clone https://github.com/sbwml/luci-app-filemanager package/luci-app-fileman
 #git clone https://github.com/asvow/luci-app-tailscale  package/luci-app-tailscale
 
 # zerotier
+rm -rf feeds/luci/applications/luci-app-zerotier
 git clone https://github.com/8688Add/luci-app-zerotier package/luci-app-zerotier
 sed -i 's/vpn/services/g' package/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 
@@ -172,8 +173,8 @@ sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/
 
 # turboacc
 #git clone https://github.com/chenmozhijin/turboacc package/turboacc
-#curl -sSL https://raw.githubusercontent.com/0118Add/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
-#sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
+curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
+sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
 #git clone https://github.com/0118Add/turboacc package/luci-app-turboacc
 #git clone https://github.com/fullcone-nat-nftables/nft-fullcone package/nft-fullcone
 #git clone -b package --single-branch https://github.com/0118Add/turboacc package/turboacc
