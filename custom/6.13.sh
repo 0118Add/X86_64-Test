@@ -81,7 +81,7 @@ git clone --depth=1 -b dev https://github.com/vernesong/OpenClash package/OpenCl
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
 git clone https://github.com/sbwml/openwrt_helloworld package/helloworld -b v5
 rm -rf package/helloworld/{luci-app-ssr-plus,luci-app-homeproxy,luci-app-passwall,luci-app-openclash,luci-app-mihomo}
-git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwrt-passwall package/passwall-luci
+git clone -b main --single-branch https://github.com/lwb1978/openwrt-passwall package/passwall-luci
 
 # SmartDNS zerotier
 rm -rf feeds/luci/applications/luci-app-smartdns
@@ -104,10 +104,10 @@ rm -rf feeds/packages/utils/coremark
 merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/coremark
 
 # Release Ram
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-ramfree
+merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-ramfree
 
 # Scheduled Reboot
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-autoreboot
+merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-autoreboot
 
 # ttyd
 #rm -rf feeds/luci/applications/luci-app-ttyd
@@ -116,10 +116,6 @@ sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/shar
 
 # partexp
 git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
-
-# Filetransfer
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-filetransfer
-merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-lib-fs
 
 # zerotier
 git clone https://github.com/8688Add/luci-app-zerotier package/luci-app-zerotier
