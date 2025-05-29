@@ -139,7 +139,8 @@ git clone https://github.com/sbwml/luci-app-filemanager package/luci-app-fileman
 #git clone https://github.com/asvow/luci-app-tailscale  package/luci-app-tailscale
 
 # zerotier
-git clone https://github.com/lwb1978/luci-app-zerotier package/luci-app-zerotier
+rm -rf feeds/luci/applications/luci-app-zerotier
+git clone https://github.com/8688Add/luci-app-zerotier package/luci-app-zerotier
 sed -i 's/vpn/services/g' package/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 
 # SmartDNS zerotier
@@ -162,29 +163,19 @@ merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/coremark
 #ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
 #sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 
-rm -rf feeds/luci/applications/luci-app-alist
-rm -rf feeds/packages/net/alist
+rm -rf feeds/luci/applications/luci-app-dockerman
 # 克隆immortalwrt-luci仓库
 git clone --depth=1 -b openwrt-24.10 https://github.com/immortalwrt/luci.git immortalwrt-luci
 #cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
 #cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
-#cp -rf immortalwrt-luci/applications/luci-app-smartdns feeds/luci/applications/luci-app-smartdns
-#ln -sf ../../../feeds/luci/applications/luci-app-smartdns ./package/feeds/luci/luci-app-smartdns
-cp -rf immortalwrt-luci/applications/luci-app-alist feeds/luci/applications/luci-app-alist
-ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci-app-alist
-#cp -rf immortalwrt-luci/applications/luci-app-daed feeds/luci/applications/luci-app-daed
-#ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
+cp -rf immortalwrt-luci/applications/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
+ln -sf ../../../feeds/luci/applications/luci-app-dockerman ./package/feeds/luci/luci-app-dockerman
+
 # 克隆immortalwrt-packages仓库
 git clone --depth=1 -b openwrt-24.10 https://github.com/immortalwrt/packages.git immortalwrt-packages
 #cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
 cp -rf immortalwrt-packages/net/zerotier feeds/packages/net/zerotier
 ln -sf ../../../feeds/packages/net/zerotier ./package/feeds/packages/zerotier
-cp -rf immortalwrt-packages/net/alist feeds/packages/net/alist
-ln -sf ../../../feeds/packages/net/alist ./package/feeds/packages/alist
-#cp -rf immortalwrt-packages/net/smartdns feeds/packages/net/smartdns
-#ln -sf ../../../feeds/packages/net/smartdns ./package/feeds/packages/smartdns
-#cp -rf immortalwrt-packages/net/daed feeds/packages/net/daed
-#ln -sf ../../../feeds/packages/net/daed ./package/feeds/packages/daed
 
 # unblockneteasemusic
 git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
@@ -202,9 +193,6 @@ sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/
 #git clone https://github.com/chenmozhijin/turboacc package/new/luci-app-turboacc
 curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
-
-# net.netfilter.nf_conntrack_max from 16384 to 65535
-sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65535#g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 
 # 替换文件
 #curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
