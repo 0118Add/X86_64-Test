@@ -73,8 +73,8 @@ jobs:
     - name: Build and push docker image
       id: push
       run: |
-        sudo wget  https://github.com/0118Add/s9xxx-actions/releases/download/ARMv8_Immortalwrt/immortalwrt-armsr-armv8-generic-rootfs.tar.gz
-        cp ./immortalwrt-armsr-armv8-generic-rootfs.tar.gz $GITHUB_WORKSPACE/docker/immortalwrt-armsr-armv8-generic-rootfs.tar.gz
+        sudo wget  https://github.com/0118Add/X86_64-Test/releases/download/ARMv8/openwrt-armsr-armv8-generic-rootfs.tar.gz
+        cp ./openwrt-armsr-armv8-generic-rootfs.tar.gz $GITHUB_WORKSPACE/docker/openwrt-armsr-armv8-generic-rootfs.tar.gz
         cd $GITHUB_WORKSPACE/docker
         chmod +x $DOCKER_BUILD_SH
         ./$DOCKER_BUILD_SH
