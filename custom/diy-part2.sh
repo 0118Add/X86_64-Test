@@ -82,7 +82,7 @@ git clone https://github.com/8688Add/autocore-arm -b openwrt-24.10 package/autoc
 #git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
 
 # OpenClash
-git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-openclash
+#git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-openclash
 
 # Daed
 #git clone https://github.com/QiuSimons/luci-app-daed-next package/new/luci-app-daed-next
