@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
 
 env:
-  REPO_URL: https://github.com/mj22226/openwrt
+  REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: main
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: configs/main.config
@@ -126,10 +126,6 @@ jobs:
         cd $OPENWRT_PATH
         $GITHUB_WORKSPACE/$DIY_P2_SH
       
-        #sed -i 's/CONFIG_LINUX.*/CONFIG_LINUX_6_12=y/g' .config
- 
-        #sed -i 's/KERNEL_PATCHVER:=*.*/KERNEL_PATCHVER:=6.12/g' target/linux/x86/Makefile    
-    
     - name: Download DL Package
       run: |
         cd $OPENWRT_PATH
