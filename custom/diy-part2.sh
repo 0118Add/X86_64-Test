@@ -193,6 +193,7 @@ sed -i 's/WireGuard/WiGd状态/g' feeds/luci/protocols/luci-proto-wireguard/root
 rm -rf feeds/packages/lang/ruby
 cp -rf $GITHUB_WORKSPACE/general/ruby feeds/packages/lang/ruby
 #curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/patch/os-release > package/base-files/files/etc/os-release
+sed -i 's/--set=llvm\.download-ci-llvm=true/--set=llvm.download-ci-llvm=false/' feeds/packages/lang/rust/Makefile
 
 # comment out the following line to restore the full description
 #sed -i '/# timezone/i grep -q '\''/tmp/sysinfo/model'\'' /etc/rc.local || sudo sed -i '\''/exit 0/i [ "$(cat /sys\\/class\\/dmi\\/id\\/sys_vendor 2>\\/dev\\/null)" = "Default string" ] \&\& echo "x86_64" > \\/tmp\\/sysinfo\\/model'\'' /etc/rc.local\n' package/default-settings/default/zzz-default-settings
