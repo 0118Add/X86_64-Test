@@ -36,9 +36,9 @@ rm -rf package/custom; mkdir package/custom
 # Modify default IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
-# golang 1.23
+# golang 1.24
 rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 
 # node - prebuilt
 # rm -rf feeds/packages/lang/node
@@ -49,7 +49,7 @@ git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/l
 #sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 
 # 替换内核
-sed -i 's/KERNEL_PATCHVER:=6.6/KERNEL_PATCHVER:=6.12/g' target/linux/x86/Makefile
+#sed -i 's/KERNEL_PATCHVER:=6.6/KERNEL_PATCHVER:=6.12/g' target/linux/x86/Makefile
 
 # 更改固件版本信息
 #sed -i "s|DISTRIB_REVISION='.*'|DISTRIB_REVISION=''|g" package/base-files/files/etc/openwrt_release
@@ -69,10 +69,10 @@ git clone https://github.com/8688Add/autocore-arm -b openwrt-24.10 package/autoc
 #git clone https://github.com/sbwml/autocore-arm -b openwrt-24.10 package/autocore
 
 # DDNS GO
-git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
+#git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
 
 # OpenClash
-git clone --depth=1 -b dev https://github.com/vernesong/OpenClash package/OpenClash
+#git clone --depth=1 -b dev https://github.com/vernesong/OpenClash package/OpenClash
 
 # Daed
 #git clone https://github.com/QiuSimons/luci-app-daed-next package/new/luci-app-daed-next
@@ -123,6 +123,7 @@ sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/shar
 git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 
 # filemanager
+rm -rf feeds/luci/applications/luci-app-filemanager
 git clone https://github.com/sbwml/luci-app-filemanager package/luci-app-filemanager
 
 # zerotier
