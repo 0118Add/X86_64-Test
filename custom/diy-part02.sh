@@ -136,8 +136,9 @@ git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 rm -rf feeds/luci/applications/luci-app-filemanager
 git clone https://github.com/sbwml/luci-app-filemanager package/luci-app-filemanager
 
-# tailscale
+# tailscale easytier
 git clone https://github.com/Jaykwok2999/luci-app-tailscale  package/luci-app-tailscale
+git clone https://github.com/EasyTier/luci-app-easytier package/luci-app-easytier
 
 # zerotier
 git clone https://github.com/8688Add/luci-app-zerotier package/luci-app-zerotier
@@ -163,25 +164,24 @@ merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/coremark
 #ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
 #sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 
-rm -rf feeds/luci/applications/luci-app-alist
-rm -rf feeds/packages/net/alist
+rm -rf feeds/luci/applications/luci-app-dockerman
 # 克隆immortalwrt-luci仓库
 git clone --depth=1 -b openwrt-24.10 https://github.com/immortalwrt/luci.git immortalwrt-luci
 #cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
 #cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
-#cp -rf immortalwrt-luci/applications/luci-app-smartdns feeds/luci/applications/luci-app-smartdns
-#ln -sf ../../../feeds/luci/applications/luci-app-smartdns ./package/feeds/luci/luci-app-smartdns
+cp -rf immortalwrt-luci/applications/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
+ln -sf ../../../feeds/luci/applications/luci-app-dockerman ./package/feeds/luci/luci-app-dockerman
 cp -rf immortalwrt-luci/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
 ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/feeds/luci/luci-app-unblockneteasemusic
-#cp -rf immortalwrt-luci/applications/luci-app-daed feeds/luci/applications/luci-app-daed
-#ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
+cp -rf immortalwrt-luci/applications/luci-app-msd_lite feeds/luci/applications/luci-app-msd_lite
+ln -sf ../../../feeds/luci/applications/luci-app-msd_lite ./package/feeds/luci/luci-app-msd_lite
 # 克隆immortalwrt-packages仓库
 git clone --depth=1 -b openwrt-24.10 https://github.com/immortalwrt/packages.git immortalwrt-packages
 #cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
 cp -rf immortalwrt-packages/net/zerotier feeds/packages/net/zerotier
 ln -sf ../../../feeds/packages/net/zerotier ./package/feeds/packages/zerotier
-#cp -rf immortalwrt-packages/net/alist feeds/packages/net/alist
-#ln -sf ../../../feeds/packages/net/alist ./package/feeds/packages/alist
+cp -rf immortalwrt-packages/net/msd_lite feeds/packages/net/msd_lite
+ln -sf ../../../feeds/packages/net/msd_lite ./package/feeds/packages/msd_lite
 #cp -rf immortalwrt-packages/net/smartdns feeds/packages/net/smartdns
 #ln -sf ../../../feeds/packages/net/smartdns ./package/feeds/packages/smartdns
 #cp -rf immortalwrt-packages/net/daed feeds/packages/net/daed
