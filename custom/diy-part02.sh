@@ -36,9 +36,9 @@ rm -rf package/custom; mkdir package/custom
 # Modify default IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
-# golang 1.24
+# golang 1.25
 rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 25.x feeds/packages/lang/golang
 
 # node - prebuilt
 #rm -rf feeds/packages/lang/node
@@ -82,7 +82,7 @@ git clone https://github.com/8688Add/autocore-arm -b openwrt-24.10 package/autoc
 #git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
 
 # OpenClash
-git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-openclash
+git clone -b dev --depth=1 https://github.com/vernesong/OpenClash package/luci-app-openclash
 
 # Daed
 #git clone https://github.com/QiuSimons/luci-app-daed-next package/new/luci-app-daed-next
@@ -137,10 +137,10 @@ rm -rf feeds/luci/applications/luci-app-filemanager
 git clone https://github.com/sbwml/luci-app-filemanager package/luci-app-filemanager
 
 # tailscale
-#git clone https://github.com/asvow/luci-app-tailscale  package/luci-app-tailscale
+git clone https://github.com/Jaykwok2999/luci-app-tailscale  package/luci-app-tailscale
 
 # zerotier
-git clone https://github.com/lwb1978/luci-app-zerotier package/luci-app-zerotier
+git clone https://github.com/8688Add/luci-app-zerotier package/luci-app-zerotier
 sed -i 's/vpn/services/g' package/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 
 # SmartDNS zerotier
@@ -171,8 +171,8 @@ git clone --depth=1 -b openwrt-24.10 https://github.com/immortalwrt/luci.git imm
 #cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
 #cp -rf immortalwrt-luci/applications/luci-app-smartdns feeds/luci/applications/luci-app-smartdns
 #ln -sf ../../../feeds/luci/applications/luci-app-smartdns ./package/feeds/luci/luci-app-smartdns
-cp -rf immortalwrt-luci/applications/luci-app-alist feeds/luci/applications/luci-app-alist
-ln -sf ../../../feeds/luci/applications/luci-app-alist ./package/feeds/luci/luci-app-alist
+cp -rf immortalwrt-luci/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
+ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/feeds/luci/luci-app-unblockneteasemusic
 #cp -rf immortalwrt-luci/applications/luci-app-daed feeds/luci/applications/luci-app-daed
 #ln -sf ../../../feeds/luci/applications/luci-app-daed ./package/feeds/luci/luci-app-daed
 # 克隆immortalwrt-packages仓库
@@ -180,16 +180,17 @@ git clone --depth=1 -b openwrt-24.10 https://github.com/immortalwrt/packages.git
 #cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
 cp -rf immortalwrt-packages/net/zerotier feeds/packages/net/zerotier
 ln -sf ../../../feeds/packages/net/zerotier ./package/feeds/packages/zerotier
-cp -rf immortalwrt-packages/net/alist feeds/packages/net/alist
-ln -sf ../../../feeds/packages/net/alist ./package/feeds/packages/alist
+#cp -rf immortalwrt-packages/net/alist feeds/packages/net/alist
+#ln -sf ../../../feeds/packages/net/alist ./package/feeds/packages/alist
 #cp -rf immortalwrt-packages/net/smartdns feeds/packages/net/smartdns
 #ln -sf ../../../feeds/packages/net/smartdns ./package/feeds/packages/smartdns
 #cp -rf immortalwrt-packages/net/daed feeds/packages/net/daed
 #ln -sf ../../../feeds/packages/net/daed ./package/feeds/packages/daed
 
 # unblockneteasemusic
-git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
-sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
+#git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
+#sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
+sed -i 's/解除网易云音乐播放限制/音乐解锁/g' feeds/luci/applications/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 
 # dockerman
 #git clone https://github.com/lisaac/luci-app-dockerman package/luci-app-dockerman
