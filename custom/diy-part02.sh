@@ -142,7 +142,7 @@ git clone https://github.com/EasyTier/luci-app-easytier package/luci-app-easytie
 
 # zerotier
 git clone https://github.com/8688Add/luci-app-zerotier package/luci-app-zerotier
-sed -i 's/vpn/services/g' package/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
+#sed -i 's/vpn/services/g' package/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 
 # SmartDNS zerotier
 rm -rf feeds/luci/applications/luci-app-smartdns
