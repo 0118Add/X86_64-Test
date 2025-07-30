@@ -33,50 +33,193 @@ function merge_feed(){
 }
 rm -rf package/custom; mkdir package/custom
 
-# 替换内核
-#sed -i 's/KERNEL_PATCHVER:=6.6/KERNEL_PATCHVER:=6.12/g' target/linux/x86/Makefile
-
-# 修改默认IP
+# Modify default IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
+
+# golang 1.25
+rm -rf feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 25.x feeds/packages/lang/golang
+
+# node - prebuilt
+#rm -rf feeds/packages/lang/node
+#git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packages/lang/node
+
+# 替换内核
+#sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' target/linux/x86/Makefile
 
 # 修改连接数
 sed -i 's/net.netfilter.nf_conntrack_max=.*/net.netfilter.nf_conntrack_max=65535/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 # 修正连接数
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
 
-# openclash
-git clone --depth=1 -b dev https://github.com/vernesong/OpenClash package/OpenClash
+# 移除 SNAPSHOT 标签
+#sed -i 's,-SNAPSHOT,,g' include/version.mk
+#sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
+
+# 更改固件版本信息
+#sed -i "s|DISTRIB_REVISION='.*'|DISTRIB_REVISION=''|g" package/base-files/files/etc/openwrt_release
+#sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt 23.05'|g" package/base-files/files/etc/openwrt_release
+#sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT'|g" package/base-files/files/etc/openwrt_release
+
+# 内核替换 kernel xxx
+#sed -i 's/LINUX_KERNEL_HASH-5.15.139 = 9c68c10dfe18e59b892e940436dea6a18d167160d55e62563cf7282244d8044e/LINUX_KERNEL_HASH-5.15.138 = af84e54164e1c01f59764ba528448ed36b377d22aafbd81b4b0cf47792ef4aaa/g' ./include/kernel-5.15
+#sed -i 's/LINUX_VERSION-5.15 = .139/LINUX_VERSION-5.15 = .138/g' ./include/kernel-5.15
+
+# 替换banner
+wget -O ./package/base-files/files/etc/banner https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/banner
+
+# Default settings
+git clone https://github.com/sbwml/default-settings package/default-settings
+
+# autoCore
+#merge_package https://github.com/0118Add/OP-Packages OP-Packages/autocore-arm
+git clone https://github.com/8688Add/autocore-arm -b openwrt-24.10 package/autocore
+
+# alist
+#git clone https://github.com/sbwml/luci-app-alist package/alist
+
+# DDNS GO
+#git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
+
+# OpenClash
+git clone -b dev --depth=1 https://github.com/vernesong/OpenClash package/luci-app-openclash
+
+# Daed
+#git clone https://github.com/QiuSimons/luci-app-daed-next package/new/luci-app-daed-next
+#git clone https://github.com/sbwml/luci-app-daed package/new/luci-app-daed
+
+# Dae
+#git clone https://github.com/8688Add/luci-app-dae package/luci-app-dae
+
+# Shared for PassWall and ShadowsocksR Plus+
+rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
+git clone https://github.com/sbwml/openwrt_helloworld package/helloworld -b v5
+rm -rf package/helloworld/{luci-app-ssr-plus,luci-app-homeproxy,luci-app-passwall}
+git clone -b main --single-branch https://github.com/lwb1978/openwrt-passwall package/passwall-luci
 
 # homeproxy
-#rm -rf feeds/luci/applications/luci-app-homeproxy
-#git clone --depth 1 -b test https://github.com/m0eak/homeproxy package/homeproxy
-#sed -i "s/ImmortalWrt/OpenWrt/g" package/homeproxy/po/zh_Hans/homeproxy.po
-#sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
-sed -i "s/ImmortalWrt/OpenWrt/g" feeds/luci/applications/luci-app-homeproxy/po/zh_Hans/homeproxy.po
-sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" feeds/luci/applications/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
-
-# mihomo
-git clone https://github.com/morytyann/OpenWrt-mihomo  package/openwrt-mihomo
-sed -i 's/MihomoTProxy/Mihomo/g' package/openwrt-mihomo/luci-app-mihomo/po/zh_Hans/mihomo.po
-sed -i 's/MihomoTProxy/Mihomo/g' package/openwrt-mihomo/luci-app-mihomo/root/usr/share/luci/menu.d/luci-app-mihomo.json
+git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
+sed -i "s/ImmortalWrt/OpenWrt/g" package/homeproxy/po/zh_Hans/homeproxy.po
+sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 
 # neko
-#git clone -b nekobox --depth 1 https://github.com/Thaolga/openwrt-nekobox package/nekobox
+#git clone -b neko --depth 1 https://github.com/Thaolga/luci-app-nekoclash package/nekoclash
+#sed -i 's/NekoClash/Clash/g' package/nekoclash/luci-app-nekoclash/luasrc/controller/neko.lua
 
-# 自定义默认配置
-#sed -i '/exit 0$/d' package/emortal/default-settings/files/99-default-settings
-#cat ${GITHUB_WORKSPACE}/immortalwrt/default-settings >> package/emortal/default-settings/files/99-default-settings
-#curl -fsSL https://raw.githubusercontent.com/0118Add/Openwrt-CI/main/patch/10_system.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
-curl -fsSL https://raw.githubusercontent.com/0118Add/Cloudbuild/main/patches/29_ports.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/29_ports.js
+# fchomo
+#git clone https://github.com/muink/openwrt-fchomo package/openwrt-fchomo
+#rm -rf openwrt-fchomo/mihomo
+
+# mihomo
+git clone https://github.com/nikkinikki-org/OpenWrt-nikki package/OpenWrt-nikki
+#git clone https://github.com/xianren78/OpenWrt-mihomo package/openwrt-mihomo
+
+# Release Ram
+merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-ramfree
+
+# Scheduled Reboot
+merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-autoreboot
+
+ # ttyd
+#rm -rf feeds/luci/applications/luci-app-ttyd
+sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
+#merge_package https://github.com/kiddin9/openwrt-packages openwrt-packages/luci-app-ttyd
+
+# partexp
+git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
+
+# Filetransfer
+#merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-filetransfer
+#merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-lib-fs
+
+# luci-app-filemanager
+rm -rf feeds/luci/applications/luci-app-filemanager
+git clone https://github.com/sbwml/luci-app-filemanager package/luci-app-filemanager
+
+# tailscale easytier
+git clone https://github.com/Jaykwok2999/luci-app-tailscale  package/luci-app-tailscale
+git clone https://github.com/EasyTier/luci-app-easytier package/luci-app-easytier
+
+# zerotier
+git clone https://github.com/8688Add/luci-app-zerotier package/luci-app-zerotier
+#sed -i 's/vpn/services/g' package/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
+
+# SmartDNS zerotier
+rm -rf feeds/luci/applications/luci-app-smartdns
+rm -rf feeds/packages/net/smartdns
+rm -rf feeds/packages/net/zerotier
+
+# AutoCore
+rm -rf feeds/packages/utils/coremark
+merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/coremark
+#merge_package https://github.com/immortalwrt/packages packages/utils/coremark
+#merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/emortal/autocore
+#merge_package https://github.com/immortalwrt/immortalwrt immortalwrt/package/utils/mhz
+#rm -rf feeds/luci/modules/luci-base
+#rm -rf feeds/luci/modules/luci-mod-status
+
+# 克隆Lean-luci仓库
+#git clone --depth=1 -b openwrt-23.05 https://github.com/coolsnowwolf/luci lean-luci
+#cp -rf lean-luci/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
+#ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
+#sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
+
+rm -rf feeds/luci/applications/luci-app-dockerman
+# 克隆immortalwrt-luci仓库
+git clone --depth=1 -b openwrt-24.10 https://github.com/immortalwrt/luci.git immortalwrt-luci
+#cp -rf immortalwrt-luci/modules/luci-base feeds/luci/modules/luci-base
+#cp -rf immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/luci-mod-status
+cp -rf immortalwrt-luci/applications/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
+ln -sf ../../../feeds/luci/applications/luci-app-dockerman ./package/feeds/luci/luci-app-dockerman
+cp -rf immortalwrt-luci/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
+ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/feeds/luci/luci-app-unblockneteasemusic
+cp -rf immortalwrt-luci/applications/luci-app-msd_lite feeds/luci/applications/luci-app-msd_lite
+ln -sf ../../../feeds/luci/applications/luci-app-msd_lite ./package/feeds/luci/luci-app-msd_lite
+# 克隆immortalwrt-packages仓库
+git clone --depth=1 -b openwrt-24.10 https://github.com/immortalwrt/packages.git immortalwrt-packages
+#cp -rf immortalwrt-packages/utils/coremark feeds/packages/utils/coremark
+cp -rf immortalwrt-packages/net/zerotier feeds/packages/net/zerotier
+ln -sf ../../../feeds/packages/net/zerotier ./package/feeds/packages/zerotier
+cp -rf immortalwrt-packages/net/msd_lite feeds/packages/net/msd_lite
+ln -sf ../../../feeds/packages/net/msd_lite ./package/feeds/packages/msd_lite
+#cp -rf immortalwrt-packages/net/smartdns feeds/packages/net/smartdns
+#ln -sf ../../../feeds/packages/net/smartdns ./package/feeds/packages/smartdns
+#cp -rf immortalwrt-packages/net/daed feeds/packages/net/daed
+#ln -sf ../../../feeds/packages/net/daed ./package/feeds/packages/daed
+
+# unblockneteasemusic
+#git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
+#sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
+sed -i 's/解除网易云音乐播放限制/音乐解锁/g' feeds/luci/applications/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
+
+# dockerman
+#git clone https://github.com/lisaac/luci-app-dockerman package/luci-app-dockerman
+#git clone https://github.com/lisaac/luci-in-docker package/luci-in-docker
+sed -i 's/"admin",/"admin","services",/g' feeds/luci/applications/luci-app-dockerman/luasrc/controller/*.lua
+sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/luasrc/model/*.lua
+sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/luasrc/model/cbi/dockerman/*.lua
+sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/luasrc/view/dockerman/cbi/*.htm
+
+# turboacc
+#git clone https://github.com/chenmozhijin/turboacc package/new/luci-app-turboacc
+curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
+sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
+
+# net.netfilter.nf_conntrack_max from 16384 to 65535
+sed -i 's#net.netfilter.nf_conntrack_max=16384#net.netfilter.nf_conntrack_max=65535#g' package/kernel/linux/files/sysctl-nf-conntrack.conf
+
+# 修复编译时提示 freeswitch 缺少 libpcre 依赖
+#sed -i 's/+libpcre \\$/+libpcre2 \\/g' package/feeds/telephony/freeswitch/Makefile
+
+# 替换文件
+#curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
+curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25_storage.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/25_storage.js
+sed -i 's/WireGuard/WiGd状态/g' feeds/luci/protocols/luci-proto-wireguard/root/usr/share/luci/menu.d/luci-proto-wireguard.json
+rm -rf feeds/packages/lang/ruby
+cp -rf $GITHUB_WORKSPACE/general/ruby feeds/packages/lang/ruby
+#curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/patch/os-release > package/base-files/files/etc/os-release
 
 # comment out the following line to restore the full description
-#sed -i '/# timezone/i grep -q '\''/tmp/sysinfo/model'\'' /etc/rc.local || sudo sed -i '\''/exit 0/i [ "$(cat /sys\\/class\\/dmi\\/id\\/sys_vendor 2>\\/dev\\/null)" = "Default string" ] \&\& echo "x86_64" > \\/tmp\\/sysinfo\\/model'\'' /etc/rc.local\n' package/emortal/default-settings/files/99-default-settings
-#sed -i '/# timezone/i sed -i "s/\\(DISTRIB_DESCRIPTION=\\).*/\\1'\''ImmortalWrt $(sed -n "s/DISTRIB_DESCRIPTION='\''ImmortalWrt \\([^ ]*\\) .*/\\1/p" /etc/openwrt_release)'\'',/" /etc/openwrt_release\nsource /etc/openwrt_release \&\& sed -i -e "s/distversion\\s=\\s\\".*\\"/distversion = \\"$DISTRIB_ID $DISTRIB_RELEASE ($DISTRIB_REVISION)\\"/g" -e '\''s/distname    = .*$/distname    = ""/g'\'' /usr/lib/lua/luci/version.lua\nsed -i "s/luciname    = \\".*\\"/luciname    = \\"LuCI openwrt-24.10\\"/g" /usr/lib/lua/luci/version.lua\nsed -i "s/luciversion = \\".*\\"/luciversion = \\"\\"/g" /usr/lib/lua/luci/version.lua\necho "export const revision = '\''\'\'', branch = '\''LuCI openwrt-24.10'\'';" > /usr/share/ucode/luci/version.uc\n/etc/init.d/rpcd restart\n' package/emortal/default-settings/files/99-default-settings
-#sed -i '/# timezone/i sed -i "s/\\(DISTRIB_DESCRIPTION=\\).*/\\1'\''ImmortalWrt $(sed -n "s/DISTRIB_DESCRIPTION='\''ImmortalWrt \\([^ ]*\\) .*/\\1/p" /etc/openwrt_release)'\'',/" /etc/openwrt_release\nsource /etc/openwrt_release \&\& sed -i -e "s/distversion\\s=\\s\\".*\\"/distversion = \\"$DISTRIB_ID $DISTRIB_RELEASE ($DISTRIB_REVISION)\\"/g" -e '\''s/distname    = .*$/distname    = ""/g'\'' /usr/lib/lua/luci/version.lua\nsed -i "s/luciname    = \\".*\\"/luciname    = \\"LuCI openwrt-24.10\\"/g" /usr/lib/lua/luci/version.lua\nsed -i "s/luciversion = \\".*\\"/luciversion = \\"v'$(date +%Y%m%d)'\\"/g" /usr/lib/lua/luci/version.lua\necho "export const revision = '\''v'$(date +%Y%m%d)'\'\'', branch = '\''LuCI openwrt-24.10'\'';" > /usr/share/ucode/luci/version.uc\n/etc/init.d/rpcd restart\n' package/emortal/default-settings/files/99-default-settings
-#curl -fsSL https://raw.githubusercontent.com/0118Add/Openwrt-CI/main/patch/os-release > package/base-files/files/etc/os-release
-
-./scripts/feeds update -a
-./scripts/feeds install -a
-
-echo "========================="
-echo "配置完成……"
+#sed -i '/# timezone/i grep -q '\''/tmp/sysinfo/model'\'' /etc/rc.local || sudo sed -i '\''/exit 0/i [ "$(cat /sys\\/class\\/dmi\\/id\\/sys_vendor 2>\\/dev\\/null)" = "Default string" ] \&\& echo "x86_64" > \\/tmp\\/sysinfo\\/model'\'' /etc/rc.local\n' package/default-settings/default/zzz-default-settings
+#sed -i '/# timezone/i sed -i "s/\\(DISTRIB_DESCRIPTION=\\).*/\\1'\''OpenWrt $(sed -n "s/DISTRIB_DESCRIPTION='\''OpenWrt \\([^ ]*\\) .*/\\1/p" /etc/openwrt_release)'\'',/" /etc/openwrt_release\nsource /etc/openwrt_release \&\& sed -i -e "s/distversion\\s=\\s\\".*\\"/distversion = \\"$DISTRIB_ID $DISTRIB_RELEASE ($DISTRIB_REVISION)\\"/g" -e '\''s/distname    = .*$/distname    = ""/g'\'' /usr/lib/lua/luci/version.lua\nsed -i "s/luciname    = \\".*\\"/luciname    = \\"LuCI openwrt-24.10\\"/g" /usr/lib/lua/luci/version.lua\nsed -i "s/luciversion = \\".*\\"/luciversion = \\"\\"/g" /usr/lib/lua/luci/version.lua\necho "export const revision = '\''\'\'', branch = '\''LuCI openwrt-24.10'\'';" > /usr/share/ucode/luci/version.uc\n/etc/init.d/rpcd restart\n' package/default-settings/default/zzz-default-settings
+#sed -i '/# timezone/i sed -i "s/\\(DISTRIB_DESCRIPTION=\\).*/\\1'\''OpenWrt $(sed -n "s/DISTRIB_DESCRIPTION='\''OpenWrt \\([^ ]*\\) .*/\\1/p" /etc/openwrt_release)'\'',/" /etc/openwrt_release\nsource /etc/openwrt_release \&\& sed -i -e "s/distversion\\s=\\s\\".*\\"/distversion = \\"$DISTRIB_ID $DISTRIB_RELEASE ($DISTRIB_REVISION)\\"/g" -e '\''s/distname    = .*$/distname    = ""/g'\'' /usr/lib/lua/luci/version.lua\nsed -i "s/luciname    = \\".*\\"/luciname    = \\"LuCI openwrt-24.10\\"/g" /usr/lib/lua/luci/version.lua\nsed -i "s/luciversion = \\".*\\"/luciversion = \\"v'$(date +%Y%m%d)'\\"/g" /usr/lib/lua/luci/version.lua\necho "export const revision = '\''v'$(date +%Y%m%d)'\'\'', branch = '\''LuCI openwrt-24.10'\'';" > /usr/share/ucode/luci/version.uc\n/etc/init.d/rpcd restart\n' package/default-settings/default/zzz-default-settings
