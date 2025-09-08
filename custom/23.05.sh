@@ -97,9 +97,9 @@ git clone https://github.com/xiaorouji/openwrt-passwall-packages package/passwal
 git clone -b main --single-branch https://github.com/lwb1978/openwrt-passwall package/passwall-luci
 
 # homeproxy
-git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
-sed -i "s/ImmortalWrt/OpenWrt/g" package/homeproxy/po/zh_Hans/homeproxy.po
-sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
+#git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
+#sed -i "s/ImmortalWrt/OpenWrt/g" package/homeproxy/po/zh_Hans/homeproxy.po
+#sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 
 # neko
 #git clone -b neko --depth 1 https://github.com/Thaolga/luci-app-nekoclash package/nekoclash
