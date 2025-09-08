@@ -101,9 +101,8 @@ git clone -b main --single-branch https://github.com/lwb1978/openwrt-passwall pa
 #sed -i "s/ImmortalWrt/OpenWrt/g" package/homeproxy/po/zh_Hans/homeproxy.po
 #sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 
-# neko
-#git clone -b neko --depth 1 https://github.com/Thaolga/luci-app-nekoclash package/nekoclash
-#sed -i 's/NekoClash/Clash/g' package/nekoclash/luci-app-nekoclash/luasrc/controller/neko.lua
+# openwrt-nekobox
+git clone -b neko --depth 1 https://github.com/Thaolga/openwrt-nekobox package/openwrt-nekobox
 
 # fchomo
 #git clone https://github.com/muink/openwrt-fchomo package/openwrt-fchomo
