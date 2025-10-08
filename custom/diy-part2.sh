@@ -97,7 +97,7 @@ git clone https://github.com/xiaorouji/openwrt-passwall-packages package/passwal
 git clone -b main --single-branch https://github.com/lwb1978/openwrt-passwall package/passwall-luci
 
 # homeproxy
-git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
+git clone -b dev --depth 1 https://github.com/immortalwrt/homeproxy package/homeproxy
 sed -i "s/ImmortalWrt/OpenWrt/g" package/homeproxy/po/zh_Hans/homeproxy.po
 sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 
@@ -110,8 +110,8 @@ sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/homeproxy/htdocs/luci-stati
 #rm -rf openwrt-fchomo/mihomo
 
 # mihomo
-#git clone https://github.com/nikkinikki-org/OpenWrt-nikki package/OpenWrt-nikki
-git clone https://github.com/nikkinikki-org/OpenWrt-momo package/OpenWrt-momo
+git clone https://github.com/nikkinikki-org/OpenWrt-nikki package/OpenWrt-nikki
+#git clone https://github.com/nikkinikki-org/OpenWrt-momo package/OpenWrt-momo
 
 # ttyd
 #rm -rf feeds/luci/applications/luci-app-ttyd
