@@ -110,8 +110,8 @@ sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/homeproxy/htdocs/luci-stati
 #rm -rf openwrt-fchomo/mihomo
 
 # mihomo
-git clone https://github.com/nikkinikki-org/OpenWrt-nikki package/OpenWrt-nikki
-#git clone https://github.com/nikkinikki-org/OpenWrt-momo package/OpenWrt-momo
+#git clone https://github.com/nikkinikki-org/OpenWrt-nikki package/OpenWrt-nikki
+git clone https://github.com/nikkinikki-org/OpenWrt-momo package/OpenWrt-momo
 
 # ttyd
 #rm -rf feeds/luci/applications/luci-app-ttyd
@@ -148,8 +148,8 @@ rm -rf feeds/packages/net/smartdns
 #merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/coremark
 
 # unblockneteasemusic
-git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
-sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
+#git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
+#sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 
 # 克隆immortalwrt-luci packages仓库
 git clone --depth=1 -b master https://github.com/immortalwrt/luci.git immortalwrt-luci
