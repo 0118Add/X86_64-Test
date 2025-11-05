@@ -37,8 +37,8 @@ rm -rf package/custom; mkdir package/custom
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
 # golang 1.23
-rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
+#rm -rf feeds/packages/lang/golang
+#git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
 
 # node - prebuilt
 # rm -rf feeds/packages/lang/node
@@ -62,7 +62,7 @@ wget -O ./package/base-files/files/etc/banner https://raw.githubusercontent.com/
 git clone https://github.com/sbwml/default-settings package/default-settings
 
 # autocore
-#git clone https://github.com/8688Add/autocore-arm -b openwrt-24.10 package/autocore
+git clone https://github.com/8688Add/autocore-arm -b openwrt-24.10 package/autocore
 
 # DDNS GO
 #git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
