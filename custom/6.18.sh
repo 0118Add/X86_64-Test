@@ -40,9 +40,19 @@ sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 #rm -rf feeds/packages/lang/golang
 #git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
 
-# node - prebuilt
-# rm -rf feeds/packages/lang/node
-# git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packages/lang/node
+rm -rf feeds/luci/applications/luci-app-filemanager
+rm -rf feeds/luci/applications/luci-app-adblock-fast
+rm -rf feeds/luci/applications/luci-app-commands
+rm -rf feeds/luci/applications/luci-app-irqbalance
+rm -rf feeds/luci/applications/luci-app-ksmbd
+rm -rf feeds/luci/applications/luci-app-nextdns
+rm -rf feeds/luci/applications/luci-app-nlbwmon
+rm -rf feeds/luci/applications/luci-app-openvpn
+rm -rf feeds/luci/applications/luci-app-pbr
+rm -rf feeds/luci/applications/luci-app-smartdns
+rm -rf feeds/luci/applications/luci-app-sqm
+rm -rf feeds/luci/applications/luci-app-statistics
+rm -rf feeds/luci/applications/luci-app-upnp
 
 # 移除 SNAPSHOT 标签
 #sed -i 's,-SNAPSHOT,,g' include/version.mk
