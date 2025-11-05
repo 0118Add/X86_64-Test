@@ -69,7 +69,7 @@ wget -O ./package/base-files/files/etc/banner https://raw.githubusercontent.com/
 #git clone https://github.com/sbwml/luci-app-alist package/alist
 
 # Default settings
-git clone https://github.com/sbwml/default-settings package/default-settings
+git clone https://github.com/8688Add/default-settings package/default-settings
 
 # autocore
 git clone https://github.com/8688Add/autocore-arm -b openwrt-24.10 package/autocore
@@ -139,8 +139,8 @@ git clone https://github.com/8688Add/autocore-arm -b openwrt-24.10 package/autoc
 
 # turboacc
 #git clone https://github.com/chenmozhijin/turboacc package/turboacc
-curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
-sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
+#curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
+#sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
 
 # unblockneteasemusic
 git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
