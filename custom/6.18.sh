@@ -127,6 +127,11 @@ git clone https://github.com/8688Add/autocore-arm -b openwrt-24.10 package/autoc
 #cp -rf immortalwrt-packages/net/zerotier feeds/packages/net/zerotier
 #ln -sf ../../../feeds/packages/net/zerotier ./package/feeds/packages/zerotier
 
+# turboacc
+#git clone https://github.com/chenmozhijin/turboacc package/turboacc
+curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
+sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
+
 # unblockneteasemusic
 git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
 sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
