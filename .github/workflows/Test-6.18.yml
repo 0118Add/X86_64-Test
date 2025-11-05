@@ -8,23 +8,23 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt-6.13
+name: Build OpenWrt-6.18
 
 on:
   workflow_dispatch:
 
 env:
   REPO_URL: https://github.com/mj22226/openwrt
-  REPO_BRANCH: linux-6.15
+  REPO_BRANCH: linux-6.18
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: configs/6.13.config
+  CONFIG_FILE: configs/6.18.config
   DIY_P1_SH: custom/diy-part1.sh
-  DIY_SCRIPT: custom/6.13.sh
+  DIY_SCRIPT: custom/6.18.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: false
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: X86_64-6.13
+  FIRMWARE_TAG: X86_64-6.18
   TZ: Asia/Shanghai
 
 jobs:
