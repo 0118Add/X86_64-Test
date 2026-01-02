@@ -40,19 +40,19 @@ sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 #rm -rf feeds/packages/lang/golang
 #git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
 
-rm -rf feeds/luci/applications/luci-app-filemanager
-rm -rf feeds/luci/applications/luci-app-adblock-fast
-rm -rf feeds/luci/applications/luci-app-commands
-rm -rf feeds/luci/applications/luci-app-irqbalance
-rm -rf feeds/luci/applications/luci-app-ksmbd
-rm -rf feeds/luci/applications/luci-app-nextdns
-rm -rf feeds/luci/applications/luci-app-nlbwmon
-rm -rf feeds/luci/applications/luci-app-openvpn
-rm -rf feeds/luci/applications/luci-app-pbr
-rm -rf feeds/luci/applications/luci-app-smartdns
-rm -rf feeds/luci/applications/luci-app-sqm
-rm -rf feeds/luci/applications/luci-app-statistics
-rm -rf feeds/luci/applications/luci-app-upnp
+#rm -rf feeds/luci/applications/luci-app-filemanager
+#rm -rf feeds/luci/applications/luci-app-adblock-fast
+#rm -rf feeds/luci/applications/luci-app-commands
+#rm -rf feeds/luci/applications/luci-app-irqbalance
+#rm -rf feeds/luci/applications/luci-app-ksmbd
+#rm -rf feeds/luci/applications/luci-app-nextdns
+#rm -rf feeds/luci/applications/luci-app-nlbwmon
+#rm -rf feeds/luci/applications/luci-app-openvpn
+#rm -rf feeds/luci/applications/luci-app-pbr
+#rm -rf feeds/luci/applications/luci-app-smartdns
+#rm -rf feeds/luci/applications/luci-app-sqm
+#rm -rf feeds/luci/applications/luci-app-statistics
+#rm -rf feeds/luci/applications/luci-app-upnp
 
 # 移除 SNAPSHOT 标签
 #sed -i 's,-SNAPSHOT,,g' include/version.mk
@@ -63,16 +63,16 @@ rm -rf feeds/luci/applications/luci-app-upnp
 #sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_DESCRIPTION='OpenWrt %V'|g" package/base-files/files/etc/openwrt_release
 
 # 替换banner
-wget -O ./package/base-files/files/etc/banner https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/banner
+#wget -O ./package/base-files/files/etc/banner https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/banner
 
 # alist
 #git clone https://github.com/sbwml/luci-app-alist package/alist
 
 # Default settings
-git clone https://github.com/8688Add/default-settings package/default-settings
+#git clone https://github.com/8688Add/default-settings package/default-settings
 
 # autocore
-git clone https://github.com/8688Add/autocore-arm -b openwrt-24.10 package/autocore
+#git clone https://github.com/8688Add/autocore-arm -b openwrt-24.10 package/autocore
 
 # DDNS GO
 #git clone https://github.com/sirpdboy/luci-app-ddns-go package/luci-app-ddns-go
@@ -143,8 +143,8 @@ git clone https://github.com/8688Add/autocore-arm -b openwrt-24.10 package/autoc
 #sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
 
 # unblockneteasemusic
-git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
-sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
+#git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
+#sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 
 # net.netfilter.nf_conntrack_max from 16384 to 65535
 sed -i 's/net.netfilter.nf_conntrack_max=.*/net.netfilter.nf_conntrack_max=65535/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
@@ -152,8 +152,8 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' packag
 
 # 修改系统文件
 #curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
-curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25_storage.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/25_storage.js
-sed -i 's/WireGuard/WiGd状态/g' feeds/luci/protocols/luci-proto-wireguard/root/usr/share/luci/menu.d/luci-proto-wireguard.json
+#curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25_storage.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/25_storage.js
+#sed -i 's/WireGuard/WiGd状态/g' feeds/luci/protocols/luci-proto-wireguard/root/usr/share/luci/menu.d/luci-proto-wireguard.json
 #rm -rf feeds/packages/lang/ruby
 #cp -rf $GITHUB_WORKSPACE/general/ruby feeds/packages/lang/ruby
 
