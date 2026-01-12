@@ -130,8 +130,8 @@ rm -rf feeds/luci/applications/luci-app-filemanager
 git clone https://github.com/sbwml/luci-app-filemanager package/luci-app-filemanager
 
 # tailscale
-git clone https://github.com/Jaykwok2999/luci-app-tailscale  package/luci-app-tailscale
-sed -i 's/vpn/services/g' package/luci-app-tailscale/root/usr/share/luci/menu.d/luci-app-tailscale.json
+#git clone https://github.com/Jaykwok2999/luci-app-tailscale  package/luci-app-tailscale
+#sed -i 's/vpn/services/g' package/luci-app-tailscale/root/usr/share/luci/menu.d/luci-app-tailscale.json
 
 # zerotier
 rm -rf feeds/luci/applications/luci-app-zerotier
