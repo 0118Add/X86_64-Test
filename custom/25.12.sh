@@ -176,6 +176,11 @@ sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/
 curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
 
+# 移除 luci-app-attendedsysupgrade
+sed -i '18d' feeds/luci/collections/luci-nginx/Makefile
+sed -i '17d' feeds/luci/collections/luci/Makefile
+sed -i '16s/ \\$//' feeds/luci/collections/luci/Makefile
+
 # 替换文件
 #curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25_storage.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/25_storage.js
