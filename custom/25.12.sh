@@ -141,7 +141,7 @@ sed -i 's/vpn/services/g' package/luci-app-zerotier/root/usr/share/luci/menu.d/l
 # SmartDNS zerotier
 rm -rf feeds/luci/applications/luci-app-smartdns
 rm -rf feeds/packages/net/smartdns
-rm -rf feeds/packages/lang/node/node
+rm -rf feeds/packages/lang/node
 #rm -rf feeds/packages/net/zerotier
 
 # unblockneteasemusic
