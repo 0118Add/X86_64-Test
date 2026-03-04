@@ -65,6 +65,7 @@ git clone https://github.com/sbwml/default-settings package/default-settings
 
 # autoCore
 git clone https://github.com/sbwml/autocore-arm -b openwrt-25.12 package/autocore
+sed -i 's/_('CPU usage'),    cpuusage.cpuusage//g' package/autocore/files/generic/10_system.js
 
 # OpenClash
 git clone -b dev --depth 1 https://github.com/vernesong/OpenClash package/OpenClash
