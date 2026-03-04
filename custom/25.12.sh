@@ -70,7 +70,7 @@ git clone https://github.com/sbwml/autocore-arm -b openwrt-25.12 package/autocor
 git clone -b dev --depth 1 https://github.com/vernesong/OpenClash package/OpenClash
 
 # Shared for PassWall and ShadowsocksR Plus+
-rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
+rm -rf feeds/packages/net/{xray-core,sing-box}
 git clone https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/passwall-packages -b main
 git clone -b main --single-branch https://github.com/lwb1978/openwrt-passwall package/passwall-luci
 
