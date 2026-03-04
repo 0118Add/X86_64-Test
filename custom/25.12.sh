@@ -64,7 +64,8 @@ git clone https://github.com/sbwml/packages_lang_golang -b 26.x feeds/packages/l
 git clone https://github.com/sbwml/default-settings package/default-settings
 
 # autoCore
-git clone https://github.com/sbwml/autocore-arm -b openwrt-25.12 package/autocore
+git clone https://github.com/8688Add/autocore package/autocore
+#git clone https://github.com/sbwml/autocore-arm -b openwrt-25.12 package/autocore
 
 # OpenClash
 git clone -b dev --depth 1 https://github.com/vernesong/OpenClash package/OpenClash
