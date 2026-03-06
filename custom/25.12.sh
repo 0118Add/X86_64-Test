@@ -85,7 +85,7 @@ git clone -b main --single-branch https://github.com/lwb1978/openwrt-passwall pa
 git clone https://github.com/nikkinikki-org/OpenWrt-momo package/OpenWrt-momo
 
 # dae
-git clone https://github.com/QiuSimons/luci-app-dae package/dae
+git clone -b kix --depth 1 https://github.com/QiuSimons/luci-app-dae package/dae
 
 # ttyd
 #rm -rf feeds/luci/applications/luci-app-ttyd
