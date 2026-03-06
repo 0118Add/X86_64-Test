@@ -84,6 +84,9 @@ git clone -b main --single-branch https://github.com/lwb1978/openwrt-passwall pa
 #git clone https://github.com/nikkinikki-org/OpenWrt-nikki package/OpenWrt-nikki
 git clone https://github.com/nikkinikki-org/OpenWrt-momo package/OpenWrt-momo
 
+# dae
+git clone https://github.com/QiuSimons/luci-app-dae package/dae
+
 # ttyd
 #rm -rf feeds/luci/applications/luci-app-ttyd
 sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
