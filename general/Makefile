@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=node
 PKG_BASE:=packages-24.10
-PKG_VERSION:=$(shell curl -s https://downloads.openwrt.org/releases/$(PKG_BASE)/aarch64_generic/packages/Packages | grep -oP '(?<=Filename: node_)\d+\.\d+\.\d+-r\d+')
+PKG_VERSION:=$(shell curl -s https://downloads.openwrt.org/releases/$(PKG_BASE)/x86_64/packages/Packages | grep -oP '(?<=Filename: node_)\d+\.\d+\.\d+-r\d+')
 PKG_BUILD_VERSION:=$(shell curl -s https://downloads.openwrt.org/releases/$(PKG_BASE)/$(ARCH_PACKAGES)/packages/Packages | grep -oP '(?<=Filename: node_)\d+\.\d+\.\d+-r\d+')
 PKG_MAJOR_VERSION:=v$(shell echo $(PKG_BUILD_VERSION) | sed 's/-.*//')
 
