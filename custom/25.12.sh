@@ -162,11 +162,9 @@ sed -i '16s/ \\$//' feeds/luci/collections/luci/Makefile
 
 # ADD PKG 部分
 rm -rf feeds/packages/utils/coremark
-merge_package https://github.com/QiuSimons/OpenWrt-Add OpenWrt-Add/openwrt-einat-ebpf
-sed -i 's/+@KERNEL_DEBUG_INFO_BTF/+vmlinux-btf/' package/custom/openwrt-einat-ebpf/Makefile
-git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf
-cp -rf openwrt/package/libs/toolchain/Makefile /tmp/Makefile.bak
-cp -rf /tmp/Makefile.bak ./openwrt/package/libs/toolchain/Makefile
+#merge_package https://github.com/QiuSimons/OpenWrt-Add OpenWrt-Add/openwrt-einat-ebpf
+#sed -i 's/+@KERNEL_DEBUG_INFO_BTF/+vmlinux-btf/' package/custom/openwrt-einat-ebpf/Makefile
+#git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf
 
 # 替换文件
 #curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
