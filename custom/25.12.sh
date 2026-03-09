@@ -162,6 +162,7 @@ sed -i '16s/ \\$//' feeds/luci/collections/luci/Makefile
 
 # ADD PKG 部分
 rm -rf feeds/packages/utils/coremark
+merge_package https://github.com/0118Add/OP-Packages OP-Packages/autocore-arm
 sed -i 's/+@KERNEL_DEBUG_INFO_BTF/+vmlinux-btf/' package/openwrt-einat-ebpf/Makefile
 git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf
 
