@@ -87,7 +87,7 @@ git clone https://github.com/nikkinikki-org/OpenWrt-momo package/OpenWrt-momo
 # dae
 git clone -b kix --depth 1 https://github.com/QiuSimons/luci-app-dae package/dae
 merge_package https://github.com/QiuSimons/OpenWrt-Add OpenWrt-Add/openwrt-einat-ebpf
-sed -i 's/+@KERNEL_DEBUG_INFO_BTF/+vmlinux-btf/' package/openwrt-einat-ebpf/Makefile
+sed -i 's/+@KERNEL_DEBUG_INFO_BTF/+vmlinux-btf/' package/custom/openwrt-einat-ebpf/Makefile
 git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf
 
 # ttyd
