@@ -86,6 +86,8 @@ git clone https://github.com/nikkinikki-org/OpenWrt-momo package/OpenWrt-momo
 
 # dae
 git clone -b kix --depth 1 https://github.com/QiuSimons/luci-app-dae package/dae
+merge_package https://github.com/QiuSimons/OpenWrt-Add OpenWrt-Add/openwrt-einat-ebpf
+sed -i 's/+@KERNEL_DEBUG_INFO_BTF/+vmlinux-btf/' package/openwrt-einat-ebpf/Makefile
 git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf
 
 # ttyd
@@ -160,12 +162,6 @@ sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turbo
 sed -i '18d' feeds/luci/collections/luci-nginx/Makefile
 sed -i '17d' feeds/luci/collections/luci/Makefile
 sed -i '16s/ \\$//' feeds/luci/collections/luci/Makefile
-
-# ADD PKG 部分
-#rm -rf feeds/packages/utils/coremark
-#merge_package https://github.com/QiuSimons/OpenWrt-Add OpenWrt-Add/openwrt-einat-ebpf
-#sed -i 's/+@KERNEL_DEBUG_INFO_BTF/+vmlinux-btf/' package/custom/openwrt-einat-ebpf/Makefile
-#git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf
 
 # 替换文件
 #curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
