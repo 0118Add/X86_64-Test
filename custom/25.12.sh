@@ -86,7 +86,7 @@ git clone https://github.com/nikkinikki-org/OpenWrt-momo package/OpenWrt-momo
 
 # dae
 git clone -b kix --depth 1 https://github.com/QiuSimons/luci-app-dae package/dae
-git clone https://github.com/sbwml/package_kernel_vmlinux-btf package/vmlinux-btf
+git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf
 
 # ttyd
 #rm -rf feeds/luci/applications/luci-app-ttyd
