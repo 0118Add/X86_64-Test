@@ -85,10 +85,9 @@ git clone -b main --single-branch https://github.com/lwb1978/openwrt-passwall pa
 git clone https://github.com/nikkinikki-org/OpenWrt-momo package/OpenWrt-momo
 
 # dae
-git clone -b kix --depth 1 https://github.com/QiuSimons/luci-app-dae package/dae
-merge_package https://github.com/QiuSimons/OpenWrt-Add OpenWrt-Add/openwrt-einat-ebpf
-sed -i 's/+@KERNEL_DEBUG_INFO_BTF/+vmlinux-btf/' package/custom/openwrt-einat-ebpf/Makefile
-git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf
+#git clone -b kix --depth 1 https://github.com/QiuSimons/luci-app-dae package/dae
+merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/luci-app-dae
+merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/dae
 
 # ttyd
 #rm -rf feeds/luci/applications/luci-app-ttyd
