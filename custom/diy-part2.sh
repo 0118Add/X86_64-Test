@@ -86,8 +86,8 @@ git clone https://github.com/nikkinikki-org/OpenWrt-momo package/OpenWrt-momo
 
 # dae
 #git clone -b kix --depth 1 https://github.com/QiuSimons/luci-app-dae package/dae
-merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/luci-app-dae
-merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/dae
+#merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/luci-app-dae
+#merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/dae
 
 # ttyd
 #rm -rf feeds/luci/applications/luci-app-ttyd
