@@ -204,6 +204,12 @@ pushd feeds/luci
     curl -s $mirror/X86_64-Test/patch/firewall4/luci-25.12/0007-luci-app-firewall-add-fullcone6-option-for-nftables-.patch | patch -p1
 popd
 
+# fullcone
+curl -s $mirror/X86_64-Test/patch/kernel-6.12/net/952-net-conntrack-events-support-multiple-registrant.patch > target/linux/generic/hack-6.12/952-net-conntrack-events-support-multiple-registrant.patch
+# bcm-fullcone
+curl -s $mirror/X86_64-Test/patch/kernel-6.12/net/982-add-bcm-fullcone-support.patch > target/linux/generic/hack-6.12/982-add-bcm-fullcone-support.patch
+curl -s $mirror/X86_64-Test/patch/kernel-6.12/net/983-add-bcm-fullcone-nft_masq-support.patch > target/linux/generic/hack-6.12/983-add-bcm-fullcone-nft_masq-support.patch
+
 # 移除 luci-app-attendedsysupgrade
 sed -i '18d' feeds/luci/collections/luci-nginx/Makefile
 sed -i '17d' feeds/luci/collections/luci/Makefile
