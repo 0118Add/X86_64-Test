@@ -66,7 +66,6 @@ git clone https://github.com/sbwml/default-settings package/default-settings
 # autoCore
 #git clone https://github.com/8688Add/autocore package/autocore
 git clone https://github.com/sbwml/autocore-arm -b openwrt-25.12 package/autocore
-curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > package/autocore/files/generic/10_system.js
 
 # OpenClash
 git clone -b dev --depth 1 https://github.com/vernesong/OpenClash package/OpenClash
