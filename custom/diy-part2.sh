@@ -191,6 +191,7 @@ fi
 
 # FullCone module
 git clone https://github.com/gitbruc/nft-fullcone package/nft-fullcone
+sed -i 's/+kmod-nf-conntrack6//g' package/nft-fullcone/Makefile
 
 # IPv6 NAT
 git clone https://github.com/sbwml/packages_new_nat6 package/nat6 -b openwrt-25.12
