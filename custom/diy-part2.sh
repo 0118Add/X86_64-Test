@@ -161,6 +161,9 @@ sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/
 #curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 #sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
 
+# Shortcut Forwarding Engine
+git clone https://$gitea/sbwml/shortcut-fe package/new/shortcut-fe
+
 # Patch FireWall 4
 if [ "$version" = "dev" ] || [ "$version" = "rc2" ]; then
     # firewall4
@@ -187,14 +190,13 @@ if [ "$version" = "dev" ] || [ "$version" = "rc2" ]; then
 fi
 
 # FullCone module
-git clone https://github.com/sbwml/nft-fullcone.git package/nft-fullcone
-sed -i 's/+kmod-nf-conntrack6//g' package/nft-fullcone/Makefile
+git clone https://$gitea/sbwml/nft-fullcone package/new/nft-fullcone
 
 # IPv6 NAT
-git clone https://github.com/sbwml/package_new_nat6 package/nat6 -b openwrt-25.12
+git clone https://$github/sbwml/packages_new_nat6 package/new/nat6 -b openwrt-25.12
 
 # natflow
-git clone https://github.com/sbwml/package_new_natflow package/natflow
+git clone https://$github/sbwml/package_new_natflow package/new/natflow
 
 # Patch Luci add nft_fullcone/bcm_fullcone & shortcut-fe & natflow & ipv6-nat & custom nft command option
 pushd feeds/luci
@@ -207,11 +209,13 @@ pushd feeds/luci
     curl -s $mirror/X86_64-Test/patch/firewall4/luci-25.12/0007-luci-app-firewall-add-fullcone6-option-for-nftables-.patch | patch -p1
 popd
 
-# fullcone
-curl -s $mirror/X86_64-Test/patch/kernel-6.12/net/952-net-conntrack-events-support-multiple-registrant.patch > target/linux/generic/hack-6.12/952-net-conntrack-events-support-multiple-registrant.patch
 # bcm-fullcone
-curl -s $mirror/X86_64-Test/patch/kernel-6.12/net/982-add-bcm-fullcone-support.patch > target/linux/generic/hack-6.12/982-add-bcm-fullcone-support.patch
-curl -s $mirror/X86_64-Test/patch/kernel-6.12/net/983-add-bcm-fullcone-nft_masq-support.patch > target/linux/generic/hack-6.12/983-add-bcm-fullcone-nft_masq-support.patch
+curl -s $mirror/X86_64-Test/patch/kernel-6.18/net/982-add-bcm-fullcone-support.patch > target/linux/generic/hack-6.18/982-add-bcm-fullcone-support.patch
+curl -s $mirror/X86_64-Test/patch/kernel-6.18/net/983-add-bcm-fullcone-nft_masq-support.patch > target/linux/generic/hack-6.18/983-add-bcm-fullcone-nft_masq-support.patch
+# shortcut-fe
+curl -s $mirror/X86_64-Test/patch/kernel-6.18/net/601-netfilter-export-udp_get_timeouts-function.patch > target/linux/generic/hack-6.18/601-netfilter-export-udp_get_timeouts-function.patch
+curl -s $mirror/X86_64-Test/patch/kernel-6.18/net/952-net-conntrack-events-support-multiple-registrant.patch > target/linux/generic/hack-6.18/952-net-conntrack-events-support-multiple-registrant.patch
+curl -s $mirror/X86_64-Test/patch/kernel-6.18/net/953-net-patch-linux-kernel-to-support-shortcut-fe.patch > target/linux/generic/hack-6.18/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
 
 # 修正部分从第三方仓库拉取的软件 Makefile 路径问题
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}
