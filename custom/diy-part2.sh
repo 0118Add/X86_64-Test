@@ -187,14 +187,14 @@ if [ "$version" = "dev" ] || [ "$version" = "rc2" ]; then
 fi
 
 # FullCone module
-git clone https://github.com/gitbruc/nft-fullcone.git package/nft-fullcone
-sed -i 's/+kmod-nf-conntrack6//g' package/nft-fullcone/Makefile
+git clone https://github.com/sbwml/nft-fullcone.git package/nft-fullcone
+#sed -i 's/+kmod-nf-conntrack6//g' package/nft-fullcone/Makefile
 
 # IPv6 NAT
-git clone https://github.com/gitbruc/package_new_nat6 package/nat6 -b openwrt-25.12
+git clone https://github.com/sbwml/package_new_nat6 package/nat6 -b openwrt-25.12
 
 # natflow
-git clone https://github.com/gitbruc/package_new_natflow package/natflow
+git clone https://github.com/sbwml/package_new_natflow package/natflow
 
 # Patch Luci add nft_fullcone/bcm_fullcone & shortcut-fe & natflow & ipv6-nat & custom nft command option
 pushd feeds/luci
