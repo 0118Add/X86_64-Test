@@ -64,7 +64,6 @@ git clone --depth=1 -b packages-24.10 https://github.com/sbwml/feeds_packages_la
 # 文件替换
 #wget -O ./package/base-files/files/etc/banner https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/banner
 #wget -O ./package/libs/libnftnl/Makefile https://raw.githubusercontent.com/0118Add/X86_64-Test/main/patch/Makefile
-sed -i '/PKG_INSTALL:=/iPKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
 
 # Default settings
 git clone https://github.com/sbwml/default-settings package/default-settings
@@ -164,6 +163,7 @@ sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/
 
 # turboacc
 #git clone https://github.com/chenmozhijin/turboacc package/turboacc
+sed -i '/PKG_INSTALL:=/iPKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
 #curl -sSL https://raw.githubusercontent.com/mufeng05/openwrt-sonic-fullcone/master/add_sonic_fullcone.sh -o add_sonic_fullcone.sh && bash add_sonic_fullcone.sh
 curl -sSL https://raw.githubusercontent.com/mufeng05/turboacc/main/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh_Hans/turboacc.po
