@@ -61,8 +61,9 @@ git clone https://github.com/sbwml/packages_lang_golang -b 26.x feeds/packages/l
 rm -rf feeds/packages/lang/node
 git clone --depth=1 -b packages-24.10 https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packages/lang/node
 
-# 替换banner
+# 文件替换
 #wget -O ./package/base-files/files/etc/banner https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/banner
+wget -O ./package/libs/libnftnl/Makefile https://raw.githubusercontent.com/0118Add/X86_64-Test/main/patch/Makefile
 
 # Default settings
 git clone https://github.com/sbwml/default-settings package/default-settings
@@ -121,9 +122,6 @@ sed -i 's/vpn/services/g' package/luci-app-zerotier/root/usr/share/luci/menu.d/l
 # unblockneteasemusic
 #git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
 #sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
-
-# 替换libnftnl
-wget -O ./package/libs/libnftnl/Makefile https://raw.githubusercontent.com/0118Add/X86_64-Test/main/patch/Makefile
 
 # 克隆immortalwrt-luci packages仓库
 git clone --depth=1 -b master https://github.com/immortalwrt/luci.git immortalwrt-luci
