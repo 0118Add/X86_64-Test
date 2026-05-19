@@ -68,15 +68,19 @@ git clone https://github.com/sbwml/default-settings package/default-settings
 git clone https://github.com/sbwml/autocore-arm -b openwrt-25.12 package/autocore
 curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > package/autocore/files/generic/10_system.js
 
+# 预编译 node
+rm -rf feeds/packages/lang/node
+git clone --depth=1 -b packages-24.10 https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packages/lang/node
+
 # OpenClash
 git clone -b dev --depth 1 https://github.com/vernesong/OpenClash package/OpenClash
 
 # Shared for PassWall and ShadowsocksR Plus+
 rm -rf feeds/packages/net/{xray-core,sing-box}
-git clone https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/passwall-packages -b main
+#git clone https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/passwall-packages -b main
 #git clone -b main --single-branch https://github.com/lwb1978/openwrt-passwall package/passwall-luci
 #merge_package https://github.com/0118Add/passwall-packages passwall-packages/sing-box
-#merge_package https://github.com/0118Add/passwall-packages passwall-packages/xray-core
+merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages openwrt-passwall-packages/xray-core
 
 # homeproxy
 #git clone -b dev --depth 1 https://github.com/immortalwrt/homeproxy package/luci-app-homeproxy
@@ -85,15 +89,15 @@ git clone https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/
 
 # mihomo
 #git clone https://github.com/nikkinikki-org/OpenWrt-nikki package/OpenWrt-nikki
-git clone https://github.com/nikkinikki-org/OpenWrt-momo package/OpenWrt-momo
+#git clone https://github.com/nikkinikki-org/OpenWrt-momo package/OpenWrt-momo
 
 # dae
 #git clone -b kix --depth 1 https://github.com/QiuSimons/luci-app-dae package/dae
 #merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/luci-app-dae
 merge_package https://github.com/QiuSimons/luci-app-dae luci-app-dae/luci-app-dae
 merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/dae
-sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=2026.03.25/g' package/custom/dae/Makefile
-sed -i 's/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=132d7d99742c7f179172020ec8154820b8be47c0/g' package/custom/dae/Makefile
+sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=2026.05.18/g' package/custom/dae/Makefile
+sed -i 's/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=44f8f0d18df95063d90e7b0e3270546b307d8c38/g' package/custom/dae/Makefile
 
 # ttyd
 #rm -rf feeds/luci/applications/luci-app-ttyd
@@ -116,10 +120,6 @@ rm -rf feeds/luci/applications/luci-app-zerotier
 git clone https://github.com/8688Add/luci-app-zerotier package/luci-app-zerotier
 sed -i 's/vpn/services/g' package/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 
-# 预编译 node
-rm -rf feeds/packages/lang/node
-git clone --depth=1 -b packages-24.10 https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packages/lang/node
-
 # unblockneteasemusic
 #git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
 #sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
@@ -139,6 +139,8 @@ ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/f
 git clone --depth=1 -b openwrt-25.12 https://github.com/immortalwrt/packages.git immortalwrt-packages
 cp -rf immortalwrt-packages/net/msd_lite feeds/packages/net/msd_lite
 ln -sf ../../../feeds/packages/net/msd_lite ./package/feeds/packages/msd_lite
+cp -rf immortalwrt-packages/net/sing-box feeds/packages/net/sing-box
+ln -sf ../../../feeds/packages/net/sing-box ./package/feeds/packages/sing-box
 sed -i 's/解除网易云音乐播放限制/音乐解锁/g' feeds/luci/applications/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 sed -i "s/ImmortalWrt/OpenWrt/g" feeds/luci/applications/luci-app-homeproxy/po/zh_Hans/homeproxy.po
 sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" feeds/luci/applications/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
