@@ -122,11 +122,8 @@ sed -i 's/vpn/services/g' package/luci-app-zerotier/root/usr/share/luci/menu.d/l
 #git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
 #sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 
-# 克隆lean仓库
-rm -rf feeds/packages/libs/libnftnl
-git clone --depth=1 -b master https://github.com/coolsnowwolf/lede lede
-cp -rf lede/package/libs/libnftnl feeds/package/libs/libnftnl
-ln -sf ../../../feeds/package/libs/libnftnl ./package/feeds/libs/libnftnl
+# 替换libnftnl
+wget -O ./package/libs/libnftnl/Makefile https://raw.githubusercontent.com/0118Add/X86_64-Test/main/patch/Makefile
 
 # 克隆immortalwrt-luci packages仓库
 git clone --depth=1 -b master https://github.com/immortalwrt/luci.git immortalwrt-luci
