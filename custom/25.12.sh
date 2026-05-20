@@ -178,6 +178,8 @@ if [ "$version" = "dev" ] || [ "$version" = "rc2" ]; then
     curl -s $mirror/X86_64-Test/patch/firewall4/firewall4_patches/001-fix-fw4-flow-offload.patch > package/network/config/firewall4/patches/001-fix-fw4-flow-offload.patch
     # add custom nft command support
     curl -s $mirror/X86_64-Test/patch/firewall4/100-openwrt-firewall4-add-custom-nft-command-support.patch | patch -p1
+    # fw4 - github mirror
+    sed -i 's|$(PROJECT_GIT)/project|https://github.com/openwrt|g' package/network/config/firewall4/Makefile
     # libnftnl
     mkdir -p package/libs/libnftnl/patches
     curl -s $mirror/X86_64-Test/patch/firewall4/libnftnl/0001-libnftnl-add-fullcone-expression-support.patch > package/libs/libnftnl/patches/0001-libnftnl-add-fullcone-expression-support.patch
@@ -211,6 +213,10 @@ pushd feeds/luci
     curl -s $mirror/X86_64-Test/patch/firewall4/luci-25.12/0007-luci-app-firewall-add-fullcone6-option-for-nftables-.patch | patch -p1
 popd
 
+# btf: silence btf module warning messages
+curl -s $mirror/X86_64-Test/patch/kernel-6.12/btf/990-btf-silence-btf-module-warning-messages.patch > target/linux/generic/hack-6.12/990-btf-silence-btf-module-warning-messages.patch
+# cpu model
+curl -s $mirror/X86_64-Test/patch/kernel-6.12/arm64/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch > target/linux/generic/hack-6.12/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch
 # fullcone
 curl -s $mirror/X86_64-Test/patch/kernel-6.12/net/952-net-conntrack-events-support-multiple-registrant.patch > target/linux/generic/hack-6.12/952-net-conntrack-events-support-multiple-registrant.patch
 # bcm-fullcone
