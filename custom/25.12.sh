@@ -198,7 +198,7 @@ git clone https://github.com/gitbruc/package_new_nat6 package/nat6 -b openwrt-25
 
 # natflow
 git clone https://github.com/gitbruc/package_new_natflow package/natflow
-curl -sL $mirror/X86_64-Test/patch/natflow/999-fix-ipset-api-kernel-6.12.patch > package/new/natflow/patches/999-fix-ipset-api-kernel-6.12.patch
+curl -sL $mirror/X86_64-Test/patch/natflow/999-fix-ipset-api-kernel-6.12.patch > package/natflow/patches/999-fix-ipset-api-kernel-6.12.patch
 
 # Patch Luci add nft_fullcone/bcm_fullcone & shortcut-fe & natflow & ipv6-nat & custom nft command option
 pushd feeds/luci
