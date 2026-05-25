@@ -70,7 +70,7 @@ curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.
 
 # 预编译 node
 rm -rf feeds/packages/lang/node
-git clone --depth=1 -b packages-24.10 https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packages/lang/node
+git clone https://github.com/sbwml/feeds_packages_lang_node feeds/packages/lang/node -b packages-25.12
 
 # OpenClash
 git clone -b dev --depth 1 https://github.com/vernesong/OpenClash package/OpenClash
