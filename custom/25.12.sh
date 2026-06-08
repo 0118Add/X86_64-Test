@@ -92,12 +92,10 @@ merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages open
 #git clone https://github.com/nikkinikki-org/OpenWrt-momo package/OpenWrt-momo
 
 # dae
-#git clone -b kix --depth 1 https://github.com/QiuSimons/luci-app-dae package/dae
-#merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/luci-app-dae
-merge_package https://github.com/QiuSimons/luci-app-dae luci-app-dae/luci-app-dae
-merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/dae
-sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=2026.05.18/g' package/custom/dae/Makefile
-sed -i 's/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=44f8f0d18df95063d90e7b0e3270546b307d8c38/g' package/custom/dae/Makefile
+#git_sparse_clone kix https://github.com/QiuSimons/luci-app-dae luci-app-dae
+#git_sparse_clone master https://github.com/8688Add/openwrt_pkgs dae
+#sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=2026.06.05/g' package/dae/Makefile
+#sed -i 's/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=ba50380e15649b0c83ec04c07f355dece19b0cea/g' package/dae/Makefile
 
 # ttyd
 #rm -rf feeds/luci/applications/luci-app-ttyd
