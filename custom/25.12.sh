@@ -97,6 +97,10 @@ merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages open
 #sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=2026.06.05/g' package/dae/Makefile
 #sed -i 's/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=ba50380e15649b0c83ec04c07f355dece19b0cea/g' package/dae/Makefile
 
+#git_sparse_clone master https://github.com/QiuSimons/OpenWrt-Add luci-app-dae openwrt-einat-ebpf
+#sed -i 's/+@KERNEL_DEBUG_INFO_BTF/+vmlinux-btf/' package/openwrt-einat-ebpf/Makefile
+#git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf
+
 # ttyd
 #rm -rf feeds/luci/applications/luci-app-ttyd
 sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
