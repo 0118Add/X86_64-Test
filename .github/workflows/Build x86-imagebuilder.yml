@@ -1,30 +1,20 @@
-#
-# Copyright (c) 2019-2020 P3TERX <https://p3terx.com>
-#
-# This is free software, licensed under the MIT License.
-# See /LICENSE for more information.
-#
-# https://github.com/P3TERX/Actions-OpenWrt
-# Description: Build OpenWrt using GitHub Actions
-#
-
-name: Build OpenWrt-6.19
+name: Build imagebuilder
 
 on:
   workflow_dispatch:
 
 env:
-  REPO_URL: https://github.com/mj22226/openwrt
-  REPO_BRANCH: linux-6.19
-  FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: configs/6.19.config
-  DIY_P1_SH: custom/diy-part1.sh
-  DIY_SCRIPT: custom/6.19.sh
+  REPO_URL: https://github.com/immortalwrt/immortalwrt
+  REPO_BRANCH: master
+  FEEDS_CONF: x86/diy/x86_lede/master.feeds.conf.default
+  CONFIG_FILE: x86/ImmortalWrt.config
+  DIY_P1_SH: diy-part1.sh
+  DIY_P2_SH: x86/ImmortalWrt.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: false
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: X86_64-6.19
+  FIRMWARE_TAG: x86_64-imm
   TZ: Asia/Shanghai
 
 jobs:
@@ -46,7 +36,7 @@ jobs:
       run: |
         sudo -E apt-get -qq update
         sudo /bin/bash -c "$(curl -sL https://git.io/vokNn)"
-        sudo -E apt-fast -y -qq install asciidoc bash bcc bin86 binutils bison bzip2 clang-15 llvm-15 clang llvm file flex g++ g++-multilib gawk gcc gcc-multilib gettext git gzip help2man intltool libboost-dev libelf-dev libncurses-dev libncurses5-dev libssl-dev libthread-queue-any-perl libusb-dev libxml-parser-perl make patch perl-modules python3-dev python3-pip python3-pyelftools python3-setuptools rsync sharutils swig time unzip util-linux wget xsltproc zlib1g-dev zip zstd
+        sudo -E apt-fast -y -qq install asciidoc bash bcc bin86 binutils bison bzip2 clang-15 llvm-15 clang llvm file flex g++ g++-multilib gawk gcc gcc-multilib gettext git gzip help2man intltool libboost-dev libelf-dev libncurses-dev libncurses5-dev libssl-dev libthread-queue-any-perl libusb-dev libxml-parser-perl npm make patch perl-modules python3-dev python3-pip python3-pyelftools python3-setuptools rsync sharutils swig time unzip util-linux wget xsltproc zlib1g-dev zip zstd
         sudo -E apt-fast -y -qq install dos2unix dwarves quilt npm jq
         sudo -E npm install -g pnpm
         pip3 install --user -U pylibfdt --break-system-packages
@@ -56,31 +46,21 @@ jobs:
         sudo -E git config --global core.abbrev auto
         sudo timedatectl set-timezone "$TZ"
         df -Th
-    
-    - name: Create simulated physical disk
-      run: |
-        mnt_size=$(expr $(df -h /mnt | tail -1 | awk '{print $4}' | sed 's/[[:alpha:]]//g' | sed 's/\..*//') - 1)
-        root_size=$(expr $(df -h / | tail -1 | awk '{print $4}' | sed 's/[[:alpha:]]//g' | sed 's/\..*//') - 4)
-        sudo truncate -s "${mnt_size}"G /mnt/mnt.img
-        sudo truncate -s "${root_size}"G /root.img
-        sudo losetup /dev/loop6 /mnt/mnt.img
-        sudo losetup /dev/loop7 /root.img
-        sudo pvcreate /dev/loop6
-        sudo pvcreate /dev/loop7
-        sudo vgcreate github /dev/loop6 /dev/loop7
-        sudo lvcreate -n runner -l 100%FREE github
-        sudo mkfs.xfs /dev/github/runner
-        sudo mkdir -p /builder
-        sudo mount /dev/github/runner /builder
-        sudo chown -R runner.runner /builder
-        df -Th   
-    
+
+    - name: Combine Disks
+      uses: easimon/maximize-build-space@master
+      with:
+        swap-size-mb: 1024
+        temp-reserve-mb: 100
+        root-reserve-mb: 1024
+
+    - name: Checkout
+      uses: actions/checkout@v5
+
     - name: Clone Source Code
-      working-directory: /builder
       run: |
-        df -hT $PWD
-        git clone $REPO_URL -b $REPO_BRANCH openwrt
-        ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
+        df -hT $GITHUB_WORKSPACE
+        git clone --depth 1 -b $REPO_BRANCH $REPO_URL openwrt
         cd openwrt
         echo "OPENWRT_PATH=$PWD" >> $GITHUB_ENV
         COMMIT_AUTHOR=$(git show -s --date=short --format="作者: %an")
@@ -115,7 +95,7 @@ jobs:
     - name: Load custom feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF $OPENWRT_PATH/feeds.conf.default
-        chmod +x $GITHUB_WORKSPACE/custom/*.sh
+        chmod +x $GITHUB_WORKSPACE/immortalwrt/*.sh
         chmod +x $DIY_P1_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH    
@@ -130,11 +110,11 @@ jobs:
       run: |
         [ -e files ] && mv files $OPENWRT_PATH/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_PATH/.config
-        chmod +x $GITHUB_WORKSPACE/custom/*.sh
-        chmod +x $DIY_SCRIPT
+        chmod +x $GITHUB_WORKSPACE/x86/*.sh
+        chmod +x $DIY_P2_SH
         cd $OPENWRT_PATH
-        $GITHUB_WORKSPACE/$DIY_SCRIPT
-      
+        $GITHUB_WORKSPACE/$DIY_P2_SH
+    
     - name: Download DL Package
       run: |
         cd $OPENWRT_PATH
