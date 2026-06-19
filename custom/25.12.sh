@@ -53,20 +53,20 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' packag
 #sed -i 's/LINUX_KERNEL_HASH-5.15.139 = 9c68c10dfe18e59b892e940436dea6a18d167160d55e62563cf7282244d8044e/LINUX_KERNEL_HASH-5.15.138 = af84e54164e1c01f59764ba528448ed36b377d22aafbd81b4b0cf47792ef4aaa/g' ./include/kernel-5.15
 #sed -i 's/LINUX_VERSION-5.15 = .139/LINUX_VERSION-5.15 = .138/g' ./include/kernel-5.15
 
-# golang 26.x
-rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 26.x feeds/packages/lang/golang
-
 # 替换banner
 #wget -O ./package/base-files/files/etc/banner https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/banner
-
-# Default settings
-git clone https://github.com/sbwml/default-settings package/default-settings
 
 # autoCore
 #git clone https://github.com/8688Add/autocore package/autocore
 git clone https://github.com/sbwml/autocore-arm -b openwrt-25.12 package/autocore
-curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > package/autocore/files/generic/10_system.js
+#curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > package/autocore/files/generic/10_system.js
+
+# Default settings
+git clone https://github.com/sbwml/default-settings package/default-settings
+
+# golang 26.x
+rm -rf feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 26.x feeds/packages/lang/golang
 
 # 预编译 node
 rm -rf feeds/packages/lang/node
@@ -164,10 +164,10 @@ sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/
 
 # turboacc
 #git clone https://github.com/chenmozhijin/turboacc package/turboacc
-curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
-sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh-cn/turboacc.po
+curl -sSL https://raw.githubusercontent.com/mufeng05/turboacc/main/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
+sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh_Hans/turboacc.po
 
-# 移除 luci-app-attendedsysupgrade
+# 移除luci-app-attendedsysupgrade
 sed -i '18d' feeds/luci/collections/luci-nginx/Makefile
 sed -i '17d' feeds/luci/collections/luci/Makefile
 sed -i '16s/ \\$//' feeds/luci/collections/luci/Makefile
