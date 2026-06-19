@@ -69,8 +69,8 @@ git clone --depth=1 -b packages-24.10 https://github.com/sbwml/feeds_packages_la
 git clone https://github.com/sbwml/default-settings package/default-settings
 
 # autoCore
-git clone https://github.com/8688Add/autocore-arm -b openwrt-25.12 package/autocore
-#git clone https://github.com/sbwml/autocore-arm -b openwrt-25.12 package/autocore
+#git clone https://github.com/8688Add/autocore-arm -b openwrt-25.12 package/autocore
+git clone https://github.com/sbwml/autocore-arm -b openwrt-25.12 package/autocore
 
 # OpenClash
 git clone -b dev --depth 1 https://github.com/vernesong/OpenClash package/OpenClash
@@ -176,7 +176,7 @@ sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turbo
 #find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHREPO/PKG_SOURCE_URL:=https:\/\/github.com/g' {}
 #find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHCODELOAD/PKG_SOURCE_URL:=https:\/\/codeload.github.com/g' {}
 
-# 移除 luci-app-attendedsysupgrade
+# 移除luci-app-attendedsysupgrade
 sed -i '18d' feeds/luci/collections/luci-nginx/Makefile
 sed -i '17d' feeds/luci/collections/luci/Makefile
 sed -i '16s/ \\$//' feeds/luci/collections/luci/Makefile
