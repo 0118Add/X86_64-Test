@@ -65,12 +65,12 @@ git clone --depth=1 -b packages-24.10 https://github.com/sbwml/feeds_packages_la
 #wget -O ./package/base-files/files/etc/banner https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/banner
 #wget -O ./package/libs/libnftnl/Makefile https://raw.githubusercontent.com/0118Add/X86_64-Test/main/patch/Makefile
 
-# Default settings
-git clone https://github.com/sbwml/default-settings package/default-settings
-
 # autoCore
 #git clone https://github.com/8688Add/autocore-arm -b openwrt-25.12 package/autocore
 git clone https://github.com/sbwml/autocore-arm -b openwrt-25.12 package/autocore
+
+# Default settings
+git clone https://github.com/sbwml/default-settings package/default-settings
 
 # OpenClash
 git clone -b dev --depth 1 https://github.com/vernesong/OpenClash package/OpenClash
