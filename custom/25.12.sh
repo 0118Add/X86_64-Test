@@ -168,7 +168,7 @@ curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/main/add_turbo
 sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh_Hans/turboacc.po
 
 # Realtek Ethernet driver - R8168 & R8125 & R8126 & R8152 & R8101 & r8127
-rm -rf package/kernel/{r8168,r8101,r8125,r8126,r8127}
+#rm -rf package/kernel/{r8168,r8101,r8125,r8126,r8127}
 #git clone https://github.com/sbwml/package_kernel_r8168 package/kernel/r8168
 git clone https://github.com/sbwml/package_kernel_r8152 package/kernel/r8152
 #git clone https://github.com/sbwml/package_kernel_r8101 package/kernel/r8101
