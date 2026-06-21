@@ -130,6 +130,7 @@ sed -i 's/vpn/services/g' package/luci-app-zerotier/root/usr/share/luci/menu.d/l
 #git clone --depth=1 -b master https://github.com/coolsnowwolf/lede lean
 #cp -rf lean/package/kernel/r8152 package/kernel/r8152
 #ln -sf ../../../package/kernel/r8152 ./package/kernel/r8152
+#merge_package https://github.com/coolsnowwolf/lede lede/package/kernel/r8152
 
 # 克隆immortalwrt-luci packages仓库
 git clone --depth=1 -b openwrt-25.12 https://github.com/immortalwrt/luci.git immortalwrt-luci
@@ -174,8 +175,6 @@ sed -i '/PKG_INSTALL:=/iPKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
 #curl -sSL https://raw.githubusercontent.com/mufeng05/openwrt-sonic-fullcone/master/add_sonic_fullcone.sh -o add_sonic_fullcone.sh && bash add_sonic_fullcone.sh
 curl -sSL https://raw.githubusercontent.com/mufeng05/turboacc/main/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh_Hans/turboacc.po
-
-merge_package https://github.com/coolsnowwolf/lede lede/package/kernel/r8152
 
 # 移除luci-app-attendedsysupgrade
 sed -i '18d' feeds/luci/collections/luci-nginx/Makefile
