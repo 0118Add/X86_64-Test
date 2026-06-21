@@ -171,7 +171,7 @@ curl -sSL https://raw.githubusercontent.com/mufeng05/turboacc/main/add_turboacc.
 sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh_Hans/turboacc.po
 
 # Realtek Ethernet driver - R8168 & R8125 & R8126 & R8152 & R8101 & r8127
-git_sparse_clone master https://github.com/coolsnowwolf/lede/package/kernel r8152
+merge_package https://github.com/coolsnowwolf/lede/package/kernel kernel/r8152
 
 # 移除luci-app-attendedsysupgrade
 sed -i '18d' feeds/luci/collections/luci-nginx/Makefile
