@@ -128,8 +128,7 @@ sed -i 's/vpn/services/g' package/luci-app-zerotier/root/usr/share/luci/menu.d/l
 
 # 克隆lean仓库
 rm -rf ./package/kernel/r8125
-lede_repo="https://github.com/coolsnowwolf/lede.git"
-clone_repo $lede_repo master lede &
+git clone --depth=1 -b master https://github.com/coolsnowwolf/lede lede
 cp -rf ../lede/package/kernel/r8152 ./package/kernel/r8152
 
 # 克隆immortalwrt-luci packages仓库
