@@ -126,6 +126,11 @@ sed -i 's/vpn/services/g' package/luci-app-zerotier/root/usr/share/luci/menu.d/l
 #git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
 #sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 
+# 克隆lean仓库
+git clone --depth=1 -b master https://github.com/coolsnowwolf/lede lede
+cp -rf lede/package/kernel/r8152 feeds/package/kernel/r8152
+ln -sf ../../../feeds/package/kernel/r8152 ./package/feeds/kernel/r8152
+
 # 克隆immortalwrt-luci packages仓库
 git clone --depth=1 -b openwrt-25.12 https://github.com/immortalwrt/luci.git immortalwrt-luci
 cp -rf immortalwrt-luci/applications/luci-app-diskman feeds/luci/applications/luci-app-diskman
@@ -169,9 +174,6 @@ sed -i '/PKG_INSTALL:=/iPKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
 #curl -sSL https://raw.githubusercontent.com/mufeng05/openwrt-sonic-fullcone/master/add_sonic_fullcone.sh -o add_sonic_fullcone.sh && bash add_sonic_fullcone.sh
 curl -sSL https://raw.githubusercontent.com/mufeng05/turboacc/main/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh_Hans/turboacc.po
-
-# Realtek Ethernet driver - R8168 & R8125 & R8126 & R8152 & R8101 & r8127
-merge_package https://github.com/coolsnowwolf/lede/package/kernel kernel/r8152
 
 # 移除luci-app-attendedsysupgrade
 sed -i '18d' feeds/luci/collections/luci-nginx/Makefile
