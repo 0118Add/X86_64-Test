@@ -128,9 +128,9 @@ sed -i 's/vpn/services/g' package/luci-app-zerotier/root/usr/share/luci/menu.d/l
 
 # 克隆lean仓库
 rm -rf ./package/kernel/r8125
-git clone --depth=1 -b master https://github.com/coolsnowwolf/lede lede
-cp -rf lede/package/kernel/r8125 feeds/package/kernel/r8125
-ln -sf ../../../feeds/package/kernel/r8125 ./package/feeds/kernel/r8125
+git clone --depth=1 -b master https://github.com/coolsnowwolf/lede lean
+cp -rf lean/package/kernel/r8125 package/kernel/r8125
+ln -sf ../../../package/kernel/r8125 ./package/kernel/r8125
 
 # 克隆immortalwrt-luci packages仓库
 git clone --depth=1 -b openwrt-25.12 https://github.com/immortalwrt/luci.git immortalwrt-luci
