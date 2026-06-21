@@ -127,10 +127,9 @@ sed -i 's/vpn/services/g' package/luci-app-zerotier/root/usr/share/luci/menu.d/l
 #sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 
 # 克隆lean仓库
-rm -rf ./package/kernel/r8125
 git clone --depth=1 -b master https://github.com/coolsnowwolf/lede lean
-cp -rf lean/package/kernel/r8125 package/kernel/r8125
-ln -sf ../../../package/kernel/r8125 ./package/kernel/r8125
+cp -rf lean/package/kernel/r8152 package/kernel/r8152
+ln -sf ../../../package/kernel/r8152 ./package/kernel/r8152
 
 # 克隆immortalwrt-luci packages仓库
 git clone --depth=1 -b openwrt-25.12 https://github.com/immortalwrt/luci.git immortalwrt-luci
