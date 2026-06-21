@@ -170,15 +170,6 @@ sed -i '/PKG_INSTALL:=/iPKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
 curl -sSL https://raw.githubusercontent.com/mufeng05/turboacc/main/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh_Hans/turboacc.po
 
-# Realtek Ethernet driver - R8168 & R8125 & R8126 & R8152 & R8101 & r8127
-#rm -rf package/kernel/{r8168,r8101,r8125,r8126,r8127}
-#git clone https://github.com/sbwml/package_kernel_r8168 package/kernel/r8168
-git clone https://github.com/sbwml/package_kernel_r8152 package/kernel/r8152
-#git clone https://github.com/sbwml/package_kernel_r8101 package/kernel/r8101
-#git clone https://github.com/sbwml/package_kernel_r8125 package/kernel/r8125
-#git clone https://github.com/sbwml/package_kernel_r8126 package/kernel/r8126
-#git clone https://github.com/sbwml/package_kernel_r8127 package/kernel/r8127
-
 # 移除luci-app-attendedsysupgrade
 sed -i '18d' feeds/luci/collections/luci-nginx/Makefile
 sed -i '17d' feeds/luci/collections/luci/Makefile
