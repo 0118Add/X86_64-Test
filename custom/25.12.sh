@@ -97,6 +97,7 @@ merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages open
 #sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=2026.06.05/g' package/dae/Makefile
 #sed -i 's/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=ba50380e15649b0c83ec04c07f355dece19b0cea/g' package/dae/Makefile
 
+#git clone https://github.com/kenzok8/openwrt-daede package/daede
 merge_package https://github.com/QiuSimons/OpenWrt-Add OpenWrt-Add/luci-app-daed
 merge_package https://github.com/QiuSimons/OpenWrt-Add OpenWrt-Add/openwrt-einat-ebpf
 sed -i 's/+@KERNEL_DEBUG_INFO_BTF/+vmlinux-btf/' package/custom/openwrt-einat-ebpf/Makefile
