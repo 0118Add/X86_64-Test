@@ -102,10 +102,7 @@ merge_package https://github.com/QiuSimons/OpenWrt-Add OpenWrt-Add/luci-app-daed
 merge_package https://github.com/QiuSimons/OpenWrt-Add OpenWrt-Add/openwrt-einat-ebpf
 sed -i 's/+@KERNEL_DEBUG_INFO_BTF/+vmlinux-btf/' package/custom/openwrt-einat-ebpf/Makefile
 git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf
-
-# bpf-headers - 6.12
-sed -ri "s/(PKG_PATCHVER:=)[^\"]*/\16.12/" package/kernel/bpf-headers/Makefile
-curl -s $mirror/openwrt/patch/packages-patches/bpf-headers/900-fix-build.patch > package/kernel/bpf-headers/patches/900-fix-build.patch
+wget -O package/kernel/bpf-headers/Makefile https://raw.githubusercontent.com/0118Add/X86_64-Test/main/patch/Makefile
 
 # ttyd
 #rm -rf feeds/luci/applications/luci-app-ttyd
