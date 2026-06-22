@@ -13,14 +13,9 @@ include $(INCLUDE_DIR)/kernel.mk
 
 
 PKG_NAME:=linux
-PKG_PATCHVER:=6.12
-
+PKG_PATCHVER:=6.6
 # Manually include kernel version and hash from kernel details file
-GENERIC_PLATFORM_DIR := $(CURDIR)/../../../target/linux/$(BOARD)/base_generic
-ifeq ($(wildcard $(GENERIC_PLATFORM_DIR)),)
-  GENERIC_PLATFORM_DIR := $(CURDIR)/../../../target/linux/generic
-endif
-include $(GENERIC_PLATFORM_DIR)/kernel-$(PKG_PATCHVER)
+include $(INCLUDE_DIR)/kernel-$(PKG_PATCHVER)
 
 PKG_VERSION:=$(PKG_PATCHVER)$(strip $(LINUX_VERSION-$(PKG_PATCHVER)))
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
@@ -28,6 +23,10 @@ PKG_SOURCE_URL:=@KERNEL/linux/kernel/v$(word 1,$(subst ., ,$(PKG_PATCHVER))).x
 PKG_HASH:=$(LINUX_KERNEL_HASH-$(strip $(PKG_VERSION)))
 PKG_BUILD_DIR:=$(KERNEL_BUILD_DIR)/bpf-headers/$(PKG_NAME)-$(PKG_VERSION)
 
+GENERIC_PLATFORM_DIR := $(CURDIR)/../../../target/linux/$(BOARD)/base_generic
+ifeq ($(wildcard $(GENERIC_PLATFORM_DIR)),)
+  GENERIC_PLATFORM_DIR := $(CURDIR)/../../../target/linux/generic
+endif
 GENERIC_BACKPORT_DIR := $(GENERIC_PLATFORM_DIR)/backport$(if $(wildcard $(GENERIC_PLATFORM_DIR)/backport-$(PKG_PATCHVER)),-$(PKG_PATCHVER))
 GENERIC_PATCH_DIR := $(GENERIC_PLATFORM_DIR)/pending$(if $(wildcard $(GENERIC_PLATFORM_DIR)/pending-$(PKG_PATCHVER)),-$(PKG_PATCHVER))
 GENERIC_HACK_DIR := $(GENERIC_PLATFORM_DIR)/hack$(if $(wildcard $(GENERIC_PLATFORM_DIR)/hack-$(PKG_PATCHVER)),-$(PKG_PATCHVER))
@@ -68,10 +67,6 @@ KERNEL_MAKE := \
 
 define Build/Patch
 	$(Kernel/Patch/Default)
-endef
-
-define Quilt/Refresh/Package
-	$(Quilt/Refresh/Kernel)
 endef
 
 BPF_DOC = $(PKG_BUILD_DIR)/scripts/bpf_doc.py
