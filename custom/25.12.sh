@@ -101,7 +101,8 @@ merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages open
 #merge_package https://github.com/QiuSimons/OpenWrt-Add OpenWrt-Add/luci-app-daed
 #merge_package https://github.com/QiuSimons/OpenWrt-Add OpenWrt-Add/openwrt-einat-ebpf
 #sed -i 's/+@KERNEL_DEBUG_INFO_BTF/+vmlinux-btf/' package/custom/openwrt-einat-ebpf/Makefile
-#git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf
+git clone https://github.com/QiuSimons/luci-app-daed package/daed
+git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf
 
 # ttyd
 #rm -rf feeds/luci/applications/luci-app-ttyd
