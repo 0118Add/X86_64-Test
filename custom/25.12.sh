@@ -91,17 +91,14 @@ merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages open
 #git clone https://github.com/nikkinikki-org/OpenWrt-nikki package/OpenWrt-nikki
 #git clone https://github.com/nikkinikki-org/OpenWrt-momo package/OpenWrt-momo
 
-# dae
+# dae daed
 #git_sparse_clone kix https://github.com/QiuSimons/luci-app-dae luci-app-dae
 #git_sparse_clone master https://github.com/8688Add/openwrt_pkgs dae
 #sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=2026.06.05/g' package/dae/Makefile
 #sed -i 's/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=ba50380e15649b0c83ec04c07f355dece19b0cea/g' package/dae/Makefile
-
 #git clone https://github.com/kenzok8/openwrt-daede package/daede
-#merge_package https://github.com/QiuSimons/OpenWrt-Add OpenWrt-Add/luci-app-daed
-#merge_package https://github.com/QiuSimons/OpenWrt-Add OpenWrt-Add/openwrt-einat-ebpf
-#sed -i 's/+@KERNEL_DEBUG_INFO_BTF/+vmlinux-btf/' package/custom/openwrt-einat-ebpf/Makefile
-git clone https://github.com/QiuSimons/luci-app-daed package/daed
+#git clone -b kix --depth 1 https://github.com/QiuSimons/luci-app-dae package/dae
+git clone -b kix --depth 1 https://github.com/QiuSimons/luci-app-daed package/daed
 git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf
 
 # ttyd
