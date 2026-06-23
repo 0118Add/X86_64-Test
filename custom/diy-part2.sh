@@ -76,12 +76,13 @@ git clone https://github.com/sbwml/default-settings package/default-settings
 git clone -b dev --depth 1 https://github.com/vernesong/OpenClash package/OpenClash
 
 # Shared for PassWall and ShadowsocksR Plus+
-rm -rf feeds/packages/net/{xray-core,sing-box}
+rm -rf feeds/packages/net/{xray-core,sing-box,v2ray-geodata}
 #git clone https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/passwall-packages -b main
 #git clone -b main --single-branch https://github.com/Openwrt-Passwall/openwrt-passwall package/openwrt-passwall
 #merge_package https://github.com/kiddin9/op-packages op-packages/luci-app-passwall
 #merge_package https://github.com/0118Add/openwrt-passwall-packages openwrt-passwall-packages/sing-box
 merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages openwrt-passwall-packages/xray-core
+merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages openwrt-passwall-packages/v2ray-geodata
 
 # homeproxy
 git clone -b dev --depth 1 https://github.com/immortalwrt/homeproxy package/luci-app-homeproxy
@@ -92,14 +93,15 @@ sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/luci-app-homeproxy/htdocs/l
 #git clone https://github.com/nikkinikki-org/OpenWrt-nikki package/OpenWrt-nikki
 #git clone https://github.com/nikkinikki-org/OpenWrt-momo package/OpenWrt-momo
 
-# dae
-#git_sparse_clone master https://github.com/QiuSimons/OpenWrt-Add luci-app-dae openwrt-einat-ebpf
-#sed -i 's/+@KERNEL_DEBUG_INFO_BTF/+vmlinux-btf/' package/openwrt-einat-ebpf/Makefile
-#git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf
+# dae daed
+#git clone https://github.com/kenzok8/openwrt-daede package/daede
+#git clone -b kix --depth 1 https://github.com/QiuSimons/luci-app-dae package/dae
+git clone -b kix --depth 1 https://github.com/QiuSimons/luci-app-daed package/daed
+git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf
 
 # bpf-headers - 6.18
-#sed -ri "s/(PKG_PATCHVER:=)[^\"]*/\16.18/" package/kernel/bpf-headers/Makefile
-#curl -s $mirror/openwrt/patch/packages-patches/bpf-headers/900-fix-build.patch > package/kernel/bpf-headers/patches/900-fix-build.patch
+sed -ri "s/(PKG_PATCHVER:=)[^\"]*/\16.18/" package/kernel/bpf-headers/Makefile
+curl -s $mirror/openwrt/patch/packages-patches/bpf-headers/900-fix-build.patch > package/kernel/bpf-headers/patches/900-fix-build.patch
 
 # ttyd
 #rm -rf feeds/luci/applications/luci-app-ttyd
