@@ -71,12 +71,13 @@ jobs:
         sudo vgcreate github /dev/loop6 /dev/loop7
         sudo lvcreate -n runner -l 100%FREE github
         sudo mkfs.xfs /dev/github/runner
-        sudo mkdir -p
-        sudo mount /dev/github/runner
-        sudo chown -R runner.runner
+        sudo mkdir -p /builder
+        sudo mount /dev/github/runner /builder
+        sudo chown -R runner.runner /builder
         df -Th
 
     - name: Clone Source Code
+      working-directory: /builder
       run: |
         df -hT $GITHUB_WORKSPACE
         git clone --depth 1 -b $REPO_BRANCH $REPO_URL openwrt
