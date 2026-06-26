@@ -160,3 +160,47 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' packag
 # comment out the following line to restore the full description
 #sed -i '/# timezone/i grep -q '\''/tmp/sysinfo/model'\'' /etc/rc.local || sudo sed -i '\''/exit 0/i [ "$(cat /sys\\/class\\/dmi\\/id\\/sys_vendor 2>\\/dev\\/null)" = "Default string" ] \&\& echo "x86_64" > \\/tmp\\/sysinfo\\/model'\'' /etc/rc.local\n' package/default-settings/default/zzz-default-settings
 #sed -i '/# timezone/i sed -i "s/\\(DISTRIB_DESCRIPTION=\\).*/\\1'\''OpenWrt $(sed -n "s/DISTRIB_DESCRIPTION='\''OpenWrt \\([^ ]*\\) .*/\\1/p" /etc/openwrt_release)'\'',/" /etc/openwrt_release\nsource /etc/openwrt_release \&\& sed -i -e "s/distversion\\s=\\s\\".*\\"/distversion = \\"$DISTRIB_ID $DISTRIB_RELEASE ($DISTRIB_REVISION)\\"/g" -e '\''s/distname    = .*$/distname    = ""/g'\'' /usr/lib/lua/luci/version.lua\nsed -i "s/luciname    = \\".*\\"/luciname    = \\"LuCI openwrt-23.05\\"/g" /usr/lib/lua/luci/version.lua\nsed -i "s/luciversion = \\".*\\"/luciversion = \\"v'$(date +%Y%m%d)'\\"/g" /usr/lib/lua/luci/version.lua\necho "export const revision = '\''v'$(date +%Y%m%d)'\'\'', branch = '\''LuCI Master'\'';" > /usr/share/ucode/luci/version.uc\n/etc/init.d/rpcd restart\n' package/default-settings/default/zzz-default-settings
+
+# Git稀疏克隆，只克隆指定目录到本地
+function git_sparse_clone() {
+  local branch="$1"
+  local repourl="$2"
+  local repodir
+  shift 2
+
+  repodir="$(basename "${repourl%.git}")"
+  rm -rf "$repodir"
+  git clone --depth=1 -b "$branch" --single-branch --filter=blob:none --sparse "$repourl" "$repodir"
+  (
+    cd "$repodir"
+    git sparse-checkout set "$@"
+    mv -f "$@" ../package
+  )
+  rm -rf "$repodir"
+}
+
+# Aria2 & nginx & Go & frp & Argon & Aurora & OpenList & Lucky & wechatpush & OpenAppFilter & 集客无线AC控制器 & 雅典娜LED控制
+git_sparse_clone aria2 https://github.com/laipeng668/packages net/aria2
+mv -f package/aria2 feeds/packages/net/aria2
+git_sparse_clone nginx https://github.com/laipeng668/packages net/nginx
+mv -f package/nginx feeds/packages/net/nginx
+git_sparse_clone ariang https://github.com/laipeng668/packages net/ariang
+mv -f package/ariang feeds/packages/net/ariang
+git_sparse_clone master https://github.com/laipeng668/packages lang/golang
+mv -f package/golang feeds/packages/lang/golang
+git_sparse_clone frp-binary-toml https://github.com/laipeng668/packages net/frp
+mv -f package/frp feeds/packages/net/frp
+git_sparse_clone frp-toml https://github.com/laipeng668/luci applications/luci-app-frpc applications/luci-app-frps
+mv -f package/luci-app-frpc feeds/luci/applications/luci-app-frpc
+mv -f package/luci-app-frps feeds/luci/applications/luci-app-frps
+git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon feeds/luci/themes/luci-theme-argon
+git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config feeds/luci/applications/luci-app-argon-config
+git clone --depth=1 https://github.com/eamonxg/luci-theme-aurora feeds/luci/themes/luci-theme-aurora
+git clone --depth=1 https://github.com/eamonxg/luci-app-aurora-config feeds/luci/applications/luci-app-aurora-config
+git clone --depth=1 https://github.com/laipeng668/luci-app-openlist2 package/openlist2
+git clone --depth=1 https://github.com/gdy666/luci-app-lucky package/luci-app-lucky
+git clone --depth=1 https://github.com/tty228/luci-app-wechatpush package/luci-app-wechatpush
+git clone --depth=1 https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
+git clone --depth=1 https://github.com/laipeng668/luci-app-gecoosac package/luci-app-gecoosac
+git clone --depth=1 https://github.com/NONGFAH/luci-app-athena-led package/luci-app-athena-led
+chmod +x package/luci-app-athena-led/root/etc/init.d/athena_led package/luci-app-athena-led/root/usr/sbin/athena-led
