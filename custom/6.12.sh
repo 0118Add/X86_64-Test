@@ -176,6 +176,14 @@ ln -sf ../../../feeds/packages/net/msd_lite ./package/feeds/packages/msd_lite
 cp -rf immortalwrt-packages/net/zerotier feeds/packages/net/zerotier
 ln -sf ../../../feeds/packages/net/zerotier ./package/feeds/packages/zerotier
 
+# git clone --depth 1 -b openwrt-23.05 https://github.com/immortalwrt/luci package/imm23luci
+# mv package/imm23luci/applications/luci-app-adbyby-plus package/luci-app-adbyby-plus
+# rm -rf package/imm23luci
+# git clone --depth 1 -b openwrt-23.05 https://github.com/immortalwrt/packages package/imm23packages
+# mv package/imm23packages/net/adbyby package/adbyby
+# rm -rf package/imm23packages
+# sed -i 's#../../luci.mk#$(TOPDIR)/feeds/luci/luci.mk#g' package/luci-app-adbyby-plus/Makefile
+
 # unblockneteasemusic
 git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
 sed -i 's/解除网易云音乐播放限制/音乐解锁/g' package/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
