@@ -189,3 +189,44 @@ sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/root/usr/sha
 #sed -i '/# timezone/i sed -i "s/\\(DISTRIB_DESCRIPTION=\\).*/\\1'\''OpenWrt $(sed -n "s/DISTRIB_DESCRIPTION='\''OpenWrt \\([^ ]*\\) .*/\\1/p" /etc/openwrt_release)'\'',/" /etc/openwrt_release\nsource /etc/openwrt_release \&\& sed -i -e "s/distversion\\s=\\s\\".*\\"/distversion = \\"$DISTRIB_ID $DISTRIB_RELEASE ($DISTRIB_REVISION)\\"/g" -e '\''s/distname    = .*$/distname    = ""/g'\'' /usr/lib/lua/luci/version.lua\nsed -i "s/luciname    = \\".*\\"/luciname    = \\"LuCI Master\\"/g" /usr/lib/lua/luci/version.lua\nsed -i "s/luciversion = \\".*\\"/luciversion = \\"v'$(date +%Y%m%d)'\\"/g" /usr/lib/lua/luci/version.lua\necho "export const revision = '\''v'$(date +%Y%m%d)'\'\'', branch = '\''LuCI Master'\'';" > /usr/share/ucode/luci/version.uc\n/etc/init.d/rpcd restart\n' package/default-settings/default/zzz-default-settings
 sed -i '/# timezone/i sed -i "s/\\(DISTRIB_DESCRIPTION=\\).*/\\1'\''OpenWrt $(sed -n "s/DISTRIB_DESCRIPTION='\''OpenWrt \\([^ ]*\\) .*/\\1/p" /etc/openwrt_release)'\'',/" /etc/openwrt_release\nsource /etc/openwrt_release \&\& sed -i -e "s/distversion\\s=\\s\\".*\\"/distversion = \\"$DISTRIB_ID $DISTRIB_RELEASE ($DISTRIB_REVISION)\\"/g" -e '\''s/distname    = .*$/distname    = ""/g'\'' /usr/lib/lua/luci/version.lua\nsed -i "s/luciname    = \\".*\\"/luciname    = \\"LuCI Master\\"/g" /usr/lib/lua/luci/version.lua\nsed -i "s/luciversion = \\".*\\"/luciversion = \\"\\"/g" /usr/lib/lua/luci/version.lua\necho "export const revision = '\''\'\'', branch = '\''LuCI Master'\'';" > /usr/share/ucode/luci/version.uc\n/etc/init.d/rpcd restart\n' package/default-settings/default/zzz-default-settings
 curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/os-release > package/base-files/files/etc/os-release
+
+# 筛选提取应用
+## 删除自带的 ddns-scripts
+rm -rf feeds/packages/net/ddns-scripts
+## 删除自带的 haproxy
+rm -rf feeds/packages/net/haproxy
+## 删除自带的 luci-base
+rm -rf feeds/luci/modules/luci-base
+## 删除自带的 luci-app-firewall
+rm -rf feeds/luci/applications/luci-app-firewall
+## 筛选程序
+function merge_package(){
+    # 参数1是分支名,参数2是库地址。所有文件下载到指定路径。
+    # 同一个仓库下载多个文件夹直接在后面跟文件名或路径，空格分开。
+    trap 'rm -rf "$tmpdir"' EXIT
+    branch="$1" curl="$2" target_dir="$3" && shift 3
+    rootdir="$PWD"
+    localdir="$target_dir"
+    [ -d "$localdir" ] || mkdir -p "$localdir"
+    tmpdir="$(mktemp -d)" || exit 1
+    git clone -b "$branch" --depth 1 --filter=blob:none --sparse "$curl" "$tmpdir"
+    cd "$tmpdir"
+    git sparse-checkout init --cone
+    git sparse-checkout set "$@"
+    for folder in "$@"; do
+        mv -f "$folder" "$rootdir/$localdir"
+    done
+    cd "$rootdir"
+}
+## 提取 ddns-scripts
+merge_package openwrt-23.05 https://github.com/immortalwrt/packages.git feeds/packages/net net/ddns-scripts
+## 提取 fullconenat-nft
+merge_package openwrt-23.05 https://github.com/immortalwrt/immortalwrt.git package/network/utils package/network/utils/fullconenat-nft
+## 提取 haproxy
+merge_package openwrt-24.10 https://github.com/openwrt/packages.git feeds/packages/net net/haproxy
+## 提取 pdnsd-alt、upx
+merge_package main https://github.com/kenzok8/jell.git package/chajian/kenzok8-package pdnsd-alt upx
+## 提取 luci-base
+merge_package openwrt-23.05 https://github.com/immortalwrt/luci.git feeds/luci/modules modules/luci-base
+## 提取 luci-app-firewall
+merge_package openwrt-23.05 https://github.com/immortalwrt/luci.git feeds/luci/applications applications/luci-app-firewall
