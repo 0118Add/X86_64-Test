@@ -8,8 +8,8 @@ on:
 env:
   REPO_URL: https://github.com/Lienol/openwrt
   REPO_BRANCH: '25.12'
-  CONFIG_FILE: x86/lienol-25.12.config
-  DIY_SCRIPT: x86/lienol-25.12.sh
+  CONFIG_FILE: configs/lienol-25.12.config
+  DIY_SCRIPT: custom/lienol-25.12.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: false
   UPLOAD_BIN_DIR: false
