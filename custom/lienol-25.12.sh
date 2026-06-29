@@ -226,7 +226,7 @@ git_sparse_clone master https://github.com/8688Add/openwrt_pkgs package_kernel_r
 #git clone https://github.com/sbwml/package_kernel_r8127 package/kernel/r8127
 
 # Shortcut Forwarding Engine
-git clone https://github.com/xianren78/shortcut-fe package/emortal/shortcut-fe
+git clone https://$gitea/sbwml/shortcut-fe package/emortal/shortcut-fe
 
 # Patch FireWall 4
 rm -rf package/network/config/firewall4/patches
@@ -254,17 +254,17 @@ curl -s $mirror/openwrt/patch/firewall4/nftables/0001-nftables-add-fullcone-expr
 curl -s $mirror/openwrt/patch/firewall4/nftables/0002-nftables-add-brcm-fullconenat-support.patch > package/network/utils/nftables/patches/0002-nftables-add-brcm-fullconenat-support.patch
 
 # FullCone module
-rm -rf package/network/utils/fullconenat-nft
-git clone https://github.com/xianren78/nft-fullcone package/network/utils/fullconenat-nft
+# rm -rf package/network/utils/fullconenat-nft
+# git clone https://$gitea/sbwml/nft-fullcone package/network/utils/fullconenat-nft
 
 # IPv6 NAT
-git clone https://github.com/sbwml/packages_new_nat6 package/utils/nat6 -b openwrt-25.12
+git clone https://$github/sbwml/packages_new_nat6 package/utils/nat6 -b openwrt-25.12
 
 # natflow
-git clone https://github.com/sbwml/package_new_natflow package/utils/natflow
+git clone https://$github/sbwml/package_new_natflow package/utils/natflow
 
 # luci-app-firewall
-curl -s https://raw.githubusercontent.com/openwrt/luci/refs/heads/master/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js > feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
+curl -s https://raw.githubusercontent.com/openwrt/luci/refs/heads/master/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js > customfeeds/luci/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
 
 # Patch Luci add nft_fullcone/bcm_fullcone & shortcut-fe & natflow & ipv6-nat & custom nft command option
 pushd feeds/luci
@@ -289,10 +289,6 @@ curl -s $mirror/openwrt/patch/kernel-6.18/net/983-add-bcm-fullcone-nft_masq-supp
 curl -s $mirror/openwrt/patch/kernel-6.18/net/601-netfilter-export-udp_get_timeouts-function.patch > target/linux/generic/hack-6.18/601-netfilter-export-udp_get_timeouts-function.patch
 curl -s $mirror/openwrt/patch/kernel-6.18/net/952-net-conntrack-events-support-multiple-registrant.patch > target/linux/generic/hack-6.18/952-net-conntrack-events-support-multiple-registrant.patch
 curl -s $mirror/openwrt/patch/kernel-6.18/net/953-net-patch-linux-kernel-to-support-shortcut-fe.patch > target/linux/generic/hack-6.18/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
-
-# nat46
-mkdir -p package/kernel/nat46/patches
-curl -s $mirror/openwrt/patch/packages-patches/nat46/102-fix-build-with-kernel-6.18.patch > package/kernel/nat46/patches/102-fix-build-with-kernel-6.18.patch
 
 # 修改插件名字（修改名字后不知道会不会对插件功能有影响，自己多测试）
 #sed -i 's/Argon 主题设置/Argon设置/g' feeds/luci/applications/luci-app-argon-config/po/zh-cn/argon-config.po
