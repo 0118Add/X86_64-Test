@@ -225,9 +225,6 @@ git_sparse_clone master https://github.com/8688Add/openwrt_pkgs package_kernel_r
 #git clone https://github.com/sbwml/package_kernel_r8126 package/kernel/r8126
 #git clone https://github.com/sbwml/package_kernel_r8127 package/kernel/r8127
 
-# Shortcut Forwarding Engine
-git clone https://$gitea/sbwml/shortcut-fe package/emortal/shortcut-fe
-
 # Patch FireWall 4
 rm -rf package/network/config/firewall4/patches
 # firewall4
