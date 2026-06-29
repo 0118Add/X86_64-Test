@@ -32,7 +32,7 @@ sed -i "s/hostname='.*'/hostname='OpenWrt'/g" package/base-files/files/bin/confi
 #sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION=' BGG'/g" package/lean/default-settings/files/zzz-default-settings
 
 # 修改型号
-sed -i -E 's|echo\s+"?\$vendor\s+\$product"?\s*>.*|echo "Default string" > /tmp/sysinfo/model|' target/linux/x86/base-files/lib/preinit/01_sysinfo
+sed -i -E 's|echo\s+"?\$vendor\s+\$product"?\s*>.*|echo "Default string" > /tmp/sysinfo/model|' openwrt/target/linux/x86/base-files/lib/preinit/01_sysinfo
 
 # 修改默认IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
