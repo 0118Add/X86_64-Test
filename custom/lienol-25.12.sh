@@ -264,7 +264,7 @@ git clone https://$github/sbwml/packages_new_nat6 package/utils/nat6 -b openwrt-
 git clone https://$github/sbwml/package_new_natflow package/utils/natflow
 
 # luci-app-firewall
-curl -s https://raw.githubusercontent.com/openwrt/luci/refs/heads/master/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js > customfeeds/luci/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
+curl -s https://raw.githubusercontent.com/openwrt/luci/refs/heads/master/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js > feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
 
 # Patch Luci add nft_fullcone/bcm_fullcone & shortcut-fe & natflow & ipv6-nat & custom nft command option
 pushd feeds/luci
