@@ -33,6 +33,7 @@ sed -i "s/hostname='.*'/hostname='OpenWrt'/g" package/base-files/files/bin/confi
 
 # 修改型号
 #sed -i 's|echo\s+"?\$vendor\s+\$product"?\s*>.*|echo "Default string" > /tmp/sysinfo/model|' openwrt/target/linux/x86/base-files/lib/preinit/01_sysinfo
+sed -i 's/echo "\$vendor \$product" > \/tmp\/sysinfo\/model/echo "Default string" > \/tmp\/sysinfo\/model/' /etc/init.d/base-files
 
 # 修改默认IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
