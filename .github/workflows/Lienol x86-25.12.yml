@@ -1,4 +1,4 @@
-name: Lienol X86-25.12
+name: Build Lienol X86-25.12
 
 on:
   workflow_dispatch:
