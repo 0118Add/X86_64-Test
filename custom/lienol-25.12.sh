@@ -110,6 +110,8 @@ rm -rf package/public/autosamba
 rm -rf package/network/utils/fullconenat-nft
 rm -rf feeds/packages/net/{sing-box,v2ray-geodata,xray-core,zerotier}
 rm -rf feeds/lienol/other/luci-app-diskman
+rm -rf feeds/lienol/other/lean/mt/luci-app-mtwifi
+rm -rf feeds/lienol/other/lean/luci-app-mwan3helper
 #rm -rf feeds/lienol/other/luci-app-dockerman
 rm -rf feeds/lienol/other/lean/luci-app-autoreboot
 rm -rf feeds/lienol/other/lean/luci-app-turboacc
@@ -121,7 +123,6 @@ rm -rf feeds/luci/applications/luci-app-mjpg-streamer
 rm -rf feeds/luci/applications/luci-app-smartdns
 rm -rf feeds/luci/applications/luci-app-ttyd
 rm -rf feeds/luci/applications/luci-app-ramfree
-rm -rf feeds/lienol/luci-app-mtwifi
 rm -rf feeds/lienol/luci-app-ramfree
 rm -rf target/linux/generic/hack-6.12/952-add-net-conntrack-events-support-multiple-registrant.patch
 rm -rf target/linux/generic/hack-6.6/952-add-net-conntrack-events-support-multiple-registrant.patch
