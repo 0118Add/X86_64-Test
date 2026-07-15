@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt-main
+name: Build OpenWrt-master
 
 on:
   workflow_dispatch:
@@ -18,8 +18,8 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: configs/main.config
-  DIY_P1_SH: custom/diy-part1.sh
-  DIY_P2_SH: custom/diy-part2.sh
+  DIY_P1_SH: custom/diy-part01.sh
+  DIY_P2_SH: custom/diy-part02.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: false
   UPLOAD_BIN_DIR: false
