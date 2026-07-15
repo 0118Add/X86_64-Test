@@ -17,7 +17,7 @@ env:
   REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: configs/main.config
+  CONFIG_FILE: configs/master.config
   DIY_P1_SH: custom/diy-part01.sh
   DIY_P2_SH: custom/diy-part02.sh
   CLASH_KERNEL: amd64
