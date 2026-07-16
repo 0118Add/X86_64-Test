@@ -79,7 +79,7 @@ git clone -b dev --depth 1 https://github.com/vernesong/OpenClash package/OpenCl
 rm -rf feeds/packages/net/{xray-core,sing-box,v2ray-geodata}
 #git clone https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/passwall-packages -b main
 #git clone -b main --single-branch https://github.com/lwb1978/openwrt-passwall package/passwall-luci
-#merge_package https://github.com/0118Add/passwall-packages passwall-packages/sing-box
+merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages passwall-packages/sing-box
 merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages openwrt-passwall-packages/xray-core
 merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages openwrt-passwall-packages/v2ray-geodata
 
@@ -154,6 +154,7 @@ ln -sf ../../../feeds/packages/net/sing-box ./package/feeds/packages/sing-box
 sed -i 's/解除网易云音乐播放限制/音乐解锁/g' feeds/luci/applications/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 sed -i "s/ImmortalWrt/OpenWrt/g" feeds/luci/applications/luci-app-homeproxy/po/zh_Hans/homeproxy.po
 sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" feeds/luci/applications/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
+wget -O feeds/luci/applications/luci-app-homeproxy/root/etc/init.d/homeproxy https://raw.githubusercontent.com/0118Add/X86-Actions/main/general/homeproxy
 
 # 调整Dockerman到服务菜单
 rm -rf feeds/luci/applications/luci-app-dockerman
