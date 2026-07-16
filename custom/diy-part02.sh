@@ -80,7 +80,8 @@ git clone https://github.com/sbwml/default-settings package/default-settings
 git clone -b dev --depth 1 https://github.com/vernesong/OpenClash package/OpenClash
 
 # Shared for PassWall and ShadowsocksR Plus+
-rm -rf feeds/packages/net/{xray-core,sing-box,v2ray-geodata}
+rm -rf feeds/packages/net/{xray-core,v2ray-geodata}
+rm -rf feeds/packages/net/sing-box
 #git clone https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/passwall-packages -b main
 #git clone -b main --single-branch https://github.com/Openwrt-Passwall/openwrt-passwall package/openwrt-passwall
 #merge_package https://github.com/kiddin9/op-packages op-packages/luci-app-passwall
