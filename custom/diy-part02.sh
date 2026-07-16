@@ -80,8 +80,7 @@ git clone https://github.com/sbwml/default-settings package/default-settings
 git clone -b dev --depth 1 https://github.com/vernesong/OpenClash package/OpenClash
 
 # Shared for PassWall and ShadowsocksR Plus+
-rm -rf feeds/packages/net/{xray-core,v2ray-geodata}
-rm -rf feeds/packages/net/sing-box
+rm -rf feeds/packages/net/{xray-core,sing-box,v2ray-geodata}
 #git clone https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/passwall-packages -b main
 #git clone -b main --single-branch https://github.com/Openwrt-Passwall/openwrt-passwall package/openwrt-passwall
 #merge_package https://github.com/kiddin9/op-packages op-packages/luci-app-passwall
@@ -154,8 +153,8 @@ ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/f
 git clone --depth=1 -b master https://github.com/immortalwrt/packages.git immortalwrt-packages
 cp -rf immortalwrt-packages/net/msd_lite feeds/packages/net/msd_lite
 ln -sf ../../../feeds/packages/net/msd_lite ./package/feeds/packages/msd_lite
-cp -rf immortalwrt-packages/net/sing-box feeds/packages/net/sing-box
-ln -sf ../../../feeds/packages/net/sing-box ./package/feeds/packages/sing-box
+#cp -rf immortalwrt-packages/net/sing-box feeds/packages/net/sing-box
+#ln -sf ../../../feeds/packages/net/sing-box ./package/feeds/packages/sing-box
 sed -i 's/解除网易云音乐播放限制/音乐解锁/g' feeds/luci/applications/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 #sed -i "s/ImmortalWrt/OpenWrt/g" feeds/luci/applications/luci-app-homeproxy/po/zh_Hans/homeproxy.po
 #sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" feeds/luci/applications/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
