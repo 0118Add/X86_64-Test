@@ -33,6 +33,10 @@ function merge_feed(){
 }
 rm -rf package/custom; mkdir package/custom
 
+mirror="https://raw.githubusercontent.com/sbwml/r4s_build_script/refs/heads/master"
+github="github.com"
+gitea="git.cooluc.com"
+
 # Modify default IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
