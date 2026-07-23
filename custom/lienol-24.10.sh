@@ -155,8 +155,8 @@ git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 #cp -rf ${GITHUB_WORKSPACE}/general/smartdns feeds/packages/net
 
 # homeproxy
-#git clone --depth 1 -b dev https://github.com/immortalwrt/homeproxy package/luci-app-homeproxy
-git clone --depth 1 -b V2 https://github.com/weicaixian86/luci-app-homeproxy package/luci-app-homeproxy
+git clone --depth 1 -b dev https://github.com/immortalwrt/homeproxy package/luci-app-homeproxy
+#git clone --depth 1 -b V2 https://github.com/weicaixian86/luci-app-homeproxy package/luci-app-homeproxy
 #git_sparse_clone main https://github.com/VIKINGYFY/packages luci-app-homeproxy
 sed -i "s/ImmortalWrt/OpenWrt/g" package/luci-app-homeproxy/po/zh_Hans/homeproxy.po
 sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
@@ -198,8 +198,8 @@ ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/l
 git clone --depth=1 -b openwrt-24.10 https://github.com/immortalwrt/packages.git immortalwrt-packages
 cp -rf immortalwrt-packages/net/msd_lite feeds/packages/net/msd_lite
 ln -sf ../../../feeds/packages/net/msd_lite ./package/feeds/packages/msd_lite
-#cp -rf immortalwrt-packages/net/sing-box feeds/packages/net/sing-box
-#ln -sf ../../../feeds/packages/net/sing-box ./package/feeds/packages/sing-box
+cp -rf immortalwrt-packages/net/sing-box feeds/packages/net/sing-box
+ln -sf ../../../feeds/packages/net/sing-box ./package/feeds/packages/sing-box
 cp -rf immortalwrt-packages/net/xray-core feeds/packages/net/xray-core
 ln -sf ../../../feeds/packages/net/xray-core ./package/feeds/packages/xray-core
 cp -rf immortalwrt-packages/net/zerotier feeds/packages/net/zerotier
