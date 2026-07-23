@@ -95,6 +95,7 @@ merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages open
 
 # homeproxy
 #git clone -b dev --depth 1 https://github.com/immortalwrt/homeproxy package/luci-app-homeproxy
+#git clone --depth 1 -b master https://github.com/fun200/homeproxy_plus package/luci-app-homeproxy
 merge_package https://github.com/VIKINGYFY/packages packages/luci-app-homeproxy
 merge_package https://github.com/VIKINGYFY/packages packages/sing-box
 sed -i "s/ImmortalWrt/OpenWrt/g" package/custom/luci-app-homeproxy/po/zh_Hans/homeproxy.po
