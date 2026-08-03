@@ -53,8 +53,10 @@ sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 sed -i 's/KERNEL_PATCHVER:=6.12/KERNEL_PATCHVER:=6.18/g' target/linux/x86/Makefile
 
 # 内核替换 kernel xxx
-#sed -i 's/LINUX_KERNEL_HASH-6.18.39 = a7a7e3d2ae9d95e74197223a8d4eb5f6be7aac21b6e6de27e9685d001c1f8cb0/LINUX_KERNEL_HASH-6.18.41 = 17fc72f0f8d4a8a8633a5d20085f5d9c5a5ec51ee896a0b7ae1ec25da31273ea/g' ./target/linux/generic/kernel-6.18
-#sed -i 's/LINUX_VERSION-6.18 = .62/LINUX_VERSION-6.18 = .41/g' ./target/linux/generic/kernel-6.18
+sed -i 's/LINUX_VERSION-6.18 = .*/LINUX_VERSION-6.18 = .41/g' target/linux/generic/kernel-6.18
+sed -i 's/LINUX_KERNEL_HASH-6.18.41 = .*/LINUX_KERNEL_HASH-6.18.41 = 17fc72f0f8d4a8a8633a5d20085f5d9c5a5ec51ee896a0b7ae1ec25da31273ea/g' target/linux/generic/kernel-6.18
+#sed -i 's/LINUX_KERNEL_HASH-6.12.62 = 13e2c685ac8fab5dd992dd105732554dae514aef350c2a8c7418e7b74eb62c13/LINUX_KERNEL_HASH-6.12.55 = 328f8f4608a653063a5fd82d29b17163faab2825fa419fa85b961740a342fb9f/g' ./include/kernel-6.12
+#sed -i 's/LINUX_VERSION-6.12 = .62/LINUX_VERSION-6.12 = .55/g' ./include/kernel-6.12
 
 # 替换文件
 #wget -O ./package/kernel/linux/modules/netsupport.mk https://raw.githubusercontent.com/0118Add/X86-N1-Actions/main/general/netsupport.mk
