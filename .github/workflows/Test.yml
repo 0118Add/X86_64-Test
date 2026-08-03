@@ -8,14 +8,14 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt-master
+name: Build OpenWrt-Test
 
 on:
   workflow_dispatch:
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt
-  REPO_BRANCH: master
+  REPO_BRANCH: main
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: configs/master.config
   DIY_P1_SH: custom/diy-part01.sh
@@ -24,7 +24,7 @@ env:
   CACHE_TOOLCHAIN: false
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: X86_64-Master
+  FIRMWARE_TAG: X86_64-Test
   TZ: Asia/Shanghai
 
 jobs:
