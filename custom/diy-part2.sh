@@ -132,9 +132,11 @@ git clone https://github.com/sbwml/luci-app-filemanager package/luci-app-fileman
 #sed -i 's/vpn/services/g' package/luci-app-tailscale/root/usr/share/luci/menu.d/luci-app-tailscale.json
 
 # zerotier
+rm -rf feeds/packages/utils/coremark
 rm -rf feeds/luci/applications/luci-app-mjpg-streamer
 rm -rf feeds/luci/applications/luci-app-zerotier
 git clone https://github.com/8688Add/luci-app-zerotier package/luci-app-zerotier
+merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/coremark
 sed -i 's/vpn/services/g' package/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 
 # unblockneteasemusic
@@ -199,7 +201,7 @@ sed -i '16s/ \\$//' feeds/luci/collections/luci/Makefile
 # 替换文件
 #curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25_storage.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/25_storage.js
-sed -i 's/WireGuard/WiGd状态/g' feeds/luci/protocols/luci-proto-wireguard/root/usr/share/luci/menu.d/luci-proto-wireguard.json
+#sed -i 's/WireGuard/WiGd状态/g' feeds/luci/protocols/luci-proto-wireguard/root/usr/share/luci/menu.d/luci-proto-wireguard.json
 #rm -rf feeds/packages/lang/ruby
 #cp -rf $GITHUB_WORKSPACE/general/ruby feeds/packages/lang/ruby
 #rm -rf feeds/packages/net/onionshare-cli
