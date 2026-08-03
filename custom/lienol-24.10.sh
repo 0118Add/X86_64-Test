@@ -45,6 +45,10 @@ sed -i 's/echo.*/echo "$vendor" > \/tmp\/sysinfo\/model/g' target/linux/x86/base
 sed -i 's/KERNEL_PATCHVER:=6.6/KERNEL_PATCHVER:=6.12/g' target/linux/x86/Makefile
 
 # 内核替换 kernel xxx
+#sed -i \
+#  -e 's/LINUX_KERNEL_HASH-6.12.62 = 13e2c685ac8fab5dd992dd105732554dae514aef350c2a8c7418e7b74eb62c13/LINUX_KERNEL_HASH-6.12.55 = 328f8f4608a653063a5fd82d29b17163faab2825fa419fa85b961740a342fb9f/g' \
+#  -e 's/LINUX_VERSION-6.12 = \.62/LINUX_VERSION-6.12 = .55/g' \
+#  ./include/kernel-6.12
 #sed -i 's/LINUX_KERNEL_HASH-6.12.62 = 13e2c685ac8fab5dd992dd105732554dae514aef350c2a8c7418e7b74eb62c13/LINUX_KERNEL_HASH-6.12.55 = 328f8f4608a653063a5fd82d29b17163faab2825fa419fa85b961740a342fb9f/g' ./include/kernel-6.12
 #sed -i 's/LINUX_VERSION-6.12 = .62/LINUX_VERSION-6.12 = .55/g' ./include/kernel-6.12
 
