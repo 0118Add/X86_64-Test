@@ -186,7 +186,7 @@ sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/
 #sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh_Hans/turboacc.po
 
 # Shortcut Forwarding Engine
-git clone https://github.com/xianren78/shortcut-fe package/emortal/shortcut-fe
+git clone https://github.com/sbwml/shortcut-fe package/emortal/shortcut-fe
 
 # Patch FireWall 4
 rm -rf package/network/config/firewall4/patches
