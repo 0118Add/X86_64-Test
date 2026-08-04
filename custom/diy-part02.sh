@@ -186,7 +186,7 @@ sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/
 #sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh_Hans/turboacc.po
 
 # Shortcut Forwarding Engine
-git clone https://$gitea/sbwml/shortcut-fe package/emortal/shortcut-fe
+git clone https://$gitea/sbwml/shortcut-fe package/shortcut-fe
 
 # Patch FireWall 4
 rm -rf package/network/config/firewall4/patches
@@ -218,10 +218,10 @@ git clone https://github.com/8688Add/nft-fullcone package/nft-fullcone
 #git clone https://github.com/hubbylei/fullconenat-nft package/network/utils/fullconenat-nft
 
 # IPv6 NAT
-git clone https://github.com/sbwml/packages_new_nat6 package/utils/nat6 -b openwrt-25.12
+git clone https://github.com/sbwml/packages_new_nat6 package/nat6 -b openwrt-25.12
 
 # natflow
-git clone https://github.com/QiuSimons/openwrt-natflow package/utils/natflow
+git clone https://github.com/QiuSimons/openwrt-natflow package/natflow
 
 # luci-app-firewall
 curl -s https://raw.githubusercontent.com/openwrt/luci/refs/heads/master/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js > feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
@@ -232,10 +232,10 @@ pushd feeds/luci
     curl -s $mirror/openwrt/patch/firewall4/luci-25.12/0002-luci-app-firewall-add-shortcut-fe-option.patch | patch -p1
     curl -s $mirror/openwrt/patch/firewall4/luci-25.12/0003-luci-app-firewall-add-ipv6-nat-option.patch | patch -p1
     curl -s $mirror/openwrt/patch/firewall4/luci-25.12/0004-luci-add-firewall-add-custom-nft-rule-support.patch | patch -p1
-    #curl -s $mirror/openwrt/patch/firewall4/luci-25.12/0005-luci-app-firewall-add-natflow-offload-support.patch | patch -p1
-    curl -s https://raw.githubusercontent.com/QiuSimons/YAOF/refs/heads/25.12/PATCH/pkgs/firewall/luci/0005-luci-app-firewall-add-natflow-offload-support.patch | patch -p1
+    curl -s $mirror/openwrt/patch/firewall4/luci-25.12/0005-luci-app-firewall-add-natflow-offload-support.patch | patch -p1
     curl -s $mirror/openwrt/patch/firewall4/luci-25.12/0006-luci-app-firewall-enable-hardware-offload-only-on-de.patch | patch -p1
     curl -s $mirror/openwrt/patch/firewall4/luci-25.12/0007-luci-app-firewall-add-fullcone6-option-for-nftables-.patch | patch -p1
+    #curl -s https://raw.githubusercontent.com/QiuSimons/YAOF/refs/heads/25.12/PATCH/pkgs/firewall/luci/0005-luci-app-firewall-add-natflow-offload-support.patch | patch -p1
 popd
 
 # kernel patch
