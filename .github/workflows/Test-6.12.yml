@@ -14,12 +14,12 @@ on:
   workflow_dispatch:
 
 env:
-  REPO_URL: https://github.com/mj22226/openwrt
-  REPO_BRANCH: main
+  REPO_URL: https://github.com/openwrt/openwrt
+  REPO_BRANCH: openwrt-25.12
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: configs/6.12.config
-  DIY_P1_SH: custom/diy-part1.sh
-  DIY_SCRIPT: custom/6.12.sh
+  CONFIG_FILE: configs/master.config
+  DIY_P1_SH: custom/diy-part01.sh
+  DIY_P2_SH: custom/diy-part02.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: false
   UPLOAD_BIN_DIR: false
@@ -32,10 +32,14 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
+    - name: Checkout
+      uses: actions/checkout@main
+
     - name: Show system
       run: |
-        echo -e "Total CPU cores\t: $(nproc)"
-        cat /proc/cpuinfo | grep 'model name'    
+        echo -e "💬 Server information \n"
+        echo -e "💻 Server running on Ubuntu: [ Release: $(cat /etc/os-release | grep VERSION_CODENAME | cut -d '=' -f2) / Host: $(arch) ] \n"
+        echo -e "🧮 Server CPU configuration information: \n$(cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c) \n"    
     
     - name: Init build dependencies
       env:
@@ -43,29 +47,42 @@ jobs:
       run: |
         sudo -E apt-get -qq update
         sudo /bin/bash -c "$(curl -sL https://git.io/vokNn)"
-        sudo -E apt-fast -y -qq install asciidoc bash bcc bin86 binutils bison bzip2 clang-15 llvm-15 clang llvm file flex g++ g++-multilib gawk gcc gcc-multilib gettext git gzip help2man intltool libboost-dev libelf-dev libncurses-dev libncurses5-dev libssl-dev libthread-queue-any-perl libusb-dev libxml-parser-perl make patch perl-modules python3-dev python3-pip python3-pyelftools python3-setuptools rsync sharutils swig time unzip util-linux wget xsltproc zlib1g-dev zip zstd
-        sudo -E apt-fast -y -qq install dos2unix dwarves quilt npm jq
+        sudo -E apt-fast -y -qq install asciidoc bash bcc bin86 binutils bison bzip2 clang file flex g++ g++-multilib gawk gcc-multilib gettext git gzip help2man intltool libbpf-dev libboost-dev libelf-dev libncurses-dev libssl-dev libthread-queue-any-perl libusb-dev libxml-parser-perl linux-tools-generic llvm make patch perl-modules pkg-config python3-dev python3-pip python3-pyelftools python3-setuptools rsync sharutils swig time unzip util-linux wget xsltproc zlib1g-dev zip zstd
+        sudo -E apt-fast -y -qq install dos2unix dwarves jq npm quilt
         sudo -E npm install -g pnpm
+        sudo -E npm install -g n
+        sudo -E n stable
         pip3 install --user -U pylibfdt --break-system-packages
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
         sudo -E git config --global user.name 'GitHub Actions' && git config --global user.email 'noreply@github.com'
         sudo -E git config --global core.abbrev auto
+        df -h
 
-    - name: Combine Disks
-      uses: easimon/maximize-build-space@master
-      with:
-        swap-size-mb: 1024
-        temp-reserve-mb: 100
-        root-reserve-mb: 1024
-
-    - name: Checkout
-      uses: actions/checkout@main
+    - name: Create simulated physical disk
+      run: |
+        mnt_size=$(expr $(df -h /mnt | tail -1 | awk '{print $4}' | sed 's/[[:alpha:]]//g' | sed 's/\..*//') - 1)
+        root_size=$(expr $(df -h / | tail -1 | awk '{print $4}' | sed 's/[[:alpha:]]//g' | sed 's/\..*//') - 4)
+        sudo truncate -s "${mnt_size}"G /mnt/mnt.img
+        sudo truncate -s "${root_size}"G /root.img
+        sudo losetup /dev/loop6 /mnt/mnt.img
+        sudo losetup /dev/loop7 /root.img
+        sudo pvcreate /dev/loop6
+        sudo pvcreate /dev/loop7
+        sudo vgcreate github /dev/loop6 /dev/loop7
+        sudo lvcreate -n runner -l 100%FREE github
+        sudo mkfs.xfs /dev/github/runner
+        sudo mkdir -p /builder
+        sudo mount /dev/github/runner /builder
+        sudo chown -R runner.runner /builder
+        df -Th
 
     - name: Clone Source Code
+      working-directory: /builder
       run: |
-        df -hT $GITHUB_WORKSPACE
-        git clone --depth 1 -b $REPO_BRANCH $REPO_URL openwrt
+        df -hT $PWD
+        git clone $REPO_URL -b $REPO_BRANCH openwrt
+        ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
         cd openwrt
         echo "OPENWRT_PATH=$PWD" >> $GITHUB_ENV
         COMMIT_AUTHOR=$(git show -s --date=short --format="作者: %an")
@@ -116,9 +133,9 @@ jobs:
         [ -e files ] && mv files $OPENWRT_PATH/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_PATH/.config
         chmod +x $GITHUB_WORKSPACE/custom/*.sh
-        chmod +x $DIY_SCRIPT
+        chmod +x $DIY_P2_SH
         cd $OPENWRT_PATH
-        $GITHUB_WORKSPACE/$DIY_SCRIPT
+        $GITHUB_WORKSPACE/$DIY_P2_SH
       
     - name: Download DL Package
       run: |
@@ -155,7 +172,7 @@ jobs:
         cd $OPENWRT_PATH/bin/targets/*/*
         cat config.buildinfo
         echo "KERNEL=$(cat *.manifest | grep ^kernel | cut -d- -f2 | tr -d ' ')" >> $GITHUB_ENV
-        rm -rf packages *.buildinfo *.manifest *kernel.bin *rootfs.img.gz *combined.img.gz *ext4-combined-efi.img.gz *squashfs-rootfs.img.gz profiles.json sha256sums
+        rm -rf packages *.buildinfo *.manifest *kernel.bin *rootfs.img.gz *combined.img.gz *ext4-combined-efi.img.gz *squashfs-rootfs.img.gz *targz-combined-efi.img.gz *targz-rootfs.tar.gz profiles.json sha256sums
         echo "FIRMWARE_PATH=$PWD" >> $GITHUB_ENV
         echo "status=success" >> ${GITHUB_OUTPUT}
     
