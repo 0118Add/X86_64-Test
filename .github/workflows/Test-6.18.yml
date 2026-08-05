@@ -19,7 +19,7 @@ env:
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: configs/master.config
   DIY_P1_SH: custom/diy-part01.sh
-  DIY_P2_SH: custom/diy-part02.sh
+  DIY_P2_SH: custom/6.18.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: false
   UPLOAD_BIN_DIR: false
