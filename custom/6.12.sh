@@ -151,7 +151,7 @@ cp -rf immortalwrt-luci/applications/luci-app-ramfree feeds/luci/applications/lu
 ln -sf ../../../feeds/luci/applications/luci-app-ramfree ./package/feeds/luci/luci-app-ramfree
 cp -rf immortalwrt-luci/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
 ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/feeds/luci/luci-app-unblockneteasemusic
-git clone --depth=1 -b master https://github.com/immortalwrt/packages.git immortalwrt-packages
+git clone --depth=1 -b openwrt-25.12 https://github.com/immortalwrt/packages.git immortalwrt-packages
 cp -rf immortalwrt-packages/net/msd_lite feeds/packages/net/msd_lite
 ln -sf ../../../feeds/packages/net/msd_lite ./package/feeds/packages/msd_lite
 #cp -rf immortalwrt-packages/net/sing-box feeds/packages/net/sing-box
