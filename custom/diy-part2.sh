@@ -74,7 +74,7 @@ git clone --depth=1 -b packages-25.12 https://github.com/sbwml/feeds_packages_la
 git clone https://github.com/sbwml/autocore-arm -b openwrt-25.12 package/autocore
 
 # Default settings
-git clone https://github.com/sbwml/default-settings package/default-settings
+merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/default-settings
 
 # OpenClash
 git clone -b dev --depth 1 https://github.com/vernesong/OpenClash package/OpenClash
