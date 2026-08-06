@@ -72,7 +72,7 @@ git clone https://github.com/sbwml/autocore-arm -b openwrt-25.12 package/autocor
 #curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > package/autocore/files/generic/10_system.js
 
 # Default settings
-git clone https://github.com/sbwml/default-settings package/default-settings
+merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/default-settings
 
 # golang 26.x
 rm -rf feeds/packages/lang/golang
