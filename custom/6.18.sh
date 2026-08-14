@@ -132,7 +132,6 @@ git clone https://github.com/sbwml/luci-app-filemanager package/luci-app-fileman
 
 # zerotier
 rm -rf feeds/packages/utils/coremark
-rm -rf feeds/luci/applications/luci-app-bmx7
 rm -rf feeds/luci/applications/luci-app-mjpg-streamer
 rm -rf feeds/luci/applications/luci-app-zerotier
 git clone https://github.com/8688Add/luci-app-zerotier package/luci-app-zerotier
