@@ -181,7 +181,6 @@ sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/
 #sed -i 's/"admin/"admin\/services/g' package/dockerman/applications/luci-app-dockerman/luasrc/model/cbi/dockerman/*.lua
 #sed -i 's/"admin/"admin\/services/g' package/dockerman/applications/luci-app-dockerman/luasrc/view/dockerman/*.htm
 #sed -i 's/"admin/"admin\/services/g' package/dockerman/applications/luci-app-dockerman/luasrc/view/dockerman/cbi/*.htm
-sed -i 's/MAKE_VARS +=/MAKE_VARS += GOHOSTOS=patched_shadow GOHOSTARCH=patched_shadow /g' feeds/packages/utils/dockerd/Makefile
 
 # turboacc
 #git clone https://github.com/chenmozhijin/turboacc package/turboacc
