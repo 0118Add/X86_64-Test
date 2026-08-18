@@ -69,6 +69,9 @@ git clone --depth=1 -b packages-25.12 https://github.com/sbwml/feeds_packages_la
 #wget -O ./package/base-files/files/etc/banner https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/banner
 #wget -O ./package/libs/libnftnl/Makefile https://raw.githubusercontent.com/0118Add/X86_64-Test/main/patch/Makefile
 
+# 设置root用户密码为password
+sed -i 's/root:::0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.::0:99999:7:::/g' package/base-files/files/etc/shadow
+
 # autoCore
 git clone https://github.com/sbwml/autocore-arm -b openwrt-25.12 package/autocore
 
@@ -86,6 +89,8 @@ rm -rf feeds/packages/net/{xray-core,sing-box,v2ray-geodata}
 merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages openwrt-passwall-packages/sing-box
 merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages openwrt-passwall-packages/xray-core
 merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages openwrt-passwall-packages/v2ray-geodata
+sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.13.18/g' package/custom/sing-box/Makefile
+sed -i 's/PKG_HASH:=.*/PKG_HASH:=e41ed9d7adecd7597c1d5cc91818366a9538d94b41c244225ac40ac948c643f5/g' package/custom/sing-box/Makefile
 
 # homeproxy
 #git clone -b dev --depth 1 https://github.com/immortalwrt/homeproxy package/luci-app-homeproxy
