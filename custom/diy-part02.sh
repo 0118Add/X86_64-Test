@@ -144,6 +144,8 @@ rm -rf feeds/luci/applications/luci-app-zerotier
 git clone https://github.com/8688Add/luci-app-zerotier package/luci-app-zerotier
 merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/coremark
 sed -i 's/vpn/services/g' package/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
+rm -rf feeds/packages/libs/ncurses
+cp -rf $GITHUB_WORKSPACE/general/ncurses feeds/packages/libs/ncurses
 
 # unblockneteasemusic
 #git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
