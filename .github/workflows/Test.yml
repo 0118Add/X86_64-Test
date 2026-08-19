@@ -51,7 +51,8 @@ jobs:
         sudo -E apt-get install -y nodejs
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
-        df -h
+        sudo chown $USER:$(id -gn) /builder
+        df -Th
 
     - name: Create simulated physical disk
       run: |
