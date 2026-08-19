@@ -144,8 +144,6 @@ rm -rf feeds/luci/applications/luci-app-zerotier
 git clone https://github.com/8688Add/luci-app-zerotier package/luci-app-zerotier
 merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/coremark
 sed -i 's/vpn/services/g' package/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
-rm -rf feeds/packages/libs/ncurses
-cp -rf $GITHUB_WORKSPACE/general/ncurses feeds/packages/libs/ncurses
 
 # unblockneteasemusic
 #git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
@@ -276,6 +274,8 @@ curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25
 #sed -i 's/WireGuard/WiGd状态/g' feeds/luci/protocols/luci-proto-wireguard/root/usr/share/luci/menu.d/luci-proto-wireguard.json
 #rm -rf feeds/packages/lang/ruby
 #cp -rf $GITHUB_WORKSPACE/general/ruby feeds/packages/lang/ruby
+rm -rf feeds/packages/libs/ncurses
+cp -rf $GITHUB_WORKSPACE/general/ncurses feeds/packages/libs/ncurses
 #rm -rf feeds/packages/net/onionshare-cli
 #sed -i 's/--set=llvm\.download-ci-llvm=true/--set=llvm.download-ci-llvm=false/' feeds/packages/lang/rust/Makefile
 
