@@ -175,6 +175,8 @@ git clone https://github.com/sbwml/packages_utils_dockerd feeds/packages/utils/d
 git clone https://github.com/sbwml/packages_utils_containerd feeds/packages/utils/containerd
 git clone https://github.com/sbwml/packages_utils_runc feeds/packages/utils/runc
 sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/root/usr/share/luci/menu.d/luci-app-dockerman.json
+mkdir -p feeds/packages/utils/dockerd/patches
+curl -s https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/patches/001-skip-copy-nested-binaries.patch > feeds/packages/utils/dockerd/patches/001-skip-copy-nested-binaries.patch
 #sed -i 's/"admin",/"admin","services",/g' package/dockerman/applications/luci-app-dockerman/luasrc/controller/*.lua
 #sed -i 's/"admin/"admin\/services/g' package/dockerman/applications/luci-app-dockerman/luasrc/model/*.lua
 #sed -i 's/"admin/"admin\/services/g' package/dockerman/applications/luci-app-dockerman/luasrc/model/cbi/dockerman/*.lua
@@ -206,6 +208,8 @@ curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25
 #sed -i 's/WireGuard/WiGd状态/g' feeds/luci/protocols/luci-proto-wireguard/root/usr/share/luci/menu.d/luci-proto-wireguard.json
 #rm -rf feeds/packages/lang/ruby
 #cp -rf $GITHUB_WORKSPACE/general/ruby feeds/packages/lang/ruby
+rm -rf package/libs/ncurses
+cp -rf $GITHUB_WORKSPACE/general/ncurses package/libs/ncurses
 #rm -rf feeds/packages/net/onionshare-cli
 #sed -i 's/--set=llvm\.download-ci-llvm=true/--set=llvm.download-ci-llvm=false/' feeds/packages/lang/rust/Makefile
 
