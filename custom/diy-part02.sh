@@ -276,8 +276,6 @@ curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25
 #cp -rf $GITHUB_WORKSPACE/general/ruby feeds/packages/lang/ruby
 rm -rf package/libs/ncurses
 cp -rf $GITHUB_WORKSPACE/general/ncurses package/libs/ncurses
-rm -rf package/network/services/dnsmasq
-cp -rf $GITHUB_WORKSPACE/general/dnsmasq package/network/services/dnsmasq
 #rm -rf feeds/packages/net/onionshare-cli
 #sed -i 's/--set=llvm\.download-ci-llvm=true/--set=llvm.download-ci-llvm=false/' feeds/packages/lang/rust/Makefile
 
