@@ -9,7 +9,7 @@ env:
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: configs/main.config
   DIY_P1_SH: custom/diy-part1.sh
-  DIY_P2_SH: custom/diy-part2.sh
+  DIY_P2_SH: custom/Test.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: false
   UPLOAD_BIN_DIR: false
