@@ -178,10 +178,7 @@ rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
 #git clone https://github.com/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
 #git clone https://github.com/sbwml/packages_utils_containerd feeds/packages/utils/containerd
 #git clone https://github.com/sbwml/packages_utils_runc feeds/packages/utils/runc
-merge_package master https://github.com/openwrt/packages feeds/packages/utils utils/docker
-merge_package master https://github.com/openwrt/packages feeds/packages/utils utils/dockerd
-merge_package master https://github.com/openwrt/packages feeds/packages/utils utils/containerd
-merge_package master https://github.com/openwrt/packages feeds/packages/utils utils/runc
+merge_package master https://github.com/openwrt/packages feeds/packages/utils utils/docker dockerd containerd runc
 sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/root/usr/share/luci/menu.d/luci-app-dockerman.json
 #mkdir -p feeds/packages/utils/dockerd/patches
 #curl -s https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/patches/001-skip-copy-nested-binaries.patch > feeds/packages/utils/dockerd/patches/001-skip-copy-nested-binaries.patch
