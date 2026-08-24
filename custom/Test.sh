@@ -85,9 +85,10 @@ rm -rf feeds/packages/net/{xray-core,sing-box,v2ray-geodata}
 #git clone https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/passwall-packages -b main
 #git clone -b main --single-branch https://github.com/Openwrt-Passwall/openwrt-passwall package/openwrt-passwall
 #merge_package https://github.com/kiddin9/op-packages op-packages/luci-app-passwall
-merge_package main https://github.com/Openwrt-Passwall/openwrt-passwall-packages sing-box
-merge_package main https://github.com/Openwrt-Passwall/openwrt-passwall-packages xray-core
-merge_package main https://github.com/Openwrt-Passwall/openwrt-passwall-packages v2ray-geodata
+#merge_package main https://github.com/Openwrt-Passwall/openwrt-passwall-packages sing-box
+#merge_package main https://github.com/Openwrt-Passwall/openwrt-passwall-packages xray-core
+#merge_package main https://github.com/Openwrt-Passwall/openwrt-passwall-packages v2ray-geodata
+merge_package main https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/passwall sing-box xray-core v2ray-geodata
 
 # homeproxy
 #git clone -b dev --depth 1 https://github.com/immortalwrt/homeproxy package/luci-app-homeproxy
