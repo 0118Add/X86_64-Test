@@ -32,8 +32,7 @@ sed -i "s/hostname='.*'/hostname='OpenWrt'/g" package/base-files/files/bin/confi
 #sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION=' BGG'/g" package/lean/default-settings/files/zzz-default-settings
 
 # 修改型号
-#sed -i 's|echo\s+"?\$vendor\s+\$product"?\s*>.*|echo "Default string" > /tmp/sysinfo/model|' openwrt/target/linux/x86/base-files/lib/preinit/01_sysinfo
-#sed -i 's/echo "\$vendor \$product" > \/tmp\/sysinfo\/model/echo "Default string" > \/tmp\/sysinfo\/model/' /etc/init.d/base-files
+#sed -i 's/echo.*/echo "$vendor" > \/tmp\/sysinfo\/model/g' target/linux/x86/base-files/lib/preinit/01_sysinfo
 
 # 修改默认IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
@@ -99,7 +98,9 @@ git clone --depth=1 -b openwrt-25.12 https://github.com/sbwml/autocore-arm packa
 
 # Default settings
 rm -rf package/default-settings
-git clone https://github.com/sbwml/default-settings package/default-settings
+rm -rf feeds/packages/utils/coremark
+#git clone https://github.com/sbwml/default-settings package/default-settings
+git_sparse_clone master https://github.com/8688Add/openwrt_pkgs coremark default-settings
 
 # golang 1.26
 rm -rf feeds/packages/lang/golang
@@ -227,9 +228,17 @@ ln -sf ../../../feeds/packages/net/msd_lite ./package/feeds/packages/msd_lite
 #sed -i "s/ImmortalWrt/OpenWrt/g" feeds/luci/applications/luci-app-homeproxy/po/zh_Hans/homeproxy.po
 #sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" feeds/luci/applications/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 
+# ttyd
+#sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
+sed -i '3 a\\t\t"order": 50,' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
+sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' feeds/packages/utils/ttyd/files/ttyd.init
+sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/utils/ttyd/files/ttyd.init
+
 # Dockerman
 #git clone https://github.com/sbwml/luci-app-dockerman package/luci-app-dockerman
 #sed -i 's/"admin/"admin\/services/g' package/luci-app-dockerman/root/usr/share/luci/menu.d/luci-app-dockerman.json
+mkdir -p feeds/packages/utils/dockerd/patches
+curl -s https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/patches/001-skip-copy-nested-binaries.patch > feeds/packages/utils/dockerd/patches/001-skip-copy-nested-binaries.patch
 
 # Realtek Ethernet driver - R8168 & R8125 & R8126 & R8152 & R8101 & r8127
 rm -rf package/kernel/{r8168,r8101,r8125,r8126,r8127}
