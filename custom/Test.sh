@@ -88,7 +88,7 @@ rm -rf feeds/packages/net/{xray-core,sing-box,v2ray-geodata}
 #merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages openwrt-passwall-packages/sing-box
 #merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages openwrt-passwall-packages/xray-core
 #merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages openwrt-passwall-packages/v2ray-geodata
-merge_package main https://github.com/Openwrt-Passwall/openwrt-passwall-packages openwrt-passwall-packages sing-box xray-core v2ray-geodata
+merge_package main https://github.com/Openwrt-Passwall/openwrt-passwall-packages sing-box xray-core v2ray-geodata
 
 # homeproxy
 #git clone -b dev --depth 1 https://github.com/immortalwrt/homeproxy package/luci-app-homeproxy
@@ -142,7 +142,7 @@ rm -rf feeds/packages/utils/coremark
 rm -rf feeds/luci/applications/luci-app-mjpg-streamer
 rm -rf feeds/luci/applications/luci-app-zerotier
 git clone https://github.com/8688Add/luci-app-zerotier package/luci-app-zerotier
-merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/coremark
+merge_package master https://github.com/8688Add/openwrt_pkgs coremark
 sed -i 's/vpn/services/g' package/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 
 # unblockneteasemusic
@@ -178,7 +178,7 @@ rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
 #git clone https://github.com/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
 #git clone https://github.com/sbwml/packages_utils_containerd feeds/packages/utils/containerd
 #git clone https://github.com/sbwml/packages_utils_runc feeds/packages/utils/runc
-merge_package master https://github.com/coolsnowwolf/packages feeds/packages/utils utils/docker dockerd containerd runc
+merge_package master https://github.com/coolsnowwolf/packages feeds/packages/utils docker dockerd containerd runc
 sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/root/usr/share/luci/menu.d/luci-app-dockerman.json
 #mkdir -p feeds/packages/utils/dockerd/patches
 #curl -s https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/patches/001-skip-copy-nested-binaries.patch > feeds/packages/utils/dockerd/patches/001-skip-copy-nested-binaries.patch
