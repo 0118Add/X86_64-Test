@@ -75,7 +75,7 @@ sed -i 's/root:::0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.::0:99999:7
 git clone https://github.com/sbwml/autocore-arm -b openwrt-25.12 package/autocore
 
 # Default settings
-merge_package master https://github.com/8688Add/openwrt_pkgs default-settings
+#merge_package master https://github.com/8688Add/openwrt_pkgs package/pkgs default-settings
 
 # OpenClash
 git clone -b dev --depth 1 https://github.com/vernesong/OpenClash package/OpenClash
@@ -142,7 +142,7 @@ rm -rf feeds/packages/utils/coremark
 rm -rf feeds/luci/applications/luci-app-mjpg-streamer
 rm -rf feeds/luci/applications/luci-app-zerotier
 git clone https://github.com/8688Add/luci-app-zerotier package/luci-app-zerotier
-merge_package master https://github.com/8688Add/openwrt_pkgs coremark
+merge_package master https://github.com/8688Add/openwrt_pkgs package/pkgs coremark default-settings
 sed -i 's/vpn/services/g' package/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 
 # unblockneteasemusic
