@@ -129,8 +129,8 @@ jobs:
       run: |
         rm -rf ./artifact/
         mkdir -p ./artifact/
-        mv openwrt/bin/targets/armsr/armv8*/*combined-efi.img.gz* ./artifact/
-        mv openwrt/bin/targets/armsr/armv8*/*rootfs.tar.gz* ./artifact/
+        mv openwrt/bin/targets/rockchip/armv8*/*combined-efi.img.gz* ./artifact/ || true
+        mv openwrt/bin/targets/rockchip/armv8*/*rootfs.tar.gz* ./artifact/
         cd ./artifact/
         ls -Ahl
     
