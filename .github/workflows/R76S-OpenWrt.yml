@@ -127,38 +127,12 @@ jobs:
     - name: Organize files
       id: organize
       run: |
-        # 1. 彻底清理并重新创建 artifact 目录
         rm -rf ./artifact/
         mkdir -p ./artifact/
-        
-        # 2. 打印实际生成的固件列表，方便在日志中排查
-        echo "=== 实际生成的固件列表 ==="
-        find openwrt/bin/targets/ -type f || echo "没有找到任何编译输出"
-        echo "=========================="
-
-        # 3. 容错式移动：文件存在才移动，不存在不报错
-        shopt -s nullglob  # 开启 nullglob，当通配符匹配不到文件时变为空字符串，而不是保持原样
-        
-        # 移动 combined-efi 固件
-        files_efi=(openwrt/bin/targets/armsr/armv8*/*combined-efi.img.gz*)
-        if [ ${#files_efi[@]} -gt 0 ]; then
-          mv "${files_efi[@]}" ./artifact/
-        else
-          echo "提示：未找到 combined-efi.img.gz 固件"
-        fi
-
-        # 移动 rootfs 固件
-        files_rootfs=(openwrt/bin/targets/armsr/armv8*/*rootfs.tar.gz*)
-        if [ ${#files_rootfs[@]} -gt 0 ]; then
-          mv "${files_rootfs[@]}" ./artifact/
-        else
-          echo "提示：未找到 rootfs.tar.gz 固件"
-        fi
-        
-        # 4. 查看最终整理结果
-        echo "=== 收集到的 Artifact 结果 ==="
+        mv openwrt/bin/targets/armsr/armv8*/*combined-efi.img.gz* ./artifact/
+        mv openwrt/bin/targets/armsr/armv8*/*rootfs.tar.gz* ./artifact/
         cd ./artifact/
-        ls -Ahl || echo "Artifact 目录为空"
+        ls -Ahl
     
     - name: Upload Artifact
       uses: actions/upload-artifact@v7
