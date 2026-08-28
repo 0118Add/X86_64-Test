@@ -129,8 +129,7 @@ jobs:
       run: |
         rm -rf ./artifact/
         mkdir -p ./artifact/
-        mv openwrt/bin/targets/x86/64/*combined-efi.img* ./artifact/
-        mv openwrt/bin/targets/x86/64/*rootfs.tar.gz* ./artifact/
+        find openwrt/bin/targets/ -type f \( -name "*combined-efi.img.gz*" -o -name "*rootfs.tar.gz*" -o -name "*.img.gz" \) -exec mv {} ./artifact/ \;
         cd ./artifact/
         ls -Ahl
     
