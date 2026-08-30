@@ -1,4 +1,4 @@
-name: X86-OpenWrt
+name: Openwrt-Compile
 
 on:
   workflow_dispatch
@@ -136,15 +136,15 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v7
       with:
-        name: X86-OpenWrt-Artifact
+        name: OpenWrt-Artifact
         path: ./artifact/    
 
     - name: Create Release
       uses: softprops/action-gh-release@v3
       with:
         files: ./artifact/*
-        tag_name: X86-OpenWrt-${{ env.latest_release }}
-        name: X86-OpenWrt-${{ env.latest_release }}
+        tag_name: OpenWrt-${{ env.latest_release }}
+        name: OpenWrt-${{ env.latest_release }}
         body: Auto-generated release for OpenWrt build.
 
     - name: Print Disk Space After
