@@ -65,7 +65,7 @@ jobs:
     - name: QTMDFW4
       working-directory: ${{ github.workspace }}/openwrt
       run: |
-        cp -rf ../SEED/R76S/config.seed .config
+        cp -rf ../SEED/R5S/config.seed .config
 
     - name: Convert Translation
       working-directory: ${{ github.workspace }}/openwrt
