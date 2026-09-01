@@ -145,7 +145,7 @@ jobs:
         files: ./artifact/*
         tag_name: OpenWrt-${{ env.latest_release }}
         name: OpenWrt-${{ env.latest_release }}
-        body: 🌐 默认地址: 10.0.0.1 🔑 默认密码: 无
+        body: Auto-generated release for OpenWrt build.
 
     - name: Print Disk Space After
       run: df -h
