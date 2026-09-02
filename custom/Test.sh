@@ -92,8 +92,8 @@ rm -rf feeds/packages/net/{xray-core,sing-box,v2ray-geodata}
 merge_package main https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/passwall sing-box xray-core v2ray-geodata
 
 # homeproxy
-#git clone -b dev --depth 1 https://github.com/immortalwrt/homeproxy package/luci-app-homeproxy
-git clone --depth 1 -b master https://github.com/fun200/homeproxy_plus package/luci-app-homeproxy
+git clone -b master --depth 1 https://github.com/szwjp/homeproxy package/luci-app-homeproxy
+#git clone --depth 1 -b master https://github.com/fun200/homeproxy_plus package/luci-app-homeproxy
 #merge_package https://github.com/VIKINGYFY/packages packages/luci-app-homeproxy
 #merge_package https://github.com/VIKINGYFY/packages packages/sing-box
 sed -i "s/ImmortalWrt/OpenWrt/g" package/luci-app-homeproxy/po/zh_Hans/homeproxy.po
