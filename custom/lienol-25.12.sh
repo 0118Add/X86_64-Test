@@ -102,9 +102,9 @@ rm -rf feeds/packages/utils/coremark
 #git clone https://github.com/sbwml/default-settings package/default-settings
 git_sparse_clone master https://github.com/8688Add/openwrt_pkgs coremark default-settings
 
-# golang 1.26
+# golang 27.x
 rm -rf feeds/packages/lang/golang
-git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 26.x feeds/packages/lang/golang
+git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 27.x feeds/packages/lang/golang
 
 # 预编译 node
 rm -rf feeds/packages/lang/node
@@ -237,8 +237,6 @@ sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/ut
 # Dockerman
 #git clone https://github.com/sbwml/luci-app-dockerman package/luci-app-dockerman
 #sed -i 's/"admin/"admin\/services/g' package/luci-app-dockerman/root/usr/share/luci/menu.d/luci-app-dockerman.json
-mkdir -p feeds/packages/utils/dockerd/patches
-curl -s https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/patches/001-skip-copy-nested-binaries.patch > feeds/packages/utils/dockerd/patches/001-skip-copy-nested-binaries.patch
 
 # Realtek Ethernet driver - R8168 & R8125 & R8126 & R8152 & R8101 & r8127
 rm -rf package/kernel/{r8168,r8101,r8125,r8126,r8127}
