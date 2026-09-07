@@ -92,9 +92,9 @@ git clone --depth=1 -b openwrt-24.10 https://github.com/sbwml/autocore-arm packa
 rm -rf package/default-settings
 git clone https://github.com/sbwml/default-settings package/default-settings
 
-# golang 1.26
+# golang 27.x
 rm -rf feeds/packages/lang/golang
-git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 26.x feeds/packages/lang/golang
+git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 27.x feeds/packages/lang/golang
 
 # 预编译 node
 rm -rf feeds/packages/lang/node
