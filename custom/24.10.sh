@@ -68,19 +68,19 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' packag
 
 # autoCore
 #git clone https://github.com/8688Add/autocore package/autocore
-git clone https://github.com/sbwml/autocore-arm -b openwrt-25.12 package/autocore
+git clone https://github.com/sbwml/autocore-arm -b openwrt-24.10 package/autocore
 #curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/10_system.js > package/autocore/files/generic/10_system.js
 
 # Default settings
 merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/default-settings
 
-# golang 27.x
+# golang 26.x
 rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 27.x feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 26.x feeds/packages/lang/golang
 
 # 预编译 node
 rm -rf feeds/packages/lang/node
-git clone https://github.com/sbwml/feeds_packages_lang_node feeds/packages/lang/node -b packages-25.12
+git clone https://github.com/sbwml/feeds_packages_lang_node feeds/packages/lang/node -b packages-24.10
 
 # OpenClash
 git clone -b dev --depth 1 https://github.com/vernesong/OpenClash package/OpenClash
@@ -127,8 +127,8 @@ sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/ut
 git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 
 # luci-app-filemanager
-rm -rf feeds/luci/applications/luci-app-filemanager
-git clone https://github.com/sbwml/luci-app-filemanager package/luci-app-filemanager
+#rm -rf feeds/luci/applications/luci-app-filemanager
+#git clone https://github.com/sbwml/luci-app-filemanager package/luci-app-filemanager
 
 # tailscale
 #git clone https://github.com/Jaykwok2999/luci-app-tailscale  package/luci-app-tailscale
@@ -153,7 +153,7 @@ sed -i 's/vpn/services/g' package/luci-app-zerotier/root/usr/share/luci/menu.d/l
 #merge_package https://github.com/coolsnowwolf/lede lede/package/kernel/r8152
 
 # 克隆immortalwrt-luci packages仓库
-git clone --depth=1 -b openwrt-25.12 https://github.com/immortalwrt/luci.git immortalwrt-luci
+git clone --depth=1 -b openwrt-24.10 https://github.com/immortalwrt/luci.git immortalwrt-luci
 cp -rf immortalwrt-luci/applications/luci-app-diskman feeds/luci/applications/luci-app-diskman
 ln -sf ../../../feeds/luci/applications/luci-app-diskman ./package/feeds/luci/luci-app-diskman
 #cp -rf immortalwrt-luci/applications/luci-app-homeproxy feeds/luci/applications/luci-app-homeproxy
@@ -164,7 +164,7 @@ cp -rf immortalwrt-luci/applications/luci-app-ramfree feeds/luci/applications/lu
 ln -sf ../../../feeds/luci/applications/luci-app-ramfree ./package/feeds/luci/luci-app-ramfree
 cp -rf immortalwrt-luci/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
 ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/feeds/luci/luci-app-unblockneteasemusic
-git clone --depth=1 -b openwrt-25.12 https://github.com/immortalwrt/packages.git immortalwrt-packages
+git clone --depth=1 -b openwrt-24.10 https://github.com/immortalwrt/packages.git immortalwrt-packages
 cp -rf immortalwrt-packages/net/msd_lite feeds/packages/net/msd_lite
 ln -sf ../../../feeds/packages/net/msd_lite ./package/feeds/packages/msd_lite
 #cp -rf immortalwrt-packages/net/sing-box feeds/packages/net/sing-box
@@ -175,7 +175,7 @@ sed -i 's/解除网易云音乐播放限制/音乐解锁/g' feeds/luci/applicati
 
 # Dockerman
 rm -rf feeds/luci/applications/luci-app-dockerman
-git clone https://github.com/sbwml/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
+git clone -b openwrt-24.10 --depth 1 https://github.com/sbwml/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
 #rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
 #git clone https://github.com/sbwml/packages_utils_docker feeds/packages/utils/docker
 #git clone https://github.com/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
