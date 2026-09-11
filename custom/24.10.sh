@@ -208,6 +208,7 @@ curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25
 #sed -i 's/WireGuard/WiGd状态/g' feeds/luci/protocols/luci-proto-wireguard/root/usr/share/luci/menu.d/luci-proto-wireguard.json
 #rm -rf feeds/packages/net/onionshare-cli
 rm -rf feeds/luci/applications/luci-app-advanced-reboot
+rm -rf feeds/luci/applications/luci-app-radicale3
 
 # rust
 #wget https://github.com/rust-lang/rust/commit/cdae267.patch -O feeds/packages/lang/rust/patches/cdae267.patch
