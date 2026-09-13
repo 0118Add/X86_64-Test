@@ -61,8 +61,8 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' packag
 #git clone https://github.com/sbwml/packages_lang_golang -b 27.x feeds/packages/lang/golang
 
 # 预编译 node
-#rm -rf feeds/packages/lang/node
-#git clone --depth=1 -b packages-25.12 https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packages/lang/node
+rm -rf feeds/packages/lang/node/node
+git clone --depth=1 -b packages-25.12 https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packages/lang/node/node
 
 # 文件替换
 #wget -O ./package/base-files/files/etc/banner https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/banner
@@ -82,6 +82,7 @@ sed -i 's/root:::0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.::0:99999:7
 git clone -b dev --depth 1 https://github.com/vernesong/OpenClash package/OpenClash
 
 # Shared for PassWall and ShadowsocksR Plus+
+rm -rf feeds/luci/applications/{luci-app-dae,luci-app-daed}
 rm -rf feeds/packages/net/{dae,daed,xray-core,sing-box,v2ray-geodata}
 #git clone https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/passwall-packages -b main
 #git clone -b main --single-branch https://github.com/Openwrt-Passwall/openwrt-passwall package/openwrt-passwall
