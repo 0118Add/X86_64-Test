@@ -107,7 +107,7 @@ sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/luci-app-homeproxy/htdocs/l
 
 # dae daed
 git clone https://github.com/kenzok8/openwrt-daede package/daede
-git clone https://github.com/kenzok8/vmlinux-btf package/vmlinux-btf
+#git clone https://github.com/kenzok8/vmlinux-btf package/vmlinux-btf
 sed -i 's/daede/daed/g' package/daede/luci-app-daede/root/usr/share/luci/menu.d/luci-app-daede.json
 #git clone https://github.com/kenzok8/openwrt-clashoo package/clashoo
 #git clone -b master --depth 1 https://github.com/QiuSimons/luci-app-honk package/honk
@@ -187,8 +187,8 @@ sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/
 #git clone https://github.com/chenmozhijin/turboacc package/turboacc
 #sed -i '/PKG_INSTALL:=/iPKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
 #curl -sSL https://raw.githubusercontent.com/mufeng05/openwrt-sonic-fullcone/master/add_sonic_fullcone.sh -o add_sonic_fullcone.sh && bash add_sonic_fullcone.sh
-curl -sSL https://raw.githubusercontent.com/mufeng05/turboacc/main/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
-sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh_Hans/turboacc.po
+#curl -sSL https://raw.githubusercontent.com/mufeng05/turboacc/main/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
+#sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh_Hans/turboacc.po
 
 # Shortcut Forwarding Engine
 #git clone https://$gitea/sbwml/shortcut-fe package/shortcut-fe
