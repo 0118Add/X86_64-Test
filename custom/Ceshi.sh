@@ -108,7 +108,6 @@ sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/luci-app-homeproxy/htdocs/l
 
 # dae daed
 git clone https://github.com/kenzok8/openwrt-daede package/daede
-rm -rf package/daede/vmlinux-btf
 #git clone https://github.com/kenzok8/vmlinux-btf package/vmlinux-btf
 sed -i 's/daede/daed/g' package/daede/luci-app-daede/root/usr/share/luci/menu.d/luci-app-daede.json
 #git clone https://github.com/kenzok8/openwrt-clashoo package/clashoo
