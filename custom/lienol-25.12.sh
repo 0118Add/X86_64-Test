@@ -248,7 +248,7 @@ git_sparse_clone master https://github.com/8688Add/openwrt_pkgs package_kernel_r
 #git clone https://github.com/sbwml/package_kernel_r8127 package/kernel/r8127
 
 # Shortcut Forwarding Engine
-git clone https://github.com/xianren78/shortcut-fe package/emortal/shortcut-fe
+git clone https://github.com/xianren78/shortcut-fe package/new/shortcut-fe
 
 # Patch FireWall 4
 rm -rf package/network/config/firewall4/patches
@@ -277,16 +277,13 @@ curl -s $mirror/openwrt/patch/firewall4/nftables/0002-nftables-add-brcm-fullcone
 
 # FullCone module
 rm -rf package/network/utils/fullconenat-nft
-git clone https://github.com/xianren78/nft-fullcone package/network/utils/fullconenat-nft
+git clone https://github.com/xianren78/nft-fullcone package/new/nft-fullcone
 
 # IPv6 NAT
-git clone https://github.com/sbwml/packages_new_nat6 package/utils/nat6 -b openwrt-25.12
+git clone https://github.com/sbwml/packages_new_nat6 package/new/nat6 -b openwrt-25.12
 
 # natflow
-git clone https://github.com/sbwml/package_new_natflow package/utils/natflow
-
-# luci-app-firewall
-curl -s https://raw.githubusercontent.com/openwrt/luci/refs/heads/master/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js > feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
+git clone https://github.com/sbwml/package_new_natflow package/new/natflow
 
 # Patch Luci add nft_fullcone/bcm_fullcone & shortcut-fe & natflow & ipv6-nat & custom nft command option
 pushd feeds/luci
