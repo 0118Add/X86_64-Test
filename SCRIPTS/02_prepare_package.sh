@@ -254,13 +254,14 @@ rm -rf package/new/imm_pkg/sing-box
 rm -rf package/new/homeproxy
 rm -rf package/new/luci-app-unblockneteasemusic
 
-git clone https://github.com/kenzok8/openwrt-clashoo package/clashoo
-git clone -b main --depth 1 https://github.com/szwjp/luci-app-homeproxy package/luci-app-homeproxy
-#git clone --depth 1 -b master https://github.com/fun200/homeproxy_plus package/luci-app-homeproxy
-#sed -i "s/ImmortalWrt/OpenWrt/g" package/luci-app-homeproxy/po/zh_Hans/homeproxy.po
-#sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
+#git clone https://github.com/kenzok8/openwrt-clashoo package/clashoo
+git clone https://github.com/8688Add/OpenWrt-nikki  package/OpenWrt-nikki
+git clone --depth 1 -b master https://github.com/fun200/homeproxy_plus package/luci-app-homeproxy
+sed -i "s/ImmortalWrt/OpenWrt/g" package/luci-app-homeproxy/po/zh_Hans/homeproxy.po
+sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 git clone https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/openwrt-passwall
-
+sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.13.18/g' package/openwrt-passwall/sing-box/Makefile
+sed -i 's/PKG_HASH:=.*/PKG_HASH:=e41ed9d7adecd7597c1d5cc91818366a9538d94b41c244225ac40ac948c643f5/g' package/openwrt-passwall/sing-box/Makefile
 
 git clone --depth=1 -b openwrt-25.12 https://github.com/immortalwrt/luci.git immortalwrt-luci
 cp -rf immortalwrt-luci/applications/luci-app-diskman feeds/luci/applications/luci-app-diskman
