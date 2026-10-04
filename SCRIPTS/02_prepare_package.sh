@@ -166,7 +166,7 @@ rm -rf package/new/trojan-plus
 #sed -i 's/WING_VERSION:=.*/WING_VERSION:=wing-dc50308/g' package/new/luci-app-daed/daed/Makefile
 #sed -i 's/CORE_VERSION:=.*/CORE_VERSION:=core-5a51cc7/g' package/new/luci-app-daed/daed/Makefile
 #sed -i 's/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=4d6a43331f2f6e25961935b9e7ac09a7568bb2b4/g' package/new/luci-app-daed/daed/Makefile
-git clone https://github.com/QiuSimons/vmlinux-btf ./package/new/vmlinux-btf
+#git clone https://github.com/QiuSimons/vmlinux-btf ./package/new/vmlinux-btf
 git clone https://github.com/gtolog/openwrt-msd_lite ./package/new/openwrt-msd_lite
 
 ### 获取额外的 LuCI 应用、主题和依赖 ###
@@ -256,8 +256,9 @@ rm -rf package/new/luci-app-unblockneteasemusic
 
 git clone https://github.com/YiXuanZX/OpenWrt-nikki  package/OpenWrt-nikki
 cp -rf ../openwrt_helloworld ./package/new
-sed -i "s/ImmortalWrt/OpenWrt/g" package/new/luci-app-homeproxy/po/zh_Hans/homeproxy.po
-sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/new/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
+rm -rf package/new/openwrt_helloworld/daed
+sed -i "s/ImmortalWrt/OpenWrt/g" package/new/openwrt_helloworld/luci-app-homeproxy/po/zh_Hans/homeproxy.po
+sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/new/openwrt_helloworld/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 
 git clone --depth=1 -b openwrt-25.12 https://github.com/immortalwrt/luci.git immortalwrt-luci
 cp -rf immortalwrt-luci/applications/luci-app-diskman feeds/luci/applications/luci-app-diskman
