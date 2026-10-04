@@ -160,12 +160,12 @@ rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,frp,micro
 rm -rf feeds/luci/applications/{luci-app-frps,luci-app-frpc,luci-app-zerotier,luci-app-filemanager}
 rm -rf feeds/packages/utils/coremark
 rm -rf package/new/trojan-plus
-sed -i 's/+@KERNEL_DEBUG_INFO_BTF/+vmlinux-btf/' ./package/new/openwrt-einat-ebpf/Makefile
-sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=2026.06.14/g' package/new/luci-app-daed/daed/Makefile
-sed -i 's/DAED_VERSION:=.*/DAED_VERSION:=daed-4d6a433/g' package/new/luci-app-daed/daed/Makefile
-sed -i 's/WING_VERSION:=.*/WING_VERSION:=wing-dc50308/g' package/new/luci-app-daed/daed/Makefile
-sed -i 's/CORE_VERSION:=.*/CORE_VERSION:=core-5a51cc7/g' package/new/luci-app-daed/daed/Makefile
-sed -i 's/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=4d6a43331f2f6e25961935b9e7ac09a7568bb2b4/g' package/new/luci-app-daed/daed/Makefile
+#sed -i 's/+@KERNEL_DEBUG_INFO_BTF/+vmlinux-btf/' ./package/new/openwrt-einat-ebpf/Makefile
+#sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=2026.06.14/g' package/new/luci-app-daed/daed/Makefile
+#sed -i 's/DAED_VERSION:=.*/DAED_VERSION:=daed-4d6a433/g' package/new/luci-app-daed/daed/Makefile
+#sed -i 's/WING_VERSION:=.*/WING_VERSION:=wing-dc50308/g' package/new/luci-app-daed/daed/Makefile
+#sed -i 's/CORE_VERSION:=.*/CORE_VERSION:=core-5a51cc7/g' package/new/luci-app-daed/daed/Makefile
+#sed -i 's/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=4d6a43331f2f6e25961935b9e7ac09a7568bb2b4/g' package/new/luci-app-daed/daed/Makefile
 git clone https://github.com/QiuSimons/vmlinux-btf ./package/new/vmlinux-btf
 git clone https://github.com/gtolog/openwrt-msd_lite ./package/new/openwrt-msd_lite
 
@@ -254,12 +254,10 @@ rm -rf package/new/imm_pkg/sing-box
 rm -rf package/new/homeproxy
 rm -rf package/new/luci-app-unblockneteasemusic
 
-#git clone https://github.com/kenzok8/openwrt-clashoo package/clashoo
 git clone https://github.com/YiXuanZX/OpenWrt-nikki  package/OpenWrt-nikki
-#git clone --depth 1 -b master https://github.com/fun200/homeproxy_plus package/luci-app-homeproxy
-sed -i "s/ImmortalWrt/OpenWrt/g" package/luci-app-homeproxy/po/zh_Hans/homeproxy.po
-sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
-git clone https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/openwrt-passwall
+cp -rf ../openwrt_helloworld ./package/new
+sed -i "s/ImmortalWrt/OpenWrt/g" package/new/luci-app-homeproxy/po/zh_Hans/homeproxy.po
+sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/new/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 
 git clone --depth=1 -b openwrt-25.12 https://github.com/immortalwrt/luci.git immortalwrt-luci
 cp -rf immortalwrt-luci/applications/luci-app-diskman feeds/luci/applications/luci-app-diskman
