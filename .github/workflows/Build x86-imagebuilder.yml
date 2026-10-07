@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
 env:
-  REPO_URL: https://github.com/openwrt/openwrt
-  REPO_BRANCH: main
+  REPO_URL: https://github.com/Lienol/openwrt
+  REPO_BRANCH: '25.12'
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: configs/main.config
   DIY_P1_SH: custom/diy-part1.sh
@@ -14,7 +14,7 @@ env:
   CACHE_TOOLCHAIN: false
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: X86_64-SNAPSHOT
+  FIRMWARE_TAG: X86_64-Lienol
   TZ: Asia/Shanghai
 
 jobs:
