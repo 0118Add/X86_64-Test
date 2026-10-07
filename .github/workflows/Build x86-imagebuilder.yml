@@ -7,7 +7,7 @@ env:
   REPO_URL: https://github.com/Lienol/openwrt
   REPO_BRANCH: '25.12'
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: configs/main.config
+  CONFIG_FILE: configs/lienol.config
   DIY_P1_SH: custom/diy-part1.sh
   DIY_P2_SH: custom/Test.sh
   CLASH_KERNEL: amd64
