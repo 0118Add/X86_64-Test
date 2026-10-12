@@ -57,9 +57,9 @@ sed -i 's/net.netfilter.nf_conntrack_max=.*/net.netfilter.nf_conntrack_max=65535
 # 修正连接数
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
 
-# golang 27.x
+# golang 26.x
 rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 27.x feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 26.x feeds/packages/lang/golang
 
 # 预编译 node
 rm -rf feeds/packages/lang/node
@@ -82,35 +82,35 @@ git clone -b dev --depth 1 https://github.com/vernesong/OpenClash package/OpenCl
 rm -rf feeds/packages/net/{xray-core,sing-box,v2ray-geodata}
 #git clone https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/passwall-packages -b main
 #git clone -b main --single-branch https://github.com/Openwrt-Passwall/openwrt-passwall package/openwrt-passwall
-#merge_package https://github.com/kiddin9/op-packages op-packages/luci-app-passwall
-merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages openwrt-passwall-packages/sing-box
+#merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages openwrt-passwall-packages/sing-box
 merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages openwrt-passwall-packages/xray-core
 merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages openwrt-passwall-packages/v2ray-geodata
 
 # homeproxy
 #git clone -b dev --depth 1 https://github.com/immortalwrt/homeproxy package/luci-app-homeproxy
-git clone --depth 1 -b master https://github.com/fun200/homeproxy_plus package/luci-app-homeproxy
+#git clone --depth 1 -b master https://github.com/fun200/homeproxy_plus package/luci-app-homeproxy
+merge_package https://github.com/sbwml/openwrt_helloworld openwrt_helloworld/luci-app-homeproxy
+merge_package https://github.com/sbwml/openwrt_helloworld openwrt_helloworld/sing-box
 #merge_package https://github.com/VIKINGYFY/packages packages/luci-app-homeproxy
 #merge_package https://github.com/VIKINGYFY/packages packages/sing-box
-sed -i "s/ImmortalWrt/OpenWrt/g" package/luci-app-homeproxy/po/zh_Hans/homeproxy.po
-sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
-#wget -O package/luci-app-homeproxy/root/etc/init.d/homeproxy https://raw.githubusercontent.com/0118Add/X86-Actions/main/general/homeproxy
+sed -i "s/ImmortalWrt/OpenWrt/g" package/custom/luci-app-homeproxy/po/zh_Hans/homeproxy.po
+sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/custom/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 
-# mihomo
+# mihomo momo
 #git clone https://github.com/nikkinikki-org/OpenWrt-nikki package/OpenWrt-nikki
 #git clone https://github.com/nikkinikki-org/OpenWrt-momo package/OpenWrt-momo
 
 # dae daed
 #git clone https://github.com/kenzok8/openwrt-daede package/daede
 #git clone https://github.com/kenzok8/openwrt-clashoo package/clashoo
-#git clone -b kix --depth 1 https://github.com/QiuSimons/luci-app-dae package/dae
-git clone -b kix --depth 1 https://github.com/QiuSimons/luci-app-daed package/daed
+git clone -b kix --depth 1 https://github.com/QiuSimons/luci-app-dae package/dae
+#git clone -b kix --depth 1 https://github.com/QiuSimons/luci-app-daed package/daed
 git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf
-sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=2026.06.14/g' package/daed/daed/Makefile
-sed -i 's/DAED_VERSION:=.*/DAED_VERSION:=daed-4d6a433/g' package/daed/daed/Makefile
-sed -i 's/WING_VERSION:=.*/WING_VERSION:=wing-dc50308/g' package/daed/daed/Makefile
-sed -i 's/CORE_VERSION:=.*/CORE_VERSION:=core-5a51cc7/g' package/daed/daed/Makefile
-sed -i 's/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=4d6a43331f2f6e25961935b9e7ac09a7568bb2b4/g' package/daed/daed/Makefile
+#sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=2026.06.14/g' package/daed/daed/Makefile
+#sed -i 's/DAED_VERSION:=.*/DAED_VERSION:=daed-4d6a433/g' package/daed/daed/Makefile
+#sed -i 's/WING_VERSION:=.*/WING_VERSION:=wing-dc50308/g' package/daed/daed/Makefile
+#sed -i 's/CORE_VERSION:=.*/CORE_VERSION:=core-5a51cc7/g' package/daed/daed/Makefile
+#sed -i 's/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=4d6a43331f2f6e25961935b9e7ac09a7568bb2b4/g' package/daed/daed/Makefile
 
 # bpf-headers - 6.18
 sed -ri "s/(PKG_PATCHVER:=)[^\"]*/\16.18/" package/kernel/bpf-headers/Makefile
