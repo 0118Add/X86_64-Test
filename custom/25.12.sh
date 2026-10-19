@@ -74,9 +74,9 @@ git clone https://github.com/sbwml/autocore-arm -b openwrt-25.12 package/autocor
 # Default settings
 merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/default-settings
 
-# golang 26.x
+# golang 27.x
 rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 26.x feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 27.x feeds/packages/lang/golang
 
 # 预编译 node
 rm -rf feeds/packages/lang/node
