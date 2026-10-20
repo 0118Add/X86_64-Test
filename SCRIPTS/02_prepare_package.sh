@@ -249,12 +249,13 @@ cp -rf ../openwrt_ma/package/network/ipv6/odhcp6c ./package/network/ipv6/odhcp6c
 echo > ./feeds/packages/utils/watchcat/files/watchcat.config
 
 # 后续修改
-rm -rf package/new/imm_pkg/sing-box
+#rm -rf package/new/imm_pkg/sing-box
 rm -rf package/new/homeproxy
 rm -rf package/new/luci-app-unblockneteasemusic
 
 git clone https://github.com/YiXuanZX/OpenWrt-nikki  package/OpenWrt-nikki
 cp -rf ../openwrt_helloworld ./package/new
+rm -rf package/new/openwrt_helloworld/sing-box
 sed -i "s/ImmortalWrt/OpenWrt/g" package/new/openwrt_helloworld/luci-app-homeproxy/po/zh_Hans/homeproxy.po
 sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/new/openwrt_helloworld/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 
