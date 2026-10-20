@@ -236,8 +236,6 @@ git clone https://github.com/sbwml/packages_utils_docker feeds/packages/utils/do
 git clone https://github.com/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
 git clone https://github.com/sbwml/packages_utils_runc feeds/packages/utils/runc
 git clone https://github.com/sbwml/packages_utils_containerd feeds/packages/utils/containerd
-#mkdir -p feeds/packages/utils/dockerd/patches
-#curl -s https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/patches/001-skip-copy-nested-binaries.patch > feeds/packages/utils/dockerd/patches/001-skip-copy-nested-binaries.patch
 sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/root/usr/share/luci/menu.d/luci-app-dockerman.json
 
 # IPv6 兼容助手
