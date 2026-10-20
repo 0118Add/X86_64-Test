@@ -255,6 +255,8 @@ rm -rf package/new/luci-app-unblockneteasemusic
 
 git clone https://github.com/YiXuanZX/OpenWrt-nikki  package/OpenWrt-nikki
 cp -rf ../openwrt_helloworld ./package/new
+rm -rf package/new/openwrt_helloworld/luci-app-dae
+rm -rf package/new/openwrt_helloworld/dae
 rm -rf package/new/openwrt_helloworld/sing-box
 sed -i "s/ImmortalWrt/OpenWrt/g" package/new/openwrt_helloworld/luci-app-homeproxy/po/zh_Hans/homeproxy.po
 sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/new/openwrt_helloworld/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
