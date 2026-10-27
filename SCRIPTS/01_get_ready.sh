@@ -46,6 +46,7 @@ sbwfw876_repo="https://github.com/sbwml/openwrt_helloworld"
 sbw_pkg_repo="https://github.com/sbwml/openwrt_pkgs"
 natmap_repo="https://github.com/blueberry-pie-11/luci-app-natmap"
 xwrt_repo="https://github.com/QiuSimons/openwrt-natflow"
+vikingyfy_repo="https://github.com/VIKINGYFY/packages"
 
 # 开始克隆仓库，并行执行
 clone_repo $openwrt_repo $latest_release openwrt &
@@ -64,6 +65,7 @@ clone_repo $sbwfw876_repo v5 openwrt_helloworld &
 clone_repo $passwall_pkg_repo main openwrt-passwall-packages &
 #clone_repo $dockerman_repo master dockerman &
 clone_repo $docker_lib_repo master docker_lib &
+clone_repo $vikingyfy_repo main VIKINGYFY &
 # 等待所有后台任务完成
 wait
 
