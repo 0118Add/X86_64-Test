@@ -237,12 +237,9 @@ rm -rf package/new/homeproxy
 rm -rf package/new/luci-app-unblockneteasemusic
 
 git clone https://github.com/YiXuanZX/OpenWrt-nikki  package/OpenWrt-nikki
-cp -rf ../openwrt_helloworld ./package/new
-rm -rf package/new/openwrt_helloworld/luci-app-dae
-rm -rf package/new/openwrt_helloworld/dae
-rm -rf package/new/openwrt_helloworld/sing-box
-sed -i "s/ImmortalWrt/OpenWrt/g" package/new/openwrt_helloworld/luci-app-homeproxy/po/zh_Hans/homeproxy.po
-sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/new/openwrt_helloworld/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
+git clone https://github.com/itv3/homeproxy  package/luci-app-homeproxy
+sed -i "s/ImmortalWrt/OpenWrt/g" package/luci-app-homeproxy/po/zh_Hans/homeproxy.po
+sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 
 git clone --depth=1 -b openwrt-25.12 https://github.com/immortalwrt/luci.git immortalwrt-luci
 cp -rf immortalwrt-luci/applications/luci-app-diskman feeds/luci/applications/luci-app-diskman
