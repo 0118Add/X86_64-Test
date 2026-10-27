@@ -123,12 +123,12 @@ rm -rf ./package/new/shortcut-fe
 # and from addition-trans-zh's DEPENDS, which would otherwise reference a package
 # that no longer exists (07_fw3.sh does the iptables-side equivalent).
 rm -rf ./package/new/lede_pkg/fullconenat-nft
-sed -i 's/ +kmod-nft-fullcone//' ./package/new/addition-trans-zh/Makefile
+sed -i 's/ +kmod-nft-fullcone//' ./package/new/apps/addition-trans-zh/Makefile
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,frp,microsocks,shadowsocks-libev,zerotier,daed}
 rm -rf feeds/luci/applications/{luci-app-frps,luci-app-frpc,luci-app-zerotier,luci-app-filemanager}
 rm -rf feeds/packages/utils/coremark
 rm -rf package/new/apps/trojan-plus
-sed -i 's/+@KERNEL_DEBUG_INFO_BTF/+vmlinux-btf/' ./package/new/openwrt-einat-ebpf/Makefile
+sed -i 's/+@KERNEL_DEBUG_INFO_BTF/+vmlinux-btf/' ./package/new/apps/openwrt-einat-ebpf/Makefile
 #sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=2026.06.14/g' package/new/luci-app-daed/daed/Makefile
 #sed -i 's/DAED_VERSION:=.*/DAED_VERSION:=daed-4d6a433/g' package/new/luci-app-daed/daed/Makefile
 #sed -i 's/WING_VERSION:=.*/WING_VERSION:=wing-dc50308/g' package/new/luci-app-daed/daed/Makefile
