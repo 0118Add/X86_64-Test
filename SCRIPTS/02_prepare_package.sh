@@ -89,29 +89,16 @@ cp -rf ../PATCH/kernel/others/* ./target/linux/generic/pending-${KERNEL_VERSION}
 sed -i '/luci-app-attendedsysupgrade/d' feeds/luci/collections/luci-nginx/Makefile
 
 ### Fullcone-NAT 部分 ###
-# bcmfullcone
-cp -rf ../PATCH/kernel/bcmfullcone/* ./target/linux/generic/hack-${KERNEL_VERSION}/
 # set nf_conntrack_expect_max for fullcone
 wget -qO - https://github.com/openwrt/openwrt/commit/bbf39d07.patch | patch -p1
 # FW4
 mkdir -p package/network/config/firewall4/patches
-#cp -f ../PATCH/pkgs/firewall/firewall4_patches/*.patch ./package/network/config/firewall4/patches/
-### NAT6 部分 ###
 # custom nft command
 patch -p1 < ../PATCH/pkgs/firewall/100-openwrt-firewall4-add-custom-nft-command-support.patch
 cp -f ../PATCH/pkgs/firewall/firewall4_patches/*.patch ./package/network/config/firewall4/patches/
-# Patch LuCI 以增添 NAT6 开关
-pushd feeds/luci
-patch -p1 <../../../PATCH/pkgs/firewall/luci/0003-luci-app-firewall-add-ipv6-nat-option.patch
-popd
 # Patch LuCI 以支持自定义 nft 规则
 pushd feeds/luci
 patch -p1 <../../../PATCH/pkgs/firewall/luci/0004-luci-add-firewall-add-custom-nft-rule-support.patch
-popd
-
-### Broadcom FullCone NAT (must come after 0003/0004: generated against them) ###
-pushd feeds/luci
-patch -p1 <../../../PATCH/pkgs/firewall/luci/0001-luci-app-firewall-add-brcm-fullcone-nat-option.patch
 popd
 
 ### Other Kernel Hack 部分 ###
@@ -140,7 +127,7 @@ sed -i 's/ +kmod-nft-fullcone//' ./package/new/addition-trans-zh/Makefile
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,frp,microsocks,shadowsocks-libev,zerotier,daed}
 rm -rf feeds/luci/applications/{luci-app-frps,luci-app-frpc,luci-app-zerotier,luci-app-filemanager}
 rm -rf feeds/packages/utils/coremark
-rm -rf package/new/trojan-plus
+rm -rf package/new/apps/trojan-plus
 sed -i 's/+@KERNEL_DEBUG_INFO_BTF/+vmlinux-btf/' ./package/new/openwrt-einat-ebpf/Makefile
 #sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=2026.06.14/g' package/new/luci-app-daed/daed/Makefile
 #sed -i 's/DAED_VERSION:=.*/DAED_VERSION:=daed-4d6a433/g' package/new/luci-app-daed/daed/Makefile
@@ -157,7 +144,7 @@ wget https://github.com/coolsnowwolf/lede/raw/refs/heads/master/target/linux/roc
 # 更换 Nodejs 版本
 rm -rf ./feeds/packages/lang/node
 rm -rf ./package/new/feeds_packages_lang_node-prebuilt
-#cp -rf ../OpenWrt-Add/feeds_packages_lang_node-prebuilt ./feeds/packages/lang/node
+#cp -rf ../OpenWrt-Add/apps/feeds_packages_lang_node-prebuilt ./feeds/packages/lang/node
 git clone --depth=1 -b packages-25.12 https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packages/lang/node
 # 更换 golang 版本
 rm -rf ./feeds/packages/lang/golang
@@ -232,14 +219,14 @@ cp -rf ../openwrt_ma/package/network/ipv6/odhcp6c ./package/network/ipv6/odhcp6c
 echo > ./feeds/packages/utils/watchcat/files/watchcat.config
 
 # 后续修改
-#rm -rf package/new/imm_pkg/sing-box
-rm -rf package/new/homeproxy
-rm -rf package/new/luci-app-unblockneteasemusic
+rm -rf package/new/apps/imm_pkg/sing-box
+rm -rf package/new/apps/homeproxy
+rm -rf package/new/apps/luci-app-unblockneteasemusic
 
 git clone https://github.com/YiXuanZX/OpenWrt-nikki  package/OpenWrt-nikki
-git clone https://github.com/itv3/homeproxy  package/luci-app-homeproxy
-sed -i "s/ImmortalWrt/OpenWrt/g" package/luci-app-homeproxy/po/zh_Hans/homeproxy.po
-sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
+git clone https://github.com/VIKINGYFY/packages  package/homeproxy
+sed -i "s/ImmortalWrt/OpenWrt/g" package/homeproxy/luci-app-homeproxy/po/zh_Hans/homeproxy.po
+sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/homeproxy/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 
 git clone --depth=1 -b openwrt-25.12 https://github.com/immortalwrt/luci.git immortalwrt-luci
 cp -rf immortalwrt-luci/applications/luci-app-diskman feeds/luci/applications/luci-app-diskman
@@ -249,7 +236,7 @@ ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/f
 sed -i 's/解除网易云音乐播放限制/音乐解锁/g' feeds/luci/applications/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 
 curl -fsSL https://raw.githubusercontent.com/0118Add/X86-Actions/main/general/25_storage.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/25_storage.js
-curl -fsSL https://raw.githubusercontent.com/immortalwrt/luci/master/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/29_ports.js > ./package/new/autocore-arm/files/generic/29_ports.js
+curl -fsSL https://raw.githubusercontent.com/immortalwrt/luci/master/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/29_ports.js > ./package/new/apps/autocore-arm/files/generic/29_ports.js
 
 # TTYD
 sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
@@ -271,7 +258,7 @@ find ./target/linux/ -name "config-${KERNEL_VERSION}" | xargs -I{} sh -c "echo '
 ### 最后的收尾工作 ###
 # Lets Fuck
 mkdir -p package/base-files/files/usr/bin
-cp -rf ../OpenWrt-Add/fuck ./package/base-files/files/usr/bin/fuck
+cp -rf ../OpenWrt-Add/core/tools/clean-overlay.sh ./package/base-files/files/usr/bin/fuck
 # 生成默认配置及缓存
 rm -rf .config
 sed -i 's,CONFIG_WERROR=y,# CONFIG_WERROR is not set,g' target/linux/generic/config-${KERNEL_VERSION}
