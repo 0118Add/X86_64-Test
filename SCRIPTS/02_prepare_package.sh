@@ -224,7 +224,7 @@ rm -rf package/new/apps/imm_pkg/sing-box
 rm -rf package/new/apps/luci-app-unblockneteasemusic
 
 git clone https://github.com/YiXuanZX/OpenWrt-nikki  package/OpenWrt-nikki
-git clone https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/openwrt-passwall
+cp -rf ../openwrt-passwall-packages ./package/new
 sed -i "s/ImmortalWrt/OpenWrt/g" package/new/apps/homeproxy/po/zh_Hans/homeproxy.po
 sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/new/apps/homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 
