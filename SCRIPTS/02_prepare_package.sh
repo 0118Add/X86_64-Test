@@ -265,6 +265,58 @@ cp -rf ../OpenWrt-Add/core/tools/clean-overlay.sh ./package/base-files/files/usr
 rm -rf .config
 sed -i 's,CONFIG_WERROR=y,# CONFIG_WERROR is not set,g' target/linux/generic/config-${KERNEL_VERSION}
 
+# --- 整合 luci-app-honk 的宿主机编译环境依赖（支持大范围智能搜索） ---
+echo "🔧 正在全局搜索并配置 luci-app-honk 所需的宿主机工具链..."
+        
+# 1. 安装 Rust 环境（如果尚未安装）
+if ! command -v rustup &> /dev/null; then
+    curl --retry 3 --retry-delay 2 --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --no-modify-path
+fi
+export PATH="$HOME/.cargo/bin:$PATH"
+        
+# 2. 在全仓库范围内寻找 honk_toolchain.sh 脚本
+HONK_TOOLCHAIN_PATH=""
+for candidate in \
+    "package/luci-app-honk/honk_toolchain.sh" \
+    "package/luci-app-honk/honk/honk_toolchain.sh" \
+    "feeds/luci/applications/luci-app-honk/honk_toolchain.sh"; do
+    if [ -f "$candidate" ]; then
+    HONK_TOOLCHAIN_PATH="$candidate"
+    break
+    fi
+done
+        
+# 如果精准路径未命中，使用 find 进行全盘递归扫描
+if [ -z "$HONK_TOOLCHAIN_PATH" ]; then
+    echo "🔍 常规路径未命中，正在全盘扫描 honk_toolchain.sh..."
+    HONK_TOOLCHAIN_PATH=$(find . -type f -name "honk_toolchain.sh" | head -n 1)
+fi
+        
+# 3. 如果找到了脚本，则自动执行并安装依赖
+if [ -n "$HONK_TOOLCHAIN_PATH" ] && [ -f "$HONK_TOOLCHAIN_PATH" ]; then
+    HONK_DIR=$(dirname "$HONK_TOOLCHAIN_PATH")
+    echo "✅ 成功找到 honk 工具链脚本: $HONK_TOOLCHAIN_PATH (所在目录: $HONK_DIR)"
+          
+# 执行解析脚本获取版本号
+eval "$(bash "$HONK_TOOLCHAIN_PATH")"
+          
+# 安装 bpf-linker
+echo "📦 正在安装 bpf-linker v${BPF_LINKER_VERSION}..."
+curl --retry 3 --retry-delay 2 -fsSL -o /tmp/bpf-linker.tar.zst "https://github.com/aya-rs/bpf-linker/releases/download/v${BPF_LINKER_VERSION}/bpf-linker-x86_64-unknown-linux-musl.tar.zst"
+echo "${BPF_LINKER_SHA256}  /tmp/bpf-linker.tar.zst" | sha256sum -c -
+sudo tar --zstd -xf /tmp/bpf-linker.tar.zst -C /usr/local/bin
+          
+# 安装 Zig 编译器
+echo "📦 正在安装 Zig v${ZIG_VERSION}..."
+curl --retry 3 --retry-delay 2 -fsSL -o /tmp/zig.tar.xz "https://ziglang.org/download/${ZIG_VERSION}/zig-x86_64-linux-${ZIG_VERSION}.tar.xz"
+sudo tar -xJf /tmp/zig.tar.xz -C /usr/local
+sudo ln -sf "/usr/local/zig-x86_64-linux-${ZIG_VERSION}/zig" /usr/local/bin/zig
+echo "✅ honk 专用宿主机工具链安装完成！"
+else
+echo "⚠️ 全盘未检测到 honk_toolchain.sh 脚本，跳过专用工具链安装。"
+fi
+# ---------------------------------------------
+
 ./scripts/feeds update -i
 ./scripts/feeds install -a
 
