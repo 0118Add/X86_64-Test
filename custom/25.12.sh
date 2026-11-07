@@ -110,7 +110,7 @@ sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/luci-app-homeproxy/htdocs/l
 #git clone https://github.com/kenzok8/openwrt-daede package/daede
 #git clone https://github.com/kenzok8/openwrt-clashoo package/clashoo
 #git clone -b kix --depth 1 https://github.com/QiuSimons/luci-app-dae package/dae
-git clone -b kix --depth 1 https://github.com/QiuSimons/luci-app-honk package/honk
+git clone -b master --depth 1 https://github.com/QiuSimons/luci-app-honk package/honk
 git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf
 #sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=2026.06.14/g' package/daed/daed/Makefile
 #sed -i 's/DAED_VERSION:=.*/DAED_VERSION:=daed-4d6a433/g' package/daed/daed/Makefile
