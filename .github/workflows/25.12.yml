@@ -70,6 +70,46 @@ jobs:
         timedatectl status || true
         df -Th
     
+    - name: 为 honk-core 配置专用的宿主机依赖环境
+      run: |
+        # 1. 安装基础编译工具链与 eBPF 开发库
+        sudo apt-get update
+        sudo apt-get install -y clang llvm libbpf-dev cmake libclang-dev zstd \
+          make perl file binutils git curl xz-utils pkg-config ca-certificates
+
+        # 2. 安装 Rust 编译器
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --no-modify-path
+        echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+        source $HOME/.cargo/env
+
+        # 3. 解析 honk 源码中指定的工具链版本号
+        # 注意：此处假设你已经运行了源码拉取，如果还没有，建议将下面几行移动到克隆源码之后执行
+        if [ -f "openwrt/package/custom/honk/honk_toolchain.sh" ]; then
+          cd openwrt/package/custom/
+          eval "$(./honk/honk_toolchain.sh)"
+          cd ../../../
+        else
+          # 如果此时还没拉取源码，我们设定一套当前 honk 兼容的标准默认版本号兜底
+          BPF_LINKER_VERSION="0.9.12"
+          BPF_LINKER_SHA256="skip"
+          ZIG_VERSION="0.13.0"
+        fi
+
+        # 4. 下载并安装 eBPF 连接器 bpf-linker
+        curl -fsSL -o /tmp/bpf-linker.tar.zst \
+          "https://github.com/aya-rs/bpf-linker/releases/download/v${BPF_LINKER_VERSION}/bpf-linker-x86_64-unknown-linux-musl.tar.zst"
+        sudo tar --zstd -xf /tmp/bpf-linker.tar.zst -C /usr/local/bin
+
+        # 5. 下载并安装 Zig 编译器后端
+        curl -fsSL -o /tmp/zig.tar.xz \
+          "https://ziglang.org/download/${ZIG_VERSION}/zig-x86_64-linux-${ZIG_VERSION}.tar.xz"
+        sudo tar -xJf /tmp/zig.tar.xz -C /usr/local
+        sudo ln -sf "/usr/local/zig-x86_64-linux-${ZIG_VERSION}/zig" /usr/local/bin/zig
+
+        # 验证宿主机环境是否完全就绪
+        cargo --version
+        zig version
+    
     - name: Create simulated physical disk
       run: |
         mnt_size=$(expr $(df -h /mnt | tail -1 | awk '{print $4}' | sed 's/[[:alpha:]]//g' | sed 's/\..*//') - 1)
