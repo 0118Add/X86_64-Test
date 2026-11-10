@@ -221,58 +221,30 @@ rm -rf feeds/luci/applications/luci-app-advanced-reboot
 #sed -i '/# timezone/i sed -i "s/\\(DISTRIB_DESCRIPTION=\\).*/\\1'\''OpenWrt $(sed -n "s/DISTRIB_DESCRIPTION='\''OpenWrt \\([^ ]*\\) .*/\\1/p" /etc/openwrt_release)'\'',/" /etc/openwrt_release\nsource /etc/openwrt_release \&\& sed -i -e "s/distversion\\s=\\s\\".*\\"/distversion = \\"$DISTRIB_ID $DISTRIB_RELEASE ($DISTRIB_REVISION)\\"/g" -e '\''s/distname    = .*$/distname    = ""/g'\'' /usr/lib/lua/luci/version.lua\nsed -i "s/luciname    = \\".*\\"/luciname    = \\"LuCI openwrt-24.10\\"/g" /usr/lib/lua/luci/version.lua\nsed -i "s/luciversion = \\".*\\"/luciversion = \\"v'$(date +%Y%m%d)'\\"/g" /usr/lib/lua/luci/version.lua\necho "export const revision = '\''v'$(date +%Y%m%d)'\'\'', branch = '\''LuCI openwrt-24.10'\'';" > /usr/share/ucode/luci/version.uc\n/etc/init.d/rpcd restart\n' package/default-settings/default/zzz-default-settings
 #curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/patch/release-os > package/base-files/files/etc/os-release
 
-# 1. 克隆 QiuSimons 的 luci-app-honk 源码（官方直连）
-log "🚀 开始通过官方源克隆 QiuSimons/luci-app-honk 源码..."
-git clone "https://github.com" "$PKG_DIR/honk" --depth=1
+
+clone https://github.com/QiuSimons/luci-app-honk.git  "$PKG_DIR/honk"  "" --depth=1
 
 HONK_DIR="$PKG_DIR/honk/honk"
 HONK_OUT="$HONK_DIR/files/honk-core.bin"
-
 if [ -s "$HONK_OUT" ]; then
     log " ↷ honk-core.bin 已存在，跳过预放"
 else
-    group "动态判断架构并预放 honk-core.bin（免 zig 工具链）"
-    
-    # 2. 自动识别编译目标架构 (自适应 OpenWrt 环境变量)
-    CURRENT_ARCH="${TARGET_ARCH:-x86_64}"
-    CORE_PATH=""
-    
-    if [ "$CURRENT_ARCH" = "x86_64" ]; then
-        CORE_PATH="daeuniverse/honk/releases/download/v0.1.0-beta.2/honk-core-v0.1.0-beta.2-x86_64-unknown-linux-musl-stock-native-api.tar.gz"
-        CORE_HASH="924765696d5952ce19d8898b1a329d9976378e9b67484df725be8e9d3d3a43fa" # 官方真实 x86_64 核心哈希
-        log " 🖥️ 检测到目标为 x86_64 架构"
-    elif [ "$CURRENT_ARCH" = "aarch64" ] || [ "$CURRENT_ARCH" = "arm64" ]; then
-        CORE_PATH="daeuniverse/honk/releases/download/v0.1.0-beta.2/honk-core-v0.1.0-beta.2-aarch64-unknown-linux-musl-stock-native-api.tar.gz"
-        CORE_HASH="bef60542db1d29fa87ad3b5300d0960a1bd173b7ba1121b423b27985a202eb2c"
-        log " 📱 检测到目标为 aarch64 架构"
-    else
-        log " ⚠️ 未知架构: $CURRENT_ARCH，跳过预放，交由 OpenWrt 原生编译"
-    fi
-
-    # 3. 如果成功匹配架构，执行官方源直连下载
-    if [ -n "$CORE_PATH" ]; then
-        log " 📥 正在通过 GitHub 官方源下载 honk-core..."
-        curl -fsSL --retry 5 --retry-delay 3 -o /tmp/honk-core.tar.gz "https://github.com{CORE_PATH}" || die " ❌ 官方源下载失败，请检查 Actions 网络！"
-        
-        # 严格进行 SHA256 哈希校验
-        echo "$CORE_HASH  /tmp/honk-core.tar.gz" | sha256sum -c - || die " ❌ 官方源下载校验失败，核心文件可能不完整或被变动！"
-        
-        # 4. 解压并提取二进制
-        rm -rf /tmp/honkpkg && mkdir -p /tmp/honkpkg
-        tar -xzf /tmp/honk-core.tar.gz -C /tmp/honkpkg
-        
-        core="$(find /tmp/honkpkg -type f -name honk-core -print -quit)"
-        [ -n "$core" ] || die " ❌ tarball 内未找到 honk-core，Release 结构可能已变动"
-        
-        mkdir -p "$HONK_DIR/files"
-        cp "$core" "$HONK_OUT"
-        chmod +x "$HONK_OUT" # 赋予执行权限避坑
-        log " ✅ 已成功完成 $CURRENT_ARCH 架构 honk-core.bin 的预置！"
-    fi
+    group "预放 honk-core.bin（免 zig 工具链）"
+    curl -fsSL --retry 3 -o /tmp/honk-core.tar.gz \
+      "https://github.com/daeuniverse/honk/releases/download/v0.1.0-beta.2/honk-core-v0.1.0-beta.2-x86_64-unknown-linux-musl-stock-native-api.tar.gz"
+    echo "924765696d5952ce19d8898b1a329d9976378e9b67484df725be8e9d3d3a43fa  /tmp/honk-core.tar.gz" | sha256sum -c -
+    rm -rf /tmp/honkpkg && mkdir -p /tmp/honkpkg
+    tar -xzf /tmp/honk-core.tar.gz -C /tmp/honkpkg
+    core="$(find /tmp/honkpkg -type f -name honk-core -print -quit)"
+    [ -n "$core" ] || die "tarball 内未找到 honk-core，release 结构可能已变"
+    mkdir -p "$HONK_DIR/files"
+    cp "$core" "$HONK_OUT"
+    log " ✅ 已预放 honk-core.bin ($(du -h "$HONK_OUT" | cut -f1))"
     endgroup
 fi
 
-# 5. 批量修正所有子 Makefile 的 HASH 占位符（大写 SKIP 转小写 skip）
+sed -i 's/?=SKIP$/?=skip/' "$PKG_DIR/honk/honk/Makefile"
+
 if [ -d "$PKG_DIR/honk" ]; then
   honk_patched=0
   while IFS= read -r -d '' mkfile; do
@@ -282,7 +254,7 @@ if [ -d "$PKG_DIR/honk" ]; then
       honk_patched=$((honk_patched + 1))
     fi
   done < <(find "$PKG_DIR/honk" -type f -name Makefile -print0)
-  log "  ✅ honk Makefile 哈希占位符修正完成，共处理 ${honk_patched} 处。"
+  log "  ✅ honk Makefile 哈希占位修正: ${honk_patched} 处"
 fi
 
 ./scripts/feeds update -i
