@@ -111,7 +111,7 @@ sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/luci-app-homeproxy/htdocs/l
 #git clone https://github.com/kenzok8/openwrt-clashoo package/clashoo
 #git clone -b kix --depth 1 https://github.com/QiuSimons/luci-app-dae package/dae
 #git clone https://github.com/ntbowen/luci-app-honk package/honk
-#git clone -b master --depth 1 https://github.com/QiuSimons/luci-app-honk package/honk
+git clone -b master --depth 1 https://github.com/QiuSimons/luci-app-honk package/honk
 git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf
 #sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=2026.06.14/g' package/daed/daed/Makefile
 #sed -i 's/DAED_VERSION:=.*/DAED_VERSION:=daed-4d6a433/g' package/daed/daed/Makefile
@@ -220,42 +220,6 @@ rm -rf feeds/luci/applications/luci-app-advanced-reboot
 #sed -i '/# timezone/i sed -i "s/\\(DISTRIB_DESCRIPTION=\\).*/\\1'\''OpenWrt $(sed -n "s/DISTRIB_DESCRIPTION='\''OpenWrt \\([^ ]*\\) .*/\\1/p" /etc/openwrt_release)'\'',/" /etc/openwrt_release\nsource /etc/openwrt_release \&\& sed -i -e "s/distversion\\s=\\s\\".*\\"/distversion = \\"$DISTRIB_ID $DISTRIB_RELEASE ($DISTRIB_REVISION)\\"/g" -e '\''s/distname    = .*$/distname    = ""/g'\'' /usr/lib/lua/luci/version.lua\nsed -i "s/luciname    = \\".*\\"/luciname    = \\"LuCI openwrt-25.12\\"/g" /usr/lib/lua/luci/version.lua\nsed -i "s/luciversion = \\".*\\"/luciversion = \\"\\"/g" /usr/lib/lua/luci/version.lua\necho "export const revision = '\''\'\'', branch = '\''LuCI openwrt-25.12'\'';" > /usr/share/ucode/luci/version.uc\n/etc/init.d/rpcd restart\n' package/default-settings/default/zzz-default-settings
 #sed -i '/# timezone/i sed -i "s/\\(DISTRIB_DESCRIPTION=\\).*/\\1'\''OpenWrt $(sed -n "s/DISTRIB_DESCRIPTION='\''OpenWrt \\([^ ]*\\) .*/\\1/p" /etc/openwrt_release)'\'',/" /etc/openwrt_release\nsource /etc/openwrt_release \&\& sed -i -e "s/distversion\\s=\\s\\".*\\"/distversion = \\"$DISTRIB_ID $DISTRIB_RELEASE ($DISTRIB_REVISION)\\"/g" -e '\''s/distname    = .*$/distname    = ""/g'\'' /usr/lib/lua/luci/version.lua\nsed -i "s/luciname    = \\".*\\"/luciname    = \\"LuCI openwrt-24.10\\"/g" /usr/lib/lua/luci/version.lua\nsed -i "s/luciversion = \\".*\\"/luciversion = \\"v'$(date +%Y%m%d)'\\"/g" /usr/lib/lua/luci/version.lua\necho "export const revision = '\''v'$(date +%Y%m%d)'\'\'', branch = '\''LuCI openwrt-24.10'\'';" > /usr/share/ucode/luci/version.uc\n/etc/init.d/rpcd restart\n' package/default-settings/default/zzz-default-settings
 #curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/patch/release-os > package/base-files/files/etc/os-release
-
-
-clone https://github.com/QiuSimons/luci-app-honk.git  "$PKG_DIR/honk"  "" --depth=1
-
-HONK_DIR="$PKG_DIR/honk/honk"
-HONK_OUT="$HONK_DIR/files/honk-core.bin"
-if [ -s "$HONK_OUT" ]; then
-    log " ↷ honk-core.bin 已存在，跳过预放"
-else
-    group "预放 honk-core.bin（免 zig 工具链）"
-    curl -fsSL --retry 3 -o /tmp/honk-core.tar.gz \
-      "https://github.com/daeuniverse/honk/releases/download/v0.1.0-beta.2/honk-core-v0.1.0-beta.2-x86_64-unknown-linux-musl-stock-native-api.tar.gz"
-    echo "924765696d5952ce19d8898b1a329d9976378e9b67484df725be8e9d3d3a43fa  /tmp/honk-core.tar.gz" | sha256sum -c -
-    rm -rf /tmp/honkpkg && mkdir -p /tmp/honkpkg
-    tar -xzf /tmp/honk-core.tar.gz -C /tmp/honkpkg
-    core="$(find /tmp/honkpkg -type f -name honk-core -print -quit)"
-    [ -n "$core" ] || die "tarball 内未找到 honk-core，release 结构可能已变"
-    mkdir -p "$HONK_DIR/files"
-    cp "$core" "$HONK_OUT"
-    log " ✅ 已预放 honk-core.bin ($(du -h "$HONK_OUT" | cut -f1))"
-    endgroup
-fi
-
-sed -i 's/?=SKIP$/?=skip/' "$PKG_DIR/honk/honk/Makefile"
-
-if [ -d "$PKG_DIR/honk" ]; then
-  honk_patched=0
-  while IFS= read -r -d '' mkfile; do
-    if grep -qE '^[[:space:]]*PKG_(HASH|MIRROR_HASH)[[:space:]]*:?=[[:space:]]*SKIP[[:space:]]*$' "$mkfile"; then
-      sed -i -E 's/^([[:space:]]*PKG_(HASH|MIRROR_HASH)[[:space:]]*:?=[[:space:]]*)SKIP[[:space:]]*$/\1skip/' "$mkfile"
-      log "  ✏ 修正 $(basename "$(dirname "$mkfile")")/Makefile：PKG_*HASH SKIP → skip"
-      honk_patched=$((honk_patched + 1))
-    fi
-  done < <(find "$PKG_DIR/honk" -type f -name Makefile -print0)
-  log "  ✅ honk Makefile 哈希占位修正: ${honk_patched} 处"
-fi
 
 ./scripts/feeds update -i
 ./scripts/feeds install -a
