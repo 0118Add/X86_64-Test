@@ -286,7 +286,6 @@ if [ -n "$HONK_TOOLCHAIN_PATH" ] && [ -f "$HONK_TOOLCHAIN_PATH" ]; then
 else
     echo "⚠️ 指定目录未检测到 honk_toolchain.sh 脚本，跳过专用工具链安装。"
 fi
-# ---------------------------------------------
 
 ./scripts/feeds update -i
 ./scripts/feeds install -a
