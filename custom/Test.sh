@@ -108,6 +108,19 @@ rm -rf feeds/luci/applications/luci-app-ramfree
 rm -rf feeds/lienol/luci-app-ramfree
 rm -rf target/linux/generic/hack-6.12/952-add-net-conntrack-events-support-multiple-registrant.patch
 rm -rf target/linux/generic/hack-6.6/952-add-net-conntrack-events-support-multiple-registrant.patch
+rm -rf target/linux/generic/backport-6.18
+rm -rf target/linux/generic/hack-6.18
+rm -rf target/linux/generic/pending-6.18
+# 拷贝自定义文件
+if [ -n "$(ls -A "${GITHUB_WORKSPACE}/general/backport-6.18" 2>/dev/null)" ]; then
+	cp -Rf ${GITHUB_WORKSPACE}/general/backport-6.18/* .
+fi
+if [ -n "$(ls -A "${GITHUB_WORKSPACE}/general/hack-6.18" 2>/dev/null)" ]; then
+	cp -Rf ${GITHUB_WORKSPACE}/general/hack-6.18/* .
+fi
+if [ -n "$(ls -A "${GITHUB_WORKSPACE}/general/pending-6.18" 2>/dev/null)" ]; then
+	cp -Rf ${GITHUB_WORKSPACE}/general/pending-6.18/* .
+fi
 
 # autocore
 git clone --depth=1 -b openwrt-25.12 https://github.com/sbwml/autocore-arm package/autocore
