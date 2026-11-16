@@ -192,7 +192,11 @@ sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/
 #sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh_Hans/turboacc.po
 
 # Shortcut Forwarding Engine
-git clone https://$gitea/sbwml/shortcut-fe package/shortcut-fe
+if ! bash "$GITHUB_WORKSPACE/patch/clone-cooluc.sh" \
+    "https://$gitea/sbwml/shortcut-fe" \
+    "https://$github/gitbruc/shortcut-fe" package/emortal/shortcut-fe; then
+    exit 1
+fi
 
 # Patch FireWall 4
 rm -rf package/network/config/firewall4/patches
@@ -216,8 +220,8 @@ cp -f "$GITHUB_WORKSPACE/patch/data/patches/libnftnl/002-libnftnl-add-brcm-fullc
 sed -i '/^PKG_BUILD_FLAGS[[:space:]]*:/aPKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
 # nftables
 mkdir -p package/network/utils/nftables/patches
-curl -s $mirror/openwrt/patch/firewall4/nftables/0001-nftables-add-fullcone-expression-support.patch > package/network/utils/nftables/patches/0001-nftables-add-fullcone-expression-support.patch
-curl -s $mirror/openwrt/patch/firewall4/nftables/0002-nftables-add-brcm-fullconenat-support.patch > package/network/utils/nftables/patches/0002-nftables-add-brcm-fullconenat-support.patch
+rm -f package/network/utils/nftables/patches/{0001-nftables-add-fullcone-expression-support,0002-nftables-add-brcm-fullconenat-support}.patch
+cp -f "$GITHUB_WORKSPACE/patch/data/patches/nftables/003-nftables-add-brcm-fullconenat-support.patch" package/network/utils/nftables/patches/
 
 # FullCone module
 git clone https://github.com/8688Add/nft-fullcone package/nft-fullcone
