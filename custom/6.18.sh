@@ -192,14 +192,8 @@ sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/
 #sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh_Hans/turboacc.po
 
 # Shortcut Forwarding Engine
-if ! bash "$GITHUB_WORKSPACE/patch/clone-cooluc.sh" \
-    "https://$gitea/sbwml/shortcut-fe" \
-    "https://$github/gitbruc/shortcut-fe" package/shortcut-fe; then
-    exit 1
-fi
+git clone https://$gitea/sbwml/shortcut-fe package/new/shortcut-fe
 
-# Patch FireWall 4
-rm -rf package/network/config/firewall4/patches
 # firewall4
 mkdir -p package/network/config/firewall4/patches
 # fullcone
@@ -214,13 +208,12 @@ curl -s $mirror/openwrt/patch/firewall4/100-openwrt-firewall4-add-custom-nft-com
 sed -i 's|$(PROJECT_GIT)/project|https://github.com/openwrt|g' package/network/config/firewall4/Makefile
 # libnftnl
 mkdir -p package/libs/libnftnl/patches
-rm -f package/libs/libnftnl/patches/{0001-libnftnl-add-fullcone-expression-support,0002-libnftnl-add-brcm-fullcone-support,0003-libnftnl-fullcone-adapt-setter-api}.patch
-cp -f "$GITHUB_WORKSPACE/patch/data/patches/libnftnl/002-libnftnl-add-brcm-fullcone-support.patch" package/libs/libnftnl/patches/
+curl -s $mirror/openwrt/patch/firewall4/libnftnl/0001-libnftnl-add-fullcone-expression-support.patch > package/libs/libnftnl/patches/0001-libnftnl-add-fullcone-expression-support.patch
+curl -s $mirror/openwrt/patch/firewall4/libnftnl/0002-libnftnl-add-brcm-fullcone-support.patch > package/libs/libnftnl/patches/0002-libnftnl-add-brcm-fullcone-support.patch
 # fix build on rhel9
 sed -i '/^PKG_BUILD_FLAGS[[:space:]]*:/aPKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
 # nftables
 mkdir -p package/network/utils/nftables/patches
-curl -fsSL https://raw.githubusercontent.com/immortalwrt/immortalwrt/master/package/network/utils/nftables/patches/002-nftables-add-fullcone-expression-support.patch > package/network/utils/nftables/patches/002-nftables-add-fullcone-expression-support.patch
 curl -s $mirror/openwrt/patch/firewall4/nftables/0001-nftables-add-fullcone-expression-support.patch > package/network/utils/nftables/patches/0001-nftables-add-fullcone-expression-support.patch
 curl -s $mirror/openwrt/patch/firewall4/nftables/0002-nftables-add-brcm-fullconenat-support.patch > package/network/utils/nftables/patches/0002-nftables-add-brcm-fullconenat-support.patch
 
@@ -234,9 +227,6 @@ git clone https://github.com/sbwml/packages_new_nat6 package/nat6 -b openwrt-25.
 # natflow
 merge_package https://github.com/8688Add/OpenWrt-Add OpenWrt-Add/openwrt-natflow
 
-# luci-app-firewall
-curl -s https://raw.githubusercontent.com/openwrt/luci/refs/heads/master/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js > feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
-
 # Patch Luci add nft_fullcone/bcm_fullcone & shortcut-fe & natflow & ipv6-nat & custom nft command option
 pushd feeds/luci
     curl -s $mirror/openwrt/patch/firewall4/luci-25.12/0001-luci-app-firewall-add-nft-fullcone-and-bcm-fullcone-.patch | patch -p1
@@ -246,7 +236,6 @@ pushd feeds/luci
     curl -s $mirror/openwrt/patch/firewall4/luci-25.12/0005-luci-app-firewall-add-natflow-offload-support.patch | patch -p1
     curl -s $mirror/openwrt/patch/firewall4/luci-25.12/0006-luci-app-firewall-enable-hardware-offload-only-on-de.patch | patch -p1
     curl -s $mirror/openwrt/patch/firewall4/luci-25.12/0007-luci-app-firewall-add-fullcone6-option-for-nftables-.patch | patch -p1
-    #curl -s https://raw.githubusercontent.com/QiuSimons/YAOF/refs/heads/25.12/PATCH/pkgs/firewall/luci/0005-luci-app-firewall-add-natflow-offload-support.patch | patch -p1
 popd
 
 # kernel patch
