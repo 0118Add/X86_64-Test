@@ -40,6 +40,9 @@ gitea="git.cooluc.com"
 # Modify default IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
+# 设置root用户密码为password
+sed -i 's/root:::0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.::0:99999:7:::/g' package/base-files/files/etc/shadow
+
 # 修改x86内核版本
 #sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=6.18/g' ./target/linux/x86/Makefile
 
@@ -57,9 +60,9 @@ sed -i 's/net.netfilter.nf_conntrack_max=.*/net.netfilter.nf_conntrack_max=65535
 # 修正连接数
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
 
-# golang 26.x
+# golang 27.x
 rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 26.x feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 27.x feeds/packages/lang/golang
 
 # 预编译 node
 rm -rf feeds/packages/lang/node
@@ -89,10 +92,10 @@ merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages open
 # homeproxy
 #git clone -b dev --depth 1 https://github.com/immortalwrt/homeproxy package/luci-app-homeproxy
 #git clone --depth 1 -b master https://github.com/fun200/homeproxy_plus package/luci-app-homeproxy
-merge_package https://github.com/sbwml/openwrt_helloworld openwrt_helloworld/luci-app-homeproxy
-merge_package https://github.com/sbwml/openwrt_helloworld openwrt_helloworld/sing-box
-#merge_package https://github.com/VIKINGYFY/packages packages/luci-app-homeproxy
-#merge_package https://github.com/VIKINGYFY/packages packages/sing-box
+#merge_package https://github.com/sbwml/openwrt_helloworld openwrt_helloworld/luci-app-homeproxy
+#merge_package https://github.com/sbwml/openwrt_helloworld openwrt_helloworld/sing-box
+merge_package https://github.com/VIKINGYFY/packages packages/luci-app-homeproxy
+merge_package https://github.com/VIKINGYFY/packages packages/sing-box
 sed -i "s/ImmortalWrt/OpenWrt/g" package/custom/luci-app-homeproxy/po/zh_Hans/homeproxy.po
 sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/custom/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 
@@ -103,8 +106,8 @@ sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/custom/luci-app-homeproxy/h
 # dae daed
 #git clone https://github.com/kenzok8/openwrt-daede package/daede
 #git clone https://github.com/kenzok8/openwrt-clashoo package/clashoo
-git clone -b kix --depth 1 https://github.com/QiuSimons/luci-app-dae package/dae
-#git clone -b kix --depth 1 https://github.com/QiuSimons/luci-app-daed package/daed
+#git clone -b kix --depth 1 https://github.com/QiuSimons/luci-app-dae package/dae
+git clone -b master --depth 1 https://github.com/QiuSimons/luci-app-honk package/honk
 git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf
 #sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=2026.06.14/g' package/daed/daed/Makefile
 #sed -i 's/DAED_VERSION:=.*/DAED_VERSION:=daed-4d6a433/g' package/daed/daed/Makefile
@@ -275,7 +278,73 @@ curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25
 #sed -i '/# timezone/i grep -q '\''/tmp/sysinfo/model'\'' /etc/rc.local || sudo sed -i '\''/exit 0/i [ "$(cat /sys\\/class\\/dmi\\/id\\/sys_vendor 2>\\/dev\\/null)" = "Default string" ] \&\& echo "x86_64" > \\/tmp\\/sysinfo\\/model'\'' /etc/rc.local\n' package/default-settings/default/zzz-default-settings
 #sed -i '/# timezone/i sed -i "s/\\(DISTRIB_DESCRIPTION=\\).*/\\1'\''OpenWrt $(sed -n "s/DISTRIB_DESCRIPTION='\''OpenWrt \\([^ ]*\\) .*/\\1/p" /etc/openwrt_release)'\'',/" /etc/openwrt_release\nsource /etc/openwrt_release \&\& sed -i -e "s/distversion\\s=\\s\\".*\\"/distversion = \\"$DISTRIB_ID $DISTRIB_RELEASE ($DISTRIB_REVISION)\\"/g" -e '\''s/distname    = .*$/distname    = ""/g'\'' /usr/lib/lua/luci/version.lua\nsed -i "s/luciname    = \\".*\\"/luciname    = \\"LuCI Master\\"/g" /usr/lib/lua/luci/version.lua\nsed -i "s/luciversion = \\".*\\"/luciversion = \\"\\"/g" /usr/lib/lua/luci/version.lua\necho "export const revision = '\''\'\'', branch = '\''LuCI Master'\'';" > /usr/share/ucode/luci/version.uc\n/etc/init.d/rpcd restart\n' package/default-settings/default/zzz-default-settings
 #sed -i '/# timezone/i sed -i "s/\\(DISTRIB_DESCRIPTION=\\).*/\\1'\''OpenWrt $(sed -n "s/DISTRIB_DESCRIPTION='\''OpenWrt \\([^ ]*\\) .*/\\1/p" /etc/openwrt_release)'\'',/" /etc/openwrt_release\nsource /etc/openwrt_release \&\& sed -i -e "s/distversion\\s=\\s\\".*\\"/distversion = \\"$DISTRIB_ID $DISTRIB_RELEASE ($DISTRIB_REVISION)\\"/g" -e '\''s/distname    = .*$/distname    = ""/g'\'' /usr/lib/lua/luci/version.lua\nsed -i "s/luciname    = \\".*\\"/luciname    = \\"LuCI openwrt-24.10\\"/g" /usr/lib/lua/luci/version.lua\nsed -i "s/luciversion = \\".*\\"/luciversion = \\"v'$(date +%Y%m%d)'\\"/g" /usr/lib/lua/luci/version.lua\necho "export const revision = '\''v'$(date +%Y%m%d)'\'\'', branch = '\''LuCI openwrt-24.10'\'';" > /usr/share/ucode/luci/version.uc\n/etc/init.d/rpcd restart\n' package/default-settings/default/zzz-default-settings
-#curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/os-release > package/base-files/files/etc/os-release
+curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/release > package/base-files/files/etc/os-release
+
+export GOTOOLCHAIN=auto
+export GOPROXY=https://proxy.golang.org,direct
+
+echo "🔍 正在全盘扫描并解锁 Go 工具链限制..."
+find . -type f -name "*.mk" -exec grep -l "GOTOOLCHAIN=local" {} + | xargs -r sed -i 's/GOTOOLCHAIN=local/GOTOOLCHAIN=auto/g'
+echo "✅ 所有潜在的 Go 工具链限制已动态解除"
+    
+# --- 整合 luci-app-honk 的宿主机编译环境依赖 ---
+echo "🔧 正在搜索并配置 luci-app-honk 所需的宿主机工具链..."
+        
+# 1. 安装 Rust 环境并直接设置为最新稳定版 (stable)
+if ! command -v rustup &> /dev/null; then
+    # 使用 --default-toolchain stable 自动获取并安装最新稳定版
+    curl --retry 3 --retry-delay 2 --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable --profile minimal --no-modify-path
+else
+    # 如果环境已存在 rustup，则更新并切换到 stable
+    rustup update stable
+    rustup default stable
+fi
+export PATH="$HOME/.cargo/bin:$PATH"
+        
+# 验证当前的 Rust 版本，确保其满足构建要求
+rustc --version
+
+# 2. 限定在 package 和 feeds 目录下快速精准搜索 honk_toolchain.sh
+HONK_TOOLCHAIN_PATH=""
+for candidate in \
+    "package/luci-app-honk/honk/honk_toolchain.sh" \
+    "package/luci-app-honk/honk_toolchain.sh" \
+    "feeds/luci/applications/luci-app-honk/honk/honk_toolchain.sh" \
+    "feeds/luci/applications/luci-app-honk/honk_toolchain.sh"; do
+    if [ -f "$candidate" ]; then
+    HONK_TOOLCHAIN_PATH="$candidate"
+    break
+    fi
+done
+        
+# 如果预置路径未命中，仅在 package 目录下浅层查找，绝不进行全盘耗时扫描
+if [ -z "$HONK_TOOLCHAIN_PATH" ] && [ -d "package" ]; then
+    HONK_TOOLCHAIN_PATH=$(find package -maxdepth 4 -type f -name "honk_toolchain.sh" | head -n 1)
+fi
+        
+# 3. 如果找到了脚本，则自动执行并安装依赖
+if [ -n "$HONK_TOOLCHAIN_PATH" ] && [ -f "$HONK_TOOLCHAIN_PATH" ]; then
+    HONK_DIR=$(dirname "$HONK_TOOLCHAIN_PATH")
+    echo "✅ 成功找到 honk 工具链脚本: $HONK_TOOLCHAIN_PATH (所在目录: $HONK_DIR)"
+          
+    # 执行解析脚本获取版本号
+    eval "$(bash "$HONK_TOOLCHAIN_PATH")"
+          
+    # 安装 bpf-linker
+    echo "📦 正在安装 bpf-linker v${BPF_LINKER_VERSION}..."
+    curl --retry 3 --retry-delay 2 -fsSL -o /tmp/bpf-linker.tar.zst "https://github.com/aya-rs/bpf-linker/releases/download/v${BPF_LINKER_VERSION}/bpf-linker-x86_64-unknown-linux-musl.tar.zst"
+    echo "${BPF_LINKER_SHA256}  /tmp/bpf-linker.tar.zst" | sha256sum -c -
+    sudo tar --zstd -xf /tmp/bpf-linker.tar.zst -C /usr/local/bin
+          
+    # 安装 Zig 编译器
+    echo "📦 正在安装 Zig v${ZIG_VERSION}..."
+    curl --retry 3 --retry-delay 2 -fsSL -o /tmp/zig.tar.xz "https://ziglang.org/download/${ZIG_VERSION}/zig-x86_64-linux-${ZIG_VERSION}.tar.xz"
+    sudo tar -xJf /tmp/zig.tar.xz -C /usr/local
+    sudo ln -sf "/usr/local/zig-x86_64-linux-${ZIG_VERSION}/zig" /usr/local/bin/zig
+    echo "✅ honk 专用宿主机工具链安装完成！"
+else
+    echo "⚠️ 指定目录未检测到 honk_toolchain.sh 脚本，跳过专用工具链安装。"
+fi
 
 ./scripts/feeds update -i
 ./scripts/feeds install -a
