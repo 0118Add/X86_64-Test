@@ -123,17 +123,11 @@ rm -rf ./package/new/shortcut-fe
 # and from addition-trans-zh's DEPENDS, which would otherwise reference a package
 # that no longer exists (07_fw3.sh does the iptables-side equivalent).
 rm -rf ./package/new/lede_pkg/fullconenat-nft
-sed -i 's/ +kmod-nft-fullcone//' ./package/new/apps/addition-trans-zh/Makefile
+sed -i 's/ +kmod-nft-fullcone//' ./package/new/addition-trans-zh/Makefile
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,frp,microsocks,shadowsocks-libev,zerotier,daed}
 rm -rf feeds/luci/applications/{luci-app-frps,luci-app-frpc,luci-app-zerotier,luci-app-filemanager}
 rm -rf feeds/packages/utils/coremark
-rm -rf package/new/apps/trojan-plus
-sed -i 's/+@KERNEL_DEBUG_INFO_BTF/+vmlinux-btf/' ./package/new/apps/openwrt-einat-ebpf/Makefile
-#sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=2026.06.14/g' package/new/luci-app-daed/daed/Makefile
-#sed -i 's/DAED_VERSION:=.*/DAED_VERSION:=daed-4d6a433/g' package/new/luci-app-daed/daed/Makefile
-#sed -i 's/WING_VERSION:=.*/WING_VERSION:=wing-dc50308/g' package/new/luci-app-daed/daed/Makefile
-#sed -i 's/CORE_VERSION:=.*/CORE_VERSION:=core-5a51cc7/g' package/new/luci-app-daed/daed/Makefile
-#sed -i 's/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=4d6a43331f2f6e25961935b9e7ac09a7568bb2b4/g' package/new/luci-app-daed/daed/Makefile
+sed -i 's/+@KERNEL_DEBUG_INFO_BTF/+vmlinux-btf/' ./package/new/openwrt-einat-ebpf/Makefile
 git clone https://github.com/gtolog/openwrt-msd_lite ./package/new/openwrt-msd_lite
 
 ### 获取额外的 LuCI 应用、主题和依赖 ###
@@ -150,9 +144,6 @@ git clone --depth=1 -b packages-25.12 https://github.com/sbwml/feeds_packages_la
 rm -rf ./feeds/packages/lang/golang
 cp -rf ../openwrt_pkg_ma/lang/golang ./feeds/packages/lang/golang
 #git clone https://github.com/sbwml/packages_lang_golang -b 26.x feeds/packages/lang/golang
-# gn
-rm -rf ./feeds/packages/devel/gn
-cp -rf ../imm_pkg/devel/gn ./feeds/packages/devel/gn
 # apk
 pushd feeds/luci
 wget -qO- https://github.com/sbwml/r4s_build_script/raw/refs/heads/master/openwrt/patch/luci/applications/luci-app-package-manager/0001-luci-app-package-manager-support-installing-uploaded.patch | patch -p1
@@ -201,11 +192,6 @@ sed -i '/boot()/,+2d' feeds/packages/net/ddns-scripts/files/etc/init.d/ddns
 # Docker 容器
 rm -rf ./feeds/luci/applications/luci-app-dockerman
 git clone https://github.com/sbwml/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
-#rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
-#git clone https://github.com/sbwml/packages_utils_docker feeds/packages/utils/docker
-#git clone https://github.com/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
-#git clone https://github.com/sbwml/packages_utils_runc feeds/packages/utils/runc
-#git clone https://github.com/sbwml/packages_utils_containerd feeds/packages/utils/containerd
 sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/root/usr/share/luci/menu.d/luci-app-dockerman.json
 
 # IPv6 兼容助手
@@ -219,28 +205,26 @@ cp -rf ../openwrt_ma/package/network/ipv6/odhcp6c ./package/network/ipv6/odhcp6c
 echo > ./feeds/packages/utils/watchcat/files/watchcat.config
 
 # 后续修改
-rm -rf package/new/apps/FlowCone
-rm -rf package/new/apps/imm_pkg/sing-box
-#rm -rf package/new/apps/homeproxy
-rm -rf package/new/apps/luci-app-honk
-rm -rf package/new/apps/luci-app-unblockneteasemusic
+cp -rf ../openwrt-passwall-packages ./package/new
 
 git clone https://github.com/YiXuanZX/OpenWrt-nikki  package/OpenWrt-nikki
+git clone --depth=1 -b dev https://github.com/immortalwrt/homeproxy  package/luci-app-homeproxy
+git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf
 git clone https://github.com/QiuSimons/FlowCone package/FlowCone
-git clone --depth=1 -b openwrt-25.12 https://github.com/sbwml/autocore-arm package/new/autocore
-cp -rf ../openwrt-passwall-packages ./package/new
-sed -i "s/ImmortalWrt/OpenWrt/g" package/new/apps/homeproxy/po/zh_Hans/homeproxy.po
-sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/new/apps/homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
+git clone https://github.com/muink/luci-app-natmapt package/luci-app-natmapt
+git clone https://github.com/muink/openwrt-natmapt package/natmapt
 
 git clone --depth=1 -b openwrt-25.12 https://github.com/immortalwrt/luci.git immortalwrt-luci
 cp -rf immortalwrt-luci/applications/luci-app-diskman feeds/luci/applications/luci-app-diskman
 ln -sf ../../../feeds/luci/applications/luci-app-diskman ./package/feeds/luci/luci-app-diskman
 cp -rf immortalwrt-luci/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
 ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/feeds/luci/luci-app-unblockneteasemusic
+sed -i "s/ImmortalWrt/OpenWrt/g" package/luci-app-homeproxy/po/zh_Hans/homeproxy.po
+sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 sed -i 's/解除网易云音乐播放限制/音乐解锁/g' feeds/luci/applications/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 
 curl -fsSL https://raw.githubusercontent.com/0118Add/X86-Actions/main/general/25_storage.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/25_storage.js
-curl -fsSL https://raw.githubusercontent.com/immortalwrt/luci/master/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/29_ports.js > ./package/new/autocore/files/generic/29_ports.js
+curl -fsSL https://raw.githubusercontent.com/immortalwrt/luci/master/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/29_ports.js > ./package/new/autocore-arm/files/generic/29_ports.js
 
 # honk: 189160 fork 的 honk 核心为标准 PKG_SOURCE 下载（fork release 资产 + PKG_HASH 校验），自包含无需注入
 git clone --depth 1 https://github.com/189160/luci-app-honk.git /tmp/honk189-src
@@ -268,7 +252,7 @@ find ./target/linux/ -name "config-${KERNEL_VERSION}" | xargs -I{} sh -c "echo '
 ### 最后的收尾工作 ###
 # Lets Fuck
 mkdir -p package/base-files/files/usr/bin
-cp -rf ../OpenWrt-Add/core/tools/clean-overlay.sh ./package/base-files/files/usr/bin/fuck
+cp -rf ../OpenWrt-Add/fuck ./package/base-files/files/usr/bin/fuck
 # 生成默认配置及缓存
 rm -rf .config
 sed -i 's,CONFIG_WERROR=y,# CONFIG_WERROR is not set,g' target/linux/generic/config-${KERNEL_VERSION}
