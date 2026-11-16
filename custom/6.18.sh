@@ -194,7 +194,7 @@ sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/
 # Shortcut Forwarding Engine
 if ! bash "$GITHUB_WORKSPACE/patch/clone-cooluc.sh" \
     "https://$gitea/sbwml/shortcut-fe" \
-    "https://$github/gitbruc/shortcut-fe" package/emortal/shortcut-fe; then
+    "https://$github/gitbruc/shortcut-fe" package/shortcut-fe; then
     exit 1
 fi
 
