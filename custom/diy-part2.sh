@@ -40,6 +40,9 @@ gitea="git.cooluc.com"
 # Modify default IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
+# 设置root用户密码为password
+sed -i 's/root:::0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.::0:99999:7:::/g' package/base-files/files/etc/shadow
+
 # 修改x86内核版本
 #sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=6.18/g' ./target/linux/x86/Makefile
 
@@ -70,11 +73,11 @@ git clone --depth=1 -b packages-25.12 https://github.com/sbwml/feeds_packages_la
 #wget -O ./package/libs/libnftnl/Makefile https://raw.githubusercontent.com/0118Add/X86_64-Test/main/patch/Makefile
 
 # autoCore
-#git clone https://github.com/8688Add/autocore-arm -b openwrt-25.12 package/autocore
 git clone https://github.com/sbwml/autocore-arm -b openwrt-25.12 package/autocore
 
 # Default settings
-merge_package https://github.com/8688Add/openwrt_pkgs openwrt_pkgs/default-settings
+git clone https://github.com/sbwml/default-settings package/default-settings
+wget -O ./package/default-settings/default/zzz-default-settings https://raw.githubusercontent.com/0118Add/X86-Actions/main/general/zzz-default-settings
 
 # OpenClash
 git clone -b dev --depth 1 https://github.com/vernesong/OpenClash package/OpenClash
@@ -84,17 +87,17 @@ rm -rf feeds/packages/net/{xray-core,sing-box,v2ray-geodata}
 #git clone https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/passwall-packages -b main
 #git clone -b main --single-branch https://github.com/Openwrt-Passwall/openwrt-passwall package/openwrt-passwall
 #merge_package https://github.com/kiddin9/op-packages op-packages/luci-app-passwall
-merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages openwrt-passwall-packages/sing-box
+#merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages openwrt-passwall-packages/sing-box
 merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages openwrt-passwall-packages/xray-core
 merge_package https://github.com/Openwrt-Passwall/openwrt-passwall-packages openwrt-passwall-packages/v2ray-geodata
 
 # homeproxy
 #git clone -b dev --depth 1 https://github.com/immortalwrt/homeproxy package/luci-app-homeproxy
-git clone --depth 1 -b master https://github.com/fun200/homeproxy_plus package/luci-app-homeproxy
-#merge_package https://github.com/VIKINGYFY/packages packages/luci-app-homeproxy
-#merge_package https://github.com/VIKINGYFY/packages packages/sing-box
-sed -i "s/ImmortalWrt/OpenWrt/g" package/luci-app-homeproxy/po/zh_Hans/homeproxy.po
-sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
+#git clone --depth 1 -b master https://github.com/fun200/homeproxy_plus package/luci-app-homeproxy
+merge_package https://github.com/VIKINGYFY/packages packages/luci-app-homeproxy
+merge_package https://github.com/VIKINGYFY/packages packages/sing-box
+sed -i "s/ImmortalWrt/OpenWrt/g" package/custom/luci-app-homeproxy/po/zh_Hans/homeproxy.po
+sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/custom/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 #wget -O package/luci-app-homeproxy/root/etc/init.d/homeproxy https://raw.githubusercontent.com/0118Add/X86-Actions/main/general/homeproxy
 
 # mihomo
@@ -104,13 +107,13 @@ sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/luci-app-homeproxy/htdocs/l
 # dae daed
 #git clone https://github.com/kenzok8/openwrt-daede package/daede
 #git clone -b kix --depth 1 https://github.com/QiuSimons/luci-app-dae package/dae
-git clone -b kix --depth 1 https://github.com/QiuSimons/luci-app-daed package/daed
+git clone -b master --depth 1 https://github.com/QiuSimons/luci-app-honk package/honk
 git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf
-sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=2026.06.14/g' package/daed/daed/Makefile
-sed -i 's/DAED_VERSION:=.*/DAED_VERSION:=daed-4d6a433/g' package/daed/daed/Makefile
-sed -i 's/WING_VERSION:=.*/WING_VERSION:=wing-dc50308/g' package/daed/daed/Makefile
-sed -i 's/CORE_VERSION:=.*/CORE_VERSION:=core-5a51cc7/g' package/daed/daed/Makefile
-sed -i 's/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=4d6a43331f2f6e25961935b9e7ac09a7568bb2b4/g' package/daed/daed/Makefile
+#sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=2026.06.14/g' package/daed/daed/Makefile
+#sed -i 's/DAED_VERSION:=.*/DAED_VERSION:=daed-4d6a433/g' package/daed/daed/Makefile
+#sed -i 's/WING_VERSION:=.*/WING_VERSION:=wing-dc50308/g' package/daed/daed/Makefile
+#sed -i 's/CORE_VERSION:=.*/CORE_VERSION:=core-5a51cc7/g' package/daed/daed/Makefile
+#sed -i 's/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=4d6a43331f2f6e25961935b9e7ac09a7568bb2b4/g' package/daed/daed/Makefile
 
 # bpf-headers - 6.18
 sed -ri "s/(PKG_PATCHVER:=)[^\"]*/\16.18/" package/kernel/bpf-headers/Makefile
@@ -169,31 +172,18 @@ sed -i 's/解除网易云音乐播放限制/音乐解锁/g' feeds/luci/applicati
 # Dockerman
 rm -rf feeds/luci/applications/luci-app-dockerman
 git clone https://github.com/sbwml/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
-#rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
-#git clone https://github.com/sbwml/packages_utils_docker feeds/packages/utils/docker
-#git clone https://github.com/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
-#git clone https://github.com/sbwml/packages_utils_containerd feeds/packages/utils/containerd
-#git clone https://github.com/sbwml/packages_utils_runc feeds/packages/utils/runc
 sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/root/usr/share/luci/menu.d/luci-app-dockerman.json
-#sed -i 's/"admin",/"admin","services",/g' package/dockerman/applications/luci-app-dockerman/luasrc/controller/*.lua
-#sed -i 's/"admin/"admin\/services/g' package/dockerman/applications/luci-app-dockerman/luasrc/model/*.lua
-#sed -i 's/"admin/"admin\/services/g' package/dockerman/applications/luci-app-dockerman/luasrc/model/cbi/dockerman/*.lua
-#sed -i 's/"admin/"admin\/services/g' package/dockerman/applications/luci-app-dockerman/luasrc/view/dockerman/*.htm
-#sed -i 's/"admin/"admin\/services/g' package/dockerman/applications/luci-app-dockerman/luasrc/view/dockerman/cbi/*.htm
 
 # turboacc
+git clone https://github.com/QiuSimons/FlowCone package/FlowCone
+git clone https://github.com/muink/luci-app-natmapt package/luci-app-natmapt
+git clone https://github.com/muink/openwrt-natmapt package/natmapt
+merge_package https://github.com/8688Add/OpenWrt-Add OpenWrt-Add/lede_pkg
 #git clone https://github.com/chenmozhijin/turboacc package/turboacc
 sed -i '/PKG_INSTALL:=/iPKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
 #curl -sSL https://raw.githubusercontent.com/mufeng05/openwrt-sonic-fullcone/master/add_sonic_fullcone.sh -o add_sonic_fullcone.sh && bash add_sonic_fullcone.sh
-curl -sSL https://raw.githubusercontent.com/mufeng05/turboacc/main/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
-sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh_Hans/turboacc.po
-
-# 修正部分从第三方仓库拉取的软件 Makefile 路径问题
-#find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}
-#find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/lang\/golang\/golang-package.mk/$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang-package.mk/g' {}
-#find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/lang\/rust\/rust-package.mk/$(TOPDIR)\/feeds\/packages\/lang\/rust\/rust-package.mk/g' {}
-#find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHREPO/PKG_SOURCE_URL:=https:\/\/github.com/g' {}
-#find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHCODELOAD/PKG_SOURCE_URL:=https:\/\/codeload.github.com/g' {}
+#curl -sSL https://raw.githubusercontent.com/mufeng05/turboacc/main/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
+#sed -i 's/Turbo ACC 网络加速/网络加速/g' package/turboacc/luci-app-turboacc/po/zh_Hans/turboacc.po
 
 # 移除luci-app-attendedsysupgrade
 sed -i '18d' feeds/luci/collections/luci-nginx/Makefile
@@ -213,7 +203,73 @@ curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25
 #sed -i '/# timezone/i grep -q '\''/tmp/sysinfo/model'\'' /etc/rc.local || sudo sed -i '\''/exit 0/i [ "$(cat /sys\\/class\\/dmi\\/id\\/sys_vendor 2>\\/dev\\/null)" = "Default string" ] \&\& echo "x86_64" > \\/tmp\\/sysinfo\\/model'\'' /etc/rc.local\n' package/default-settings/default/zzz-default-settings
 #sed -i '/# timezone/i sed -i "s/\\(DISTRIB_DESCRIPTION=\\).*/\\1'\''OpenWrt $(sed -n "s/DISTRIB_DESCRIPTION='\''OpenWrt \\([^ ]*\\) .*/\\1/p" /etc/openwrt_release)'\'',/" /etc/openwrt_release\nsource /etc/openwrt_release \&\& sed -i -e "s/distversion\\s=\\s\\".*\\"/distversion = \\"$DISTRIB_ID $DISTRIB_RELEASE ($DISTRIB_REVISION)\\"/g" -e '\''s/distname    = .*$/distname    = ""/g'\'' /usr/lib/lua/luci/version.lua\nsed -i "s/luciname    = \\".*\\"/luciname    = \\"LuCI Master\\"/g" /usr/lib/lua/luci/version.lua\nsed -i "s/luciversion = \\".*\\"/luciversion = \\"\\"/g" /usr/lib/lua/luci/version.lua\necho "export const revision = '\''\'\'', branch = '\''LuCI Master'\'';" > /usr/share/ucode/luci/version.uc\n/etc/init.d/rpcd restart\n' package/default-settings/default/zzz-default-settings
 #sed -i '/# timezone/i sed -i "s/\\(DISTRIB_DESCRIPTION=\\).*/\\1'\''OpenWrt $(sed -n "s/DISTRIB_DESCRIPTION='\''OpenWrt \\([^ ]*\\) .*/\\1/p" /etc/openwrt_release)'\'',/" /etc/openwrt_release\nsource /etc/openwrt_release \&\& sed -i -e "s/distversion\\s=\\s\\".*\\"/distversion = \\"$DISTRIB_ID $DISTRIB_RELEASE ($DISTRIB_REVISION)\\"/g" -e '\''s/distname    = .*$/distname    = ""/g'\'' /usr/lib/lua/luci/version.lua\nsed -i "s/luciname    = \\".*\\"/luciname    = \\"LuCI openwrt-24.10\\"/g" /usr/lib/lua/luci/version.lua\nsed -i "s/luciversion = \\".*\\"/luciversion = \\"v'$(date +%Y%m%d)'\\"/g" /usr/lib/lua/luci/version.lua\necho "export const revision = '\''v'$(date +%Y%m%d)'\'\'', branch = '\''LuCI openwrt-24.10'\'';" > /usr/share/ucode/luci/version.uc\n/etc/init.d/rpcd restart\n' package/default-settings/default/zzz-default-settings
-#curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/os-release > package/base-files/files/etc/os-release
+curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/release > package/base-files/files/etc/os-release
+
+export GOTOOLCHAIN=auto
+export GOPROXY=https://proxy.golang.org,direct
+
+echo "🔍 正在全盘扫描并解锁 Go 工具链限制..."
+find . -type f -name "*.mk" -exec grep -l "GOTOOLCHAIN=local" {} + | xargs -r sed -i 's/GOTOOLCHAIN=local/GOTOOLCHAIN=auto/g'
+echo "✅ 所有潜在的 Go 工具链限制已动态解除"
+    
+# --- 整合 luci-app-honk 的宿主机编译环境依赖 ---
+echo "🔧 正在搜索并配置 luci-app-honk 所需的宿主机工具链..."
+        
+# 1. 安装 Rust 环境并直接设置为最新稳定版 (stable)
+if ! command -v rustup &> /dev/null; then
+    # 使用 --default-toolchain stable 自动获取并安装最新稳定版
+    curl --retry 3 --retry-delay 2 --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable --profile minimal --no-modify-path
+else
+    # 如果环境已存在 rustup，则更新并切换到 stable
+    rustup update stable
+    rustup default stable
+fi
+export PATH="$HOME/.cargo/bin:$PATH"
+        
+# 验证当前的 Rust 版本，确保其满足构建要求
+rustc --version
+
+# 2. 限定在 package 和 feeds 目录下快速精准搜索 honk_toolchain.sh
+HONK_TOOLCHAIN_PATH=""
+for candidate in \
+    "package/luci-app-honk/honk/honk_toolchain.sh" \
+    "package/luci-app-honk/honk_toolchain.sh" \
+    "feeds/luci/applications/luci-app-honk/honk/honk_toolchain.sh" \
+    "feeds/luci/applications/luci-app-honk/honk_toolchain.sh"; do
+    if [ -f "$candidate" ]; then
+    HONK_TOOLCHAIN_PATH="$candidate"
+    break
+    fi
+done
+        
+# 如果预置路径未命中，仅在 package 目录下浅层查找，绝不进行全盘耗时扫描
+if [ -z "$HONK_TOOLCHAIN_PATH" ] && [ -d "package" ]; then
+    HONK_TOOLCHAIN_PATH=$(find package -maxdepth 4 -type f -name "honk_toolchain.sh" | head -n 1)
+fi
+        
+# 3. 如果找到了脚本，则自动执行并安装依赖
+if [ -n "$HONK_TOOLCHAIN_PATH" ] && [ -f "$HONK_TOOLCHAIN_PATH" ]; then
+    HONK_DIR=$(dirname "$HONK_TOOLCHAIN_PATH")
+    echo "✅ 成功找到 honk 工具链脚本: $HONK_TOOLCHAIN_PATH (所在目录: $HONK_DIR)"
+          
+    # 执行解析脚本获取版本号
+    eval "$(bash "$HONK_TOOLCHAIN_PATH")"
+          
+    # 安装 bpf-linker
+    echo "📦 正在安装 bpf-linker v${BPF_LINKER_VERSION}..."
+    curl --retry 3 --retry-delay 2 -fsSL -o /tmp/bpf-linker.tar.zst "https://github.com/aya-rs/bpf-linker/releases/download/v${BPF_LINKER_VERSION}/bpf-linker-x86_64-unknown-linux-musl.tar.zst"
+    echo "${BPF_LINKER_SHA256}  /tmp/bpf-linker.tar.zst" | sha256sum -c -
+    sudo tar --zstd -xf /tmp/bpf-linker.tar.zst -C /usr/local/bin
+          
+    # 安装 Zig 编译器
+    echo "📦 正在安装 Zig v${ZIG_VERSION}..."
+    curl --retry 3 --retry-delay 2 -fsSL -o /tmp/zig.tar.xz "https://ziglang.org/download/${ZIG_VERSION}/zig-x86_64-linux-${ZIG_VERSION}.tar.xz"
+    sudo tar -xJf /tmp/zig.tar.xz -C /usr/local
+    sudo ln -sf "/usr/local/zig-x86_64-linux-${ZIG_VERSION}/zig" /usr/local/bin/zig
+    echo "✅ honk 专用宿主机工具链安装完成！"
+else
+    echo "⚠️ 指定目录未检测到 honk_toolchain.sh 脚本，跳过专用工具链安装。"
+fi
 
 ./scripts/feeds update -i
 ./scripts/feeds install -a
