@@ -206,7 +206,7 @@ curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25
 #sed -i '/# timezone/i sed -i "s/\\(DISTRIB_DESCRIPTION=\\).*/\\1'\''OpenWrt $(sed -n "s/DISTRIB_DESCRIPTION='\''OpenWrt \\([^ ]*\\) .*/\\1/p" /etc/openwrt_release)'\'',/" /etc/openwrt_release\nsource /etc/openwrt_release \&\& sed -i -e "s/distversion\\s=\\s\\".*\\"/distversion = \\"$DISTRIB_ID $DISTRIB_RELEASE ($DISTRIB_REVISION)\\"/g" -e '\''s/distname    = .*$/distname    = ""/g'\'' /usr/lib/lua/luci/version.lua\nsed -i "s/luciname    = \\".*\\"/luciname    = \\"LuCI openwrt-24.10\\"/g" /usr/lib/lua/luci/version.lua\nsed -i "s/luciversion = \\".*\\"/luciversion = \\"v'$(date +%Y%m%d)'\\"/g" /usr/lib/lua/luci/version.lua\necho "export const revision = '\''v'$(date +%Y%m%d)'\'\'', branch = '\''LuCI openwrt-24.10'\'';" > /usr/share/ucode/luci/version.uc\n/etc/init.d/rpcd restart\n' package/default-settings/default/zzz-default-settings
 curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/release > package/base-files/files/etc/os-release
 
-echo "🦀 2. 安装 Rust 工具链（免交互最小化模式）..."
+echo "🦀 1. 安装 Rust 工具链（免交互最小化模式）..."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --no-modify-path
 . "$HOME/.cargo/env"
 
@@ -215,7 +215,7 @@ if [ -n "${GITHUB_PATH:-}" ]; then
     echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
 fi
 
-echo "🔍 3. 自动定位并解析 honk_toolchain.sh 中的精确版本..."
+echo "🔍 2. 自动定位并解析 honk_toolchain.sh 中的精确版本..."
 TOOLCHAIN_FILE=$(find . -maxdepth 4 -path "*/honk/honk_toolchain.sh" -print -quit)
 if [ -z "$TOOLCHAIN_FILE" ]; then
     echo "❌ 错误：未在当前目录树中找到 honk/honk_toolchain.sh，请先拉取 luci-app-honk 源码！"
@@ -224,7 +224,7 @@ fi
 eval "$(bash "$TOOLCHAIN_FILE")"
 echo "📌 解析版本成功: BPF_LINKER=${BPF_LINKER_VERSION}, ZIG=${ZIG_VERSION}"
 
-echo "🔗 4. 下载并校验安装 bpf-linker..."
+echo "🔗 3. 下载并校验安装 bpf-linker..."
 curl -fsSL --retry 3 -o /tmp/bpf-linker.tar.zst \
   "https://github.com/aya-rs/bpf-linker/releases/download/v${BPF_LINKER_VERSION}/bpf-linker-x86_64-unknown-linux-musl.tar.zst"
 echo "${BPF_LINKER_SHA256}  /tmp/bpf-linker.tar.zst" | sha256sum -c -
@@ -232,14 +232,14 @@ sudo tar --zstd -xf /tmp/bpf-linker.tar.zst -C /usr/local/bin
 sudo chmod +x /usr/local/bin/bpf-linker
 rm -f /tmp/bpf-linker.tar.zst
 
-echo "⚡ 5. 下载并安装指定版本的 Zig 编译器..."
+echo "⚡ 4. 下载并安装指定版本的 Zig 编译器..."
 curl -fsSL --retry 3 -o /tmp/zig.tar.xz \
   "https://ziglang.org/download/${ZIG_VERSION}/zig-x86_64-linux-${ZIG_VERSION}.tar.xz"
 sudo tar -xJf /tmp/zig.tar.xz -C /usr/local
 sudo ln -sf "/usr/local/zig-x86_64-linux-${ZIG_VERSION}/zig" /usr/local/bin/zig
 rm -f /tmp/zig.tar.xz
 
-echo "✅ 6. 验证全部工具链就绪状态："
+echo "✅ 5. 验证全部工具链就绪状态："
 rustc --version
 bpf-linker --version
 zig version
