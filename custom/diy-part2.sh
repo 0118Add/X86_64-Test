@@ -74,6 +74,7 @@ git clone --depth=1 -b packages-25.12 https://github.com/sbwml/feeds_packages_la
 
 # autoCore
 git clone https://github.com/sbwml/autocore-arm -b openwrt-25.12 package/autocore
+wget -O ./package/autocore/files/generic/10_system.js https://raw.githubusercontent.com/0118Add/X86-Actions/main/scripts/10_system.js
 
 # Default settings
 git clone https://github.com/sbwml/default-settings package/default-settings
