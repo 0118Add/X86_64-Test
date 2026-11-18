@@ -176,10 +176,6 @@ git clone https://github.com/sbwml/luci-app-dockerman feeds/luci/applications/lu
 sed -i 's/"admin/"admin\/services/g' feeds/luci/applications/luci-app-dockerman/root/usr/share/luci/menu.d/luci-app-dockerman.json
 
 # turboacc
-#git clone https://github.com/QiuSimons/FlowCone package/FlowCone
-#git clone https://github.com/muink/luci-app-natmapt package/luci-app-natmapt
-#git clone https://github.com/muink/openwrt-natmapt package/natmapt
-#merge_package https://github.com/8688Add/OpenWrt-Add OpenWrt-Add/lede_pkg
 #git clone https://github.com/chenmozhijin/turboacc package/turboacc
 sed -i '/PKG_INSTALL:=/iPKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
 curl -sSL https://raw.githubusercontent.com/mufeng05/openwrt-sonic-fullcone/master/add_sonic_fullcone.sh -o add_sonic_fullcone.sh && bash add_sonic_fullcone.sh
