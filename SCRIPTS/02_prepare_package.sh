@@ -209,6 +209,7 @@ cp -rf ../openwrt-passwall-packages ./package/new
 
 git clone https://github.com/YiXuanZX/OpenWrt-nikki  package/OpenWrt-nikki
 git clone --depth=1 -b dev https://github.com/immortalwrt/homeproxy  package/luci-app-homeproxy
+git clone https://github.com/QiuSimons/luci-app-honk package/honk
 git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf
 git clone https://github.com/QiuSimons/FlowCone package/FlowCone
 git clone https://github.com/muink/luci-app-natmapt package/luci-app-natmapt
@@ -227,10 +228,10 @@ curl -fsSL https://raw.githubusercontent.com/0118Add/X86-Actions/main/general/25
 curl -fsSL https://raw.githubusercontent.com/immortalwrt/luci/master/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/29_ports.js > ./package/new/autocore-arm/files/generic/29_ports.js
 
 # honk: 189160 fork 的 honk 核心为标准 PKG_SOURCE 下载（fork release 资产 + PKG_HASH 校验），自包含无需注入
-git clone --depth 1 https://github.com/189160/luci-app-honk.git /tmp/honk189-src
-cp -rf /tmp/honk189-src/honk ./package/new/honk
-cp -rf /tmp/honk189-src/luci-app-honk ./package/new/luci-app-honk
-rm -rf /tmp/honk189-src
+#git clone --depth 1 https://github.com/189160/luci-app-honk.git /tmp/honk189-src
+#cp -rf /tmp/honk189-src/honk ./package/new/honk
+#cp -rf /tmp/honk189-src/luci-app-honk ./package/new/luci-app-honk
+#rm -rf /tmp/honk189-src
 
 # TTYD
 sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
@@ -256,6 +257,44 @@ cp -rf ../OpenWrt-Add/fuck ./package/base-files/files/usr/bin/fuck
 # 生成默认配置及缓存
 rm -rf .config
 sed -i 's,CONFIG_WERROR=y,# CONFIG_WERROR is not set,g' target/linux/generic/config-${KERNEL_VERSION}
+
+echo "🦀 1. 安装 Rust 工具链（免交互最小化模式）..."
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --no-modify-path
+. "$HOME/.cargo/env"
+
+# 将 Cargo 路径写入 GitHub Actions 全局环境，确保后续编译 Step 生效
+if [ -n "${GITHUB_PATH:-}" ]; then
+    echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
+fi
+
+echo "🔍 2. 自动定位并解析 honk_toolchain.sh 中的精确版本..."
+TOOLCHAIN_FILE=$(find . -maxdepth 4 -path "*/honk/honk_toolchain.sh" -print -quit)
+if [ -z "$TOOLCHAIN_FILE" ]; then
+    echo "❌ 错误：未在当前目录树中找到 honk/honk_toolchain.sh，请先拉取 luci-app-honk 源码！"
+    exit 1
+fi
+eval "$(bash "$TOOLCHAIN_FILE")"
+echo "📌 解析版本成功: BPF_LINKER=${BPF_LINKER_VERSION}, ZIG=${ZIG_VERSION}"
+
+echo "🔗 3. 下载并校验安装 bpf-linker..."
+curl -fsSL --retry 3 -o /tmp/bpf-linker.tar.zst \
+  "https://github.com/aya-rs/bpf-linker/releases/download/v${BPF_LINKER_VERSION}/bpf-linker-x86_64-unknown-linux-musl.tar.zst"
+echo "${BPF_LINKER_SHA256}  /tmp/bpf-linker.tar.zst" | sha256sum -c -
+sudo tar --zstd -xf /tmp/bpf-linker.tar.zst -C /usr/local/bin
+sudo chmod +x /usr/local/bin/bpf-linker
+rm -f /tmp/bpf-linker.tar.zst
+
+echo "⚡ 4. 下载并安装指定版本的 Zig 编译器..."
+curl -fsSL --retry 3 -o /tmp/zig.tar.xz \
+  "https://ziglang.org/download/${ZIG_VERSION}/zig-x86_64-linux-${ZIG_VERSION}.tar.xz"
+sudo tar -xJf /tmp/zig.tar.xz -C /usr/local
+sudo ln -sf "/usr/local/zig-x86_64-linux-${ZIG_VERSION}/zig" /usr/local/bin/zig
+rm -f /tmp/zig.tar.xz
+
+echo "✅ 5. 验证全部工具链就绪状态："
+rustc --version
+bpf-linker --version
+zig version
 
 ./scripts/feeds update -i
 ./scripts/feeds install -a
