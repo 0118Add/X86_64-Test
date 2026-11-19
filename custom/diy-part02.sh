@@ -198,6 +198,7 @@ curl -fsSL https://raw.githubusercontent.com/0118Add/X86_64-Test/main/general/25
 rm -rf package/network/config/firewall4
 cp -rf $GITHUB_WORKSPACE/general/firewall4 package/network/config/firewall4
 cp -rf $GITHUB_WORKSPACE/general/fullconenat-nft package/network/services/fullconenat-nft
+find package/ feeds/ -type f -name "Makefile" -exec sed -i 's/kmod-nft-nat6/kmod-nft-nat/g' {} +
 
 # comment out the following line to restore the full description
 #sed -i '/# timezone/i grep -q '\''/tmp/sysinfo/model'\'' /etc/rc.local || sudo sed -i '\''/exit 0/i [ "$(cat /sys\\/class\\/dmi\\/id\\/sys_vendor 2>\\/dev\\/null)" = "Default string" ] \&\& echo "x86_64" > \\/tmp\\/sysinfo\\/model'\'' /etc/rc.local\n' package/default-settings/default/zzz-default-settings
