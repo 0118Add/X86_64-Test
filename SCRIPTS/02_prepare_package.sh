@@ -253,11 +253,11 @@ rm -rf .config
 sed -i 's,CONFIG_WERROR=y,# CONFIG_WERROR is not set,g' target/linux/generic/config-${KERNEL_VERSION}
 
 
+# honk工具链安装
 echo "🦀 1. 安装 Rust 工具链（免交互最小化模式）..."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --no-modify-path
 . "$HOME/.cargo/env"
 
-# 将 Cargo 路径写入 GitHub Actions 全局环境，确保后续编译 Step 生效
 if [ -n "${GITHUB_PATH:-}" ]; then
     echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
 fi
