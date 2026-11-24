@@ -207,6 +207,7 @@ echo > ./feeds/packages/utils/watchcat/files/watchcat.config
 # 后续修改
 #cp -rf ../openwrt-passwall-packages ./package/new
 cp -rf ../openwrt_helloworld ./package/new
+rm -rf package/new/openwrt_helloworld/vmlinux-btf
 
 git clone https://github.com/YiXuanZX/OpenWrt-nikki  package/OpenWrt-nikki
 #git clone --depth=1 -b dev https://github.com/immortalwrt/homeproxy  package/luci-app-homeproxy
