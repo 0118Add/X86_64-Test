@@ -205,10 +205,11 @@ cp -rf ../openwrt_ma/package/network/ipv6/odhcp6c ./package/network/ipv6/odhcp6c
 echo > ./feeds/packages/utils/watchcat/files/watchcat.config
 
 # 后续修改
-cp -rf ../openwrt-passwall-packages ./package/new
+#cp -rf ../openwrt-passwall-packages ./package/new
+cp -rf ../openwrt_helloworld ./package/new
 
 git clone https://github.com/YiXuanZX/OpenWrt-nikki  package/OpenWrt-nikki
-git clone --depth=1 -b dev https://github.com/immortalwrt/homeproxy  package/luci-app-homeproxy
+#git clone --depth=1 -b dev https://github.com/immortalwrt/homeproxy  package/luci-app-homeproxy
 git clone https://github.com/QiuSimons/luci-app-honk package/honk
 git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf
 git clone https://github.com/QiuSimons/FlowCone package/FlowCone
@@ -220,8 +221,8 @@ cp -rf immortalwrt-luci/applications/luci-app-diskman feeds/luci/applications/lu
 ln -sf ../../../feeds/luci/applications/luci-app-diskman ./package/feeds/luci/luci-app-diskman
 cp -rf immortalwrt-luci/applications/luci-app-unblockneteasemusic feeds/luci/applications/luci-app-unblockneteasemusic
 ln -sf ../../../feeds/luci/applications/luci-app-unblockneteasemusic ./package/feeds/luci/luci-app-unblockneteasemusic
-sed -i "s/ImmortalWrt/OpenWrt/g" package/luci-app-homeproxy/po/zh_Hans/homeproxy.po
-sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
+sed -i "s/ImmortalWrt/OpenWrt/g" package/new/luci-app-homeproxy/po/zh_Hans/homeproxy.po
+sed -i "s/ImmortalWrt proxy/OpenWrt proxy/g" package/new/luci-app-homeproxy/htdocs/luci-static/resources/view/homeproxy/{client.js,server.js}
 sed -i 's/解除网易云音乐播放限制/音乐解锁/g' feeds/luci/applications/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json
 
 curl -fsSL https://raw.githubusercontent.com/0118Add/X86-Actions/main/general/25_storage.js > ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/25_storage.js
