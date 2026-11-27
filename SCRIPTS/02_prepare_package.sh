@@ -258,7 +258,6 @@ sed -i 's,CONFIG_WERROR=y,# CONFIG_WERROR is not set,g' target/linux/generic/con
 
 
 # honk工具链安装
-set -e
 echo "🦀 1. 安装 Rust 工具链（免交互最小化模式）..."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --no-modify-path
 . "$HOME/.cargo/env"
@@ -285,10 +284,11 @@ sudo chmod +x /usr/local/bin/bpf-linker
 rm -f /tmp/bpf-linker.tar.zst
 
 echo "⚡ 4. 下载并安装指定版本的 Zig 编译器..."
-echo "📦 正在通过 PyPI 安装最新版 Zig 编译器..."
-pip3 install --break-system-packages -U ziglang
-sudo ln -sf "$(command -v python-zig)" /usr/local/bin/zig
-echo "✅ Zig 安装完成: $(zig version)"
+curl -fsSL --retry 3 -o /tmp/zig.tar.xz \
+  "https://ziglang.org/download/${ZIG_VERSION}/zig-x86_64-linux-${ZIG_VERSION}.tar.xz"
+sudo tar -xJf /tmp/zig.tar.xz -C /usr/local
+sudo ln -sf "/usr/local/zig-x86_64-linux-${ZIG_VERSION}/zig" /usr/local/bin/zig
+rm -f /tmp/zig.tar.xz
 
 echo "✅ 5. 验证全部工具链就绪状态："
 rustc --version
