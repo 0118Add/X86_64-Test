@@ -257,6 +257,7 @@ sed -i 's,CONFIG_WERROR=y,# CONFIG_WERROR is not set,g' target/linux/generic/con
 
 
 # honk工具链安装
+set -e
 echo "🦀 1. 安装 Rust 工具链（免交互最小化模式）..."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --no-modify-path
 . "$HOME/.cargo/env"
