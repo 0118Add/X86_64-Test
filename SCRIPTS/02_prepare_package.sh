@@ -283,17 +283,10 @@ sudo tar --zstd -xf /tmp/bpf-linker.tar.zst -C /usr/local/bin
 sudo chmod +x /usr/local/bin/bpf-linker
 rm -f /tmp/bpf-linker.tar.zst
 
-echo "⚡ 4. 通过 PyPI 安装 Zig 编译器与 cargo-zigbuild..."
-sudo apt-get update && sudo apt-get install -y python3-pip
+echo "📦 4. 正在通过 PyPI 安装最新版 Zig 编译器..."
 pip3 install --break-system-packages -U ziglang
-export PATH="$HOME/.local/bin:$PATH"
-
-ZIG_BIN=$(command -v python-zig)
-[ -n "$ZIG_BIN" ] || { echo "❌ 错误：未找到 python-zig 安装路径！"; exit 1; }
-sudo ln -sf "$ZIG_BIN" /usr/local/bin/zig
-
-# 安装 honk 交叉编译必需的 cargo-zigbuild
-cargo install --locked cargo-zigbuild
+sudo ln -sf "$(command -v python-zig)" /usr/local/bin/zig
+echo "✅ Zig 安装完成: $(zig version)"
 
 echo "✅ 5. 验证全部工具链就绪状态："
 rustc --version
