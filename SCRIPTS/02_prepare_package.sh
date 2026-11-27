@@ -207,6 +207,7 @@ echo > ./feeds/packages/utils/watchcat/files/watchcat.config
 # 后续修改
 #cp -rf ../openwrt-passwall-packages ./package/new
 cp -rf ../openwrt_helloworld ./package/new
+rm -rf package/new/openwrt_helloworld/dae
 rm -rf package/new/openwrt_helloworld/vmlinux-btf
 rm -rf package/new/openwrt_helloworld/luci-app-ssr-plus
 
